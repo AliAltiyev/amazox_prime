@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "733275854742",
+    "project_id": "innofire-ccce6",
+    "storage_bucket": "innofire-ccce6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733275854742:android:2dd37be01cca1cda652fb7",
+        "android_client_info": {
+          "package_name": "com.example.amazon_prime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733275854742-pqj8ot4pj5m8fgef06uk9h58376mesl7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs71FIyGxVF-Lc8LTNp1NlDbPRc67aK6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733275854742-pqj8ot4pj5m8fgef06uk9h58376mesl7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
