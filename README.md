@@ -1,16 +1,31 @@
-# amazon_prime
+<h1 align="center" id="title">Amazox Prime</h1>
 
-A new Flutter project.
+<p align="center"><img src="https://firebasestorage.googleapis.com/v0/b/innofire-ccce6.appspot.com/o/Screenshot%202023-06-27%20130937.png?alt=media&amp;token=9f95ee4d-4da1-4f72-a99e-1fc92c63b560" alt="project-image"></p>
 
-## Getting Started
+<p id="description">This project is a Flutter app that uses Firebase services to help users find and book repair appointments for their cars or order food.</p>
 
-This project is a starting point for a Flutter application.
+  
+  
+<h2>🧐 Features</h2>
 
-A few resources to get you started if this is your first Flutter project:
+Here're some of the project's best features:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+*   \* Authentication with Firebase Auth
+*   \* CRUD operations on a Firebase Firestore database
+*   \* Storage of images in Firebase Cloud Storage
+*   \* Order food from local restaurants
+*   \* View your food order history
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Flutter
+*   Dart
+*   Firebase
+
+<h2>🛡️ License:</h2>
+
+This project is licensed under the The MIT License (MIT) Copyright (c) 2023 Ali Altiyev Permission is hereby granted free of charge to any person obtaining a copy of this software and associated documentation files (the "Software") to deal in the Software without restriction including without limitation the rights to use copy modify merge publish distribute sublicense and/or sell copies of the Software and to permit persons to whom the Software is furnished to do so subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND EXPRESS OR IMPLIED INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM DAMAGES OR OTHER LIABILITY WHETHER IN AN ACTION OF CONTRACT TORT OR OTHERWISE ARISING FROM OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
