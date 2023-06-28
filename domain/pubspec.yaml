@@ -7,17 +7,9 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
   flutter: ">=1.17.0"
 
-dependencies:
-  #base
-  dartz: ^0.10.1
-  equatable: ^2.0.5
-  
+dependencies:  
   flutter:
     sdk: flutter
-  
-  core:
-    path: ../core
-
 
 
 dev_dependencies:

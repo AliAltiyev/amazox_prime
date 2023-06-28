@@ -1,6 +1,4 @@
-import 'package:core/resources/theme_manager.dart';
-import 'package:flutter/material.dart';
-import 'package:home/src/ui/screen/home.dart';
+import 'package:amazon_prime/index.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -8,8 +6,9 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: theme,
-        home: const HomeScreen());
+      debugShowCheckedModeBanner: false,
+      theme: myTheme,
+      home: const HomeView(),
+    );
   }
 }

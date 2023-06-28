@@ -15,7 +15,8 @@ dependencies:
    path: ../data
   domain:
    path: ../domain
-  cached_network_image: ^3.2.3
+  #Fonts
+  google_fonts: ^4.0.4
 
 
 dev_dependencies:

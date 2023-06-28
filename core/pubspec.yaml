@@ -10,18 +10,16 @@ dependencies:
   cloud_firestore: ^4.8.1
   flutter:
     sdk: flutter
+  #dependecy injection
   get_it: ^7.6.0
+  #base
+  equatable: ^2.0.5
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
 
-  domain:
-    path: ../domain
-  data: 
-    path: ../data  
-  home:
-    path: ../features/home  
 flutter:
 

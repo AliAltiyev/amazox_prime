@@ -1,11 +1,16 @@
-import 'package:json_annotation/json_annotation.dart';
-
+import 'package:data/data.dart';
 part 'product.g.dart';
 
 @JsonSerializable()
 class ProductModel {
   ProductModel(
-      this.name, this.description, this.image, this.price, this.ml, this.id);
+    this.name,
+    this.description,
+    this.image,
+    this.price,
+    this.ml,
+    this.id,
+  );
 
   final String name;
   final String description;

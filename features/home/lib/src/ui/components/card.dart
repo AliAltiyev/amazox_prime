@@ -1,42 +1,39 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:core/extensions/string.dart';
-import 'package:core/resources/color_manager.dart';
-import 'package:core/resources/font_manager.dart';
-import 'package:core/resources/style_manager.dart';
-import 'package:core/resources/values_manager.dart';
-import 'package:domain/entity/product.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
+import 'package:home/src/home.dart';
 import 'button.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({super.key, required Product product}) : _product = product;
+  const CustomCard({
+    super.key,
+    required Product product,
+  }) : _product = product;
 
   final Product _product;
 
   @override
   Widget build(BuildContext context) {
-    // Alexander Guzich advised not to use this one
-    // example =>  context.mediaQuery().height;
-    Size size = MediaQuery.sizeOf(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Padding(
-      padding: const EdgeInsets.all(ApplicationPadding.p10),
+      padding: const EdgeInsets.all(ApplicationPadding.PADDING_4),
       child: Card(
+        color: ApplicationColors.white,
+        elevation: ApplicationSize.SIZE_10,
         clipBehavior: Clip.antiAlias,
-        color: ColorManager.white,
         child: Padding(
-          padding: const EdgeInsets.all(ApplicationPadding.p8),
+          padding: const EdgeInsets.all(
+            ApplicationPadding.PADDING_4,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+            children: <Widget>[
               SizedBox(
-                height: size.height / ApplicationSize.s4_5,
-                width: size.width / ApplicationSize.s9,
+                height: size.height / ApplicationSize.SIZE_4,
+                width: size.width / ApplicationSize.SIZE_9,
                 child: _networkImage(),
               ),
-              _detailsText(size)
+              _detailsText(
+                size: size,
+              )
             ],
           ),
         ),
@@ -44,26 +41,38 @@ class CustomCard extends StatelessWidget {
     );
   }
 
-  Padding _detailsText(Size size) {
+  Padding _detailsText({
+    required Size size,
+  }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: ApplicationPadding.p4),
+      padding: const EdgeInsets.symmetric(
+        horizontal: ApplicationPadding.PADDING_4,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(_product.price.toString().toCurrency,
-              style: StyleManager.getMediumFontStyle(
-                  fontFamily: FontManager.poppins, fontSize: FontSize.s24)),
-          Text(_product.name,
-              style: StyleManager.getMediumFontStyle(
-                  fontFamily: FontManager.poppins, fontSize: FontSize.s18),
-              overflow: TextOverflow.ellipsis),
-          SizedBox(height: size.height / ApplicationSize.s99),
-          Text(_product.ml.toString().toWeight,
-              style: StyleManager.getMediumFontStyle(fontSize: FontSize.s14)),
-          SizedBox(height: size.height / ApplicationSize.s62),
+        children: <Widget>[
+          Text(
+            '${_product.price}${Currency.rubl.value}',
+            style: AppFonts.normal24,
+          ),
+          Text(
+            _product.name,
+            style: AppFonts.normal18,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(
+            height: size.height / ApplicationSize.SIZE_120,
+          ),
+          Text(
+            '${_product.ml.toString()} ${Weight.ml.value}',
+            style: AppFonts.bold14,
+          ),
+          SizedBox(
+            height: size.height / ApplicationSize.SIZE_120,
+          ),
           AddToCardButton(
             onPressed: () {
-              //TODO: Add navigation
+              return;
             },
           )
         ],
@@ -75,26 +84,46 @@ class CustomCard extends StatelessWidget {
     return CachedNetworkImage(
       fadeInCurve: Curves.easeIn,
       imageUrl: _product.image,
-      imageBuilder: (context, imageProvider) => Container(
+      imageBuilder: (
+        context,
+        imageProvider,
+      ) =>
+          Container(
         decoration: BoxDecoration(
           image: DecorationImage(
             image: imageProvider,
             fit: BoxFit.cover,
             isAntiAlias: true,
           ),
-          borderRadius: BorderRadius.circular(ApplicationSize.s10),
+          borderRadius: BorderRadius.circular(
+            ApplicationSize.SIZE_10,
+          ),
         ),
       ),
-      placeholder: (context, url) => SpinKitFadingCircle(
-        itemBuilder: (BuildContext context, int index) {
+      placeholder: (
+        context,
+        url,
+      ) =>
+          SpinKitFadingCircle(
+        itemBuilder: (
+          BuildContext context,
+          int index,
+        ) {
           return DecoratedBox(
             decoration: BoxDecoration(
-              color: index.isEven ? ColorManager.red : ColorManager.green,
+              color: index.isEven
+                  ? ApplicationColors.red
+                  : ApplicationColors.green,
             ),
           );
         },
       ),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
+      errorWidget: (
+        context,
+        url,
+        error,
+      ) =>
+          AppIcons.error,
     );
   }
 }

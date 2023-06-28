@@ -1,7 +1,4 @@
-import 'package:core/resources/font_manager.dart';
-import 'package:core/resources/style_manager.dart';
-import 'package:core/resources/values_manager.dart';
-import 'package:flutter/material.dart';
+import 'package:home/src/home.dart';
 
 class SearchTextField extends StatelessWidget {
   final String _labelText;
@@ -15,30 +12,38 @@ class SearchTextField extends StatelessWidget {
         _controller = textEditingController;
 
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
+  Widget build(
+    BuildContext context,
+  ) {
+    final Size size = MediaQuery.sizeOf(context);
     return SizedBox(
-      height: size.height / ApplicationSize.s16,
+      height: size.height / ApplicationSize.SIZE_16,
       child: Card(
         shape: const RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.all(Radius.circular(ApplicationPadding.p16)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              ApplicationPadding.PADDING_16,
+            ),
+          ),
         ),
-        elevation: ApplicationSize.s8,
+        elevation: ApplicationSize.SIZE_8,
         child: Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: ApplicationPadding.p16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: ApplicationPadding.PADDING_16,
+          ),
           child: TextField(
-            style: StyleManager.getMediumFontStyle(
-                fontFamily: FontManager.poppins),
+            style: AppFonts.normal14,
             controller: _controller,
             decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: ApplicationPadding.p16),
-              suffix: const Icon(Icons.search_outlined),
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: ApplicationPadding.PADDING_16,
+              ),
+              suffix: const Icon(
+                Icons.search_outlined,
+              ),
               hintText: _labelText,
-              hintStyle: StyleManager.getMediumFontStyle(
-                  fontFamily: FontManager.poppins),
+              hintStyle: AppFonts.normal14,
             ),
           ),
         ),

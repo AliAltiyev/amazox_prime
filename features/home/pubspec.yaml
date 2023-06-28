@@ -24,10 +24,11 @@ dependencies:
   bloc: ^8.1.2
   #base
   equatable: ^2.0.5
-  cloud_firestore: ^4.8.1
+  #cahce image
   cached_network_image: ^3.2.3
   #animated text
   animated_text_kit: ^4.2.2
+  #loading widget
   flutter_spinkit: ^5.2.0
 dev_dependencies:
   flutter_test:

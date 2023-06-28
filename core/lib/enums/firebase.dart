@@ -1,1 +1,3 @@
-enum FirebaseEnum { coffee }
+enum FirebaseEnum {
+  coffee,
+}
