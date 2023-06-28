@@ -29,7 +29,9 @@ class CustomCard extends StatelessWidget {
               SizedBox(
                 height: size.height / ApplicationSize.SIZE_4,
                 width: size.width / ApplicationSize.SIZE_9,
-                child: _networkImage(),
+                child: CustomCachedNetworkImage(
+                  url: _product.image,
+                ),
               ),
               _detailsText(
                 size: size,
@@ -77,53 +79,6 @@ class CustomCard extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-
-  CachedNetworkImage _networkImage() {
-    return CachedNetworkImage(
-      fadeInCurve: Curves.easeIn,
-      imageUrl: _product.image,
-      imageBuilder: (
-        context,
-        imageProvider,
-      ) =>
-          Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-            isAntiAlias: true,
-          ),
-          borderRadius: BorderRadius.circular(
-            ApplicationSize.SIZE_10,
-          ),
-        ),
-      ),
-      placeholder: (
-        context,
-        url,
-      ) =>
-          SpinKitFadingCircle(
-        itemBuilder: (
-          BuildContext context,
-          int index,
-        ) {
-          return DecoratedBox(
-            decoration: BoxDecoration(
-              color: index.isEven
-                  ? ApplicationColors.red
-                  : ApplicationColors.green,
-            ),
-          );
-        },
-      ),
-      errorWidget: (
-        context,
-        url,
-        error,
-      ) =>
-          AppIcons.error,
     );
   }
 }

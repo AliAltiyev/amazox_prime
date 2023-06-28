@@ -1,7 +1,8 @@
 export 'dart:async';
 export 'package:animated_text_kit/animated_text_kit.dart';
 export 'package:bloc/bloc.dart';
-export 'package:cached_network_image/cached_network_image.dart';
+export 'package:core_ui/components/cached_network_image.dart';
+
 export 'package:core/constants/string_constants.dart';
 export 'package:core/enums/currency.dart';
 export 'package:core/enums/duration.dart';
@@ -17,7 +18,6 @@ export 'package:domain/entity/product.dart';
 export 'package:domain/usecase/get_products.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
-export 'package:flutter_spinkit/flutter_spinkit.dart';
 export 'package:home/src/bloc/home_bloc.dart';
 export 'package:home/src/ui/components/app_bar.dart';
 export 'package:home/src/ui/components/app_bar_chip.dart';
@@ -25,3 +25,4 @@ export 'package:home/src/ui/components/card.dart';
 export 'package:home/src/ui/components/search_text_field.dart';
 export 'package:core/di/di.dart';
 export 'package:core_ui/constants/string.dart';
+export 'package:core_ui/core_ui.dart';

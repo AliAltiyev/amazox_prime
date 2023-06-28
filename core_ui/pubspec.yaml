@@ -17,7 +17,10 @@ dependencies:
    path: ../domain
   #Fonts
   google_fonts: ^4.0.4
-
+  #cahce image
+  cached_network_image: ^3.2.3
+  #loading widget
+  flutter_spinkit: ^5.2.0
 
 dev_dependencies:
   flutter_test:
@@ -26,4 +29,5 @@ dev_dependencies:
    
 
 flutter:
+
 

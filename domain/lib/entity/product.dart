@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:flutter/widgets.dart';
 
 @immutable
 final class Product extends Equatable {

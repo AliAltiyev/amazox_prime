@@ -24,6 +24,9 @@ dependencies:
   
   domain:  
     path: ../domain
+  core:
+   path: ../core 
+  #Firebase  
   firebase_storage: ^11.2.3
 
 
