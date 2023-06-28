@@ -6,26 +6,82 @@
 
   
   
-<h2>🧐 Features</h2>
+<h2>🧐 Gitflow </h2>
 
-Here're some of the project's best features:
-
-*   \* Authentication with Firebase Auth
-*   \* CRUD operations on a Firebase Firestore database
-*   \* Storage of images in Firebase Cloud Storage
-*   \* Order food from local restaurants
-*   \* View your food order history
+Branches: master/feature/PT-1/setup project
 
   
-  
-<h2>💻 Built with</h2>
+<h2>💻 Architecture </h2>
 
-Technologies used in the project:
+*   Clean Architecture + BloC
+*   Dependency Injection: GetIt
+*   Domain layer: models, repositories, use-cases.
+*   Data layer: entities, mappers from entities to domain model, implementations of 
+    repositories and providers.
+*   Presentation layer: screens + bloc
 
-*   Flutter
-*   Dart
-*   Firebase
 
-<h2>🛡️ License:</h2>
+<h2>🛡️ Supported flavors </h2>
 
-This project is licensed under the The MIT License (MIT) Copyright (c) 2023 Ali Altiyev Permission is hereby granted free of charge to any person obtaining a copy of this software and associated documentation files (the "Software") to deal in the Software without restriction including without limitation the rights to use copy modify merge publish distribute sublicense and/or sell copies of the Software and to permit persons to whom the Software is furnished to do so subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND EXPRESS OR IMPLIED INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM DAMAGES OR OTHER LIABILITY WHETHER IN AN ACTION OF CONTRACT TORT OR OTHERWISE ARISING FROM OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *  dev
+
+
+<h2>🪓 Project structure </h2>
+
+<h3> Modules </h3>
+ 
+ *  core
+ 
+ *  core_ui
+ 
+ *  navigation
+ 
+ *  data
+ 
+ *  domain
+ 
+ *  For presentation layer every feature is a separate module.
+
+<h2>⏳ Asynchrony support </h2>
+
+ *  Flutter Async
+
+<h2> 📑 Abstractions for data sources and data access </h2>
+
+* Providers are responsible for specific services (e.g. http provider, local provider, etc.),
+they use data layer entities. Do not have abstract base classes.
+Repositories are responsible for gathering data from providers
+and mapping it to the corresponding domain layer models. Have abstract base classes in domain layer.
+
+<h2> 🐿️ Presentation layer abstractions </h2>
+
+* Base and frequently used widgets are stored in core_ui module.
+Base widget for screens is AppScaffold.
+Example: CustomScreen -> CustomForm
+Navigation is implemented using Auto Route
+Navigation on BLoC event is done from the BLoC object itself without BuildContext,
+router is stored in DI container and is injected in BLoC via constructor.
+
+
+<h2> 🐧 Approach for working with UI </h2>
+
+* One file = one widget.
+* Screen widget contains BlocProviders.
+
+
+<h2> 🌍 Localization </h2>
+
+* Localization is implemented using EasyLocalization service.
+
+
+<h2> 🎨 Design system  </h2>
+
+* Fonts, colors, frequently used constant values, and icons are stored in core_ui 
+  module.
+
+<h2> 📲 Supported platforms  </h2>
+
+* Mobiles - Android and IOS
+ 
+
+   

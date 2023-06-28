@@ -1,5 +1,5 @@
-import 'package:domain/entity/product.dart';
+import 'package:domain/domain.dart';
 
-abstract class Repository {
-  Future<List<Product>> getProducts();
+abstract class ProductRepository {
+  Future<List<Product>> fetchProducts();
 }

@@ -14,18 +14,20 @@ dependencies:
   firebase_core: ^2.14.0
   #base
   dartz: ^0.10.1
-  
+  json_annotation: ^4.8.1
+
   flutter:
     sdk: flutter
     
-  json_annotation: ^4.8.1
+
    
-  core:
-    path: ../core
+  
   domain:  
     path: ../domain
+  core:
+   path: ../core 
+  #Firebase  
   firebase_storage: ^11.2.3
-  equatable: ^2.0.5
 
 
     

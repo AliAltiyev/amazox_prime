@@ -1,8 +1,4 @@
-import 'package:core/constants/app_constants.dart';
-import 'package:core/resources/color_manager.dart';
-import 'package:core/resources/style_manager.dart';
-import 'package:core/resources/values_manager.dart';
-import 'package:flutter/material.dart';
+import 'package:home/src/home.dart';
 
 class AddToCardButton extends StatelessWidget {
   final Function onPressed;
@@ -15,17 +11,25 @@ class AddToCardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        return;
+      },
       style: ElevatedButton.styleFrom(
+        backgroundColor: ApplicationColors.primaryButtonColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(
+            ApplicationPadding.PADDING_20,
+          ),
         ),
-        backgroundColor: ColorManager.primaryButtonColor,
-        elevation: ApplicationSize.s8,
-        shadowColor: Colors.black,
+        elevation: ApplicationSize.SIZE_8,
+        shadowColor: ApplicationColors.black,
       ),
-      child: Text(AppConstants.addToCard,
-          style: StyleManager.getMediumFontStyle()),
+      child: Text(
+        StringConstant.addToCard,
+        style: AppFonts.normal18.copyWith(
+          color: ApplicationColors.black,
+        ),
+      ),
     );
   }
 }

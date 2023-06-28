@@ -1,11 +1,11 @@
-import 'package:domain/entity/product.dart';
-import 'package:domain/repository/repository.dart';
+import 'package:domain/domain.dart';
 
-class GetProductsUseCase {
-  final Repository _repository;
+class FetchProductsUseCase {
+  final ProductRepository _repository;
 
-  GetProductsUseCase({required Repository repository})
-      : _repository = repository;
+  FetchProductsUseCase({
+    required ProductRepository repository,
+  }) : _repository = repository;
 
-  Future<List<Product>> call() async => await _repository.getProducts();
+  Future<List<Product>> call() async => await _repository.fetchProducts();
 }
