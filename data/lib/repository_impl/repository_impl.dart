@@ -1,9 +1,9 @@
 import 'package:data/data.dart';
 
-final class RepositoryImpl implements ProductRepository {
+final class ProductRepositoryImpl implements ProductRepository {
   final RemoteDataSource _remoteDataSource;
 
-  RepositoryImpl(
+  ProductRepositoryImpl(
     RemoteDataSource remoteDataSource,
   ) : _remoteDataSource = remoteDataSource;
 

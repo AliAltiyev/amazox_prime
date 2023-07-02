@@ -18,16 +18,16 @@ final ThemeData myTheme = ThemeData(
   dialogBackgroundColor: ApplicationColors.disabledColor,
   indicatorColor: ApplicationColors.indicatorColor,
   hintColor: ApplicationColors.hintColor,
-  buttonTheme: ButtonThemeData(
+  buttonTheme: const ButtonThemeData(
     textTheme: ButtonTextTheme.normal,
     minWidth: ApplicationSize.SIZE_88,
     height: ApplicationSize.SIZE_36,
-    padding: const EdgeInsets.only(
+    padding: EdgeInsets.only(
         top: ApplicationSize.SIZE_0,
         bottom: ApplicationSize.SIZE_0,
         left: ApplicationSize.SIZE_16,
         right: ApplicationSize.SIZE_16),
-    shape: const RoundedRectangleBorder(
+    shape: RoundedRectangleBorder(
       side: BorderSide(
         color: ApplicationColors.primaryColor,
         width: ApplicationSize.SIZE_0,

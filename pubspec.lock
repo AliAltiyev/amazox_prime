@@ -242,14 +242,14 @@ packages:
     source: hosted
     version: "3.1.1"
   core:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       path: core
       relative: true
     source: path
     version: "0.0.1"
   core_ui:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: core_ui
       relative: true
@@ -287,16 +287,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  dartz:
-    dependency: transitive
-    description:
-      name: dartz
-      sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.10.1"
   data:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: data
       relative: true
@@ -342,7 +334,7 @@ packages:
     source: hosted
     version: "6.1.4"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       sha256: a4a99204da264a0aa9d54a332ea0315ce7b0768075139c77abefe98093dd98be
@@ -365,30 +357,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.6.0"
-  firebase_storage:
-    dependency: transitive
-    description:
-      name: firebase_storage
-      sha256: e9e889adc839a1a68e48762457bd91e247c3b02e4a065842037c039ebb51fa27
-      url: "https://pub.dev"
-    source: hosted
-    version: "11.2.3"
-  firebase_storage_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_storage_platform_interface
-      sha256: be0f4254cae3ccaefd5d1435b82c1fa3bda33187387b241c55b27d7516ea9b93
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.4.3"
-  firebase_storage_web:
-    dependency: transitive
-    description:
-      name: firebase_storage_web
-      sha256: a5aae39af27ecce997ea53e61a35e0a61b3d33f3c247d74748de0bc40f1c5c5a
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.6.3"
   fixnum:
     dependency: transitive
     description:
@@ -509,7 +477,7 @@ packages:
     source: hosted
     version: "2.3.1"
   home:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       path: "features/home"
       relative: true
@@ -960,14 +928,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  very_good_analysis:
-    dependency: "direct main"
-    description:
-      name: very_good_analysis
-      sha256: "5e4ea72d2a9188630f0dd8f120a541de730090ef8863243fedca8267a84508b8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.0+1"
   watcher:
     dependency: transitive
     description:
@@ -988,10 +948,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "1414f27dd781737e51afa9711f2ac2ace6ab4498ee98e20863fa5505aa00c58c"
+      sha256: a6f0236dbda0f63aa9a25ad1ff9a9d8a4eaaa5012da0dc59d21afdb1dc361ca4
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.4"
+    version: "3.1.4"
   xdg_directories:
     dependency: transitive
     description:

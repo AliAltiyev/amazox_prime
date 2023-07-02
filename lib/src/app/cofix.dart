@@ -6,9 +6,8 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: myTheme,
-      home: const HomeView(),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: myTheme,
+        home: const HomeView());
   }
 }

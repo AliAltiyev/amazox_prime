@@ -1,5 +1,6 @@
 library core_ui;
 
+export 'package:animated_text_kit/animated_text_kit.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:core_ui/resources/app_colors.dart';
 export 'package:core_ui/resources/app_dimension.dart';

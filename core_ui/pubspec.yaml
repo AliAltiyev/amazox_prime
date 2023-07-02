@@ -9,18 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  core:
-   path: ../core
-  data:
-   path: ../data
-  domain:
-   path: ../domain
   #Fonts
   google_fonts: ^4.0.4
   #cahce image
   cached_network_image: ^3.2.3
   #loading widget
   flutter_spinkit: ^5.2.0
+  #animated text
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:

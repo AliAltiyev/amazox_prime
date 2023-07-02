@@ -1,7 +1,7 @@
-final class CustomFireBaseException implements Exception {
+final class AppFireBaseException implements Exception {
   final String _message;
 
-  CustomFireBaseException(
+  AppFireBaseException(
     String message,
   ) : _message = message;
 

@@ -78,7 +78,7 @@ class AppBarChip extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                Icon(
+                const Icon(
                   Icons.star,
                   color: ApplicationColors.green,
                   size: ApplicationSize.SIZE_40,

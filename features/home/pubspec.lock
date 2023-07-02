@@ -135,21 +135,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  dartz:
-    dependency: transitive
-    description:
-      name: dartz
-      sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.10.1"
-  data:
-    dependency: "direct main"
-    description:
-      path: "../../data"
-      relative: true
-    source: path
-    version: "0.0.1"
   domain:
     dependency: "direct main"
     description:
@@ -213,30 +198,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.6.0"
-  firebase_storage:
-    dependency: transitive
-    description:
-      name: firebase_storage
-      sha256: e9e889adc839a1a68e48762457bd91e247c3b02e4a065842037c039ebb51fa27
-      url: "https://pub.dev"
-    source: hosted
-    version: "11.2.3"
-  firebase_storage_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_storage_platform_interface
-      sha256: be0f4254cae3ccaefd5d1435b82c1fa3bda33187387b241c55b27d7516ea9b93
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.4.3"
-  firebase_storage_web:
-    dependency: transitive
-    description:
-      name: firebase_storage_web
-      sha256: a5aae39af27ecce997ea53e61a35e0a61b3d33f3c247d74748de0bc40f1c5c5a
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.6.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -332,14 +293,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.8.1"
   lints:
     dependency: transitive
     description:

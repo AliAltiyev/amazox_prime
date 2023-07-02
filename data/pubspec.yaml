@@ -1,5 +1,5 @@
 name: data
-description: A new Flutter package project.
+description: data module.
 version: 0.0.1
 publish_to: none
 
@@ -9,28 +9,17 @@ environment:
 
 
 dependencies:
-  #firebase
-  cloud_firestore: ^4.8.1
-  firebase_core: ^2.14.0
+
   #base
-  dartz: ^0.10.1
   json_annotation: ^4.8.1
 
   flutter:
     sdk: flutter
-    
-
-   
-  
-  domain:  
+  domain:
     path: ../domain
   core:
-   path: ../core 
-  #Firebase  
-  firebase_storage: ^11.2.3
+    path: ../core
 
-
-    
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,9 +1,9 @@
 import 'package:core_ui/core_ui.dart';
 
-class CustomCachedNetworkImage extends StatelessWidget {
+class AppCachedNetworkImage extends StatelessWidget {
   final String _url;
 
-  const CustomCachedNetworkImage({
+  const AppCachedNetworkImage({
     super.key,
     required String url,
   }) : _url = url;

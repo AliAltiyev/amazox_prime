@@ -1,7 +1,10 @@
+library core;
+
+export 'package:bloc/bloc.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
-export 'package:data/datasource/remote/remote_data_sourse.dart';
-export 'package:data/repository_impl/repository_impl.dart';
-export 'package:domain/repository/repository.dart';
-export 'package:domain/usecase/get_products.dart';
+export 'package:core/di/di.dart';
+export 'package:core/di/firebase_options.dart';
+export 'package:equatable/equatable.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:get_it/get_it.dart';
-export 'package:home/src/bloc/home_bloc.dart';

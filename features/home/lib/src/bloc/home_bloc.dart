@@ -1,4 +1,5 @@
 import 'package:home/src/home.dart';
+
 part 'home_event.dart';
 part 'home_state.dart';
 
@@ -11,9 +12,8 @@ final class HomeBloc extends Bloc<ProductsEvent, ProductsState> {
         super(
           InitialProductsState(),
         ) {
-    on<FetchProductsEvent>(
-      _fetchProductsEvent,
-    );
+    on<FetchProductsEvent>(_fetchProductsEvent);
+    add(FetchProductsEvent());
   }
 
   Future<FutureOr<void>> _fetchProductsEvent(

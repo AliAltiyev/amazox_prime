@@ -12,17 +12,19 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.14.0
-  very_good_analysis: ^5.0.0+1
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
   home:
     path: features/./home/
   core:
     path: ./core
+  data:
+    path: ./data
+  core_ui:
+    path: ./core_ui
 
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
   flutter_lints: ^2.0.0
   flutter_launcher_icons: "^0.13.1"
   #Native splash 

@@ -12,11 +12,9 @@ dependencies:
     sdk: flutter
   domain:
     path: ../../domain
-  core:   
+  core:
     path: ../../core
-  data:   
-    path: ../../data
-  core_ui:   
+  core_ui:
     path: ../../core_ui
 
 
@@ -25,7 +23,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-   
+
 
 
 flutter:

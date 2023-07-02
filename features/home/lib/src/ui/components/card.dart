@@ -1,4 +1,5 @@
 import 'package:home/src/home.dart';
+
 import 'button.dart';
 
 class CustomCard extends StatelessWidget {
@@ -29,7 +30,7 @@ class CustomCard extends StatelessWidget {
               SizedBox(
                 height: size.height / ApplicationSize.SIZE_4,
                 width: size.width / ApplicationSize.SIZE_9,
-                child: CustomCachedNetworkImage(
+                child: AppCachedNetworkImage(
                   url: _product.image,
                 ),
               ),
@@ -74,7 +75,7 @@ class CustomCard extends StatelessWidget {
           ),
           AddToCardButton(
             onPressed: () {
-              return;
+              //TODO Add navigation
             },
           )
         ],
