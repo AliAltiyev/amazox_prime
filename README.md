@@ -8,7 +8,9 @@
   
 <h2>🧐 Gitflow </h2>
 
-Branches: master/feature/PT-1/setup project
+Branches: 
+* master
+* feature/PT-1/setup project
 
   
 <h2>💻 Architecture </h2>
