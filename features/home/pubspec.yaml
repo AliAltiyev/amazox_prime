@@ -1,0 +1,30 @@
+name: home
+description: Home screen module.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  domain:
+    path: ../../domain
+  core:
+    path: ../../core
+  core_ui:
+    path: ../../core_ui
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+
+
+flutter:
+

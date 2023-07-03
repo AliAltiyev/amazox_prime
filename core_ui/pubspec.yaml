@@ -1,0 +1,29 @@
+name: core_ui
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #Fonts
+  google_fonts: ^4.0.4
+  #cahce image
+  cached_network_image: ^3.2.3
+  #loading widget
+  flutter_spinkit: ^5.2.0
+  #animated text
+  animated_text_kit: ^4.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+   
+
+flutter:
+
+

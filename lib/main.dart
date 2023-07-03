@@ -1,5 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:data/data.dart';
 
-void main() {
-  runApp(app)
+import 'index.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  initAppModule();
+  initDataLayer();
+  initHome();
+
+  runApp(const Application());
 }
