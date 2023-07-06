@@ -1,18 +1,20 @@
-import 'package:home/src/home.dart';
+import 'package:core_ui/core_ui.dart';
 
 class AddToCardButton extends StatelessWidget {
-  final Function onPressed;
+  final VoidCallback onPressed;
+  final String text;
 
   const AddToCardButton({
     super.key,
     required this.onPressed,
+    required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        return;
+        //TODO add to card
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: ApplicationColors.primaryButtonColor,
@@ -25,7 +27,7 @@ class AddToCardButton extends StatelessWidget {
         shadowColor: ApplicationColors.black,
       ),
       child: Text(
-        StringConstant.addToCard,
+        text,
         style: AppFonts.normal18.copyWith(
           color: ApplicationColors.black,
         ),

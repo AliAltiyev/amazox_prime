@@ -1,3 +1,6 @@
+import 'package:home/src/ui/components/card.dart';
+import 'package:navigation/navigation/app_router.dart';
+
 import '../../home.dart';
 
 class SliverGridList extends StatelessWidget {
@@ -15,8 +18,17 @@ class SliverGridList extends StatelessWidget {
       itemCount: state.products.length,
       itemBuilder: (context, index) {
         final data = state.products[index];
-        return CustomCard(
-          product: data,
+        return InkWell(
+          onTap: () {
+            context.router.push(
+              Product_details(
+                productId: data.id,
+              ),
+            );
+          },
+          child: CustomCard(
+            product: data,
+          ),
         );
       },
     );

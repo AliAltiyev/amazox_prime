@@ -1,8 +1,6 @@
 import '../home.dart';
 
-final getIt = GetIt.instance;
-
-Future<void> initHome() async {
+void initHome() async {
   getIt.registerLazySingleton<HomeBloc>(
     () => HomeBloc(
       getIt(),

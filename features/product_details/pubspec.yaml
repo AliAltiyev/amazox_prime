@@ -1,0 +1,27 @@
+name: product_details
+description: App product details layer
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+  flutter: '>=1.17.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  navigation:
+    path: ../../navigation/
+  domain:
+    path: ../../domain/
+  core_ui:
+    path: ../../core_ui
+  core:
+    path: ../../core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

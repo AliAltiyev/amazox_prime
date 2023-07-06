@@ -15,4 +15,11 @@ final class ProductRepositoryImpl implements ProductRepository {
         .toList()
         .cast<Product>();
   }
+
+  @override
+  Future<Product> fetchProductById(int productId) async {
+    final ProductModel productModel =
+        await _remoteDataSource.getCoffeeById(productId);
+    return ProductMapper.toEntity(productModel);
+  }
 }

@@ -25,13 +25,17 @@ final class HomeBloc extends Bloc<ProductsEvent, ProductsState> {
     );
     try {
       final List<Product> data = await _getProductsUseCase();
-      emit(LoadedProductsState(
-        products: data,
-      ));
+      emit(
+        LoadedProductsState(
+          products: data,
+        ),
+      );
     } catch (e) {
-      emit(ErrorProductsState(
-        error: StringConstants.stateError,
-      ));
+      emit(
+        ErrorProductsState(
+          error: StringConstants.stateError,
+        ),
+      );
     }
   }
 }

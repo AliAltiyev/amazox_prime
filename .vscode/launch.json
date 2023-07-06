@@ -1,0 +1,165 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "cofix",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "cofix (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "cofix (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "core",
+      "cwd": "core",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "core (profile mode)",
+      "cwd": "core",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "core (release mode)",
+      "cwd": "core",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "core_ui",
+      "cwd": "core_ui",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "core_ui (profile mode)",
+      "cwd": "core_ui",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "core_ui (release mode)",
+      "cwd": "core_ui",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "data",
+      "cwd": "data",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "data (profile mode)",
+      "cwd": "data",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "data (release mode)",
+      "cwd": "data",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "domain",
+      "cwd": "domain",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "domain (profile mode)",
+      "cwd": "domain",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "domain (release mode)",
+      "cwd": "domain",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "navigation",
+      "cwd": "navigation",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "navigation (profile mode)",
+      "cwd": "navigation",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "navigation (release mode)",
+      "cwd": "navigation",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "home",
+      "cwd": "features\\home",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "home (profile mode)",
+      "cwd": "features\\home",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "home (release mode)",
+      "cwd": "features\\home",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "product_details",
+      "cwd": "features\\product_details",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "product_details (profile mode)",
+      "cwd": "features\\product_details",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "product_details (release mode)",
+      "cwd": "features\\product_details",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
+}

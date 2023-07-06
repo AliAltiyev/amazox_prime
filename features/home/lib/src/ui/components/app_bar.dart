@@ -1,9 +1,8 @@
 import 'package:home/src/home.dart';
 
-class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({
-    super.key,
-  });
+class AppSliverAppBar extends StatelessWidget {
+  final Widget _child;
+  const AppSliverAppBar({super.key, required Widget child}) : _child = child;
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +17,12 @@ class CustomSliverAppBar extends StatelessWidget {
         centerTitle: false,
         background: Stack(
           children: <Widget>[
-            Positioned.fill(
-              child: Image.asset(
-                ImagePaths.sliverAppBarBackground,
-                fit: BoxFit.fill,
-              ),
-            ),
+            Positioned.fill(child: _child),
             const Positioned(
               top: ApplicationSize.SIZE_120,
               left: ApplicationSize.SIZE_20,
               child: AppBarChip(
                 label: StringConstant.overTwoHundredStarts,
-                //A bit later will fetch from firebase
                 starts: ApplicationSize.SIZE_4,
                 priority: StringConstant.good,
               ),

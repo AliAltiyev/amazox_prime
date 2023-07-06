@@ -11,36 +11,46 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeBloc>(
-      create: (contextProvider) => instance.get<HomeBloc>(),
+      create: (contextProvider) => getIt.get<HomeBloc>(),
       child: Scaffold(
-          body: CustomScrollView(slivers: <Widget>[
-        const CustomSliverAppBar(),
-        SliverToBoxAdapter(
-            child: Padding(
-          padding: const EdgeInsets.all(
-            ApplicationSize.SIZE_8,
-          ),
-          child: SearchTextField(
-            labelText: StringConstant.search,
-            textEditingController: TextEditingController(),
-          ),
-        )),
-        BlocBuilder<HomeBloc, ProductsState>(
-          builder: (builderContext, state) {
-            if (state is LoadedProductsState) {
-              return SliverGridList(state: state);
-            } else if (state is LoadingProductsState) {
-              return SliverToBoxAdapter(
-                child: _loadingStateBody(),
-              );
-            } else {
-              return const SliverToBoxAdapter(
-                child: SizedBox.shrink(),
-              );
-            }
-          },
+        body: CustomScrollView(
+          slivers: <Widget>[
+            AppSliverAppBar(
+              child: Image.asset(
+                ImagePaths.sliverAppBarBackground,
+                fit: BoxFit.fill,
+              ),
+            ),
+            SliverToBoxAdapter(
+                child: Padding(
+              padding: const EdgeInsets.all(
+                ApplicationSize.SIZE_8,
+              ),
+              child: SearchTextField(
+                labelText: StringConstant.search,
+                textEditingController: TextEditingController(),
+              ),
+            )),
+            BlocBuilder<HomeBloc, ProductsState>(
+              builder: (builderContext, state) {
+                if (state is LoadedProductsState) {
+                  return SliverGridList(
+                    state: state,
+                  );
+                } else if (state is LoadingProductsState) {
+                  return SliverToBoxAdapter(
+                    child: _loadingStateBody(),
+                  );
+                } else {
+                  return const SliverToBoxAdapter(
+                    child: SizedBox.shrink(),
+                  );
+                }
+              },
+            ),
+          ],
         ),
-      ])),
+      ),
     );
   }
 

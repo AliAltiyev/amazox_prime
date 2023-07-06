@@ -1,7 +1,5 @@
 import 'package:home/src/home.dart';
 
-import 'button.dart';
-
 class CustomCard extends StatelessWidget {
   const CustomCard({
     super.key,
@@ -74,6 +72,7 @@ class CustomCard extends StatelessWidget {
             height: size.height / ApplicationSize.SIZE_120,
           ),
           AddToCardButton(
+            text: StringConstant.addToCard,
             onPressed: () {
               //TODO Add navigation
             },

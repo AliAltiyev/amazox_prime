@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
 
 abstract class ProductMapper {
-  static toModel(Product model) {
+  static ProductModel toModel(Product model) {
     return ProductModel(
       model.name,
       model.description,
@@ -9,10 +9,12 @@ abstract class ProductMapper {
       model.price,
       model.ml,
       model.id,
+      model.bigDescription,
+      model.rate,
     );
   }
 
-  static toEntity(ProductModel model) {
+  static Product toEntity(ProductModel model) {
     return Product(
       name: model.name,
       description: model.description,
@@ -20,6 +22,8 @@ abstract class ProductMapper {
       price: model.price,
       ml: model.ml,
       id: model.id,
+      bigDescription: model.bigDescription,
+      rate: model.rate,
     );
   }
 }

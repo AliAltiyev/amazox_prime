@@ -8,7 +8,6 @@ final ThemeData myTheme = ThemeData(
   primaryColorDark: ApplicationColors.primaryColorDark,
   canvasColor: ApplicationColors.canvasColor,
   scaffoldBackgroundColor: ApplicationColors.scaffoldBackgroundColor,
-  cardColor: ApplicationColors.white,
   dividerColor: ApplicationColors.dividerColor,
   highlightColor: ApplicationColors.highlightColor,
   splashColor: ApplicationColors.splashColor,

@@ -5,6 +5,7 @@ export 'package:data/datasource/remote/remote_data_source_impl.dart';
 export 'package:data/di/di.dart';
 export 'package:data/mapper/product.dart';
 export 'package:data/model/product.dart';
+export 'package:domain/domain.dart';
 export 'package:domain/entity/product.dart';
 export 'package:domain/repository/repository.dart';
 export 'package:domain/usecase/get_products.dart';

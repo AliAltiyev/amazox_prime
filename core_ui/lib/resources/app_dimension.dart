@@ -21,6 +21,7 @@ final class ApplicationSize {
   static const double SIZE_0_8 = 0.8;
   static const double SIZE_2 = 2.0;
   static const double SIZE_4 = 4.0;
+  static const double SIZE_5 = 5.0;
   static const double SIZE_6 = 6.0;
   static const double SIZE_8 = 8.0;
   static const double SIZE_9 = 9.0;

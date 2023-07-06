@@ -1,10 +1,8 @@
 import 'package:data/data.dart';
 
-final getIt = GetIt.instance;
-
 Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteDataSource>(
-    () => RemoteDataSourceImpl(),
+    () => RemoteDataSourceImpl(getIt.get()),
   );
 
   getIt.registerLazySingleton<ProductRepository>(
@@ -13,6 +11,12 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<FetchProductsUseCase>(
     () => FetchProductsUseCase(
+      repository: getIt(),
+    ),
+  );
+
+  getIt.registerLazySingleton<FetchProductByIdUseCase>(
+    () => FetchProductByIdUseCase(
       repository: getIt(),
     ),
   );

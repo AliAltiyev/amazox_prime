@@ -8,6 +8,8 @@ final class Product extends Equatable {
   final int price;
   final int ml;
   final int id;
+  final String bigDescription;
+  final int rate;
 
   const Product({
     required this.name,
@@ -16,6 +18,8 @@ final class Product extends Equatable {
     required this.price,
     required this.ml,
     required this.id,
+    required this.bigDescription,
+    required this.rate,
   });
 
   @override
@@ -25,5 +29,7 @@ final class Product extends Equatable {
         image,
         price,
         ml,
+        bigDescription,
+        rate,
       ];
 }

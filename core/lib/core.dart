@@ -2,6 +2,7 @@ library core;
 
 export 'package:bloc/bloc.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:core/constants/string_constants.dart';
 export 'package:core/di/di.dart';
 export 'package:core/di/firebase_options.dart';
 export 'package:equatable/equatable.dart';

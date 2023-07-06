@@ -1,13 +1,18 @@
-import 'package:amazon_prime/index.dart';
+import 'package:amazon_prime/app.dart';
+import 'package:navigation/navigation/app_router.dart';
 
 class Application extends StatelessWidget {
-  const Application({super.key});
+  Application({super.key});
+
+  final AppRouter appRouter = getIt.get<AppRouter>();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: myTheme,
-        home: const HomeView());
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      theme: myTheme,
+      routerDelegate: AutoRouterDelegate(appRouter),
+      routeInformationParser: appRouter.defaultRouteParser(),
+    );
   }
 }
