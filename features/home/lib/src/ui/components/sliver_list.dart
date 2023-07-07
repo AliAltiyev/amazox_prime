@@ -1,5 +1,4 @@
 import 'package:home/src/ui/components/card.dart';
-import 'package:navigation/navigation/app_router.dart';
 
 import '../../home.dart';
 
@@ -21,7 +20,7 @@ class SliverGridList extends StatelessWidget {
         return InkWell(
           onTap: () {
             context.router.push(
-              Product_details(
+              DetailsPage(
                 productId: data.id,
               ),
             );

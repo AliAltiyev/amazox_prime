@@ -27,4 +27,5 @@ export 'package:home/src/ui/components/search_text_field.dart';
 export 'package:home/src/ui/components/sliver_list.dart';
 export 'package:home/src/ui/screen/home_page.dart';
 export 'package:navigation/navigation.dart';
+export 'package:navigation/navigation/app_router.dart';
 export 'package:product_details/product_details.dart';

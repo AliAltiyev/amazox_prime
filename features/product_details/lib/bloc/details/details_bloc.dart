@@ -1,5 +1,3 @@
-import 'package:product_details/bloc/details/details_event.dart';
-import 'package:product_details/bloc/details/details_state.dart';
 import 'package:product_details/product_details.dart';
 
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {

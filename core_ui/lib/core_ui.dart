@@ -2,6 +2,9 @@ library core_ui;
 
 export 'package:animated_text_kit/animated_text_kit.dart';
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:core/enums/duration.dart';
+export 'package:core_ui/components/app_add_button.dart';
+export 'package:core_ui/components/app_bottom_appbar.dart';
 export 'package:core_ui/components/app_button.dart';
 export 'package:core_ui/components/app_rating_bar.dart';
 export 'package:core_ui/constants/string.dart';
@@ -14,3 +17,4 @@ export 'package:flutter/material.dart';
 export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 export 'package:flutter_spinkit/flutter_spinkit.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:salomon_bottom_bar/salomon_bottom_bar.dart';

@@ -12,10 +12,18 @@ dependencies:
   auto_route: 5.0.4
   home:
     path: ../features./home/
+  card:
+    path: ../features./card/
+  settings:
+    path: ../features./settings/
+  order:
+    path: ../features./order/
   product_details:
     path: ../features./product_details/
   core:
     path: ../core/
+  dashboard:
+    path: ../features./dashboard/
 
 dev_dependencies:
   flutter_test:

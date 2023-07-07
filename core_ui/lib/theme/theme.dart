@@ -19,21 +19,21 @@ final ThemeData myTheme = ThemeData(
   hintColor: ApplicationColors.hintColor,
   buttonTheme: const ButtonThemeData(
     textTheme: ButtonTextTheme.normal,
-    minWidth: ApplicationSize.SIZE_88,
-    height: ApplicationSize.SIZE_36,
+    minWidth: Dimensions.SIZE_88,
+    height: Dimensions.SIZE_36,
     padding: EdgeInsets.only(
-        top: ApplicationSize.SIZE_0,
-        bottom: ApplicationSize.SIZE_0,
-        left: ApplicationSize.SIZE_16,
-        right: ApplicationSize.SIZE_16),
+        top: Dimensions.SIZE_0,
+        bottom: Dimensions.SIZE_0,
+        left: Dimensions.SIZE_16,
+        right: Dimensions.SIZE_16),
     shape: RoundedRectangleBorder(
       side: BorderSide(
         color: ApplicationColors.primaryColor,
-        width: ApplicationSize.SIZE_0,
+        width: Dimensions.SIZE_0,
         style: BorderStyle.none,
       ),
       borderRadius: BorderRadius.all(
-        Radius.circular(ApplicationSize.SIZE_2),
+        Radius.circular(Dimensions.SIZE_2),
       ),
     ),
     alignedDropdown: false,

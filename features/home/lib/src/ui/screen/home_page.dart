@@ -24,7 +24,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             SliverToBoxAdapter(
                 child: Padding(
               padding: const EdgeInsets.all(
-                ApplicationSize.SIZE_8,
+                Dimensions.SIZE_8,
               ),
               child: SearchTextField(
                 labelText: StringConstant.search,
@@ -58,7 +58,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
     return Center(
       child: SpinKitDancingSquare(
         color: ApplicationColors.green,
-        size: ApplicationSize.SIZE_50,
+        size: Dimensions.SIZE_50,
         controller: AnimationController(
           vsync: this,
           animationBehavior: AnimationBehavior.preserve,

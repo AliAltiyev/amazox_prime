@@ -23,7 +23,7 @@ class AddToCardButton extends StatelessWidget {
             ApplicationPadding.PADDING_20,
           ),
         ),
-        elevation: ApplicationSize.SIZE_8,
+        elevation: Dimensions.SIZE_8,
         shadowColor: ApplicationColors.black,
       ),
       child: Text(

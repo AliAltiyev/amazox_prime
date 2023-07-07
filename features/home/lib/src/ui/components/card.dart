@@ -16,7 +16,7 @@ class CustomCard extends StatelessWidget {
       padding: const EdgeInsets.all(ApplicationPadding.PADDING_4),
       child: Card(
         color: ApplicationColors.white,
-        elevation: ApplicationSize.SIZE_10,
+        elevation: Dimensions.SIZE_10,
         clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsets.all(
@@ -26,8 +26,8 @@ class CustomCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(
-                height: size.height / ApplicationSize.SIZE_4,
-                width: size.width / ApplicationSize.SIZE_9,
+                height: size.height / Dimensions.SIZE_4,
+                width: size.width / Dimensions.SIZE_9,
                 child: AppCachedNetworkImage(
                   url: _product.image,
                 ),
@@ -62,14 +62,14 @@ class CustomCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(
-            height: size.height / ApplicationSize.SIZE_120,
+            height: size.height / Dimensions.SIZE_120,
           ),
           Text(
             '${_product.ml.toString()} ${Weight.ml.value}',
             style: AppFonts.bold14,
           ),
           SizedBox(
-            height: size.height / ApplicationSize.SIZE_120,
+            height: size.height / Dimensions.SIZE_120,
           ),
           AddToCardButton(
             text: StringConstant.addToCard,

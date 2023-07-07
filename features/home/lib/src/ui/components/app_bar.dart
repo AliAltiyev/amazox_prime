@@ -19,11 +19,11 @@ class AppSliverAppBar extends StatelessWidget {
           children: <Widget>[
             Positioned.fill(child: _child),
             const Positioned(
-              top: ApplicationSize.SIZE_120,
-              left: ApplicationSize.SIZE_20,
+              top: Dimensions.SIZE_120,
+              left: Dimensions.SIZE_20,
               child: AppBarChip(
                 label: StringConstant.overTwoHundredStarts,
-                starts: ApplicationSize.SIZE_4,
+                starts: Dimensions.SIZE_4,
                 priority: StringConstant.good,
               ),
             ),

@@ -17,7 +17,7 @@ class SearchTextField extends StatelessWidget {
   ) {
     final Size size = MediaQuery.sizeOf(context);
     return SizedBox(
-      height: size.height / ApplicationSize.SIZE_16,
+      height: size.height / Dimensions.SIZE_16,
       child: Card(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -26,7 +26,7 @@ class SearchTextField extends StatelessWidget {
             ),
           ),
         ),
-        elevation: ApplicationSize.SIZE_8,
+        elevation: Dimensions.SIZE_8,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: ApplicationPadding.PADDING_16,

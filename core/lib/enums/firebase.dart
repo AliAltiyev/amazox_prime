@@ -1,3 +1,4 @@
 enum FirebaseEnum {
   coffee,
+  id,
 }

@@ -6,16 +6,48 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      page: HomeView,
       path: '/',
-      initial: true,
-      name: 'home',
-    ),
-    AutoRoute(
-      name: 'product_details',
-      page: ProductDetailPage,
-      path: 'product_details/:productId',
-    ),
+      name: 'dashBoardPage',
+      page: DashboardView,
+      children: [
+        AutoRoute(
+          path: 'home',
+          name: 'homeRouter',
+          page: EmptyPageRouter,
+          children: [
+            AutoRoute(
+              path: '',
+              page: HomeView,
+              name: 'homePage',
+            ),
+            AutoRoute(
+              path: ':productId',
+              page: ProductDetailPage,
+              name: 'detailsPage',
+            ),
+          ],
+        ),
+        AutoRoute(
+          path: 'shopingCardPage',
+          name: 'ShappngCardRouter',
+          page: ShappingCard,
+        ),
+        AutoRoute(
+          path: 'orderPage',
+          name: 'OrderHistoryRouter',
+          page: OrderHistoryPage,
+        ),
+        AutoRoute(
+          path: 'settingsPage',
+          name: 'SettingsRouter',
+          page: SettingsPage,
+        )
+      ],
+    )
   ],
 )
 class AppRouter extends _$AppRouter {}
+
+class EmptyPageRouter extends AutoRouter {
+  const EmptyPageRouter({super.key});
+}

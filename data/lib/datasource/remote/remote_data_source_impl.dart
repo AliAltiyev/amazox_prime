@@ -29,13 +29,15 @@ final class RemoteDataSourceImpl extends RemoteDataSource {
           await firebaseFirestore
               .collection(FirebaseEnum.coffee.name)
               .where(
-                'id',
+                FirebaseEnum.id.name,
                 isEqualTo: productId,
               )
               .get();
 
       if (firebaseFireStore.docs.isEmpty) {
-        throw AppFireBaseException('docs is empty');
+        throw AppFireBaseException(
+          StringConstants.fireBaseDocsError,
+        );
       }
 
       final Map<String, dynamic> coffeeData =

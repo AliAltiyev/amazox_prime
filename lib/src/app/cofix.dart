@@ -1,5 +1,4 @@
 import 'package:amazon_prime/app.dart';
-import 'package:navigation/navigation/app_router.dart';
 
 class Application extends StatelessWidget {
   Application({super.key});
