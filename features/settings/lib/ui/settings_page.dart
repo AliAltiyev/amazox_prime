@@ -46,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
             _adresses(),
             _promoCodes(),
             _support(),
-            _aboutUs()
+            _aboutUs(),
           ],
         ),
       ),
@@ -136,7 +136,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return <Widget>[
       InkWell(
         onTap: () {
-          context.read<ThemeCubit>().changeTheme();
+          context.read<ThemeCubit>().isDark;
           context.read<ThemeCubit>().changeIcon();
         },
         child: context.watch<ThemeCubit>().iconState

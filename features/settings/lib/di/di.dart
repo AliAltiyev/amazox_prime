@@ -3,6 +3,9 @@ import 'package:settings/cubit/theme_cubit.dart';
 
 void initSettings() {
   getIt.registerLazySingleton<ThemeCubit>(
-    () => ThemeCubit(),
+    () => ThemeCubit(
+      getAppThemeUseCase: getIt(),
+      saveAppThemeUseCase: getIt(),
+    ),
   );
 }
