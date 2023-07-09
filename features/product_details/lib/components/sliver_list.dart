@@ -14,7 +14,10 @@ class DetailsSliverList extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        DetilsAppBar(size: size, data: data),
+        DetilsAppBar(
+          size: size,
+          data: data,
+        ),
         SliverToBoxAdapter(
           child: Container(
             decoration: const BoxDecoration(

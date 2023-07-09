@@ -11,5 +11,6 @@ Future<void> main() async {
   initDataLayer();
   initHome();
   initNavigation();
+  initSettings();
   runApp(Application());
 }

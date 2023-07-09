@@ -23,8 +23,8 @@ dependencies:
   animated_text_kit: ^4.2.2
   #rating bar
   flutter_rating_bar: ^4.0.1
-  #bottom app bar
-  salomon_bottom_bar: ^3.3.2
+  #svg
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
