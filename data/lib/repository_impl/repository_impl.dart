@@ -4,8 +4,7 @@ final class ProductRepositoryImpl implements ProductRepository {
   final RemoteDataSource _remoteDataSource;
 
   ProductRepositoryImpl(
-    RemoteDataSource remoteDataSource,
-  ) : _remoteDataSource = remoteDataSource;
+    RemoteDataSource remoteDataSource,) : _remoteDataSource = remoteDataSource;
 
   @override
   Future<List<Product>> fetchProducts() async {
@@ -14,5 +13,14 @@ final class ProductRepositoryImpl implements ProductRepository {
         .map((model) => ProductMapper.toEntity(model))
         .toList()
         .cast<Product>();
+  }
+
+  @override
+  Future<List<Menu>> fetchMenu() async {
+    final List<MenuModel> data = await _remoteDataSource.getMenu();
+    return data
+        .map((model) => MenuMapper.toEntity(model))
+        .toList()
+        .cast<Menu>();
   }
 }

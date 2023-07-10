@@ -4,4 +4,6 @@ final class StringConstant {
   static const String appName = "Cofix";
   static const String good = 'Отлично';
   static const String search = 'Поиск';
+  static const String restoarants = 'Рестораны';
+  static const String all = 'все';
 }
