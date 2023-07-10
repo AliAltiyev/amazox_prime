@@ -1,4 +1,5 @@
 import 'package:data/data.dart';
+import 'package:domain/usecase/get_menu.dart';
 
 Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteDataSource>(
@@ -11,12 +12,6 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<FetchProductsUseCase>(
     () => FetchProductsUseCase(
-      repository: getIt(),
-    ),
-  );
-
-  getIt.registerLazySingleton<FetchProductByIdUseCase>(
-    () => FetchProductByIdUseCase(
       repository: getIt(),
     ),
   );

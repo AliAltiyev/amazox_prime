@@ -4,8 +4,7 @@ final class ProductRepositoryImpl implements ProductRepository {
   final RemoteDataSource _remoteDataSource;
 
   ProductRepositoryImpl(
-    RemoteDataSource remoteDataSource,
-  ) : _remoteDataSource = remoteDataSource;
+    RemoteDataSource remoteDataSource,) : _remoteDataSource = remoteDataSource;
 
   @override
   Future<List<Product>> fetchProducts() async {
@@ -14,12 +13,5 @@ final class ProductRepositoryImpl implements ProductRepository {
         .map((model) => ProductMapper.toEntity(model))
         .toList()
         .cast<Product>();
-  }
-
-  @override
-  Future<Product> fetchProductById(int productId) async {
-    final ProductModel productModel =
-        await _remoteDataSource.getCoffeeById(productId);
-    return ProductMapper.toEntity(productModel);
   }
 }
