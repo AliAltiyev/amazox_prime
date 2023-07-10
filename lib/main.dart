@@ -4,6 +4,7 @@ import 'app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -11,5 +12,6 @@ Future<void> main() async {
   initDataLayer();
   initHome();
   initNavigation();
+  initSettings();
   runApp(Application());
 }

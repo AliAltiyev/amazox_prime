@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
-import 'package:domain/usecase/get_menu.dart';
 
 Future<void> initDataLayer() async {
+  //Product
   getIt.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(getIt.get()),
   );
@@ -13,6 +13,34 @@ Future<void> initDataLayer() async {
   getIt.registerLazySingleton<FetchProductsUseCase>(
     () => FetchProductsUseCase(
       repository: getIt(),
+    ),
+  );
+
+  getIt.registerLazySingleton<FetchProductByIdUseCase>(
+    () => FetchProductByIdUseCase(
+      repository: getIt(),
+    ),
+  );
+
+  getIt.registerLazySingleton<LocaleDataSource>(
+    () => LocaleDataSourseImpl(),
+  );
+
+  getIt.registerLazySingleton<ThemeRepository>(
+    () => ThemeRepositoryImpl(
+      localeDataSource: getIt(),
+    ),
+  );
+
+  getIt.registerLazySingleton<SaveAppThemeUseCase>(
+    () => SaveAppThemeUseCase(
+      themeRepository: getIt(),
+    ),
+  );
+
+  getIt.registerLazySingleton<GetAppThemeUseCase>(
+    () => GetAppThemeUseCase(
+      themeRepository: getIt(),
     ),
   );
 }

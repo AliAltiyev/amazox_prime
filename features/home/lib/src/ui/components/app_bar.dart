@@ -17,7 +17,9 @@ class AppSliverAppBar extends StatelessWidget {
         centerTitle: false,
         background: Stack(
           children: <Widget>[
-            Positioned.fill(child: _child),
+            Positioned.fill(
+              child: _child,
+            ),
             const Positioned(
               top: Dimensions.SIZE_120,
               left: Dimensions.SIZE_20,

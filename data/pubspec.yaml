@@ -5,11 +5,9 @@ publish_to: none
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
-  flutter: ">=1.17.0"
-
+  flutter: '>=1.17.0'
 
 dependencies:
-
   #base
   json_annotation: ^4.8.1
 
@@ -26,6 +24,5 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   json_serializable: ^6.7.0
   build_runner: ^2.4.5
-
+  hive_generator: ^2.0.0
 flutter:
-

@@ -57,6 +57,12 @@ final class AppFonts {
     fontSize: FontSize.s18,
   );
 
+  static TextStyle bold22 = TextStyle(
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: FontSize.s22,
+  );
+
   static TextStyle bold24 = TextStyle(
     fontFamily: GoogleFonts.poppins().fontFamily,
     fontWeight: FontWeight.w700,
