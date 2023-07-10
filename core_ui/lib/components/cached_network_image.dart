@@ -25,7 +25,7 @@ class AppCachedNetworkImage extends StatelessWidget {
             isAntiAlias: true,
           ),
           borderRadius: BorderRadius.circular(
-            ApplicationSize.SIZE_10,
+            Dimensions.SIZE_10,
           ),
         ),
       ),

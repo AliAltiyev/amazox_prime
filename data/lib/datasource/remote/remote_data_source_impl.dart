@@ -21,23 +21,4 @@ final class RemoteDataSourceImpl extends RemoteDataSource {
     }
     return list;
   }
-
-  @override
-  Future<List<MenuModel>> getMenu() async {
-    List<MenuModel> list = <MenuModel>[];
-
-    try {
-      final QuerySnapshot<Map<String, dynamic>> firebaseFireStore =
-          await FirebaseFirestore.instance
-              .collection(FirebaseEnum.menu.name)
-              .get();
-
-      for (final element in firebaseFireStore.docs) {
-        list.add(MenuModel.fromJson(element.data()));
-      }
-    } on FirebaseException catch (e) {
-      throw AppFireBaseException(e.toString());
-    }
-    return list;
-  }
 }

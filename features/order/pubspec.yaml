@@ -1,0 +1,18 @@
+name: order
+description: Application order  layer
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+  flutter: '>=1.17.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+flutter:

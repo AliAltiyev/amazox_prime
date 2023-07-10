@@ -1,11 +1,10 @@
 import '../core.dart';
 
-final instance = GetIt.instance;
+final getIt = GetIt.instance;
 
 Future<void> initAppModule() async {
-  //FireStore
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
-  instance.registerLazySingleton<FirebaseFirestore>(
+  getIt.registerLazySingleton<FirebaseFirestore>(
     () => fireStore,
   );
 }

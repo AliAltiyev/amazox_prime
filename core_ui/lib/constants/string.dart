@@ -6,4 +6,10 @@ final class StringConstant {
   static const String search = 'Поиск';
   static const String restoarants = 'Рестораны';
   static const String all = 'все';
+  static const String buy = 'Купить';
+  static const String price = 'Сумма';
+  static const String home = 'Home';
+  static const String card = 'Card';
+  static const String order = 'Order';
+  static const String settings = 'Settings';
 }

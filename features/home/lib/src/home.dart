@@ -27,8 +27,6 @@ export 'package:home/src/di/di.dart';
 export 'package:home/src/ui/components/app_bar.dart';
 export 'package:home/src/ui/components/app_bar_chip.dart';
 export 'package:home/src/ui/components/card.dart';
-export 'package:home/src/ui/components/menu.dart';
-export 'package:home/src/ui/components/menu_title.dart';
 export 'package:home/src/ui/components/search_text_field.dart';
 export 'package:home/src/ui/components/sliver_list.dart';
 export 'package:home/src/ui/screen/home_page.dart';

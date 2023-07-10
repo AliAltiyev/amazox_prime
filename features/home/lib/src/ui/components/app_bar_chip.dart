@@ -23,21 +23,21 @@ class AppBarChip extends StatelessWidget {
       clipBehavior: Clip.none,
       children: <Widget>[
         Container(
-          height: size.height / ApplicationSize.SIZE_9,
-          width: size.width / ApplicationSize.SIZE_4,
+          height: size.height / Dimensions.SIZE_9,
+          width: size.width / Dimensions.SIZE_4,
           decoration: BoxDecoration(
             color: ApplicationColors.white.withOpacity(
-              ApplicationSize.SIZE_0_8,
+              Dimensions.SIZE_0_8,
             ),
             borderRadius: BorderRadius.circular(
-              ApplicationSize.SIZE_24,
+              Dimensions.SIZE_24,
             ),
           ),
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.all(
-                ApplicationSize.SIZE_8,
+                Dimensions.SIZE_8,
               ),
               child: AnimatedTextKit(
                 repeatForever: true,
@@ -55,25 +55,25 @@ class AppBarChip extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: ApplicationSize.SIZE_MINUS_20,
-          right: ApplicationSize.SIZE_16,
+          top: Dimensions.SIZE_MINUS_20,
+          right: Dimensions.SIZE_16,
           child: Container(
-            height: size.height / ApplicationSize.SIZE_18,
-            width: size.width / ApplicationSize.SIZE_4,
+            height: size.height / Dimensions.SIZE_18,
+            width: size.width / Dimensions.SIZE_4,
             decoration: BoxDecoration(
               boxShadow: const <BoxShadow>[
                 BoxShadow(
                   color: Colors.grey,
                   offset: Offset(
-                    ApplicationSize.SIZE_2,
-                    ApplicationSize.SIZE_2,
+                    Dimensions.SIZE_2,
+                    Dimensions.SIZE_2,
                   ),
-                  blurRadius: ApplicationSize.SIZE_6,
+                  blurRadius: Dimensions.SIZE_6,
                 ),
               ],
               color: ApplicationColors.white,
               borderRadius: BorderRadius.circular(
-                ApplicationSize.SIZE_40,
+                Dimensions.SIZE_40,
               ),
             ),
             child: Row(
@@ -81,7 +81,7 @@ class AppBarChip extends StatelessWidget {
                 const Icon(
                   Icons.star,
                   color: ApplicationColors.green,
-                  size: ApplicationSize.SIZE_40,
+                  size: Dimensions.SIZE_40,
                 ),
                 Text(
                   _stars.toString(),

@@ -1,6 +1,6 @@
 import 'package:data/data.dart';
 
-import 'index.dart';
+import 'app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,6 +10,6 @@ Future<void> main() async {
   initAppModule();
   initDataLayer();
   initHome();
-
-  runApp(const Application());
+  initNavigation();
+  runApp(Application());
 }

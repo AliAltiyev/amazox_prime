@@ -1,6 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 
 final class ApplicationColors {
+  static const Color transparient = Colors.transparent;
   static const Color black = Colors.black;
   static const primaryColor = Color(0xff000000);
   static const Color white = Colors.white;

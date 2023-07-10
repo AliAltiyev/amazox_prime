@@ -1,4 +1,3 @@
 enum FirebaseEnum {
   coffee,
-  menu,
 }

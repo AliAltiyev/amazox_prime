@@ -14,13 +14,4 @@ final class ProductRepositoryImpl implements ProductRepository {
         .toList()
         .cast<Product>();
   }
-
-  @override
-  Future<List<Menu>> fetchMenu() async {
-    final List<MenuModel> data = await _remoteDataSource.getMenu();
-    return data
-        .map((model) => MenuMapper.toEntity(model))
-        .toList()
-        .cast<Menu>();
-  }
 }

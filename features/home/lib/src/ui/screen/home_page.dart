@@ -10,20 +10,21 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HomeBloc>(
-          create: (context) => instance.get<HomeBloc>(),
-        ),
-        BlocProvider<MenuBloc>(
-          create: (context) => instance.get<MenuBloc>(),
-        ),
-      ],
+    return BlocProvider<HomeBloc>(
+      create: (contextProvider) => instance.get<HomeBloc>(),
       child: Scaffold(
           body: CustomScrollView(slivers: <Widget>[
         const CustomSliverAppBar(),
-        const HomeMenuTitle(),
-        const SliverToBoxAdapter(child: HomeMenu()),
+        SliverToBoxAdapter(
+            child: Padding(
+          padding: const EdgeInsets.all(
+            ApplicationSize.SIZE_8,
+          ),
+          child: SearchTextField(
+            labelText: StringConstant.search,
+            textEditingController: TextEditingController(),
+          ),
+        )),
         BlocBuilder<HomeBloc, ProductsState>(
           builder: (builderContext, state) {
             if (state is LoadedProductsState) {

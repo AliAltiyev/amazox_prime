@@ -1,4 +1,5 @@
 import 'package:data/data.dart';
+
 part 'product.g.dart';
 
 @JsonSerializable()
@@ -10,6 +11,8 @@ class ProductModel {
     this.price,
     this.ml,
     this.id,
+    this.bigDescription,
+    this.rate,
   );
 
   final String name;
@@ -18,6 +21,8 @@ class ProductModel {
   final int price;
   final int ml;
   final int id;
+  final String bigDescription;
+  final int rate;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return _$ProductModelFromJson(json);
