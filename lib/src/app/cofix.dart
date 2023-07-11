@@ -8,7 +8,10 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ThemeCubit>(
-      create: (context) => getIt.get<ThemeCubit>(),
+      create: (context) => ThemeCubit(
+        getAppThemeUseCase: getIt<GetAppThemeUseCase>(),
+        saveAppThemeUseCase: getIt<SaveAppThemeUseCase>(),
+      ),
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: _buildWithTheme,
       ),
@@ -21,7 +24,10 @@ class Application extends StatelessWidget {
   ) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: getIt.get<ThemeCubit>().isDark
+      theme: ThemeCubit(
+        getAppThemeUseCase: getIt<GetAppThemeUseCase>(),
+        saveAppThemeUseCase: getIt<SaveAppThemeUseCase>(),
+      ).isDark
           ? DarkTheme.instance.darkTheme
           : LightTheme.instance.lightTheme,
       routerDelegate: AutoRouterDelegate(appRouter),

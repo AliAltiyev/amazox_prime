@@ -10,8 +10,6 @@ Future<void> main() async {
   );
   initAppModule();
   initDataLayer();
-  initHome();
   initNavigation();
-  initSettings();
   runApp(Application());
 }

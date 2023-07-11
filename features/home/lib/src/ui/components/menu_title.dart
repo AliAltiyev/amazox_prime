@@ -1,4 +1,4 @@
-import 'package:amazon_prime/index.dart';
+import 'package:home/src/home.dart';
 
 class HomeMenuTitle extends StatelessWidget {
   const HomeMenuTitle({

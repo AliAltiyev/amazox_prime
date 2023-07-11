@@ -5,9 +5,11 @@ part 'theme_state.dart';
 class ThemeCubit extends Cubit<ThemeState> {
   final SaveAppThemeUseCase _saveAppThemeUseCase;
   final GetAppThemeUseCase _getAppThemeUseCase;
-  late bool _isDark = false;
+  bool _isDark = false;
   bool _iconState = false;
+
   bool get isDark => _isDark;
+
   bool get iconState => _iconState;
 
   ThemeCubit({
@@ -27,9 +29,7 @@ class ThemeCubit extends Cubit<ThemeState> {
   }
 
   Future<void> getTheme() async {
-    _isDark = await _getAppThemeUseCase.call(
-      LocaleStorage.key.name,
-    );
+    _isDark = await _getAppThemeUseCase.call(LocaleStorage.key.name);
     emit(ThemeChanged());
   }
 

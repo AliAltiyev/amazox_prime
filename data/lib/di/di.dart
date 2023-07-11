@@ -1,46 +1,37 @@
 import 'package:data/data.dart';
 
+import '../datasource/locale/locale_data_sourse.dart';
+
 Future<void> initDataLayer() async {
   //Product
-  getIt.registerLazySingleton<RemoteDataSource>(
-    () => RemoteDataSourceImpl(getIt.get()),
-  );
+  getIt.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl());
 
   getIt.registerLazySingleton<ProductRepository>(
-    () => ProductRepositoryImpl(getIt()),
-  );
+      () => ProductRepositoryImpl(getIt()));
 
   getIt.registerLazySingleton<FetchProductsUseCase>(
-    () => FetchProductsUseCase(
-      repository: getIt(),
-    ),
+    () => FetchProductsUseCase(repository: getIt()),
   );
 
   getIt.registerLazySingleton<FetchProductByIdUseCase>(
-    () => FetchProductByIdUseCase(
-      repository: getIt(),
-    ),
+    () => FetchProductByIdUseCase(repository: getIt()),
   );
 
-  getIt.registerLazySingleton<LocaleDataSource>(
-    () => LocaleDataSourseImpl(),
+  getIt.registerLazySingleton<FetchMenuItemsUseCase>(
+    () => FetchMenuItemsUseCase(productRepository: getIt()),
   );
+
+  getIt.registerLazySingleton<LocaleDataSource>(() => LocaleDataSourseImpl());
 
   getIt.registerLazySingleton<ThemeRepository>(
-    () => ThemeRepositoryImpl(
-      localeDataSource: getIt(),
-    ),
+    () => ThemeRepositoryImpl(localeDataSource: getIt()),
   );
 
   getIt.registerLazySingleton<SaveAppThemeUseCase>(
-    () => SaveAppThemeUseCase(
-      themeRepository: getIt(),
-    ),
+    () => SaveAppThemeUseCase(themeRepository: getIt()),
   );
 
   getIt.registerLazySingleton<GetAppThemeUseCase>(
-    () => GetAppThemeUseCase(
-      themeRepository: getIt(),
-    ),
+    () => GetAppThemeUseCase(themeRepository: getIt()),
   );
 }

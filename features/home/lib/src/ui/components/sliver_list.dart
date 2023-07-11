@@ -1,6 +1,4 @@
-import 'package:home/src/ui/components/card.dart';
-
-import '../../home.dart';
+import 'package:home/src/home.dart';
 
 class SliverGridList extends StatelessWidget {
   const SliverGridList({
@@ -25,8 +23,11 @@ class SliverGridList extends StatelessWidget {
               ),
             );
           },
-          child: CustomCard(
-            product: data,
+          child: Hero(
+            tag: '123',
+            child: CustomCard(
+              product: data,
+            ),
           ),
         );
       },

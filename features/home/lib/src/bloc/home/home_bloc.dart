@@ -6,12 +6,10 @@ part 'home_state.dart';
 final class HomeBloc extends Bloc<ProductsEvent, ProductsState> {
   final FetchProductsUseCase _getProductsUseCase;
 
-  HomeBloc(
-    FetchProductsUseCase getProductsUseCase,
-  )   : _getProductsUseCase = getProductsUseCase,
-        super(
-          InitialProductsState(),
-        ) {
+  HomeBloc({
+    required FetchProductsUseCase getProductsUseCase,
+  })  : _getProductsUseCase = getProductsUseCase,
+        super(InitialProductsState()) {
     on<FetchProductsEvent>(_fetchProductsEvent);
     add(FetchProductsEvent());
   }
@@ -20,21 +18,15 @@ final class HomeBloc extends Bloc<ProductsEvent, ProductsState> {
     FetchProductsEvent event,
     Emitter<ProductsState> emit,
   ) async {
-    emit(
-      LoadingProductsState(),
-    );
+    emit(LoadingProductsState());
     try {
       final List<Product> data = await _getProductsUseCase();
       emit(
-        LoadedProductsState(
-          products: data,
-        ),
+        LoadedProductsState(products: data),
       );
     } catch (e) {
       emit(
-        ErrorProductsState(
-          error: StringConstants.stateError,
-        ),
+        ErrorProductsState(error: StringConstants.stateError),
       );
     }
   }

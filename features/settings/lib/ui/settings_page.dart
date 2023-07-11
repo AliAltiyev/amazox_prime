@@ -40,95 +40,67 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: size.height / Dimensions.SIZE_14,
             ),
-            _profile(),
-            _orders(),
-            _notifications(),
-            _adresses(),
-            _promoCodes(),
-            _support(),
-            _aboutUs(),
+            SettingsListTile(
+              title: StringConstant.profile,
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {
+                //Todo add action
+              },
+              leading: AppIcons.profile,
+            ),
+            SettingsListTile(
+              title: StringConstant.orders,
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {
+                //Todo add action
+              },
+              leading: AppIcons.orders,
+            ),
+            SettingsListTile(
+              title: StringConstant.notification,
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {
+                //Todo add action
+              },
+              leading: AppIcons.notifications,
+            ),
+            SettingsListTile(
+              title: StringConstant.adresses,
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {
+                //Todo add action
+              },
+              leading: AppIcons.address,
+            ),
+            SettingsListTile(
+              title: StringConstant.promoCode,
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {
+                //Todo add action
+              },
+              leading: AppIcons.promoCode,
+            ),
+            SettingsListTile(
+              title: StringConstant.support,
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {
+                //Todo add action
+              },
+              leading: AppIcons.support,
+            ),
+            SettingsListTile(
+              title: StringConstant.aboutUs,
+              trailing: AppIcons.aboutUs,
+              onTap: () {
+                //Todo add action
+              },
+              leading: const Icon(
+                Icons.warning_amber_outlined,
+              ),
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  SettingsListTile _aboutUs() {
-    return SettingsListTile(
-      title: StringConstant.aboutUs,
-      trailing: AppIcons.aboutUs,
-      onTap: () {
-        //Todo add action
-      },
-      leading: const Icon(
-        Icons.warning_amber_outlined,
-      ),
-    );
-  }
-
-  SettingsListTile _support() {
-    return SettingsListTile(
-      title: StringConstant.support,
-      trailing: const Icon(Icons.chevron_right_rounded),
-      onTap: () {
-        //Todo add action
-      },
-      leading: AppIcons.support,
-    );
-  }
-
-  SettingsListTile _promoCodes() {
-    return SettingsListTile(
-      title: StringConstant.promoCode,
-      trailing: const Icon(Icons.chevron_right_rounded),
-      onTap: () {
-        //Todo add action
-      },
-      leading: AppIcons.promoCode,
-    );
-  }
-
-  SettingsListTile _adresses() {
-    return SettingsListTile(
-      title: StringConstant.adresses,
-      trailing: const Icon(Icons.chevron_right_rounded),
-      onTap: () {
-        //Todo add action
-      },
-      leading: AppIcons.address,
-    );
-  }
-
-  SettingsListTile _orders() {
-    return SettingsListTile(
-      title: StringConstant.orders,
-      trailing: const Icon(Icons.chevron_right_rounded),
-      onTap: () {
-        //Todo add action
-      },
-      leading: AppIcons.orders,
-    );
-  }
-
-  SettingsListTile _notifications() {
-    return SettingsListTile(
-      title: StringConstant.notification,
-      trailing: const Icon(Icons.chevron_right_rounded),
-      onTap: () {
-        //Todo add action
-      },
-      leading: AppIcons.notifications,
-    );
-  }
-
-  SettingsListTile _profile() {
-    return SettingsListTile(
-      title: StringConstant.profile,
-      trailing: const Icon(Icons.chevron_right_rounded),
-      onTap: () {
-        //Todo add action
-      },
-      leading: AppIcons.profile,
     );
   }
 

@@ -1,4 +1,5 @@
-import 'package:amazon_prime/index.dart';
+import 'package:home/src/bloc/menu/menu_bloc.dart';
+import 'package:home/src/home.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({
@@ -12,21 +13,21 @@ class HomeMenu extends StatelessWidget {
       builder: (context, state) {
         if (state is LoadedMenuState) {
           return SizedBox(
-            height: ApplicationSize.SIZE_120,
+            height: Dimensions.SIZE_120,
             child: ListView.builder(
               itemCount: state.menu.length,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemExtent: ApplicationSize.SIZE_120,
+              itemExtent: Dimensions.SIZE_120,
               itemBuilder: (context, index) {
                 final data = state.menu[index];
                 return Column(
                   children: <Widget>[
                     SizedBox(
-                      height: size.height / ApplicationSize.SIZE_12,
+                      height: size.height / Dimensions.SIZE_12,
                       child: Card(
                         clipBehavior: Clip.antiAlias,
-                        elevation: ApplicationSize.SIZE_2,
+                        elevation: Dimensions.SIZE_2,
                         child: CachedNetworkImage(
                           imageUrl: data.image,
                           fit: BoxFit.fill,

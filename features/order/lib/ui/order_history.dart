@@ -1,3 +1,4 @@
+import 'package:core_ui/constants/string.dart';
 import 'package:order/order.dart';
 
 class OrderHistoryPage extends StatefulWidget {
@@ -12,7 +13,7 @@ class _SettingsPageState extends State<OrderHistoryPage> {
   Widget build(BuildContext context) {
     return const Center(
       child: Text(
-        'Order ',
+        StringConstant.order,
       ),
     );
   }
