@@ -1,6 +1,17 @@
 <h1 align="center" id="title">Amazox Prime</h1>
 
-<p align="center"><img src="https://firebasestorage.googleapis.com/v0/b/innofire-ccce6.appspot.com/o/Screenshot%202023-06-27%20130937.png?alt=media&amp;token=9f95ee4d-4da1-4f72-a99e-1fc92c63b560" alt="project-image"></p>
+<p align="left"><img src="https://firebasestorage.googleapis.com/v0/b/innofire-ccce6.appspot.com/o/_1.png?alt=media&token=243d6289-6915-4b97-9b6b-a5feb147fee1" alt="project-image">
+  
+<img src="https://firebasestorage.googleapis.com/v0/b/innofire-ccce6.appspot.com/o/_2.png?alt=media&token=989c4c75-5b57-4482-b5c9-d4a18ee9ad24" alt="project-image">
+
+<img src="https://firebasestorage.googleapis.com/v0/b/innofire-ccce6.appspot.com/o/_3.png?alt=media&token=53b0f38b-f481-4707-8dc9-5fdf0ef4a348" alt="project-image">
+
+<img src="https://firebasestorage.googleapis.com/v0/b/innofire-ccce6.appspot.com/o/_4.png?alt=media&token=c19ce3b7-222f-4812-8a00-6596d54e605a" alt="project-image">
+
+</p>
+
+
+
 
 <p id="description">This project is a Flutter app that uses Firebase services to help users find and book repair appointments for their cars or order food.</p>
 
