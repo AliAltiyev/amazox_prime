@@ -6,3 +6,4 @@ export 'package:flutter/material.dart';
 export 'package:home/src/home.dart';
 export 'package:navigation/navigation.dart';
 export 'package:product_details/product_details.dart';
+export 'package:settings/settings.dart';

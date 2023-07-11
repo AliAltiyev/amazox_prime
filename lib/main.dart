@@ -1,4 +1,5 @@
 import 'package:data/data.dart';
+import 'package:settings/di/di.dart';
 
 import 'app.dart';
 
@@ -11,5 +12,6 @@ Future<void> main() async {
   initAppModule();
   initDataLayer();
   initNavigation();
+  initSettingsBloc();
   runApp(Application());
 }
