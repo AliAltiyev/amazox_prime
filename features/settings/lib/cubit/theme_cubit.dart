@@ -7,9 +7,7 @@ class ThemeCubit extends Cubit<ThemeState> {
   final GetAppThemeUseCase _getAppThemeUseCase;
   bool _isDark = false;
   bool _iconState = false;
-
   bool get isDark => _isDark;
-
   bool get iconState => _iconState;
 
   ThemeCubit({
@@ -30,6 +28,7 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   Future<void> getTheme() async {
     _isDark = await _getAppThemeUseCase.call(LocaleStorage.key.name);
+
     emit(ThemeChanged());
   }
 

@@ -119,7 +119,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   height: size.height / Dimensions.SIZE_20,
                   width: size.width / Dimensions.SIZE_14,
                   child: Image.asset(
-                    color: ApplicationColors.white,
+                    color: ApplicationColors.black,
                     ImagePaths.nightIcon,
                   ),
                 ),
