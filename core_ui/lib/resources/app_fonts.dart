@@ -2,6 +2,13 @@ import 'package:core_ui/core_ui.dart';
 
 final class AppFonts {
   //Normal
+
+  static TextStyle normal10 = TextStyle(
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontWeight: FontWeight.w300,
+    fontSize: FontSize.s10,
+  );
+
   static TextStyle normal14 = TextStyle(
     fontFamily: GoogleFonts.poppins().fontFamily,
     fontWeight: FontWeight.w400,
@@ -71,6 +78,7 @@ final class AppFonts {
 }
 
 class FontSize {
+  static const double s10 = 10;
   static const double s12 = 12;
   static const double s14 = 14;
   static const double s16 = 16;

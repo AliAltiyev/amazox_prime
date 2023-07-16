@@ -50,4 +50,6 @@ final class AppIcons {
   static const profile = Icon(
     Icons.person_outlined,
   );
+
+  static const delete = Icons.delete_outline_outlined;
 }

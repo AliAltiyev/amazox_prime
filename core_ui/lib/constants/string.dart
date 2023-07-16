@@ -21,4 +21,11 @@ final class StringConstant {
   static const String aboutUs = 'О сервисе';
   static const String userName = 'Altiyev Abdusselam';
   static const String gmail = 'alidroid696@gmail.com';
+  static const String cart = 'Корзина';
+  static const String delete = 'Удалить';
+  static const String share = 'Поделиться';
+  static const String emptyCartSnacBarSubtitle =
+      'Переходите на свипок товаров чтобы добавить';
+
+  static const String emptyCartSnackBarTitle = 'Удалено!';
 }

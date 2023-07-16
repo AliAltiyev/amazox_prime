@@ -17,6 +17,7 @@ class Application extends StatelessWidget {
             addCartItemUseCase: getIt<AddCartItemUseCase>(),
             getAllCartItemsUseCase: getIt<GetAllCartItemsUseCase>(),
             removeCartItemUseCase: getIt<RemoveCartItemUseCase>(),
+            removeAllCartItemsUseCase: getIt<RemoveAllCartItemsUseCase>(),
           )..add(LoadCart()),
         ),
       ],
