@@ -1,24 +1,25 @@
 part of 'cart_bloc.dart';
 
-class CartState extends Equatable {
-  final Cart cart;
-
-  const CartState({
-    this.cart = const Cart(
-      cartItems: [],
-    ),
-  });
+@immutable
+abstract class CartState extends Equatable {
+  const CartState();
 
   @override
-  List<Object?> get props => [
-        cart,
-      ];
+  List<Object> get props => [];
+}
 
-  CartState copyWith({
-    Cart? cart,
-  }) {
-    return CartState(
-      cart: cart ?? this.cart,
-    );
-  }
+class CartLoading extends CartState {}
+
+class CartLoaded extends CartState {
+  final Cart cart;
+
+  const CartLoaded({this.cart = const Cart()});
+
+  @override
+  List<Object> get props => [cart];
+}
+
+class CartError extends CartState {
+  @override
+  List<Object> get props => [];
 }

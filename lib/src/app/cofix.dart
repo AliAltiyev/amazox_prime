@@ -13,7 +13,11 @@ class Application extends StatelessWidget {
           create: (context) => getIt<ThemeCubit>(),
         ),
         BlocProvider<CartBloc>(
-          create: (context) => CartBloc(),
+          create: (context) => CartBloc(
+            addCartItemUseCase: getIt<AddCartItemUseCase>(),
+            getAllCartItemsUseCase: getIt<GetAllCartItemsUseCase>(),
+            removeCartItemUseCase: getIt<RemoveCartItemUseCase>(),
+          )..add(LoadCart()),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(

@@ -2,6 +2,7 @@ export 'package:core/core.dart';
 export 'package:core/enums/firebase.dart';
 export 'package:core/exceptions/firebase.dart';
 export 'package:data/datasource/locale/locale_data_sourcse_impl.dart';
+export 'package:data/datasource/locale/locale_data_sourse.dart';
 export 'package:data/datasource/remote/remote_data_source_impl.dart';
 export 'package:data/di/di.dart';
 export 'package:data/mapper/menu.dart';

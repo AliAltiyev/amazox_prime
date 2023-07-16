@@ -82,7 +82,7 @@ class CustomCard extends StatelessWidget {
                 onPressed: () {
                   log('Clicked');
                   context.read<CartBloc>().add(
-                        CartProductAdded(product: _product),
+                        AddProduct(_product),
                       );
                 },
               );
