@@ -2,10 +2,13 @@ import 'package:data/data.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 
 Future<void> initDataLayer() async {
-  getIt.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl());
+  getIt.registerLazySingleton<RemoteDataSource>(
+    () => RemoteDataSourceImpl(),
+  );
 
   getIt.registerLazySingleton<ProductRepository>(
-      () => ProductRepositoryImpl(getIt()));
+    () => ProductRepositoryImpl(getIt()),
+  );
 
   getIt.registerLazySingleton<FetchProductsUseCase>(
     () => FetchProductsUseCase(repository: getIt()),

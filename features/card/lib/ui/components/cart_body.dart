@@ -1,5 +1,4 @@
 import 'package:card/shopping_card.dart';
-import 'package:core/enums/currency.dart';
 
 class CartBody extends StatelessWidget {
   final CartLoaded _state;
@@ -12,124 +11,67 @@ class CartBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Card(
-        clipBehavior: Clip.antiAlias,
-        child: Container(
-          height: 70,
-          color: ApplicationColors.primaryButtonColor,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Text(
-                  '${_state.getSubtotalString} ${Currency.rubl.value}',
-                  style: AppFonts.bold22,
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: CartTotalPrice(state: _state),
       appBar: AppBar(
-        actions: [
+        actions: <Widget>[
           _deleteAllCartItems(),
         ],
         title: const Text(
           StringConstant.cart,
         ),
       ),
-      body: ListView.builder(
-        itemCount: _state.cart.cartItems.length,
-        itemBuilder: (BuildContext context, int index) {
-          final Product product = _state.cart.cartItems[index];
-          return Slidable(
-            direction: Axis.horizontal,
-            endActionPane:
-                ActionPane(motion: const ScrollMotion(), children: <Widget>[
-              SlidableAction(
-                onPressed: (context) {
-                  context.read<CartBloc>().add(
-                        RemoveProduct(product),
-                      );
-                },
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(Dimensions.SIZE_14),
-                ),
-                backgroundColor: ApplicationColors.red,
-                foregroundColor: ApplicationColors.white,
-                icon: AppIcons.delete,
-                label: StringConstant.delete,
-              ),
-              SlidableAction(
-                onPressed: (context) {
-                  //TODO: Add share feature
-                },
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(
-                    Dimensions.SIZE_14,
-                  ),
-                ),
-                backgroundColor: ApplicationColors.primaryButtonColor,
-                foregroundColor: ApplicationColors.white,
-                icon: AppIcons.share,
-                label: StringConstant.share,
-              ),
-            ]),
-            child: Padding(
-              padding: const EdgeInsets.all(
-                ApplicationPadding.PADDING_10,
-              ),
-              child: ListTile(
-                trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      AppAddButton(
-                        icon: AppIcons.increament,
-                        onPress: () {
-                          //TODO: ADD
-                        },
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverList.builder(
+            itemCount: _state.cart.cartItems.length,
+            itemBuilder: (BuildContext context, int index) {
+              final Product product = _state.cart.cartItems[index];
+              return Slidable(
+                direction: Axis.horizontal,
+                endActionPane:
+                    ActionPane(motion: const ScrollMotion(), children: <Widget>[
+                  SlidableAction(
+                    onPressed: (context) {
+                      context.read<CartBloc>().add(
+                            RemoveProduct(product),
+                          );
+                    },
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        Dimensions.SIZE_14,
                       ),
-                      //TODO remove
-                      const Text(''),
-                      AppAddButton(
-                        icon: AppIcons.increament,
-                        onPress: () {
-                          //TODO: Add
-                        },
-                      )
-                    ]),
-                subtitle: RichText(
-                  text: TextSpan(
-                    text: '${product.price.toString()} ${Currency.rubl.value}',
-                    style: AppFonts.normal16
-                        .copyWith(color: ApplicationColors.black),
-                    children: [
-                      TextSpan(
-                        text: '  ${product.ml}',
-                        style: AppFonts.normal10
-                            .copyWith(color: ApplicationColors.black),
+                    ),
+                    backgroundColor: ApplicationColors.red,
+                    foregroundColor: ApplicationColors.white,
+                    icon: AppIcons.delete,
+                    label: StringConstant.delete,
+                  ),
+                  SlidableAction(
+                    onPressed: (context) {
+                      //TODO: Add share feature
+                    },
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        Dimensions.SIZE_14,
                       ),
-                    ],
+                    ),
+                    backgroundColor: ApplicationColors.primaryButtonColor,
+                    foregroundColor: ApplicationColors.white,
+                    icon: AppIcons.share,
+                    label: StringConstant.share,
                   ),
-                ),
-                title: Text(
-                  overflow: TextOverflow.clip,
-                  softWrap: true,
-                  product.name,
-                  style: AppFonts.normal12,
-                ),
-                leading: Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: CachedNetworkImage(
-                    fadeInCurve: Curves.bounceInOut,
-                    imageUrl: product.image,
+                ]),
+                child: Padding(
+                  padding: const EdgeInsets.all(
+                    ApplicationPadding.PADDING_10,
                   ),
+                  child: CartLisItem(product: product),
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            },
+          ),
+          CartSublist(state: _state),
+        ],
       ),
     );
   }
@@ -139,8 +81,10 @@ class CartBody extends StatelessWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            context.read<CartBloc>().add(const RemoveAllProducts());
-            final snackBar = SnackBar(
+            context.read<CartBloc>().add(
+                  const RemoveAllProducts(),
+                );
+            final SnackBar snackBar = SnackBar(
               elevation: Dimensions.SIZE_10,
               behavior: SnackBarBehavior.fixed,
               backgroundColor: Colors.transparent,
@@ -149,8 +93,6 @@ class CartBody extends StatelessWidget {
                 message: StringConstant.emptyCartSnacBarSubtitle,
                 title: StringConstant.emptyCartSnackBarTitle,
                 color: ApplicationColors.primaryButtonColor,
-
-                /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
                 contentType: ContentType.success,
               ),
             );

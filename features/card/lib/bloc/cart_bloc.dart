@@ -34,9 +34,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     emit(CartLoading());
     try {
-      emit(CartLoaded(cart: Cart(cartItems: _getAllCartItemsUseCase())));
-    } catch (_) {
-      emit(CartError());
+      emit(
+        CartLoaded(
+          cart: Cart(
+            cartItems: _getAllCartItemsUseCase(),
+          ),
+        ),
+      );
+    } catch (message) {
+      emit(
+        CartFailure(
+          message: message.toString(),
+        ),
+      );
     }
   }
 
@@ -55,8 +65,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             ),
           ),
         );
-      } on Exception {
-        emit(CartError());
+      } catch (message) {
+        emit(
+          CartFailure(
+            message: message.toString(),
+          ),
+        );
       }
     }
   }
@@ -76,8 +90,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             ),
           ),
         );
-      } on Exception {
-        emit(CartError());
+      } catch (message) {
+        emit(
+          CartFailure(
+            message: message.toString(),
+          ),
+        );
       }
     }
   }
@@ -97,8 +115,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             ),
           ),
         );
-      } on Exception {
-        emit(CartError());
+      } catch (message) {
+        emit(
+          CartFailure(
+            message: message.toString(),
+          ),
+        );
       }
     }
   }

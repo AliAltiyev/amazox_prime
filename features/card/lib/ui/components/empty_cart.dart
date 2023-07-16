@@ -31,14 +31,14 @@ class EmptyCartBody extends StatelessWidget {
           Column(
             children: <Widget>[
               Text(
-                'Ничего нет',
+                StringConstant.notingIntoCartTitle,
                 style: AppFonts.bold18,
               ),
               SizedBox(
                 height: size.height / Dimensions.SIZE_20,
               ),
               const Text(
-                'Перейдите в список ресторанов,чтобы выбрать понравившийсы и оформить из него заказ',
+                StringConstant.nothingIntoCartSubtitle,
                 textAlign: TextAlign.center,
               )
             ],

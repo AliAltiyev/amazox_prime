@@ -8,23 +8,58 @@ abstract class CartState extends Equatable {
   List<Object> get props => [];
 }
 
-class CartLoading extends CartState {}
+class CartLoading extends CartState {
+  @override
+  List<Object> get props => [];
+}
 
 class CartLoaded extends CartState {
   final Cart cart;
+  final int serviceFee;
 
-  const CartLoaded({this.cart = const Cart()});
+  const CartLoaded({
+    this.cart = const Cart(),
+    this.serviceFee = 70,
+  });
 
-  double get subtotal => cart.cartItems
-      .fold(0, (previousValue, element) => previousValue + element.price);
+  double get subtotal => cart.cartItems.fold(
+        0,
+        (previousValue, element) => previousValue + element.price,
+      );
 
   String get getSubtotalString => subtotal.toStringAsFixed(2);
 
+  double deliveryFee(subtotal) {
+    if (subtotal >= 2000) {
+      return 0;
+    } else {
+      return 200;
+    }
+  }
+
+  double total(subtotal, deliveryFee, serviceFee) {
+    return subtotal + deliveryFee(subtotal) + serviceFee;
+  }
+
+  String get totalString =>
+      total(subtotal, deliveryFee, serviceFee).toStringAsFixed(2);
+
+  String get deliveryFeeString => deliveryFee(subtotal).toStringAsFixed(2);
+
   @override
-  List<Object> get props => [cart];
+  List<Object> get props => [
+        cart,
+      ];
 }
 
-class CartError extends CartState {
+class CartFailure extends CartState {
+  String message;
+  CartFailure({
+    required this.message,
+  });
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [
+        message,
+      ];
 }

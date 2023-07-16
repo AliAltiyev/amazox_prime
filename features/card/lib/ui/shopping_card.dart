@@ -27,7 +27,7 @@ class _SettingsPageState extends State<ShappingCard> {
             );
           } else {
             return const Center(
-              child: Text('Empty'),
+              child: SizedBox.shrink(),
             );
           }
         },

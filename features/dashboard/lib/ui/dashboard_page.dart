@@ -37,9 +37,9 @@ class DashboardView extends StatelessWidget {
               ),
               AppBarItem(
                 selectedColor: ApplicationColors.white,
-                icon: AppIcons.card,
+                icon: AppIcons.cart,
                 title: const Text(
-                  StringConstant.card,
+                  StringConstant.cartt,
                 ),
               ),
               AppBarItem(
