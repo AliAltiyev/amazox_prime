@@ -7,8 +7,15 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ThemeCubit>(
-      create: (context) => getIt<ThemeCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ThemeCubit>(
+          create: (context) => getIt<ThemeCubit>(),
+        ),
+        BlocProvider<CartBloc>(
+          create: (context) => CartBloc(),
+        ),
+      ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: _buildWithTheme,
       ),

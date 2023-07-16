@@ -10,9 +10,29 @@ class ShappingCard extends StatefulWidget {
 class _SettingsPageState extends State<ShappingCard> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Shopping Card',
+    return Scaffold(
+      body: BlocBuilder<CartBloc, CartState>(
+        builder: (context, state) {
+          if (state.cart.cartItems.isNotEmpty) {
+            return ListView.builder(
+              itemCount: state.cart.cartItems.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(
+                    state.cart.cartItems[index].description,
+                  ),
+                  leading: Image.network(
+                    state.cart.cartItems[index].image,
+                  ),
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: Text('Empty'),
+            );
+          }
+        },
       ),
     );
   }

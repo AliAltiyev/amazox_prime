@@ -27,7 +27,8 @@ dependencies:
     path: ./features./product_details
   settings:
     path: ./features./settings
-
+  card:  
+    path: ./features./card
 dev_dependencies:
   flutter_test:
     sdk: flutter

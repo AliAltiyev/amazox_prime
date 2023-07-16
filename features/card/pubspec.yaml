@@ -9,7 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  core: 
+   path: ../../core
+  core_ui: 
+   path: ../../core_ui
+  domain: 
+   path: ../../domain   
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

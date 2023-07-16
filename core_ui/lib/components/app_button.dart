@@ -13,9 +13,7 @@ class AddToCardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        //TODO add to card
-      },
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: ApplicationColors.primaryButtonColor,
         shape: RoundedRectangleBorder(
