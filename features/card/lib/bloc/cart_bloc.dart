@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:domain/domain.dart';
 import 'package:domain/entity/cart.dart';
 
@@ -8,18 +10,22 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final GetAllCartItemsUseCase _getAllCartItemsUseCase;
   final AddCartItemUseCase _addCartItemUseCase;
   final RemoveCartItemUseCase _removeCartItemUseCase;
+  final RemoveAllCartItemsUseCase _removeAllCartItemsUseCase;
 
   CartBloc({
     required GetAllCartItemsUseCase getAllCartItemsUseCase,
     required AddCartItemUseCase addCartItemUseCase,
     required RemoveCartItemUseCase removeCartItemUseCase,
+    required RemoveAllCartItemsUseCase removeAllCartItemsUseCase,
   })  : _getAllCartItemsUseCase = getAllCartItemsUseCase,
         _addCartItemUseCase = addCartItemUseCase,
         _removeCartItemUseCase = removeCartItemUseCase,
+        _removeAllCartItemsUseCase = removeAllCartItemsUseCase,
         super(CartLoading()) {
     on<LoadCart>(_onLoadCart);
     on<AddProduct>(_onAddProduct);
     on<RemoveProduct>(_onRemoveProduct);
+    on<RemoveAllProducts>(_removeAllProducts);
   }
 
   void _onLoadCart(
@@ -67,6 +73,27 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             cart: Cart(
               cartItems: List.from((state as CartLoaded).cart.cartItems)
                 ..remove(event.product),
+            ),
+          ),
+        );
+      } on Exception {
+        emit(CartError());
+      }
+    }
+  }
+
+  FutureOr<void> _removeAllProducts(
+    RemoveAllProducts event,
+    Emitter<CartState> emit,
+  ) {
+    if (state is CartLoaded) {
+      try {
+        _removeAllCartItemsUseCase();
+        emit(
+          CartLoaded(
+            cart: Cart(
+              cartItems: List.from((state as CartLoaded).cart.cartItems)
+                ..clear(),
             ),
           ),
         );

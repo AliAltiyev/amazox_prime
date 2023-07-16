@@ -15,23 +15,11 @@ class _SettingsPageState extends State<ShappingCard> {
         builder: (context, state) {
           if (state is CartLoaded) {
             if (state.cart.cartItems.isNotEmpty) {
-              return ListView.builder(
-                itemCount: state.cart.cartItems.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(
-                      state.cart.cartItems[index].description,
-                    ),
-                    leading: Image.network(
-                      state.cart.cartItems[index].image,
-                    ),
-                  );
-                },
+              return CartBody(
+                state: state,
               );
             } else {
-              return const Center(
-                child: Text('Empty'),
-              );
+              return const EmptyCartBody();
             }
           } else if (state is CartLoading) {
             return const Center(

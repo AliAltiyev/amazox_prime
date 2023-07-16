@@ -15,6 +15,11 @@ class CartLoaded extends CartState {
 
   const CartLoaded({this.cart = const Cart()});
 
+  double get subtotal => cart.cartItems
+      .fold(0, (previousValue, element) => previousValue + element.price);
+
+  String get getSubtotalString => subtotal.toStringAsFixed(2);
+
   @override
   List<Object> get props => [cart];
 }
