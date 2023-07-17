@@ -5,12 +5,12 @@ abstract class CartState extends Equatable {
   const CartState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class CartLoading extends CartState {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class CartLoaded extends CartState {
@@ -47,7 +47,7 @@ class CartLoaded extends CartState {
   String get deliveryFeeString => deliveryFee(subtotal).toStringAsFixed(2);
 
   @override
-  List<Object> get props => [
+  List<Object> get props => <Object>[
         cart,
       ];
 }
@@ -59,7 +59,7 @@ class CartFailure extends CartState {
   });
 
   @override
-  List<Object> get props => [
+  List<Object> get props => <Object>[
         message,
       ];
 }

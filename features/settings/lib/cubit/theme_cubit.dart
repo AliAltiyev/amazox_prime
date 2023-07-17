@@ -28,7 +28,6 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   Future<void> getTheme() async {
     _isDark = await _getAppThemeUseCase.call(LocaleStorage.key.name);
-
     emit(ThemeChanged());
   }
 
