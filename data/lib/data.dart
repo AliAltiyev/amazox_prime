@@ -18,6 +18,5 @@ export 'package:domain/usecase/product/get_product_by_id.dart';
 export 'package:domain/usecase/product/get_products.dart';
 export 'package:domain/usecase/theme/save_app_theme_usecase.dart';
 export 'package:json_annotation/json_annotation.dart';
-
 export '../datasource/remote/remote_data_sourse.dart';
 export 'repository_impl/product/product_repository_impl.dart';
