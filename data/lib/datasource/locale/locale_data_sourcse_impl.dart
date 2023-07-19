@@ -2,7 +2,7 @@ import 'package:data/data.dart';
 
 final class LocaleDataSourseImpl extends LocaleDataSource {
   final Box<ProductModel> _cartBox = Hive.box(LocaleStorage.cart.name);
-
+  final Box<ProductModel> _products = Hive.box(LocaleStorage.products.name);
   //!Theme
   @override
   Future<void> saveAppTheme(bool isDark) async {
@@ -42,5 +42,15 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   @override
   Future<void> removeCartItem(ProductModel model) async {
     await _cartBox.delete(model.id);
+  }
+
+  @override
+  Future<void> addProducts(List<ProductModel> products) async {
+    await _products.addAll(products);
+  }
+
+  @override
+  List<ProductModel> getAllProdducts() {
+    return _products.values.toList();
   }
 }

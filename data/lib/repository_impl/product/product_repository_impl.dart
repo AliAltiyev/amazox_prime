@@ -2,18 +2,33 @@ import 'package:data/data.dart';
 
 final class ProductRepositoryImpl implements ProductRepository {
   final RemoteDataSource _remoteDataSource;
-
+  final Connection _connection;
+  final LocaleDataSource _localeDataSource;
   ProductRepositoryImpl(
     RemoteDataSource remoteDataSource,
-  ) : _remoteDataSource = remoteDataSource;
+    Connection connection,
+    LocaleDataSource localeDataSource,
+  )   : _remoteDataSource = remoteDataSource,
+        _connection = connection,
+        _localeDataSource = localeDataSource;
 
   @override
   Future<List<Product>> fetchProducts() async {
-    final List<ProductModel> data = await _remoteDataSource.getProducts();
-    return data
-        .map((model) => ProductMapper.toEntity(model))
-        .toList()
-        .cast<Product>();
+    if (await _connection.isConnected()) {
+      final List<ProductModel> data = await _remoteDataSource.getProducts();
+      await _localeDataSource.addProducts(data);
+
+      return data
+          .map((model) => ProductMapper.toEntity(model))
+          .toList()
+          .cast<Product>();
+    } else {
+      final List<ProductModel> data = _localeDataSource.getAllProdducts();
+      return data
+          .map((model) => ProductMapper.toEntity(model))
+          .toList()
+          .cast<Product>();
+    }
   }
 
   @override
