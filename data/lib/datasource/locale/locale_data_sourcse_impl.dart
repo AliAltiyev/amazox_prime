@@ -53,4 +53,9 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   List<ProductModel> getAllProdducts() {
     return _products.values.toList();
   }
+
+  @override
+  Future<ProductModel> getProductById(int productId) async {
+    return _products.getAt(productId)!;
+  }
 }

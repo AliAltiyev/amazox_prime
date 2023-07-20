@@ -20,4 +20,6 @@ abstract class LocaleDataSource {
   Future<void> addProducts(List<ProductModel> products);
 
   List<ProductModel> getAllProdducts();
+
+  Future<ProductModel> getProductById(int productId);
 }

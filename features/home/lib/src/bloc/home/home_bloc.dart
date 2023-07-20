@@ -20,6 +20,9 @@ final class HomeBloc extends Bloc<ProductsEvent, HomeState> {
     FetchProductsEvent event,
     Emitter<HomeState> emit,
   ) async {
+    if (!await _connectionUseCase()) {
+      emit(NoInternetConnectionState());
+    }
     emit(LoadingProductsState());
     try {
       final List<Product> data = await _getProductsUseCase();

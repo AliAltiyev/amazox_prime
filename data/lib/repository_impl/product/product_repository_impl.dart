@@ -14,8 +14,12 @@ final class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<List<Product>> fetchProducts() async {
+    final Box<ProductModel> productsBox = Hive.box(LocaleStorage.products.name);
     if (await _connection.isConnected()) {
       final List<ProductModel> data = await _remoteDataSource.getProducts();
+      if (productsBox.isNotEmpty) {
+        productsBox.clear();
+      }
       await _localeDataSource.addProducts(data);
 
       return data
@@ -33,9 +37,15 @@ final class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<Product> fetchProductById(int productId) async {
-    final ProductModel data =
-        await _remoteDataSource.getProductsById(productId);
-    return ProductMapper.toEntity(data);
+    if (await _connection.isConnected()) {
+      final ProductModel data =
+          await _remoteDataSource.getProductsById(productId);
+      return ProductMapper.toEntity(data);
+    } else {
+      final ProductModel data =
+          await _localeDataSource.getProductById(productId);
+      return ProductMapper.toEntity(data);
+    }
   }
 
   @override

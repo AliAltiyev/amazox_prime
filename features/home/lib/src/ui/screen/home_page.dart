@@ -30,56 +30,49 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         ),
       ],
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            AppSliverAppBar(
-              child: Image.asset(
-                ImagePaths.sliverAppBarBackground,
-                fit: BoxFit.fill,
+        body: AppRefreshView(
+          size: size,
+          onRefresh: () {
+            return Future<void>(
+              () => context.read<HomeBloc>()..add(FetchProductsEvent()),
+            );
+          },
+          child: CustomScrollView(
+            slivers: <Widget>[
+              AppSliverAppBar(
+                child: Image.asset(
+                  ImagePaths.sliverAppBarBackground,
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
-            const HomeMenuTitle(),
-            const SliverToBoxAdapter(child: HomeMenu()),
-            BlocConsumer<HomeBloc, HomeState>(
-              listener: (context, state) {
-                if (state is NoInternetConnectionState) {
-                  AppToast.showToast();
-                }
-              },
-              builder: (context, state) {
-                return BlocBuilder<HomeBloc, HomeState>(
-                  builder: (builderContext, state) {
-                    if (state is LoadedProductsState) {
-                      //TODO remove to core_ui
-                      return LiquidPullToRefresh(
-                          showChildOpacityTransition: true,
-                          springAnimationDurationInMilliseconds: 2,
-                          backgroundColor: ApplicationColors.black,
-                          animSpeedFactor: 10,
-                          key: const ValueKey<int>(1),
-                          color: ApplicationColors.primaryButtonColor,
-                          height: size.height / Dimensions.SIZE_6,
-                          onRefresh: () {
-                            return Future.microtask(
-                              () => context.read<HomeBloc>()
-                                ..add(FetchProductsEvent()),
-                            );
-                          },
-                          child: SliverGridList(state: state));
-                    } else if (state is LoadingProductsState) {
-                      return SliverToBoxAdapter(
-                        child: _loadingStateBody(),
-                      );
-                    } else {
-                      return const SliverToBoxAdapter(
-                        child: SizedBox.shrink(),
-                      );
-                    }
-                  },
-                );
-              },
-            ),
-          ],
+              const HomeMenuTitle(),
+              const SliverToBoxAdapter(child: HomeMenu()),
+              BlocConsumer<HomeBloc, HomeState>(
+                listener: (context, state) {
+                  if (state is NoInternetConnectionState) {
+                    AppToast.showToast();
+                  }
+                },
+                builder: (context, state) {
+                  return BlocBuilder<HomeBloc, HomeState>(
+                    builder: (builderContext, state) {
+                      if (state is LoadedProductsState) {
+                        return SliverGridList(state: state);
+                      } else if (state is LoadingProductsState) {
+                        return SliverToBoxAdapter(
+                          child: _loadingStateBody(),
+                        );
+                      } else {
+                        return const SliverToBoxAdapter(
+                          child: SizedBox.shrink(),
+                        );
+                      }
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
