@@ -82,11 +82,12 @@ class LightTheme extends AppTheme {
       secondarySelectedColor: ApplicationColors.primaryButtonColor,
       selectedColor: ApplicationColors.black,
       shape: const StadiumBorder(
-          side: BorderSide(
-        color: ApplicationColors.white,
-        width: Dimensions.SIZE_0,
-        style: BorderStyle.none,
-      )),
+        side: BorderSide(
+          color: ApplicationColors.white,
+          width: Dimensions.SIZE_0,
+          style: BorderStyle.none,
+        ),
+      ),
     ),
     dialogTheme: const DialogTheme(
       shape: RoundedRectangleBorder(
@@ -100,6 +101,21 @@ class LightTheme extends AppTheme {
           ),
         ),
       ),
+    ),
+    textTheme: TextTheme(
+      bodySmall: AppFonts.normal12,
+      bodyMedium: AppFonts.normal14,
+      bodyLarge: AppFonts.normal16,
+      labelSmall: AppFonts.bold12,
+      labelMedium: AppFonts.bold12,
+      labelLarge: AppFonts.bold14,
+      titleSmall: AppFonts.normal14,
+      titleMedium: AppFonts.normal16,
+      titleLarge: AppFonts.bold22,
+      headlineSmall: AppFonts.normal24,
+      headlineMedium: AppFonts.normal28,
+      headlineLarge: AppFonts.normal32,
+      displaySmall: AppFonts.normal36,
     ),
   );
 }

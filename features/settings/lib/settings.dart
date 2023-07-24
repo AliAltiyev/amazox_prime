@@ -9,3 +9,4 @@ export 'package:settings/cubit/theme_cubit.dart';
 export 'package:settings/di/di.dart';
 export 'package:settings/settings.dart';
 export 'package:settings/ui/settings_page.dart';
+export 'package:settings/bloc/font_size_bloc.dart';

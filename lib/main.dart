@@ -2,14 +2,9 @@ import 'package:data/data.dart';
 
 import 'app.dart';
 
-export 'package:flutter_native_splash/flutter_native_splash.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Hive.registerAdapter<ProductModel>(ProductModelAdapter());
-  await Hive.initFlutter();
-  await Hive.openBox<ProductModel>(LocaleStorage.products.name);
-  await Hive.openBox<ProductModel>(LocaleStorage.cart.name);
+  await _initHive();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -19,4 +14,14 @@ Future<void> main() async {
   initNavigation();
   initSettingsBloc();
   runApp(Application());
+}
+
+Future<void> _initHive() async {
+  Hive.registerAdapter<ProductModel>(ProductModelAdapter());
+  Hive.registerAdapter<FontSizeModel>(FontSizeModelAdapter());
+  await Hive.initFlutter();
+  await Hive.openBox<FontSizeModel>(LocaleStorage.font.name);
+  await Hive.openBox<ProductModel>(LocaleStorage.products.name);
+  await Hive.openBox<ProductModel>(LocaleStorage.cart.name);
+  await Hive.openBox<bool>(LocaleStorage.theme.name);
 }

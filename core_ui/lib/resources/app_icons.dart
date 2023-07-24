@@ -1,7 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 
 final class AppIcons {
-  static const error = Icon(Icons.error_outline);
+  static const error = Icon(Icons.abc_outlined);
   static const increament = Icons.add;
   static const decremeent = Icons.remove;
   static const share = Icons.share_outlined;

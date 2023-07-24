@@ -75,7 +75,19 @@ class DarkTheme extends AppTheme {
     ),
     cardColor: ApplicationColors.black,
     textTheme: TextTheme(
-      headlineMedium: AppFonts.bold16,
+      bodySmall: AppFonts.normal12,
+      bodyMedium: AppFonts.normal14,
+      bodyLarge: AppFonts.normal16,
+      labelSmall: AppFonts.bold12,
+      labelMedium: AppFonts.bold12,
+      labelLarge: AppFonts.bold14,
+      titleSmall: AppFonts.normal14,
+      titleMedium: AppFonts.normal16,
+      titleLarge: AppFonts.bold22,
+      headlineSmall: AppFonts.normal24,
+      headlineMedium: AppFonts.normal28,
+      headlineLarge: AppFonts.normal32,
+      displaySmall: AppFonts.normal36,
     ),
   );
 }

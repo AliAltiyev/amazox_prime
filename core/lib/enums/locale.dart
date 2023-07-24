@@ -1,6 +1,1 @@
-enum LocaleStorage {
-  theme,
-  key,
-  cart,
-  products,
-}
+enum LocaleStorage { theme, key, cart, products, font }

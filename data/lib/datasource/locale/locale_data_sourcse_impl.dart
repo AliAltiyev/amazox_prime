@@ -1,15 +1,24 @@
 import 'package:data/data.dart';
 
 final class LocaleDataSourseImpl extends LocaleDataSource {
-  final Box<ProductModel> _cartBox = Hive.box(LocaleStorage.cart.name);
-  final Box<ProductModel> _products = Hive.box(LocaleStorage.products.name);
-  //!Theme
+  final Box<ProductModel> _cartBox;
+  final Box<ProductModel> _products;
+  final Box<FontSizeModel> _font;
+  final Box<bool> _theme;
+
+  LocaleDataSourseImpl({
+    required Box<ProductModel> cartBox,
+    required Box<ProductModel> products,
+    required Box<FontSizeModel> font,
+    required Box<bool> theme,
+  })  : _cartBox = cartBox,
+        _products = products,
+        _font = font,
+        _theme = theme;
+
   @override
   Future<void> saveAppTheme(bool isDark) async {
-    final box = await Hive.openBox(
-      LocaleStorage.theme.name,
-    );
-    await box.put(
+    await _theme.put(
       LocaleStorage.key.name,
       isDark,
     );
@@ -17,10 +26,7 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
 
   @override
   Future<bool> getAppTheme(String key) async {
-    final box = await Hive.openBox(
-      LocaleStorage.theme.name,
-    );
-    return box.get(key) ?? false;
+    return _theme.get(key) ?? false;
   }
 
   //!Cart
@@ -57,5 +63,16 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   @override
   Future<ProductModel> getProductById(int productId) async {
     return _products.getAt(productId)!;
+  }
+
+  //!Font
+  @override
+  FontSizeModel getFontSize() {
+    return _font.values.last;
+  }
+
+  @override
+  Future<void> saveFontSize(FontSizeModel model) async {
+    await _font.add(model);
   }
 }

@@ -8,6 +8,7 @@ export 'package:core/di/di.dart';
 export 'package:core/di/firebase_options.dart';
 export 'package:core/enums/hero_tags.dart';
 export 'package:core/enums/locale.dart';
+export 'package:core/extensions/context.dart';
 export 'package:equatable/equatable.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';

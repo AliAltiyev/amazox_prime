@@ -17,7 +17,6 @@ export 'package:core_ui/resources/app_dimension.dart';
 export 'package:core_ui/resources/app_fonts.dart';
 export 'package:core_ui/resources/app_icons.dart';
 export 'package:domain/domain.dart';
-export 'package:domain/entity/product.dart';
 export 'package:domain/usecase/product/get_products.dart';
 export 'package:flutter/material.dart';
 export 'package:home/src/bloc/home/home_bloc.dart';

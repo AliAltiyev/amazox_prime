@@ -6,7 +6,6 @@
   "configurations": [
     {
       "name": "cofix",
-      
       "request": "launch",
       "type": "dart"
     },

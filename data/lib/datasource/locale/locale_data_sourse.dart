@@ -22,4 +22,9 @@ abstract class LocaleDataSource {
   List<ProductModel> getAllProdducts();
 
   Future<ProductModel> getProductById(int productId);
+
+  //!FontSize
+  Future<void> saveFontSize(FontSizeModel model);
+
+  FontSizeModel getFontSize();
 }
