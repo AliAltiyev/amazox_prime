@@ -34,7 +34,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
           size: size,
           onRefresh: () {
             return Future<void>(
-              () => context.read<HomeBloc>()..add(FetchProductsEvent()),
+              () => context.read<HomeBloc>().add(FetchProductsEvent()),
             );
           },
           child: CustomScrollView(

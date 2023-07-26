@@ -53,8 +53,8 @@ class CartLoaded extends CartState {
 }
 
 class CartFailure extends CartState {
-  String message;
-  CartFailure({
+  final String message;
+  const CartFailure({
     required this.message,
   });
 

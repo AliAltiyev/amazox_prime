@@ -1,3 +1,3 @@
 final class ApiConstants {
-  static const String contactsUrl = 'https://eda.yandex.by/contacts';
+  static const String contactsUrl = 'https://market.yandex.ru/';
 }
