@@ -13,8 +13,6 @@ class CartSublist extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
 
-
-    
     return SliverList(
       key: const ValueKey<String>(
         StringConstant.key,
@@ -54,7 +52,7 @@ class CartSublist extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  '${_state.deliveryFeeString} ${Currency.rubl.value}',
+                  '${context.read<CartBloc>().deliveryFeeString} ${Currency.rubl.value}',
                   style: AppFonts.normal14,
                 ),
                 AppIcons.chevronRightOutlined
