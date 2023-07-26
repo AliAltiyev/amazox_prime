@@ -2,17 +2,12 @@ import 'package:data/connection/connection_impl.dart';
 import 'package:data/data.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 import 'package:data/repository_impl/connection/connection_impl.dart';
-import 'package:data/repository_impl/settings/contacts/contacts_repository_impl.dart';
 import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
-import 'package:data/url_launcher/url_launcher_impl.dart';
 
 Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(),
   );
-
-  //!UrlLauncher
-  getIt.registerLazySingleton<UrlLauncher>(() => UrlLauncherImpl());
 
   //!Connection
   getIt.registerLazySingleton<InternetConnectionChecker>(
@@ -106,14 +101,5 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<GetFontSizeUsecase>(
     () => GetFontSizeUsecase(fontSizeRepository: getIt<FontSizeRepository>()),
-  );
-
-  //!Contacts
-  getIt.registerLazySingleton<ConstactsRepository>(
-    () => ContactsRepositoryImpl(getIt<UrlLauncher>()),
-  );
-
-  getIt.registerLazySingleton<LaunchContactsUseCase>(
-    () => LaunchContactsUseCase(getIt<ConstactsRepository>()),
   );
 }

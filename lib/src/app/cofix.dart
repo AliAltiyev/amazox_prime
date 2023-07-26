@@ -22,9 +22,9 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<SettingsBloc>(
           create: (context) => SettingsBloc(
+            urlLauncher: getIt<UrlLauncher>(),
             getFontSizeUsecase: getIt<GetFontSizeUsecase>(),
             saveFontSizeUsecase: getIt<SaveFontSizeUsecase>(),
-            launchContactsUseCase: getIt<LaunchContactsUseCase>(),
           )..add(
               GetFontSizeEvent(),
             ),

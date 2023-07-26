@@ -11,6 +11,7 @@ export 'package:core/enums/hero_tags.dart';
 export 'package:core/enums/locale.dart';
 export 'package:core/exceptions/url_launcher.dart';
 export 'package:core/extensions/context.dart';
+export 'package:core/services/url_laucher.dart';
 export 'package:equatable/equatable.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';

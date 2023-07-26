@@ -8,15 +8,15 @@ part 'settings_state.dart';
 class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
   final SaveFontSizeUsecase _saveFontSizeUsecase;
   final GetFontSizeUsecase _getFontSizeUsecase;
-  final LaunchContactsUseCase _launchContactsUseCase;
+  final UrlLauncher _urlLauncher;
 
   SettingsBloc({
     required SaveFontSizeUsecase saveFontSizeUsecase,
     required GetFontSizeUsecase getFontSizeUsecase,
-    required LaunchContactsUseCase launchContactsUseCase,
+    required UrlLauncher urlLauncher,
   })  : _saveFontSizeUsecase = saveFontSizeUsecase,
         _getFontSizeUsecase = getFontSizeUsecase,
-        _launchContactsUseCase = launchContactsUseCase,
+        _urlLauncher = urlLauncher,
         super(FontSizeState(fontSize: FontSizeEntity())) {
     on<SaveFontSizeEvent>(_changeFontSize);
     on<GetFontSizeEvent>(_getFontSize);
@@ -50,6 +50,6 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
     LaunchContactsEvent event,
     Emitter<FontSizeState> emit,
   ) async {
-    await _launchContactsUseCase();
+    await _urlLauncher.launch(ApiConstants.contactsUrl);
   }
 }
