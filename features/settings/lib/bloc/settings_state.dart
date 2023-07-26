@@ -1,4 +1,4 @@
-part of 'font_size_bloc.dart';
+part of 'settings_bloc.dart';
 
 final class FontSizeState extends Equatable {
   final FontSizeEntity fontSize;
@@ -11,4 +11,12 @@ final class FontSizeState extends Equatable {
   List<Object?> get props => [
         fontSize,
       ];
+
+  FontSizeState copyWith({
+    FontSizeEntity? fontSize,
+  }) {
+    return FontSizeState(
+      fontSize: fontSize ?? this.fontSize,
+    );
+  }
 }

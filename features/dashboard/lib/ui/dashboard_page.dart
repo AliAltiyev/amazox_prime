@@ -20,54 +20,57 @@ class DashboardView extends StatelessWidget {
           padding: const EdgeInsets.all(
             ApplicationPadding.PADDING_10,
           ),
-          child: ApplicationBottomAppBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
-            margin: const EdgeInsets.symmetric(
-              horizontal: Dimensions.SIZE_20,
-              vertical: Dimensions.SIZE_10,
+          child: Expanded(
+            child: ApplicationBottomAppBar(
+              currentIndex: tabsRouter.activeIndex,
+              onTap: tabsRouter.setActiveIndex,
+              margin: const EdgeInsets.symmetric(
+                horizontal: Dimensions.SIZE_20,
+                vertical: Dimensions.SIZE_10,
+              ),
+              items: <AppBarItem>[
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: AppIcons.home,
+                  title: const Text(
+                    StringConstant.home,
+                  ),
+                ),
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: BlocBuilder<CartBloc, CartState>(
+                    builder: (context, state) {
+                      if (state is CartLoaded) {
+                        return Badge(
+                            label: Text(
+                              state.cart.cartItems.length.toString(),
+                            ),
+                            child: AppIcons.cart);
+                      } else {
+                        return AppIcons.cart;
+                      }
+                    },
+                  ),
+                  title: const Text(
+                    StringConstant.cartt,
+                  ),
+                ),
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: AppIcons.order,
+                  title: const Text(
+                    StringConstant.order,
+                  ),
+                ),
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: AppIcons.settings,
+                  title: const Text(
+                    StringConstant.settings,
+                  ),
+                ),
+              ],
             ),
-            items: <AppBarItem>[
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.home,
-                title: const Text(
-                  StringConstant.home,
-                ),
-              ),
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon:
-                    BlocBuilder<CartBloc, CartState>(builder: (context, state) {
-                  if (state is CartLoaded) {
-                    return Badge(
-                        label: Text(
-                          state.cart.cartItems.length.toString(),
-                        ),
-                        child: AppIcons.cart);
-                  } else {
-                    return AppIcons.cart;
-                  }
-                }),
-                title: const Text(
-                  StringConstant.cartt,
-                ),
-              ),
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.order,
-                title: const Text(
-                  StringConstant.order,
-                ),
-              ),
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.settings,
-                title: const Text(
-                  StringConstant.settings,
-                ),
-              ),
-            ],
           ),
         );
       },

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:domain/domain.dart';
-import 'package:domain/entity/cart.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';

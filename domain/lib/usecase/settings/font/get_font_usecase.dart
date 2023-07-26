@@ -4,7 +4,7 @@ import 'package:domain/repository/settings/font/font_size_repository.dart';
 final class GetFontSizeUsecase {
   final FontSizeRepository _fontSizeRepository;
 
-  GetFontSizeUsecase({
+  const GetFontSizeUsecase({
     required FontSizeRepository fontSizeRepository,
   }) : _fontSizeRepository = fontSizeRepository;
 

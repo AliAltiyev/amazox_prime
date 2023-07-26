@@ -42,4 +42,6 @@ final class StringConstant {
   static const String nothingIntoCartSubtitle =
       '''Перейдите в список ресторанов,чтобы выбрать
        понравившийсы и оформить из него заказ''';
+
+  static const String changeTextScale = 'Изменить размер шрифта';
 }

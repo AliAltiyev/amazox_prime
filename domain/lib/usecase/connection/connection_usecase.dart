@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 final class ConnectionUseCase {
   final ConnectionRepository _connectionRepository;
 
-  ConnectionUseCase({
+  const ConnectionUseCase({
     required ConnectionRepository connectionRepository,
   }) : _connectionRepository = connectionRepository;
 

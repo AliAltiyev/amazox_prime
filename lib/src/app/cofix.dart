@@ -1,5 +1,4 @@
 import 'package:amazon_prime/app.dart';
-import 'package:settings/bloc/font_size_bloc.dart';
 
 class Application extends StatelessWidget {
   Application({super.key});
@@ -21,11 +20,14 @@ class Application extends StatelessWidget {
             removeAllCartItemsUseCase: getIt<RemoveAllCartItemsUseCase>(),
           )..add(LoadCart()),
         ),
-        BlocProvider(
-          create: (context) => FontSizeBloc(
-            getFontSizeUsecase: getIt(),
-            saveFontSizeUsecase: getIt(),
-          ),
+        BlocProvider<SettingsBloc>(
+          create: (context) => SettingsBloc(
+            getFontSizeUsecase: getIt<GetFontSizeUsecase>(),
+            saveFontSizeUsecase: getIt<SaveFontSizeUsecase>(),
+            launchContactsUseCase: getIt<LaunchContactsUseCase>(),
+          )..add(
+              GetFontSizeEvent(),
+            ),
         )
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
@@ -39,6 +41,15 @@ class Application extends StatelessWidget {
     ThemeState state,
   ) {
     return MaterialApp.router(
+      builder: (context, child) {
+        return MediaQuery(
+          data: context.mediaQuery.copyWith(
+            textScaleFactor:
+                context.watch<SettingsBloc>().state.fontSize.fontSize,
+          ),
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
       debugShowCheckedModeBanner: false,
       theme: getIt<ThemeCubit>().isDark
           ? DarkTheme.instance.darkTheme

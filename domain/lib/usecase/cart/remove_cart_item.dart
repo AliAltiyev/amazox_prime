@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 final class RemoveCartItemUseCase {
   final CartRepository _cartRepository;
 
-  RemoveCartItemUseCase({
+  const RemoveCartItemUseCase({
     required CartRepository cartRepository,
   }) : _cartRepository = cartRepository;
 

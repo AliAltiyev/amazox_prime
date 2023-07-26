@@ -12,6 +12,7 @@ export 'package:data/model/font_size.dart';
 export 'package:data/model/menu.dart';
 export 'package:data/model/product.dart';
 export 'package:data/repository_impl/settings/theme/theme_repository_impl.dart';
+export 'package:data/url_launcher/url_launcher.dart';
 export 'package:domain/domain.dart';
 export 'package:domain/entity/font_size.dart';
 export 'package:domain/entity/product.dart';

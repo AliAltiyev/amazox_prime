@@ -6,6 +6,7 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:core/core.dart';
 export 'package:core/enums/duration.dart';
 export 'package:core_ui/components/app_add_button.dart';
+export 'package:core_ui/components/app_bar_item.dart';
 export 'package:core_ui/components/app_bottom_appbar.dart';
 export 'package:core_ui/components/app_button.dart';
 export 'package:core_ui/components/app_rating_bar.dart';

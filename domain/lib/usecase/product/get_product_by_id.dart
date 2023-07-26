@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 class FetchProductByIdUseCase {
   final ProductRepository _repository;
 
-  FetchProductByIdUseCase({
+  const FetchProductByIdUseCase({
     required ProductRepository repository,
   }) : _repository = repository;
 

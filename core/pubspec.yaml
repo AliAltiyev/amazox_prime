@@ -25,7 +25,8 @@ dependencies:
   hive: ^2.2.3
   #connection
   internet_connection_checker: ^1.0.0+1
-
+  #url uncher
+  url_launcher: ^6.1.12
 dev_dependencies:
   flutter_test:
     sdk: flutter
