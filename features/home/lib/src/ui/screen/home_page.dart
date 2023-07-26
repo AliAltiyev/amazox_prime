@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
       providers: [
         BlocProvider<HomeBloc>(
           create: (context) => HomeBloc(
-            connectionUseCase: getIt<ConnectionUseCase>(),
+            connectionUseCase: getIt<Connection>(),
             getProductsUseCase: getIt<FetchProductsUseCase>(),
           ),
         ),

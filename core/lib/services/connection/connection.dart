@@ -1,12 +1,11 @@
-import 'package:data/data.dart';
+import 'package:core/core.dart';
 
-final class ConnectionImpl extends Connection {
+final class Connection {
   final InternetConnectionChecker _connection;
 
-  ConnectionImpl({
+  Connection({
     required InternetConnectionChecker connection,
   }) : _connection = connection;
 
-  @override
   Future<bool> isConnected() async => await _connection.hasConnection;
 }

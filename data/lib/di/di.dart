@@ -1,30 +1,11 @@
-import 'package:data/connection/connection_impl.dart';
 import 'package:data/data.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
-import 'package:data/repository_impl/connection/connection_impl.dart';
 import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
 
 Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(),
   );
-
-  //!Connection
-  getIt.registerLazySingleton<InternetConnectionChecker>(
-    () => InternetConnectionChecker(),
-  );
-
-  getIt.registerLazySingleton<Connection>(() => ConnectionImpl(
-        connection: getIt<InternetConnectionChecker>(),
-      ));
-
-  getIt.registerLazySingleton<ConnectionRepository>(
-    () => ConnectionRepositoryImpl(connection: getIt<Connection>()),
-  );
-
-  getIt.registerLazySingleton<ConnectionUseCase>(() => ConnectionUseCase(
-        connectionRepository: getIt<ConnectionRepository>(),
-      ));
 
   getIt.registerLazySingleton<ProductRepository>(
     () => ProductRepositoryImpl(

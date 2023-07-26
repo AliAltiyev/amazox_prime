@@ -5,12 +5,12 @@ part 'home_state.dart';
 
 final class HomeBloc extends Bloc<ProductsEvent, HomeState> {
   final FetchProductsUseCase _getProductsUseCase;
-  final ConnectionUseCase _connectionUseCase;
+  final Connection _connection;
   HomeBloc({
     required FetchProductsUseCase getProductsUseCase,
-    required ConnectionUseCase connectionUseCase,
+    required Connection connectionUseCase,
   })  : _getProductsUseCase = getProductsUseCase,
-        _connectionUseCase = connectionUseCase,
+        _connection = connectionUseCase,
         super(InitialProductsState()) {
     on<FetchProductsEvent>(_fetchProductsEvent);
     add(FetchProductsEvent());
@@ -20,7 +20,7 @@ final class HomeBloc extends Bloc<ProductsEvent, HomeState> {
     FetchProductsEvent event,
     Emitter<HomeState> emit,
   ) async {
-    if (!await _connectionUseCase()) {
+    if (!await _connection.isConnected()) {
       emit(NoInternetConnectionState());
     }
     emit(LoadingProductsState());

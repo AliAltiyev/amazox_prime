@@ -1,5 +1,3 @@
-import 'package:core/services/url_laucher.dart';
-
 import '../core.dart';
 
 final getIt = GetIt.instance;
@@ -10,4 +8,9 @@ Future<void> initAppModule() async {
   getIt.registerLazySingleton<UrlLauncher>(
     () => UrlLauncher(),
   );
+  getIt.registerLazySingleton<InternetConnectionChecker>(
+      () => InternetConnectionChecker());
+
+  getIt.registerLazySingleton<Connection>(
+      () => Connection(connection: getIt<InternetConnectionChecker>()));
 }
