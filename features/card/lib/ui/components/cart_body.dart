@@ -11,7 +11,7 @@ class CartBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CartTotalPrice(state: _state),
+      bottomNavigationBar: const CartTotalPrice(),
       appBar: AppBar(
         actions: <Widget>[
           _deleteAllCartItems(),
