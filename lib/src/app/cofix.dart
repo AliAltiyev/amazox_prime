@@ -20,6 +20,15 @@ class Application extends StatelessWidget {
             removeAllCartItemsUseCase: getIt<RemoveAllCartItemsUseCase>(),
           )..add(LoadCart()),
         ),
+        BlocProvider<SettingsBloc>(
+          create: (context) => SettingsBloc(
+            urlLauncher: getIt<UrlLauncher>(),
+            getFontSizeUsecase: getIt<GetFontSizeUsecase>(),
+            saveFontSizeUsecase: getIt<SaveFontSizeUsecase>(),
+          )..add(
+              GetFontSizeEvent(),
+            ),
+        )
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: _buildWithTheme,
@@ -32,6 +41,15 @@ class Application extends StatelessWidget {
     ThemeState state,
   ) {
     return MaterialApp.router(
+      builder: (context, child) {
+        return MediaQuery(
+          data: context.mediaQuery.copyWith(
+            textScaleFactor:
+                context.watch<SettingsBloc>().state.fontSize.fontSize,
+          ),
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
       debugShowCheckedModeBanner: false,
       theme: getIt<ThemeCubit>().isDark
           ? DarkTheme.instance.darkTheme

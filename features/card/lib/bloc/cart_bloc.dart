@@ -1,9 +1,7 @@
-import 'dart:async';
-
-import 'package:domain/domain.dart';
-import 'package:domain/entity/cart.dart';
+import 'package:card/shopping_card.dart';
 
 part 'cart_event.dart';
+
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
@@ -110,7 +108,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(
           CartLoaded(
             cart: Cart(
-              cartItems: List.from((state as CartLoaded).cart.cartItems)
+              cartItems: List.from((state as CartLoaded).cart.cartItems,)
                 ..clear(),
             ),
           ),

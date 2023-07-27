@@ -2,7 +2,6 @@ library product_details;
 
 export 'package:core/core.dart';
 export 'package:core_ui/core_ui.dart';
-export 'package:domain/domain.dart';
 export 'package:flutter/material.dart';
 export 'package:navigation/navigation.dart';
 export 'package:product_details/bloc/details/details_bloc.dart';

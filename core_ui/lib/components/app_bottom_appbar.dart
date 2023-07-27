@@ -42,7 +42,9 @@ class ApplicationBottomAppBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(
+            Dimensions.SIZE_20,
+          ),
         ),
         color: backgroundColor ?? ApplicationColors.primaryButtonColor,
       ),
@@ -60,7 +62,7 @@ class ApplicationBottomAppBar extends StatelessWidget {
               ),
               curve: curve,
               duration: duration,
-              builder: (context, t, _) {
+              builder: (context, time, _) {
                 final selectedColor = item.selectedColor ??
                     selectedItemColor ??
                     theme.primaryColor;
@@ -77,7 +79,7 @@ class ApplicationBottomAppBar extends StatelessWidget {
                       selectedColor.withOpacity(
                         selectedColorOpacity ?? Dimensions.SIZE_0_1,
                       ),
-                      t),
+                      time),
                   shape: itemShape,
                   child: InkWell(
                     onTap: () => onTap?.call(items.indexOf(item)),
@@ -97,8 +99,8 @@ class ApplicationBottomAppBar extends StatelessWidget {
                     child: Padding(
                       padding: itemPadding -
                           (Directionality.of(context) == TextDirection.ltr
-                              ? EdgeInsets.only(right: itemPadding.right * t)
-                              : EdgeInsets.only(left: itemPadding.left * t)),
+                              ? EdgeInsets.only(right: itemPadding.right * time)
+                              : EdgeInsets.only(left: itemPadding.left * time)),
                       child: Row(
                         children: [
                           IconTheme(
@@ -106,7 +108,7 @@ class ApplicationBottomAppBar extends StatelessWidget {
                               color: Color.lerp(
                                 unselectedColor,
                                 selectedColor,
-                                t,
+                                time,
                               ),
                               size: Dimensions.SIZE_24,
                             ),
@@ -123,7 +125,7 @@ class ApplicationBottomAppBar extends StatelessWidget {
                                   Dimensions.SIZE_0_2,
                                   Dimensions.SIZE_0,
                                 ),
-                                widthFactor: t,
+                                widthFactor: time,
                                 child: Padding(
                                   padding: Directionality.of(context) ==
                                           TextDirection.ltr
@@ -143,7 +145,7 @@ class ApplicationBottomAppBar extends StatelessWidget {
                                             Dimensions.SIZE_0,
                                           ),
                                           selectedColor,
-                                          t),
+                                          time),
                                       fontWeight: FontWeight.w600,
                                     ),
                                     child: item.title,
@@ -163,20 +165,4 @@ class ApplicationBottomAppBar extends StatelessWidget {
       ),
     );
   }
-}
-
-class AppBarItem {
-  final Widget icon;
-  final Widget? activeIcon;
-  final Widget title;
-  final Color? selectedColor;
-  final Color? unselectedColor;
-
-  AppBarItem({
-    required this.icon,
-    required this.title,
-    this.selectedColor,
-    this.unselectedColor,
-    this.activeIcon,
-  });
 }

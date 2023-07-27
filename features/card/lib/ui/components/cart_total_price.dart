@@ -2,12 +2,9 @@ import 'package:card/shopping_card.dart';
 import 'package:core/enums/currency.dart';
 
 class CartTotalPrice extends StatelessWidget {
-  final CartLoaded _state;
-
   const CartTotalPrice({
-    required CartLoaded state,
     super.key,
-  }) : _state = state;
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -5,4 +5,5 @@ final class ImagePaths {
   static const String nightIcon = 'assets/images/night_icon.png';
   static const String dayIcon = 'assets/images/day_icon.png';
   static const String emptyCart = 'assets/lottie/empty.json';
+  static const String person = 'assets/images/person.jpg';
 }

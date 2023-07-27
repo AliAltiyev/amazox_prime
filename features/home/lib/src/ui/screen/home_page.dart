@@ -14,10 +14,12 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(
           create: (context) => HomeBloc(
+            connectionUseCase: getIt<Connection>(),
             getProductsUseCase: getIt<FetchProductsUseCase>(),
           ),
         ),
@@ -28,32 +30,49 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         ),
       ],
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            AppSliverAppBar(
-              child: Image.asset(
-                ImagePaths.sliverAppBarBackground,
-                fit: BoxFit.fill,
+        body: AppRefreshView(
+          size: size,
+          onRefresh: () {
+            return Future<void>(
+              () => context.read<HomeBloc>().add(FetchProductsEvent()),
+            );
+          },
+          child: CustomScrollView(
+            slivers: <Widget>[
+              AppSliverAppBar(
+                child: Image.asset(
+                  ImagePaths.sliverAppBarBackground,
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
-            const HomeMenuTitle(),
-            const SliverToBoxAdapter(child: HomeMenu()),
-            BlocBuilder<HomeBloc, ProductsState>(
-              builder: (builderContext, state) {
-                if (state is LoadedProductsState) {
-                  return SliverGridList(state: state);
-                } else if (state is LoadingProductsState) {
-                  return SliverToBoxAdapter(
-                    child: _loadingStateBody(),
+              const HomeMenuTitle(),
+              const SliverToBoxAdapter(child: HomeMenu()),
+              BlocConsumer<HomeBloc, HomeState>(
+                listener: (context, state) {
+                  if (state is NoInternetConnectionState) {
+                    AppToast.showToast();
+                  }
+                },
+                builder: (context, state) {
+                  return BlocBuilder<HomeBloc, HomeState>(
+                    builder: (builderContext, state) {
+                      if (state is LoadedProductsState) {
+                        return SliverGridList(state: state);
+                      } else if (state is LoadingProductsState) {
+                        return SliverToBoxAdapter(
+                          child: _loadingStateBody(),
+                        );
+                      } else {
+                        return const SliverToBoxAdapter(
+                          child: SizedBox.shrink(),
+                        );
+                      }
+                    },
                   );
-                } else {
-                  return const SliverToBoxAdapter(
-                    child: SizedBox.shrink(),
-                  );
-                }
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

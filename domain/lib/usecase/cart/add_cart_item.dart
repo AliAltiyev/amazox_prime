@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 final class AddCartItemUseCase {
   final CartRepository _cartRepository;
 
-  AddCartItemUseCase({
+  const AddCartItemUseCase({
     required CartRepository cartRepository,
   }) : _cartRepository = cartRepository;
 

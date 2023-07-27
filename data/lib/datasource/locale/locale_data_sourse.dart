@@ -14,4 +14,17 @@ abstract class LocaleDataSource {
   List<ProductModel> getAllCartItems();
 
   Future<void> removeAllCartItems();
+
+  //!Products
+
+  Future<void> addProducts(List<ProductModel> products);
+
+  List<ProductModel> getAllProdducts();
+
+  Future<ProductModel> getProductById(int productId);
+
+  //!FontSize
+  Future<void> saveFontSize(FontSizeModel model);
+
+  FontSizeModel getFontSize();
 }

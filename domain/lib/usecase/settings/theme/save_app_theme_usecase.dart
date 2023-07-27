@@ -1,4 +1,4 @@
-import 'package:domain/repository/theme/theme_repository.dart';
+import 'package:domain/repository/settings/theme/theme_repository.dart';
 
 final class SaveAppThemeUseCase {
   final ThemeRepository _themeRepository;

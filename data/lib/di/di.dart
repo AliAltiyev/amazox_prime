@@ -1,5 +1,6 @@
 import 'package:data/data.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
+import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
 
 Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteDataSource>(
@@ -7,8 +8,14 @@ Future<void> initDataLayer() async {
   );
 
   getIt.registerLazySingleton<ProductRepository>(
-    () => ProductRepositoryImpl(getIt()),
+    () => ProductRepositoryImpl(
+      getIt<RemoteDataSource>(),
+      getIt<Connection>(),
+      getIt<LocaleDataSource>(),
+    ),
   );
+
+  //!Products
 
   getIt.registerLazySingleton<FetchProductsUseCase>(
     () => FetchProductsUseCase(repository: getIt()),
@@ -22,6 +29,7 @@ Future<void> initDataLayer() async {
     () => FetchMenuItemsUseCase(productRepository: getIt()),
   );
 
+  //!Theme
   getIt.registerLazySingleton<ThemeRepository>(
     () => ThemeRepositoryImpl(localeDataSource: getIt()),
   );
@@ -36,7 +44,12 @@ Future<void> initDataLayer() async {
 
   //!Cart
   getIt.registerLazySingleton<LocaleDataSource>(
-    () => LocaleDataSourseImpl(),
+    () => LocaleDataSourseImpl(
+      cartBox: Hive.box<ProductModel>(LocaleStorage.cart.name),
+      products: Hive.box<ProductModel>(LocaleStorage.products.name),
+      theme: Hive.box<bool>(LocaleStorage.theme.name),
+      font: Hive.box<FontSizeModel>(LocaleStorage.font.name),
+    ),
   );
 
   getIt.registerLazySingleton<CartRepository>(
@@ -57,5 +70,17 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<RemoveCartItemUseCase>(
     () => RemoveCartItemUseCase(cartRepository: getIt<CartRepository>()),
+  );
+
+  //! Font
+  getIt.registerLazySingleton<FontSizeRepository>(() => FontSizeRepositoryImpl(
+        localeStorage: getIt<LocaleDataSource>(),
+      ));
+
+  getIt.registerLazySingleton<SaveFontSizeUsecase>(() =>
+      SaveFontSizeUsecase(fontSizeRepository: getIt<FontSizeRepository>()));
+
+  getIt.registerLazySingleton<GetFontSizeUsecase>(
+    () => GetFontSizeUsecase(fontSizeRepository: getIt<FontSizeRepository>()),
   );
 }

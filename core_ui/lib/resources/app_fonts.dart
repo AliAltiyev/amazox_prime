@@ -39,6 +39,22 @@ final class AppFonts {
     fontSize: FontSize.s24,
   );
 
+  static TextStyle normal28 = TextStyle(
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: FontSize.s28,
+  );
+
+  static TextStyle normal32 = TextStyle(
+      fontFamily: GoogleFonts.poppins().fontFamily,
+      fontWeight: FontWeight.w400,
+      fontSize: FontSize.s32);
+
+  static TextStyle normal36 = TextStyle(
+      fontFamily: GoogleFonts.poppins().fontFamily,
+      fontWeight: FontWeight.w400,
+      fontSize: FontSize.s36);
+
   //Bold
   static TextStyle bold14 = TextStyle(
     fontFamily: GoogleFonts.poppins().fontFamily,
@@ -87,4 +103,7 @@ class FontSize {
   static const double s22 = 22;
   static const double s24 = 24;
   static const double s26 = 26;
+  static const double s28 = 28;
+  static const double s32 = 32;
+  static const double s36 = 36;
 }

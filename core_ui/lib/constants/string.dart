@@ -17,9 +17,9 @@ final class StringConstant {
   static const String notification = 'Уведомление';
   static const String adresses = 'Адреса';
   static const String promoCode = 'Промокоды';
-  static const String support = 'Поддержка';
+  static const String changeTextStyle = 'Изменить размер текста';
   static const String aboutUs = 'О сервисе';
-  static const String userName = 'Altiyev Abdusselam';
+  static const String userName = 'Алексей Мордовкин';
   static const String gmail = 'alidroid696@gmail.com';
   static const String cart = 'Корзина';
   static const String delete = 'Удалить';
@@ -42,4 +42,6 @@ final class StringConstant {
   static const String nothingIntoCartSubtitle =
       '''Перейдите в список ресторанов,чтобы выбрать
        понравившийсы и оформить из него заказ''';
+
+  static const String changeTextScale = 'Изменить размер шрифта';
 }

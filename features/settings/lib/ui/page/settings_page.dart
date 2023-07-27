@@ -19,13 +19,11 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const CircleAvatar(
-              maxRadius: Dimensions.SIZE_88,
-            ),
+            const UserAvatar(),
             SizedBox(
               height: size.height / Dimensions.SIZE_20,
             ),
-            //Later will fetch from firebase
+            //!Later will fetch from firebase
             Text(
               StringConstant.userName,
               style: AppFonts.bold22,
@@ -81,10 +79,13 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: AppIcons.promoCode,
             ),
             SettingsListTile(
-              title: StringConstant.support,
+              title: StringConstant.changeTextStyle,
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () {
-                //Todo add action
+                _showChangeTextSize(
+                  context,
+                  size,
+                );
               },
               leading: AppIcons.support,
             ),
@@ -92,7 +93,9 @@ class _SettingsPageState extends State<SettingsPage> {
               title: StringConstant.aboutUs,
               trailing: AppIcons.aboutUs,
               onTap: () {
-                //Todo add action
+                context.read<SettingsBloc>().add(
+                      LaunchContactsEvent(),
+                    );
               },
               leading: const Icon(
                 Icons.warning_amber_outlined,
@@ -101,6 +104,77 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
       ),
+    );
+  }
+
+  PersistentBottomSheetController<dynamic> _showChangeTextSize(
+    BuildContext context,
+    Size size,
+  ) {
+    return showBottomSheet(
+      context: context,
+      clipBehavior: Clip.antiAlias,
+      elevation: Dimensions.SIZE_0,
+      backgroundColor: ApplicationColors.white,
+      builder: (BuildContext context) {
+        return Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(
+                Dimensions.SIZE_10,
+              ),
+              topRight: Radius.circular(
+                Dimensions.SIZE_10,
+              ),
+            ),
+          ),
+          height: size.height / Dimensions.SIZE_2,
+          width: size.width,
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: Dimensions.SIZE_20,
+              ),
+              const Divider(
+                thickness: Dimensions.SIZE_4,
+                color: ApplicationColors.dividerColor,
+                endIndent: Dimensions.SIZE_170,
+                indent: Dimensions.SIZE_170,
+              ),
+              Text(
+                StringConstant.changeTextStyle,
+                style: AppFonts.bold14,
+              ),
+              const Divider(
+                color: ApplicationColors.black,
+              ),
+              BlocBuilder<SettingsBloc, FontSizeState>(
+                builder: (context, state) {
+                  return Center(
+                    child: Slider.adaptive(
+                      value: state.fontSize.fontSize,
+                      divisions: Dimensions.SIZE_3.toInt(),
+                      min: Dimensions.SIZE_0,
+                      max: Dimensions.SIZE_2,
+                      inactiveColor: ApplicationColors.disabledColor,
+                      label: StringConstant.changeTextScale,
+                      activeColor: ApplicationColors.primaryButtonColor,
+                      onChanged: (double fontSize) {
+                        context.read<SettingsBloc>().add(
+                              SaveFontSizeEvent(
+                                fontSizeEntity:
+                                    FontSizeEntity(fontSize: fontSize),
+                              ),
+                            );
+                      },
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -114,7 +188,8 @@ class _SettingsPageState extends State<SettingsPage> {
         child: context.watch<ThemeCubit>().iconState
             ? Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: ApplicationPadding.PADDING_14),
+                  horizontal: ApplicationPadding.PADDING_14,
+                ),
                 child: SizedBox(
                   height: size.height / Dimensions.SIZE_20,
                   width: size.width / Dimensions.SIZE_14,
