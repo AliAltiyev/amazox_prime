@@ -37,9 +37,20 @@ class DashboardView extends StatelessWidget {
               ),
               AppBarItem(
                 selectedColor: ApplicationColors.white,
-                icon: AppIcons.card,
+                icon:
+                    BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+                  if (state is CartLoaded) {
+                    return Badge(
+                        label: Text(
+                          state.cart.cartItems.length.toString(),
+                        ),
+                        child: AppIcons.cart);
+                  } else {
+                    return AppIcons.cart;
+                  }
+                }),
                 title: const Text(
-                  StringConstant.card,
+                  StringConstant.cartt,
                 ),
               ),
               AppBarItem(

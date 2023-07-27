@@ -1,3 +1,4 @@
+import 'package:product_details/bloc/produc_count/product_count_cubit.dart';
 import 'package:product_details/product_details.dart';
 
 class DetailsSliverList extends StatelessWidget {

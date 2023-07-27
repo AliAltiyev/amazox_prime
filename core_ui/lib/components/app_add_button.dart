@@ -27,7 +27,7 @@ class AppAddButton extends StatelessWidget {
           ),
           child: Icon(
             _icon,
-            size: Dimensions.SIZE_40,
+            size: Dimensions.SIZE_20,
           ),
         ),
       ),

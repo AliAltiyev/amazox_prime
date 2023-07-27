@@ -1,6 +1,7 @@
 library core_ui;
 
 export 'package:animated_text_kit/animated_text_kit.dart';
+export 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:core/core.dart';
 export 'package:core/enums/duration.dart';
@@ -20,6 +21,16 @@ export 'package:core_ui/theme/theme.dark.dart';
 export 'package:core_ui/theme/theme_light.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_rating_bar/flutter_rating_bar.dart';
+export 'package:flutter_slidable/flutter_slidable.dart'
+    show
+        Slidable,
+        SlidableAction,
+        ActionPane,
+        ActionPaneData,
+        ScrollMotion,
+        BehindMotion,
+        DrawerMotion;
 export 'package:flutter_spinkit/flutter_spinkit.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:lottie/lottie.dart';

@@ -1,4 +1,5 @@
 export 'package:amazon_prime/src/app/cofix.dart';
+export 'package:card/shopping_card.dart';
 export 'package:core/core.dart';
 export 'package:core/di/firebase_options.dart';
 export 'package:core_ui/core_ui.dart';

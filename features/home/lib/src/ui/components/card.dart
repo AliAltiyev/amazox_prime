@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:home/src/home.dart';
 
 class CustomCard extends StatelessWidget {
@@ -34,6 +36,7 @@ class CustomCard extends StatelessWidget {
               ),
               _detailsText(
                 size: size,
+                context: context,
               )
             ],
           ),
@@ -44,6 +47,7 @@ class CustomCard extends StatelessWidget {
 
   Padding _detailsText({
     required Size size,
+    required BuildContext context,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -71,10 +75,17 @@ class CustomCard extends StatelessWidget {
           SizedBox(
             height: size.height / Dimensions.SIZE_120,
           ),
-          AddToCardButton(
-            text: StringConstant.addToCard,
-            onPressed: () {
-              //TODO Add navigation
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return AddToCardButton(
+                text: StringConstant.addToCard,
+                onPressed: () {
+                  log('Clicked');
+                  context.read<CartBloc>().add(
+                        AddProduct(_product),
+                      );
+                },
+              );
             },
           )
         ],

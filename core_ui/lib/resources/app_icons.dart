@@ -6,6 +6,11 @@ final class AppIcons {
   static const decremeent = Icons.remove;
   static const share = Icons.share_outlined;
 
+  static const chevronRightOutlined = Icon(
+    Icons.chevron_right_outlined,
+    size: Dimensions.SIZE_30,
+  );
+
   static const home = Icon(
     Icons.home,
     size: Dimensions.SIZE_30,
@@ -14,8 +19,8 @@ final class AppIcons {
     Icons.delivery_dining_outlined,
     size: Dimensions.SIZE_30,
   );
-  static const card = Icon(
-    Icons.payment,
+  static const cart = Icon(
+    Icons.card_travel_outlined,
     size: Dimensions.SIZE_30,
   );
   static const settings = Icon(
@@ -50,4 +55,6 @@ final class AppIcons {
   static const profile = Icon(
     Icons.person_outlined,
   );
+
+  static const delete = Icons.delete_outline_outlined;
 }

@@ -25,7 +25,12 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   #svg
   flutter_svg: ^2.0.7
-
+  #lottie
+  lottie: ^2.4.0
+  #slidable
+  flutter_slidable: ^3.0.0 
+  #snackBar
+  awesome_snackbar_content: ^0.1.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
