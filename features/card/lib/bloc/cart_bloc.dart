@@ -123,4 +123,29 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       }
     }
   }
+
+  double get subtotal => (state as CartLoaded).cart.cartItems.fold(
+        0,
+        (previousValue, element) => previousValue + element.price,
+      );
+
+  String get getSubtotalString => subtotal.toStringAsFixed(2);
+
+  double deliveryFee(subtotal) {
+    if (subtotal >= 2000) {
+      return 0;
+    } else {
+      return 200;
+    }
+  }
+
+  double total(subtotal, deliveryFee, serviceFee) {
+    return subtotal + deliveryFee(subtotal) + serviceFee;
+  }
+
+  String get totalString =>
+      total(subtotal, deliveryFee, (state as CartLoaded).serviceFee)
+          .toStringAsFixed(2);
+
+  String get deliveryFeeString => deliveryFee(subtotal).toStringAsFixed(2);
 }
