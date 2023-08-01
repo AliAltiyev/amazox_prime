@@ -1,3 +1,4 @@
+import 'package:login/login.dart';
 import 'package:navigation/navigation.dart';
 
 part 'app_router.gr.dart';
@@ -7,6 +8,11 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(
       path: '/',
+      initial: true,
+      name: 'login ',
+      page: LoginPage,
+    ),
+    AutoRoute(
       name: 'dashBoardPage',
       page: DashboardView,
       children: [
@@ -41,7 +47,7 @@ part 'app_router.gr.dart';
           path: 'settingsPage',
           name: 'SettingsRouter',
           page: SettingsPage,
-        )
+        ),
       ],
     )
   ],

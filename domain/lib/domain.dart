@@ -6,6 +6,7 @@ export 'package:domain/entity/cart.dart';
 export 'package:domain/entity/font_size.dart';
 export 'package:domain/entity/menu.dart';
 export 'package:domain/entity/product.dart';
+export 'package:domain/entity/user..dart';
 export 'package:domain/repository/cart/cart_repository.dart';
 export 'package:domain/repository/product/product_repository.dart';
 export 'package:domain/repository/settings/contacts/contacts_repository.dart';

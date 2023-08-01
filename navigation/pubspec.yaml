@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   auto_route: 5.0.4
+  login: 
+    path: ../features./auth/login/
   home:
     path: ../features./home/
   card:
