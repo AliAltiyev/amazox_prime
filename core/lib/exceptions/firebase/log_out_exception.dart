@@ -1,0 +1,1 @@
+class LogOutFailure implements Exception {}

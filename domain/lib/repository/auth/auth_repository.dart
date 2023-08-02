@@ -1,23 +1,23 @@
-import 'package:domain/entity/user..dart';
+import 'package:domain/domain.dart';
 
 abstract class AuthRepository {
-  Stream<UserEntity?> get user;
+  const AuthRepository();
 
-  Future<UserEntity?> signUp({
-    required String password,
-    required UserEntity user,
-  });
-
-  Future<void> logInWithGoogle();
-
-  Future<void> logInWithEmailAndPassword({
+  ResultFuture<UserEntity> signIn({
     required String email,
     required String password,
   });
 
-  Future<void> signOut();
+  ResultFuture<void> signUp({
+    required String email,
+    required String fullName,
+    required String password,
+  });
 
-  Future<void> call();
+  ResultFuture<void> forgotPassword(String email);
 
-  Stream<void> saveSomeething();
+  ResultFuture<void> updateUser({
+    required UpdateUserAction action,
+    required dynamic userData,
+  });
 }

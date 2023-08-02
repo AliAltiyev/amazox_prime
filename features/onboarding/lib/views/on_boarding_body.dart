@@ -1,7 +1,10 @@
 import 'package:onboarding/onboarding.dart';
 
 class OnBoardingBody extends StatelessWidget {
-  const OnBoardingBody({required this.pageContent, super.key});
+  const OnBoardingBody({
+    required this.pageContent,
+    super.key,
+  });
 
   final PageContent pageContent;
 
@@ -44,7 +47,7 @@ class OnBoardingBody extends StatelessWidget {
                     horizontal: 50,
                     vertical: 17,
                   ),
-                  backgroundColor: ApplicationColors.canvasColor,
+                  backgroundColor: ApplicationColors.primaryButtonColor,
                   foregroundColor: ApplicationColors.white,
                 ),
                 onPressed: () async {

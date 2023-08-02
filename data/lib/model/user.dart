@@ -1,61 +1,54 @@
 import 'package:data/data.dart';
 
-class UserModel extends Equatable {
-  final String? id;
-  final String username;
+part 'user.g.dart';
+
+@JsonSerializable()
+final class UserModel extends Equatable {
   final String email;
-  final String password;
-  final String image;
-  final bool emailIsVerified;
+  final String uid;
+  final String? bio;
+  final String fullName;
+  final bool? emailIsVerified;
+  final String? image;
+  final String username;
 
   const UserModel({
-    this.password = '',
-    this.image = '',
-    this.id,
-    this.username = '',
-    this.email = '',
-    this.emailIsVerified = true,
+    required this.fullName,
+    required this.bio,
+    required this.uid,
+    required this.emailIsVerified,
+    required this.image,
+    required this.email,
+    required this.username,
   });
 
-  factory UserModel.fromSnapshot(DocumentSnapshot snap) {
-    return UserModel(
-        id: snap.id,
-        username: snap['username'],
-        email: snap['email'],
-        image: snap['image'],
-        emailIsVerified: snap['emailIsVerified']);
+  const UserModel.empty()
+      : this(
+          emailIsVerified: true,
+          image: '',
+          username: '',
+          uid: '',
+          email: '',
+          fullName: '',
+          bio: '',
+        );
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return _$UserModelFromJson(json);
   }
 
-  Map<String, Object> toDocument() {
-    return {
-      'username': username,
-      'email': email,
-      'image': image,
-      'emailIsVerified': emailIsVerified,
-    };
+  Map<String, dynamic> toJson(UserModel model) {
+    return _$UserModelToJson(model);
   }
 
   @override
   List<Object?> get props => [
-        image,
         username,
-        id,
+        image,
         email,
+        emailIsVerified,
+        uid,
+        fullName,
+        bio,
       ];
-
-  UserModel copyWith({
-    String? id,
-    String? username,
-    String? email,
-    String? image,
-    bool? emailIsVerified,
-  }) {
-    return UserModel(
-      id: id ?? this.id,
-      username: username ?? this.username,
-      email: email ?? this.email,
-      image: image ?? this.image,
-      emailIsVerified: emailIsVerified ?? this.emailIsVerified,
-    );
-  }
 }
