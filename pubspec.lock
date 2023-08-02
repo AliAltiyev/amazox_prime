@@ -180,7 +180,7 @@ packages:
   card:
     dependency: "direct main"
     description:
-      path: "features./card"
+      path: "features/card"
       relative: true
     source: path
     version: "0.0.1"
@@ -310,10 +310,18 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  dartz:
+    dependency: transitive
+    description:
+      name: dartz
+      sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1"
   dashboard:
     dependency: transitive
     description:
-      path: "features./dashboard"
+      path: "features/dashboard"
       relative: true
     source: path
     version: "0.0.1"
@@ -634,7 +642,7 @@ packages:
   home:
     dependency: "direct main"
     description:
-      path: "features./home"
+      path: "features/home"
       relative: true
     source: path
     version: "0.0.1"
@@ -750,13 +758,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  login:
-    dependency: transitive
-    description:
-      path: "features./auth/login"
-      relative: true
-    source: path
-    version: "0.0.1"
   lottie:
     dependency: transitive
     description:
@@ -820,10 +821,17 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  onboarding:
+    dependency: transitive
+    description:
+      path: "features/onboarding"
+      relative: true
+    source: path
+    version: "0.0.1"
   order:
     dependency: transitive
     description:
-      path: "features./order"
+      path: "features/order"
       relative: true
     source: path
     version: "0.0.1"
@@ -956,7 +964,7 @@ packages:
     source: hosted
     version: "4.2.4"
   product_details:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "features./product_details"
       relative: true
@@ -1005,7 +1013,7 @@ packages:
   settings:
     dependency: "direct main"
     description:
-      path: "features./settings"
+      path: "features/settings"
       relative: true
     source: path
     version: "0.0.1"
@@ -1030,6 +1038,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smooth_page_indicator:
+    dependency: transitive
+    description:
+      name: smooth_page_indicator
+      sha256: "725bc638d5e79df0c84658e1291449996943f93bacbc2cec49963dbbab48d8ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   source_gen:
     dependency: transitive
     description:

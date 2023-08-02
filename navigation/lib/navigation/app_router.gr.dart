@@ -17,10 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    Login.name: (routeData) {
+    OnBoardingPage.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const LoginPage(),
+        child: const OnBoardingScreen(),
       );
     },
     DashBoardPage.name: (routeData) {
@@ -77,7 +77,7 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          Login.name,
+          OnBoardingPage.name,
           path: '/',
         ),
         RouteConfig(
@@ -122,15 +122,15 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [LoginPage]
-class Login extends PageRouteInfo<void> {
-  const Login()
+/// [OnBoardingScreen]
+class OnBoardingPage extends PageRouteInfo<void> {
+  const OnBoardingPage()
       : super(
-          Login.name,
+          OnBoardingPage.name,
           path: '/',
         );
 
-  static const String name = 'Login ';
+  static const String name = 'OnBoardingPage';
 }
 
 /// generated route for

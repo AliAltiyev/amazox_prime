@@ -28,13 +28,16 @@ dependencies:
   #lottie
   lottie: ^2.4.0
   #slidable
-  flutter_slidable: ^3.0.0 
+  flutter_slidable: ^3.0.0
   #snackBar
   awesome_snackbar_content: ^0.1.3
   #refresh screen
   liquid_pull_to_refresh: ^3.0.1
   #toast
   fluttertoast: ^8.2.2
+  #Smooth page indicator:
+  smooth_page_indicator: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

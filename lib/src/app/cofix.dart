@@ -8,7 +8,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider>[
         BlocProvider<ThemeCubit>(
           create: (context) => getIt<ThemeCubit>(),
         ),
@@ -28,6 +28,12 @@ class Application extends StatelessWidget {
           )..add(
               GetFontSizeEvent(),
             ),
+        ),
+        BlocProvider<OnBoardingCubit>(
+          create: (context) => OnBoardingCubit(
+            cacheFirstTimer: getIt<CacheFirstTimerUseCase>(),
+            checkIfUserIsFirstTimer: getIt<CheckIfUserIsFirstTimerUseCase>(),
+          ),
         )
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(

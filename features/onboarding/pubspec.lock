@@ -148,14 +148,14 @@ packages:
   core:
     dependency: "direct main"
     description:
-      path: "../../../core"
+      path: "../../core"
       relative: true
     source: path
     version: "0.0.1"
   core_ui:
     dependency: "direct main"
     description:
-      path: "../../../core_ui"
+      path: "../../core_ui"
       relative: true
     source: path
     version: "0.0.1"
@@ -167,10 +167,18 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  dartz:
+    dependency: transitive
+    description:
+      name: dartz
+      sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1"
   domain:
     dependency: "direct main"
     description:
-      path: "../../../domain"
+      path: "../../domain"
       relative: true
     source: path
     version: "0.0.1"
@@ -582,10 +590,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_platform_interface
-      sha256: "57585299a729335f1298b43245842678cb9f43a6310351b18fb577d6e33165ec"
+      sha256: bced5679c7df11190e1ddc35f3222c858f328fff85c3942e46e7f5589bf9eb84
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.0"
   path_provider_windows:
     dependency: transitive
     description:
@@ -655,6 +663,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smooth_page_indicator:
+    dependency: transitive
+    description:
+      name: smooth_page_indicator
+      sha256: "725bc638d5e79df0c84658e1291449996943f93bacbc2cec49963dbbab48d8ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   source_span:
     dependency: transitive
     description:

@@ -27,4 +27,9 @@ abstract class LocaleDataSource {
   Future<void> saveFontSize(FontSizeModel model);
 
   FontSizeModel getFontSize();
+
+  //OnBoarding
+  Future<void> cacheFirstTimer();
+
+  Future<bool> checkIfUserIsFirstTimer();
 }

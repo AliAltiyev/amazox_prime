@@ -15,7 +15,7 @@ dependencies:
   firebase_core: ^2.14.0
   firebase_auth: ^4.7.2
   google_sign_in: ^6.1.4
-  #dependecy injection
+  #dependency injection
   get_it: ^7.6.0
   #base
   equatable: ^2.0.5
@@ -29,6 +29,10 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   #url uncher
   url_launcher: ^6.1.12
+  #dartz
+  dartz: ^0.10.1
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

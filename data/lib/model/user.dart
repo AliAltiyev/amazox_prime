@@ -4,10 +4,12 @@ class UserModel extends Equatable {
   final String? id;
   final String username;
   final String email;
+  final String password;
   final String image;
   final bool emailIsVerified;
 
   const UserModel({
+    this.password = '',
     this.image = '',
     this.id,
     this.username = '',

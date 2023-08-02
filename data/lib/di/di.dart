@@ -1,5 +1,5 @@
-import 'package:data/data.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
+import 'package:data/repository_impl/onboarding/onboarding_repository_impl.dart';
 import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
 
 Future<void> initDataLayer() async {
@@ -16,7 +16,6 @@ Future<void> initDataLayer() async {
   );
 
   //!Products
-
   getIt.registerLazySingleton<FetchProductsUseCase>(
     () => FetchProductsUseCase(repository: getIt()),
   );
@@ -45,6 +44,7 @@ Future<void> initDataLayer() async {
   //!Cart
   getIt.registerLazySingleton<LocaleDataSource>(
     () => LocaleDataSourseImpl(
+      userStateBox: Hive.box<bool>(LocaleStorage.userAuth.name),
       cartBox: Hive.box<ProductModel>(LocaleStorage.cart.name),
       products: Hive.box<ProductModel>(LocaleStorage.products.name),
       theme: Hive.box<bool>(LocaleStorage.theme.name),
@@ -53,7 +53,7 @@ Future<void> initDataLayer() async {
   );
 
   getIt.registerLazySingleton<CartRepository>(
-    () => CartRepossitoryImpl(localeStorage: getIt<LocaleDataSource>()),
+        () => CartRepositoryImpl(localeStorage: getIt<LocaleDataSource>()),
   );
 
   getIt.registerLazySingleton<GetAllCartItemsUseCase>(
@@ -81,6 +81,23 @@ Future<void> initDataLayer() async {
       SaveFontSizeUsecase(fontSizeRepository: getIt<FontSizeRepository>()));
 
   getIt.registerLazySingleton<GetFontSizeUsecase>(
-    () => GetFontSizeUsecase(fontSizeRepository: getIt<FontSizeRepository>()),
+    () => GetFontSizeUsecase(
+      fontSizeRepository: getIt<FontSizeRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<OnBoardingRepository>(
+    () => OnBoardingRepositoryImpl(
+      getIt<LocaleDataSource>(),
+    ),
+  );
+
+  getIt.registerLazySingleton(
+    () => CheckIfUserIsFirstTimerUseCase(
+        repository: getIt<OnBoardingRepository>()),
+  );
+
+  getIt.registerLazySingleton(
+    () => CacheFirstTimerUseCase(repository: getIt<OnBoardingRepository>()),
   );
 }

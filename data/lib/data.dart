@@ -1,4 +1,5 @@
 export 'package:core/core.dart';
+export 'package:core/core.dart';
 export 'package:core/enums/firebase.dart';
 export 'package:core/exceptions/firebase.dart';
 export 'package:data/datasource/locale/locale_data_sourcse_impl.dart';

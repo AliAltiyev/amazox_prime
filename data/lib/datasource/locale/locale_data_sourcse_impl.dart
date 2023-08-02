@@ -1,3 +1,4 @@
+import 'package:core/exceptions/cache.dart';
 import 'package:data/data.dart';
 
 final class LocaleDataSourseImpl extends LocaleDataSource {
@@ -5,16 +6,19 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   final Box<ProductModel> _products;
   final Box<FontSizeModel> _font;
   final Box<bool> _theme;
+  final Box<bool> _userStateBox;
 
   LocaleDataSourseImpl({
     required Box<ProductModel> cartBox,
     required Box<ProductModel> products,
     required Box<FontSizeModel> font,
     required Box<bool> theme,
+    required Box<bool> userStateBox,
   })  : _cartBox = cartBox,
         _products = products,
         _font = font,
-        _theme = theme;
+        _theme = theme,
+        _userStateBox = userStateBox;
 
   @override
   Future<void> saveAppTheme(bool isDark) async {
@@ -74,5 +78,23 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   @override
   Future<void> saveFontSize(FontSizeModel model) async {
     await _font.add(model);
+  }
+
+  @override
+  Future<void> cacheFirstTimer() async {
+    try {
+      await _userStateBox.put(LocaleStorage.userAuth, false);
+    } catch (e) {
+      throw CacheException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<bool> checkIfUserIsFirstTimer() async {
+    try {
+      return _userStateBox.get(LocaleStorage.userAuth) ?? true;
+    } catch (e) {
+      throw CacheException(message: e.toString());
+    }
   }
 }

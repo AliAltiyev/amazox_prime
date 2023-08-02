@@ -1,4 +1,3 @@
-import 'package:login/login.dart';
 import 'package:navigation/navigation.dart';
 
 part 'app_router.gr.dart';
@@ -7,10 +6,9 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
+      name: 'OnBoardingPage',
+      page: OnBoardingScreen,
       path: '/',
-      initial: true,
-      name: 'login ',
-      page: LoginPage,
     ),
     AutoRoute(
       name: 'dashBoardPage',

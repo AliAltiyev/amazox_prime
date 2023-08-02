@@ -1,7 +1,7 @@
-name: login
-description: A new Flutter package project.
+name: auth
+description: auth module.
 version: 0.0.1
-publish_to: none
+homepage:
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -10,12 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  core:
-    path: ../../../core
-  core_ui: 
-    path: ../../../core_ui
-  domain: 
-    path: ../../../domain     
 
 dev_dependencies:
   flutter_test:
@@ -24,3 +18,4 @@ dev_dependencies:
 
 
 flutter:
+
