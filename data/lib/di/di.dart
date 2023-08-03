@@ -1,6 +1,10 @@
+import 'package:data/datasource/auth/auth_remote_data_source_impl.dart';
+import 'package:data/repository_impl/auth/auth_repository_impl.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 import 'package:data/repository_impl/onboarding/onboarding_repository_impl.dart';
 import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
+
+import '../datasource/auth/auth_remote_data_source.dart';
 
 Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteDataSource>(
@@ -15,7 +19,7 @@ Future<void> initDataLayer() async {
     ),
   );
 
-  //!Products
+  ///Products
   getIt.registerLazySingleton<FetchProductsUseCase>(
     () => FetchProductsUseCase(repository: getIt()),
   );
@@ -41,7 +45,7 @@ Future<void> initDataLayer() async {
     () => GetAppThemeUseCase(themeRepository: getIt<ThemeRepository>()),
   );
 
-  //!Cart
+  ///Cart
   getIt.registerLazySingleton<LocaleDataSource>(
     () => LocaleDataSourseImpl(
       userStateBox: Hive.box<bool>(LocaleStorage.userAuth.name),
@@ -53,7 +57,7 @@ Future<void> initDataLayer() async {
   );
 
   getIt.registerLazySingleton<CartRepository>(
-        () => CartRepositoryImpl(localeStorage: getIt<LocaleDataSource>()),
+    () => CartRepositoryImpl(localeStorage: getIt<LocaleDataSource>()),
   );
 
   getIt.registerLazySingleton<GetAllCartItemsUseCase>(
@@ -72,7 +76,7 @@ Future<void> initDataLayer() async {
     () => RemoveCartItemUseCase(cartRepository: getIt<CartRepository>()),
   );
 
-  //! Font
+  /// Font
   getIt.registerLazySingleton<FontSizeRepository>(() => FontSizeRepositoryImpl(
         localeStorage: getIt<LocaleDataSource>(),
       ));
@@ -99,5 +103,46 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton(
     () => CacheFirstTimerUseCase(repository: getIt<OnBoardingRepository>()),
+  );
+
+  ///Auth
+
+  getIt.registerLazySingleton<FirebaseAuth>(
+    () => FirebaseAuth.instance,
+  );
+
+  getIt.registerLazySingleton<FirebaseStorage>(
+    () => FirebaseStorage.instance,
+  );
+
+  getIt.registerLazySingleton<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImpl(
+            authClient: getIt<FirebaseAuth>(),
+            cloudStoreClient: getIt<FirebaseFirestore>(),
+            dbClient: getIt<FirebaseStorage>(),
+          ));
+
+  getIt.registerLazySingleton<AuthRepository>(
+    () => AuthRemoteRepositoryImpl(getIt<AuthRemoteDataSource>()),
+  );
+
+  getIt.registerLazySingleton<SignInUseCase>(
+    () => SignInUseCase(getIt<AuthRepository>()),
+  );
+
+  getIt.registerLazySingleton<LogOutUseCase>(
+    () => LogOutUseCase(getIt<AuthRepository>()),
+  );
+
+  getIt.registerSingleton<SignUpUseCase>(
+    SignUpUseCase(getIt<AuthRepository>()),
+  );
+
+  getIt.registerLazySingleton<ForgotPasswordUseCase>(
+    () => ForgotPasswordUseCase(getIt<AuthRepository>()),
+  );
+
+  getIt.registerLazySingleton<UpdateUserUseCase>(
+    () => UpdateUserUseCase(getIt<AuthRepository>()),
   );
 }

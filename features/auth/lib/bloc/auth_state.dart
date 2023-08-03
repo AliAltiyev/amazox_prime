@@ -30,7 +30,7 @@ class AuthError extends AuthState {
 class SignedIn extends AuthState {
   const SignedIn({required this.user});
 
-  final LocalUserModel user;
+  final UserEntity user;
 
   @override
   List<Object> get props => [user];

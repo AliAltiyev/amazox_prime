@@ -16,7 +16,10 @@ class OnBoardingRepositoryImpl implements OnBoardingRepository {
       await _localeDataSource.cacheFirstTimer();
       return const Right(null);
     } on CacheException catch (e) {
-      return Left(CacheFailure(message: e.message, statusCode: e.statusCode));
+      return Left(CacheFailure(
+        message: e.message,
+        statusCode: e.statusCode,
+      ));
     }
   }
 

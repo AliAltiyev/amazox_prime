@@ -32,6 +32,8 @@ dependencies:
   url_launcher: ^6.1.12
   #dartz
   dartz: ^0.10.1
+  #provider
+  provider: ^6.0.5
 
 
 dev_dependencies:

@@ -23,6 +23,18 @@ class _$AppRouter extends RootStackRouter {
         child: const OnBoardingScreen(),
       );
     },
+    SignInPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignInScreen(),
+      );
+    },
+    SignUpPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignUpScreen(),
+      );
+    },
     DashBoardPage.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -81,6 +93,14 @@ class _$AppRouter extends RootStackRouter {
           path: '/',
         ),
         RouteConfig(
+          SignInPage.name,
+          path: 'signIn',
+        ),
+        RouteConfig(
+          SignUpPage.name,
+          path: 'signUp',
+        ),
+        RouteConfig(
           DashBoardPage.name,
           path: '/dashboard-view',
           children: [
@@ -131,6 +151,30 @@ class OnBoardingPage extends PageRouteInfo<void> {
         );
 
   static const String name = 'OnBoardingPage';
+}
+
+/// generated route for
+/// [SignInScreen]
+class SignInPage extends PageRouteInfo<void> {
+  const SignInPage()
+      : super(
+          SignInPage.name,
+          path: 'signIn',
+        );
+
+  static const String name = 'SignInPage';
+}
+
+/// generated route for
+/// [SignUpScreen]
+class SignUpPage extends PageRouteInfo<void> {
+  const SignUpPage()
+      : super(
+          SignUpPage.name,
+          path: 'signUp',
+        );
+
+  static const String name = 'SignUpPage';
 }
 
 /// generated route for

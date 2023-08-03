@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class IField extends StatelessWidget {
-  const IField({
+class AppTextField extends StatelessWidget {
+  const AppTextField({
     required this.controller,
     this.filled = false,
     this.obscureText = false,

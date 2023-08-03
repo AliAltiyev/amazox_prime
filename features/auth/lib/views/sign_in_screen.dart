@@ -3,8 +3,6 @@ import 'package:auth/auth.dart';
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
-  static const routeName = '/sign-in';
-
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
@@ -13,14 +11,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
+  final UserProvider userProvider = UserProvider();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,48 +21,34 @@ class _SignInScreenState extends State<SignInScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
-            final SnackBar snackBar = SnackBar(
-              elevation: Dimensions.SIZE_10,
-              behavior: SnackBarBehavior.fixed,
-              backgroundColor: Colors.transparent,
-              content: AwesomeSnackbarContent(
-                inMaterialBanner: true,
-                message: StringConstant.emptyCartSnacBarSubtitle,
-                title: StringConstant.emptyCartSnackBarTitle,
-                color: ApplicationColors.primaryButtonColor,
-                contentType: ContentType.success,
-              ),
+            Utils.showSnackBar(
+              context,
+              state.message,
             );
-
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(snackBar);
           } else if (state is SignedIn) {
-            context.read<UserProvider>().initUser(state.user);
-            Navigator.pushReplacementNamed(context, Dashboard.routeName);
+            userProvider.initUser(state.user);
+            context.read<AuthBloc>().add(
+                  NavigateTosHomePageEvent(),
+                );
           }
         },
         builder: (context, state) {
           return GradientBackground(
-            image: Res.authGradientBackground,
+            image: ImagePaths.authGradientBackground,
             child: SafeArea(
               child: Center(
                 child: ListView(
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  children: [
-                    const Hero(
+                  children: <Widget>[
+                    Hero(
                       tag: AuthHeroes.pageTitle,
                       flightShuttleBuilder: AuthUtils.buildShuttle,
                       child: Padding(
-                        padding: EdgeInsets.only(right: 80),
+                        padding: const EdgeInsets.only(right: 80),
                         child: Text(
                           'Easy to learn, discover more skills',
-                          style: TextStyle(
-                            fontFamily: Fonts.aeonik,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 32,
-                          ),
+                          style: AppFonts.normal32,
                         ),
                       ),
                     ),
@@ -97,10 +74,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             tag: AuthHeroes.redirectText,
                             child: TextButton(
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  SignUpScreen.routeName,
-                                );
+                                context.read<AuthBloc>().add(
+                                      NavigateToRegistrationPageEvent(),
+                                    );
                               },
                               child: const Text('Register account?'),
                             ),
@@ -156,5 +132,12 @@ class _SignInScreenState extends State<SignInScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

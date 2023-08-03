@@ -37,7 +37,7 @@ class ApplicationBottomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -52,7 +52,7 @@ class ApplicationBottomAppBar extends StatelessWidget {
         mainAxisAlignment: items.length <= 2
             ? MainAxisAlignment.spaceEvenly
             : MainAxisAlignment.spaceBetween,
-        children: [
+        children: <Widget>[
           for (final item in items)
             TweenAnimationBuilder<double>(
               tween: Tween(

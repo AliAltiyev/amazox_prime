@@ -20,4 +20,6 @@ abstract class AuthRepository {
     required UpdateUserAction action,
     required dynamic userData,
   });
+
+  ResultFuture<void> logOut();
 }

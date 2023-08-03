@@ -12,7 +12,7 @@ class OnBoardingCubit extends Cubit<bool> {
         super(true);
 
   Future<void> cacheFirstTimer() async {
-    final result = await _cacheFirstTimerUseCase();
+    final Either<Failure, void> result = await _cacheFirstTimerUseCase();
 
     result.fold(
       (failure) => null,
@@ -29,5 +29,15 @@ class OnBoardingCubit extends Cubit<bool> {
     );
   }
 
-  void navigateToMain() {}
+  Future<void> navigateToMain({required BuildContext context}) async {
+    await AutoRouter.of(context).replace(const DashBoardPage());
+  }
+
+  Future<void> navigateToAuthOrHome({required BuildContext context}) async {
+    await AutoRouter.of(context).push(
+      FirebaseAuth.instance.currentUser == null
+          ? const SignInPage()
+          : const DashBoardPage(),
+    );
+  }
 }

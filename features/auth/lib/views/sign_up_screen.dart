@@ -1,21 +1,10 @@
-import 'package:education_app_tutorial/core/common/providers/user_provider.dart';
-import 'package:education_app_tutorial/core/common/widgets/gradient_background.dart';
-import 'package:education_app_tutorial/core/common/widgets/rounded_button.dart';
-import 'package:education_app_tutorial/core/res/fonts.dart';
-import 'package:education_app_tutorial/core/res/res.dart';
-import 'package:education_app_tutorial/core/utils/utils.dart';
-import 'package:education_app_tutorial/src/auth/presentation/bloc/auth_bloc.dart';
-import 'package:education_app_tutorial/src/auth/presentation/utils/auth_heroes.dart';
-import 'package:education_app_tutorial/src/auth/presentation/views/sign_in_screen.dart';
-import 'package:education_app_tutorial/src/auth/presentation/widgets/sign_up_form.dart';
-import 'package:education_app_tutorial/src/dashboard/presentation/views/dashboard.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auth/auth.dart';
+
+import '../utils/auth_heroes.dart';
+import '../widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
-
-  static const routeName = '/sign-up';
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -27,15 +16,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    fullNameController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,31 +34,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     password: passwordController.text.trim(),
                   ),
                 );
+            context.read<AuthBloc>().add(
+                  NavigateTosHomePageEvent(),
+                );
           } else if (state is SignedIn) {
             context.read<UserProvider>().initUser(state.user);
-            Navigator.pushReplacementNamed(context, Dashboard.routeName);
+            context.read<AuthBloc>().add(
+                  NavigateTosHomePageEvent(),
+                );
           }
         },
         builder: (context, state) {
           return GradientBackground(
-            image: Res.authGradientBackground,
+            image: ImagePaths.authGradientBackground,
             child: SafeArea(
               child: Center(
                 child: ListView(
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   children: [
-                    const Hero(
+                    Hero(
                       tag: AuthHeroes.pageTitle,
                       child: Padding(
-                        padding: EdgeInsets.only(right: 80),
+                        padding: const EdgeInsets.only(right: 80),
                         child: Text(
                           'Easy to learn, discover more skills',
-                          style: TextStyle(
-                            fontFamily: Fonts.aeonik,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 32,
-                          ),
+                          style: AppFonts.normal32,
                         ),
                       ),
                     ),
@@ -100,10 +81,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         alignment: Alignment.centerRight,
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              SignInScreen.routeName,
-                            );
+                            context.read<AuthBloc>().add(
+                                  NavigateTosSignInPageEvent(),
+                                );
                           },
                           child: const Text('Already have an account?'),
                         ),
@@ -120,26 +100,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 30),
                     Hero(
                       tag: AuthHeroes.authButton,
-                      child: state is AuthLoading
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : RoundedButton(
-                              label: 'Sign Up',
-                              onPressed: () {
-                                FocusManager.instance.primaryFocus?.unfocus();
-                                if (formKey.currentState!.validate()) {
-                                  context.read<AuthBloc>().add(
-                                        SignUpEvent(
-                                          email: emailController.text.trim(),
-                                          password:
-                                              passwordController.text.trim(),
-                                          name: fullNameController.text.trim(),
-                                        ),
-                                      );
-                                }
-                              },
-                            ),
+                      child: RoundedButton(
+                        label: 'Sign Up',
+                        onPressed: () {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          if (formKey.currentState!.validate()) {
+                            context.read<AuthBloc>().add(
+                                  SignUpEvent(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                    name: fullNameController.text.trim(),
+                                  ),
+                                );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -149,5 +124,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    fullNameController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 }

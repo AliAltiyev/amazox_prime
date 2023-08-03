@@ -8,8 +8,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  initAppModule();
-  initDataLayer();
+  await initAppModule();
+  await initDataLayer();
   initNavigation();
   initSettingsBloc();
   runApp(Application());

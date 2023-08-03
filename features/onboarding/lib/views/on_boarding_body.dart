@@ -52,7 +52,9 @@ class OnBoardingBody extends StatelessWidget {
                 ),
                 onPressed: () async {
                   await context.read<OnBoardingCubit>().cacheFirstTimer();
-                  //TODO: Add navigation
+                  await context
+                      .read<OnBoardingCubit>()
+                      .navigateToAuthOrHome(context: context);
                 },
                 child: Text(
                   'Get Started',

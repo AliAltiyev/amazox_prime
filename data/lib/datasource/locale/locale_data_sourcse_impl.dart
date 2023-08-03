@@ -83,7 +83,7 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   @override
   Future<void> cacheFirstTimer() async {
     try {
-      await _userStateBox.put(LocaleStorage.userAuth, false);
+      await _userStateBox.put(LocaleStorage.userAuth.name, false);
     } catch (e) {
       throw CacheException(message: e.toString());
     }
@@ -92,7 +92,7 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   @override
   Future<bool> checkIfUserIsFirstTimer() async {
     try {
-      return _userStateBox.get(LocaleStorage.userAuth) ?? true;
+      return _userStateBox.get(LocaleStorage.userAuth.name) ?? true;
     } catch (e) {
       throw CacheException(message: e.toString());
     }

@@ -33,13 +33,21 @@ final class UserModel extends Equatable {
           bio: '',
         );
 
+
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return _$UserModelFromJson(json);
   }
 
-  Map<String, dynamic> toJson(UserModel model) {
-    return _$UserModelToJson(model);
-  }
+  DataMap toMap() => {
+        'uid': uid,
+        'email': email,
+        'fullName': fullName,
+        'image': image,
+        'bio': bio,
+        'username': username,
+        'emailIsVerified': emailIsVerified,
+      };
 
   @override
   List<Object?> get props => [

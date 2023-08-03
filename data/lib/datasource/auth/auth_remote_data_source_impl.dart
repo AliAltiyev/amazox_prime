@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:core/exceptions/server.dart';
 import 'package:data/data.dart';
 import 'package:data/datasource/auth/auth_remote_data_source.dart';
 
@@ -33,7 +37,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LocalUserModel> signIn({
+  Future<UserModel> signIn({
     required String email,
     required String password,
   }) async {
@@ -43,7 +47,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         password: password,
       );
 
-      final user = result.user;
+      final User? user = result.user;
       if (user == null) {
         throw const ServerException(
           message: 'Please try again later',
@@ -51,15 +55,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         );
       }
 
-      var userData = await _getUserData(user.uid);
+      DocumentSnapshot<Map<String, dynamic>> userData =
+          await _getUserData(user.uid);
       if (userData.exists) {
-        return LocalUserModel.fromMap(userData.data()!);
+        return UserModel.fromJson(userData.data()!);
       }
-      // upload user
       await _setUserData(user, email);
 
       userData = await _getUserData(user.uid);
-      return LocalUserModel.fromMap(userData.data()!);
+      return UserModel.fromJson(userData.data()!);
     } on FirebaseAuthException catch (e) {
       throw ServerException(
         message: e.message ?? 'Error Occurred',
@@ -89,13 +93,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
 
       await userCred.user?.updateDisplayName(fullName);
-      await userCred.user?.updatePhotoURL(kDefaultImage);
       await _setUserData(_authClient.currentUser!, email);
     } on FirebaseAuthException catch (e) {
-      throw ServerException(
-        message: e.message ?? 'Error Occurred',
-        statusCode: e.code,
-      );
+      SignUpWithEmailAndPasswordFailure(e.toString());
     } catch (e, s) {
       debugPrint(s.toString());
       throw ServerException(
@@ -120,12 +120,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           await _authClient.currentUser?.updateDisplayName(userData as String);
           await _updateUserData({'fullName': userData});
           break;
-        case UpdateUserAction.profilePic:
-          final ref = _dbClient
+        case UpdateUserAction.image:
+          final Reference reference = _dbClient
               .ref()
               .child('profile_pics/${_authClient.currentUser?.uid}');
-          await ref.putFile(userData as File);
-          final url = await ref.getDownloadURL();
+          await reference.putFile(userData as File);
+          final url = await reference.getDownloadURL();
           await _authClient.currentUser?.updatePhotoURL(url);
           await _updateUserData({'profilePic': url});
           break;
@@ -151,10 +151,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           break;
       }
     } on FirebaseAuthException catch (e) {
-      throw ServerException(
-        message: e.message ?? 'Error Occurred',
-        statusCode: e.code,
-      );
+      throw LogInWithEmailAndPasswordFailure(e.code);
     } catch (e, s) {
       debugPrint(s.toString());
       throw ServerException(
@@ -170,12 +167,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   Future<void> _setUserData(User user, String fallbackEmail) async {
     await _cloudStoreClient.collection('users').doc(user.uid).set(
-          LocalUserModel(
+          UserModel(
+            emailIsVerified: user.emailVerified,
+            username: user.displayName ?? '',
+            bio: '',
             uid: user.uid,
             email: user.email ?? fallbackEmail,
             fullName: user.displayName ?? '',
-            profilePic: user.photoURL ?? '',
-            points: 0,
+            image: user.photoURL ?? '',
           ).toMap(),
         );
   }
@@ -185,5 +184,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .collection('users')
         .doc(_authClient.currentUser?.uid)
         .update(data);
+  }
+
+  @override
+  Future<void> logOut() async {
+    try {
+      await _authClient.signOut();
+    } catch (e) {
+      throw LogOutFailure();
+    }
   }
 }

@@ -11,6 +11,16 @@ part 'app_router.gr.dart';
       path: '/',
     ),
     AutoRoute(
+      path: 'signIn',
+      name: 'SignInPage',
+      page: SignInScreen,
+    ),
+    AutoRoute(
+      path: 'signUp',
+      name: 'SignUpPage',
+      page: SignUpScreen,
+    ),
+    AutoRoute(
       name: 'dashBoardPage',
       page: DashboardView,
       children: [

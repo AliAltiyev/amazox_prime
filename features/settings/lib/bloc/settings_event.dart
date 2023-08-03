@@ -24,3 +24,8 @@ final class LaunchContactsEvent extends SettingsEvent {
   @override
   List<Object?> get props => [];
 }
+
+final class SignOutFromAppEvent extends SettingsEvent {
+  @override
+  List<Object?> get props => [];
+}

@@ -1,29 +1,28 @@
-import 'dart:async';
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
-import 'package:education_app_tutorial/core/enums/update_user.dart';
-import 'package:education_app_tutorial/src/auth/data/models/user_model.dart';
-import 'package:education_app_tutorial/src/auth/domain/usecases/forgot_password.dart';
-import 'package:education_app_tutorial/src/auth/domain/usecases/sign_in.dart';
-import 'package:education_app_tutorial/src/auth/domain/usecases/sign_up.dart';
-import 'package:education_app_tutorial/src/auth/domain/usecases/update_user.dart';
-import 'package:equatable/equatable.dart';
+import 'package:auth/auth.dart';
 
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({
-    required SignIn signIn,
-    required SignUp signUp,
-    required ForgotPassword forgotPassword,
-    required UpdateUser updateUser,
-  })  : _signIn = signIn,
-        _signUp = signUp,
-        _forgotPassword = forgotPassword,
-        _updateUser = updateUser,
+  final SignInUseCase _signInUseCase;
+  final SignUpUseCase _signUpUseCase;
+  final ForgotPasswordUseCase _forgotPasswordUseCase;
+  final UpdateUserUseCase _updateUserUseCase;
+  final AppRouter _autoRouter;
+
+  AuthBloc(
+      {required SignInUseCase signInUseCase,
+      required SignUpUseCase signUpUseCase,
+      required ForgotPasswordUseCase forgotPasswordUseCase,
+      required UpdateUserUseCase updateUserUseCase,
+      required AppRouter autoRouter})
+      : _signInUseCase = signInUseCase,
+        _signUpUseCase = signUpUseCase,
+        _forgotPasswordUseCase = forgotPasswordUseCase,
+        _updateUserUseCase = updateUserUseCase,
+        _autoRouter = autoRouter,
         super(const AuthInitial()) {
     on<AuthEvent>((event, emit) {
       emit(const AuthLoading());
@@ -32,18 +31,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignUpEvent>(_signUpHandler);
     on<ForgotPasswordEvent>(_forgotPasswordHandler);
     on<UpdateUserEvent>(_updateUserHandler);
+    on<NavigateToRegistrationPageEvent>(_navigateToRegistration);
+    on<NavigateTosSignInPageEvent>(_navigateToSignIn);
+    on<NavigateTosHomePageEvent>(_navigateToHome);
   }
-
-  final SignIn _signIn;
-  final SignUp _signUp;
-  final ForgotPassword _forgotPassword;
-  final UpdateUser _updateUser;
 
   Future<void> _signInHandler(
     SignInEvent event,
     Emitter<AuthState> emit,
   ) async {
-    final result = await _signIn(
+    final result = await _signInUseCase(
       SignInParams(
         email: event.email,
         password: event.password,
@@ -52,7 +49,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     result.fold(
       (failure) =>
           emit(AuthError(message: '${failure.statusCode}: ${failure.message}')),
-      (user) => emit(SignedIn(user: user as LocalUserModel)),
+      (user) => emit(SignedIn(user: user)),
     );
   }
 
@@ -60,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignUpEvent event,
     Emitter<AuthState> emit,
   ) async {
-    final result = await _signUp(
+    final result = await _signUpUseCase(
       SignUpParams(
         email: event.email,
         password: event.password,
@@ -78,7 +75,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     ForgotPasswordEvent event,
     Emitter<AuthState> emit,
   ) async {
-    final result = await _forgotPassword(event.email);
+    final result = await _forgotPasswordUseCase(event.email);
     result.fold(
       (failure) =>
           emit(AuthError(message: '${failure.statusCode}: ${failure.message}')),
@@ -90,16 +87,38 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     UpdateUserEvent event,
     Emitter<AuthState> emit,
   ) async {
-    final result = await _updateUser(
+    final result = await _updateUserUseCase(
       UpdateUserParams(
         action: event.action,
         userData: event.userData,
       ),
     );
     result.fold(
-      (failure) =>
-          emit(AuthError(message: '${failure.statusCode}: ${failure.message}')),
+      (failure) => emit(AuthError(
+        message: '${failure.statusCode}: ${failure.message}',
+      )),
       (_) => emit(const UserUpdated()),
     );
+  }
+
+  Future<void> _navigateToRegistration(
+    NavigateToRegistrationPageEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    await _autoRouter.push(const SignUpPage());
+  }
+
+  Future<void> _navigateToSignIn(
+    NavigateTosSignInPageEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    await _autoRouter.push(const SignInPage());
+  }
+
+  Future<void> _navigateToHome(
+    NavigateTosHomePageEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    await _autoRouter.replace(const DashBoardPage());
   }
 }

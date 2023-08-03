@@ -9,6 +9,8 @@ final class ImagePaths {
   static const String onBoardingFirst = 'assets/images/onboarding_1.png';
   static const String onBoardingSecond = 'assets/images/onboarding_2.png';
   static const String onBoardingThird = 'assets/images/onboarding_3.png';
+  static const String authGradientBackground =
+      'assets/images/auth_gradient_background.png';
   static const String onBoardingBackground =
       'assets/images/onBoarding_background.png';
 }

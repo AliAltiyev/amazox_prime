@@ -14,7 +14,10 @@ class SignInEvent extends AuthEvent {
   final String password;
 
   @override
-  List<String> get props => [email, password];
+  List<String> get props => [
+        email,
+        password,
+      ];
 }
 
 class SignUpEvent extends AuthEvent {
@@ -58,4 +61,19 @@ class UpdateUserEvent extends AuthEvent {
 
   @override
   List<Object?> get props => [action, userData];
+}
+
+final class NavigateToRegistrationPageEvent extends AuthEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+final class NavigateTosSignInPageEvent extends AuthEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+final class NavigateTosHomePageEvent extends AuthEvent {
+  @override
+  List<Object?> get props => [];
 }

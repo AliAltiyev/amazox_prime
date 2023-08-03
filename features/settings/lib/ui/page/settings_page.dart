@@ -182,6 +182,19 @@ class _SettingsPageState extends State<SettingsPage> {
     return <Widget>[
       InkWell(
         onTap: () {
+          context.read<SettingsBloc>().add(
+                SignOutFromAppEvent(),
+              );
+        },
+        child: const Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: ApplicationPadding.PADDING_14,
+          ),
+          child: Icon(Icons.logout),
+        ),
+      ),
+      InkWell(
+        onTap: () {
           context.read<ThemeCubit>().isDark;
           context.read<ThemeCubit>().changeIcon();
         },

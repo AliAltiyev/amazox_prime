@@ -26,6 +26,8 @@ dependencies:
     path: ../features/dashboard/
   onboarding:
     path: ../features/onboarding/
+  auth:
+    path: ../features/auth/
 
 dev_dependencies:
   flutter_test:

@@ -24,7 +24,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       backgroundColor: Colors.white,
       body: BlocListener<OnBoardingCubit, bool>(
         listener: (context, state) {
-          if (!state) Navigator.pushReplacementNamed(context, '/home');
+          if (!state) {
+            context.read<OnBoardingCubit>().navigateToMain(
+                  context: context,
+                );
+          }
         },
         child: GradientBackground(
           image: ImagePaths.onBoardingBackground,
