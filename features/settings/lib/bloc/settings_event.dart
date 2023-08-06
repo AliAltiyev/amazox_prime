@@ -29,3 +29,13 @@ final class SignOutFromAppEvent extends SettingsEvent {
   @override
   List<Object?> get props => [];
 }
+
+final class PopEvent extends SettingsEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+final class NavigateToEditProfileEvent extends SettingsEvent {
+  @override
+  List<Object?> get props => [];
+}

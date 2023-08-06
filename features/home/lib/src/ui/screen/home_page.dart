@@ -60,7 +60,12 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                         return SliverGridList(state: state);
                       } else if (state is LoadingProductsState) {
                         return const SliverToBoxAdapter(
-                          child: CircularProgressIndicator.adaptive(),
+                          child: Center(
+                            child: CircularProgressIndicator.adaptive(
+                              backgroundColor:
+                                  ApplicationColors.primaryButtonColor,
+                            ),
+                          ),
                         );
                       } else {
                         return const SliverToBoxAdapter(

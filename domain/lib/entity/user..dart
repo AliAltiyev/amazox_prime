@@ -20,6 +20,17 @@ final class UserEntity extends Equatable {
     required this.username,
   });
 
+  const UserEntity.empty()
+      : this(
+          emailIsVerified: true,
+          image: '',
+          username: '',
+          uid: '',
+          email: '',
+          fullName: '',
+          bio: '',
+        );
+
   @override
   List<Object?> get props => [
         username,

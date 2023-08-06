@@ -13,4 +13,8 @@ final class ImagePaths {
       'assets/images/auth_gradient_background.png';
   static const String onBoardingBackground =
       'assets/images/onBoarding_background.png';
+
+  static const String profileGradientBackground =
+      'assets/images/onBoarding_background.png';
+  static const String user = 'assets/images/user.png';
 }

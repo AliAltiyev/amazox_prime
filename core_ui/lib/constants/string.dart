@@ -44,4 +44,25 @@ final class StringConstant {
        понравившийсы и оформить из него заказ''';
 
   static const String changeTextScale = 'Изменить размер шрифта';
+
+//Sign in
+
+  static const String signInSlogan =
+      'Доставка еды: быстрая, свежая и доступная';
+  static const String signInToYourAccount = 'Войдите в свой аккаунт';
+  static const String registration = 'Регистрация ';
+  static const String forgotPassword = 'Забыли пароль? ';
+  static const String signIn = 'Вход';
+
+  static const String emailAddress = 'Электронная почта';
+  static const String password = 'Пароль';
+  static const String requiredField = 'Обязательное поле';
+  //Sign up
+  static const String signUpSlogan = 'Доставка еды стала проще';
+  static const String alreadyHaveAnAccount = 'Уже есть аккаунт?';
+  static const String signUpToYourAccount = 'Зарегистрируйте аккаунт';
+  static const String signUp = 'Регистрация';
+  static const String username = 'Имя пользователя';
+  static const String confirmPassword = 'Подтвердите пароль';
+  static const String passwordsNotMatch = 'Пароли не совпадают';
 }

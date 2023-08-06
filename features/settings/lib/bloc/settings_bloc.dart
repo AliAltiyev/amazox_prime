@@ -29,6 +29,8 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
     on<GetFontSizeEvent>(_getFontSize);
     on<LaunchContactsEvent>(_launchContacts);
     on<SignOutFromAppEvent>(_singOutHandler);
+    on<PopEvent>(_popHandler);
+    on<NavigateToEditProfileEvent>(_navigateToEditProfileHandler);
   }
 
   Future<void> _changeFontSize(
@@ -67,5 +69,21 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
   ) async {
     await _logOutUseCase.call(LogOutUseCaseParams());
     await _appRouter.replace(const SignInPage());
+  }
+
+  Future<void> _popHandler(
+    PopEvent event,
+    Emitter<FontSizeState> emit,
+  ) async {
+    await _appRouter.pop();
+  }
+
+  Future<void> _navigateToEditProfileHandler(
+    NavigateToEditProfileEvent event,
+    Emitter<FontSizeState> emit,
+  ) async {
+    await _appRouter.replace(
+      const EditProfilePage(),
+    );
   }
 }

@@ -15,8 +15,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Colors.white,
+      backgroundColor: ApplicationColors.white,
       extendBodyBehindAppBar: true,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -39,36 +38,39 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Center(
                 child: ListView(
                   shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Dimensions.SIZE_20,
+                  ),
                   children: <Widget>[
                     Hero(
                       tag: AuthHeroes.pageTitle,
                       flightShuttleBuilder: AuthUtils.buildShuttle,
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 80),
+                        padding: const EdgeInsets.only(
+                          right: Dimensions.SIZE_80,
+                        ),
                         child: Text(
-                          'Easy to learn, discover more skills',
+                          StringConstant.signInSlogan,
                           style: AppFonts.normal32,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(
+                      height: Dimensions.SIZE_10,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Hero(
+                      children: <Widget>[
+                        Hero(
                           tag: AuthHeroes.helperText,
                           flightShuttleBuilder: AuthUtils.buildShuttle,
                           child: Text(
-                            'Sign in to your account',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
+                            StringConstant.signInToYourAccount,
+                            style: AppFonts.bold12,
                           ),
                         ),
                         Baseline(
-                          baseline: 100,
+                          baseline: Dimensions.SIZE_75,
                           baselineType: TextBaseline.alphabetic,
                           child: Hero(
                             tag: AuthHeroes.redirectText,
@@ -78,50 +80,49 @@ class _SignInScreenState extends State<SignInScreen> {
                                       NavigateToRegistrationPageEvent(),
                                     );
                               },
-                              child: const Text('Register account?'),
+                              child: const Text(
+                                StringConstant.registration,
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(
+                      height: Dimensions.SIZE_10,
+                    ),
                     SignInForm(
                       emailController: emailController,
                       passwordController: passwordController,
                       formKey: formKey,
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(
+                      height: Dimensions.SIZE_20,
+                    ),
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/forgot-password');
+                          //TODO add forgot password feature
                         },
-                        child: const Text('Forgot password?'),
+                        child: const Text(
+                          StringConstant.forgotPassword,
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(
+                      height: Dimensions.SIZE_20,
+                    ),
                     Hero(
                       tag: AuthHeroes.authButton,
                       child: state is AuthLoading
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
-                          : RoundedButton(
-                              label: 'Sign In',
-                              onPressed: () {
-                                FocusManager.instance.primaryFocus?.unfocus();
-                                FirebaseAuth.instance.currentUser?.reload();
-                                if (formKey.currentState!.validate()) {
-                                  context.read<AuthBloc>().add(
-                                        SignInEvent(
-                                          email: emailController.text.trim(),
-                                          password:
-                                              passwordController.text.trim(),
-                                        ),
-                                      );
-                                }
-                              },
+                          : SignInButton(
+                              formKey: formKey,
+                              emailController: emailController,
+                              passwordController: passwordController,
                             ),
                     ),
                   ],

@@ -8,8 +8,8 @@ class UserProvider extends ChangeNotifier {
   void initUser(UserEntity? user) {
     if (_user != user) {
       _user = user;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   set user(UserEntity? user) {

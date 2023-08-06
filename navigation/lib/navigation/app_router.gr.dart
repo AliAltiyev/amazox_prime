@@ -138,6 +138,10 @@ class _$AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        RouteConfig(
+          EditProfilePage.name,
+          path: 'editProfileRouter',
+        ),
       ];
 }
 
@@ -188,6 +192,18 @@ class DashBoardPage extends PageRouteInfo<void> {
         );
 
   static const String name = 'DashBoardPage';
+}
+
+/// generated route for
+/// [EditProfileView]
+class EditProfilePage extends PageRouteInfo<void> {
+  const EditProfilePage()
+      : super(
+          EditProfilePage.name,
+          path: 'editProfileRouter',
+        );
+
+  static const String name = 'EditProfilePage';
 }
 
 /// generated route for

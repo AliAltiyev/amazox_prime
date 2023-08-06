@@ -24,16 +24,18 @@ class _SignInFormState extends State<SignInForm> {
     return Form(
       key: widget.formKey,
       child: Column(
-        children: [
+        children: <Widget>[
           AppTextField(
             controller: widget.emailController,
-            hintText: 'Email address',
+            hintText: StringConstant.emailAddress,
             keyboardType: TextInputType.emailAddress,
           ),
-          const SizedBox(height: 25),
+          const SizedBox(
+            height: Dimensions.SIZE_20,
+          ),
           AppTextField(
             controller: widget.passwordController,
-            hintText: 'Password',
+            hintText: StringConstant.password,
             obscureText: obscurePassword,
             keyboardType: TextInputType.visiblePassword,
             suffixIcon: IconButton(
@@ -44,7 +46,7 @@ class _SignInFormState extends State<SignInForm> {
               },
               icon: Icon(
                 obscurePassword ? Icons.remove_red_eye : Icons.hide_source,
-                color: Colors.grey,
+                color: ApplicationColors.disabledColor,
               ),
             ),
           ),

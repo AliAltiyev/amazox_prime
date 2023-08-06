@@ -16,10 +16,5 @@ abstract class AuthRepository {
 
   ResultFuture<void> forgotPassword(String email);
 
-  ResultFuture<void> updateUser({
-    required UpdateUserAction action,
-    required dynamic userData,
-  });
-
   ResultFuture<void> logOut();
 }

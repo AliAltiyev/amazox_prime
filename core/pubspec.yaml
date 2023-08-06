@@ -34,6 +34,8 @@ dependencies:
   dartz: ^0.10.1
   #provider
   provider: ^6.0.5
+  #image picker
+  image_picker: ^1.0.1
 
 
 dev_dependencies:

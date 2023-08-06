@@ -4,8 +4,6 @@ import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 import 'package:data/repository_impl/onboarding/onboarding_repository_impl.dart';
 import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
 
-import '../datasource/auth/auth_remote_data_source.dart';
-
 Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(),
@@ -140,9 +138,5 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<ForgotPasswordUseCase>(
     () => ForgotPasswordUseCase(getIt<AuthRepository>()),
-  );
-
-  getIt.registerLazySingleton<UpdateUserUseCase>(
-    () => UpdateUserUseCase(getIt<AuthRepository>()),
   );
 }

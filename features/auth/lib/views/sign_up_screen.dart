@@ -1,10 +1,10 @@
 import 'package:auth/auth.dart';
-
-import '../utils/auth_heroes.dart';
-import '../widgets/sign_up_form.dart';
+import 'package:auth/components/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
+
+  static const routeName = '/sign-up';
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -16,13 +16,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final UserProvider _userProvider = UserProvider();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    fullNameController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
+      backgroundColor: ApplicationColors.white,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
@@ -34,11 +44,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     password: passwordController.text.trim(),
                   ),
                 );
-            context.read<AuthBloc>().add(
-                  NavigateTosHomePageEvent(),
-                );
           } else if (state is SignedIn) {
-            context.read<UserProvider>().initUser(state.user);
+            _userProvider.initUser(state.user);
             context.read<AuthBloc>().add(
                   NavigateTosHomePageEvent(),
                 );
@@ -51,32 +58,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Center(
                 child: ListView(
                   shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  children: [
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Dimensions.SIZE_20,
+                  ),
+                  children: <Widget>[
                     Hero(
-                      tag: AuthHeroes.pageTitle,
+                      tag: AppHereos.pageTitle,
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 80),
-                        child: Text(
-                          'Easy to learn, discover more skills',
-                          style: AppFonts.normal32,
+                        padding: const EdgeInsets.only(
+                          right: Dimensions.SIZE_80,
                         ),
+                        child: Text(StringConstant.signUpSlogan,
+                            style: AppFonts.normal32),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    const Hero(
-                      tag: AuthHeroes.helperText,
-                      child: Text(
-                        'Sign up for an account',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                        ),
-                      ),
+                    const SizedBox(
+                      height: Dimensions.SIZE_10,
                     ),
-                    const SizedBox(height: 10),
                     Hero(
-                      tag: AuthHeroes.redirectText,
+                      tag: AppHereos.helperText,
+                      child: Text(
+                        StringConstant.signUpToYourAccount,
+                        style: AppFonts.normal14,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: Dimensions.SIZE_10,
+                    ),
+                    Hero(
+                      tag: AppHereos.redirectText,
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -85,11 +95,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   NavigateTosSignInPageEvent(),
                                 );
                           },
-                          child: const Text('Already have an account?'),
+                          child: const Text(
+                            StringConstant.alreadyHaveAnAccount,
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(
+                      height: Dimensions.SIZE_10,
+                    ),
                     SignUpForm(
                       emailController: emailController,
                       passwordController: passwordController,
@@ -97,11 +111,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       confirmPasswordController: confirmPasswordController,
                       formKey: formKey,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(
+                      height: Dimensions.SIZE_30,
+                    ),
                     Hero(
-                      tag: AuthHeroes.authButton,
+                      tag: AppHereos.authButton,
                       child: RoundedButton(
-                        label: 'Sign Up',
+                        label: StringConstant.signUp,
                         onPressed: () {
                           FocusManager.instance.primaryFocus?.unfocus();
                           if (formKey.currentState!.validate()) {
@@ -124,14 +140,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    fullNameController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-    super.dispose();
   }
 }

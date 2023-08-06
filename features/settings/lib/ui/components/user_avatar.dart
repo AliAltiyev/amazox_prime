@@ -8,18 +8,19 @@ class UserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CircleAvatar(
-        backgroundColor: ApplicationColors.primaryButtonColor,
-        maxRadius: Dimensions.SIZE_88,
-        child: Padding(
-          padding: EdgeInsets.all(
-            ApplicationPadding.PADDING_4,
+      backgroundColor: ApplicationColors.primaryButtonColor,
+      maxRadius: Dimensions.SIZE_88,
+      child: Padding(
+        padding: EdgeInsets.all(
+          ApplicationPadding.PADDING_4,
+        ),
+        child: CircleAvatar(
+          foregroundImage: AssetImage(
+            ImagePaths.user,
           ),
-          child: CircleAvatar(
-            foregroundImage: AssetImage(
-              ImagePaths.person,
-            ),
-            maxRadius: Dimensions.SIZE_88,
-          ),
-        ));
+          maxRadius: Dimensions.SIZE_88,
+        ),
+      ),
+    );
   }
 }

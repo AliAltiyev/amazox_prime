@@ -57,7 +57,7 @@ part 'app_router.gr.dart';
           page: SettingsPage,
         ),
       ],
-    )
+    ),
   ],
 )
 class AppRouter extends _$AppRouter {}

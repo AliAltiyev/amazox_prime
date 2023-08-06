@@ -17,9 +17,4 @@ abstract class AuthRemoteDataSource {
     required String fullName,
     required String password,
   });
-
-  Future<void> updateUser({
-    required UpdateUserAction action,
-    dynamic userData,
-  });
 }

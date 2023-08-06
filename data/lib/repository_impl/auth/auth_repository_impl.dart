@@ -1,8 +1,5 @@
-import 'package:core/exceptions/server.dart';
 import 'package:data/data.dart';
 import 'package:data/mapper/user.dart';
-
-import '../../datasource/auth/auth_remote_data_source.dart';
 
 class AuthRemoteRepositoryImpl implements AuthRepository {
   const AuthRemoteRepositoryImpl(this._remoteDataSource);
@@ -48,22 +45,6 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
         fullName: fullName,
         password: password,
       );
-      return const Right(null);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(
-        message: e.message,
-        statusCode: e.statusCode,
-      ));
-    }
-  }
-
-  @override
-  ResultFuture<void> updateUser({
-    required UpdateUserAction action,
-    required dynamic userData,
-  }) async {
-    try {
-      await _remoteDataSource.updateUser(action: action, userData: userData);
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure(

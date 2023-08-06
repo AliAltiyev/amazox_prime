@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:core_ui/core_ui.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField({
@@ -36,7 +36,7 @@ class AppTextField extends StatelessWidget {
           ? validator
           : (value) {
               if (value == null || value.isEmpty) {
-                return 'This field is required';
+                return StringConstant.requiredField;
               }
               return validator?.call(value);
             },
@@ -45,28 +45,34 @@ class AppTextField extends StatelessWidget {
       readOnly: readOnly,
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(90),
+          borderRadius: BorderRadius.circular(
+            Dimensions.SIZE_80,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(90),
-          borderSide: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(
+            Dimensions.SIZE_80,
+          ),
+          borderSide: const BorderSide(
+            color: ApplicationColors.disabledColor,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(90),
+          borderRadius: BorderRadius.circular(
+            Dimensions.SIZE_80,
+          ),
           borderSide: BorderSide(
             color: Theme.of(context).primaryColor,
           ),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: Dimensions.SIZE_20,
+        ),
         filled: filled,
         fillColor: fillColour,
         suffixIcon: suffixIcon,
         hintText: hintText,
-        hintStyle: hintStyle ??
-            const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+        hintStyle: hintStyle ?? AppFonts.normal16,
       ),
     );
   }

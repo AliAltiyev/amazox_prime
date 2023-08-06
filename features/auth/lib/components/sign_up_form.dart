@@ -29,22 +29,26 @@ class _SignUpFormState extends State<SignUpForm> {
     return Form(
       key: widget.formKey,
       child: Column(
-        children: [
+        children: <Widget>[
           AppTextField(
             controller: widget.fullNameController,
-            hintText: 'Full Name',
+            hintText: StringConstant.username,
             keyboardType: TextInputType.name,
           ),
-          const SizedBox(height: 25),
+          const SizedBox(
+            height: Dimensions.SIZE_20,
+          ),
           AppTextField(
             controller: widget.emailController,
-            hintText: 'Email address',
+            hintText: StringConstant.emailAddress,
             keyboardType: TextInputType.emailAddress,
           ),
-          const SizedBox(height: 25),
+          const SizedBox(
+            height: Dimensions.SIZE_20,
+          ),
           AppTextField(
             controller: widget.passwordController,
-            hintText: 'Password',
+            hintText: StringConstant.password,
             obscureText: obscurePassword,
             keyboardType: TextInputType.visiblePassword,
             suffixIcon: IconButton(
@@ -55,14 +59,16 @@ class _SignUpFormState extends State<SignUpForm> {
               },
               icon: Icon(
                 obscurePassword ? Icons.remove_red_eye : Icons.hide_source,
-                color: Colors.grey,
+                color: ApplicationColors.disabledColor,
               ),
             ),
           ),
-          const SizedBox(height: 25),
+          const SizedBox(
+            height: Dimensions.SIZE_20,
+          ),
           AppTextField(
             controller: widget.confirmPasswordController,
-            hintText: 'Confirm Password',
+            hintText: StringConstant.confirmPassword,
             obscureText: obscureConfirmPassword,
             keyboardType: TextInputType.visiblePassword,
             suffixIcon: IconButton(
@@ -80,7 +86,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             validator: (value) {
               if (value != widget.passwordController.text) {
-                return 'Passwords do not match';
+                return StringConstant.passwordsNotMatch;
               }
               return null;
             },
