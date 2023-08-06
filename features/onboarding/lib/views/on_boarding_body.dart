@@ -13,13 +13,13 @@ class OnBoardingBody extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: <Widget>[
         Image.asset(
           pageContent.image,
-          height: size.height * .4,
+          height: size.height / Dimensions.SIZE_3,
         ),
-        SizedBox(
-          height: size.height * .03,
+        const SizedBox(
+          height: Dimensions.SIZE_20,
         ),
         Padding(
           padding: const EdgeInsets.all(
@@ -34,7 +34,9 @@ class OnBoardingBody extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: AppFonts.normal24,
               ),
-              SizedBox(height: size.height * .02),
+              const SizedBox(
+                height: Dimensions.SIZE_20,
+              ),
               Text(
                 pageContent.description,
                 textAlign: TextAlign.center,
@@ -52,12 +54,15 @@ class OnBoardingBody extends StatelessWidget {
                 ),
                 onPressed: () async {
                   await context.read<OnBoardingCubit>().cacheFirstTimer();
-                  await context
-                      .read<OnBoardingCubit>()
-                      .navigateToAuthOrHome(context: context);
+
+                  if (context.mounted) {
+                    await context
+                        .read<OnBoardingCubit>()
+                        .navigateToAuthOrHome(context: context);
+                  }
                 },
                 child: Text(
-                  'Get Started',
+                  StringConstant.getStarted,
                   style: AppFonts.normal24,
                 ),
               ),

@@ -43,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   children: <Widget>[
                     Hero(
-                      tag: AuthHeroes.pageTitle,
+                      tag: AppHereos.pageTitle,
                       flightShuttleBuilder: AuthUtils.buildShuttle,
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -62,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Hero(
-                          tag: AuthHeroes.helperText,
+                          tag: AppHereos.helperText,
                           flightShuttleBuilder: AuthUtils.buildShuttle,
                           child: Text(
                             StringConstant.signInToYourAccount,
@@ -73,7 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           baseline: Dimensions.SIZE_75,
                           baselineType: TextBaseline.alphabetic,
                           child: Hero(
-                            tag: AuthHeroes.redirectText,
+                            tag: AppHereos.redirectText,
                             child: TextButton(
                               onPressed: () {
                                 context.read<AuthBloc>().add(
@@ -114,12 +114,32 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: Dimensions.SIZE_20,
                     ),
                     Hero(
-                      tag: AuthHeroes.authButton,
+                      tag: AppHereos.authButton,
                       child: state is AuthLoading
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
                           : SignInButton(
+                              formKey: formKey,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                            ),
+                    ),
+                    const SizedBox(
+                      height: Dimensions.SIZE_10,
+                    ),
+                    const Divider(),
+                    const SizedBox(
+                      height: Dimensions.SIZE_10,
+                    ),
+                    Hero(
+                      tag: AppHereos.authButton,
+                      child: state is AuthLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : SignInButton(
+                              isGoogleButton: true,
                               formKey: formKey,
                               emailController: emailController,
                               passwordController: passwordController,

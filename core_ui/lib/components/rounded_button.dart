@@ -1,6 +1,11 @@
 import 'package:core_ui/core_ui.dart';
 
 class RoundedButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onPressed;
+  final Color? buttonColour;
+  final Color? labelColour;
+
   const RoundedButton({
     required this.label,
     required this.onPressed,
@@ -8,11 +13,6 @@ class RoundedButton extends StatelessWidget {
     this.labelColour,
     super.key,
   });
-
-  final String label;
-  final VoidCallback onPressed;
-  final Color? buttonColour;
-  final Color? labelColour;
 
   @override
   Widget build(BuildContext context) {

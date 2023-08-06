@@ -4,8 +4,6 @@ import 'package:auth/components/sign_up_form.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
-  static const routeName = '/sign-up';
-
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
@@ -17,15 +15,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController confirmPasswordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final UserProvider _userProvider = UserProvider();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    fullNameController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,5 +129,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    fullNameController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 }

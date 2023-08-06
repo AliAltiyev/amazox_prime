@@ -14,7 +14,7 @@ class SignInEvent extends AuthEvent {
   final String password;
 
   @override
-  List<String> get props => [
+  List<String> get props => <String>[
         email,
         password,
       ];
@@ -32,7 +32,11 @@ class SignUpEvent extends AuthEvent {
   final String name;
 
   @override
-  List<Object?> get props => [email, password, name];
+  List<Object?> get props => <Object?>[
+        email,
+        password,
+        name,
+      ];
 }
 
 class ForgotPasswordEvent extends AuthEvent {
@@ -43,37 +47,27 @@ class ForgotPasswordEvent extends AuthEvent {
   final String email;
 
   @override
-  List<Object?> get props => [email];
-}
-
-class UpdateUserEvent extends AuthEvent {
-  UpdateUserEvent({
-    required this.action,
-    required this.userData,
-  }) : assert(
-          userData is String || userData is File,
-          'userData must be either a String or a File, '
-          'but was ${userData.runtimeType}',
-        );
-
-  final UpdateUserAction action;
-  final dynamic userData;
-
-  @override
-  List<Object?> get props => [action, userData];
+  List<Object?> get props => <Object?>[
+        email,
+      ];
 }
 
 final class NavigateToRegistrationPageEvent extends AuthEvent {
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => <Object?>[];
 }
 
 final class NavigateTosSignInPageEvent extends AuthEvent {
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => <Object?>[];
 }
 
 final class NavigateTosHomePageEvent extends AuthEvent {
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => <Object?>[];
+}
+
+final class SignInWithGoogleEvent extends AuthEvent {
+  @override
+  List<Object?> get props => <Object?>[];
 }

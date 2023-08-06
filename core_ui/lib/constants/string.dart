@@ -57,6 +57,7 @@ final class StringConstant {
   static const String emailAddress = 'Электронная почта';
   static const String password = 'Пароль';
   static const String requiredField = 'Обязательное поле';
+
   //Sign up
   static const String signUpSlogan = 'Доставка еды стала проще';
   static const String alreadyHaveAnAccount = 'Уже есть аккаунт?';
@@ -65,4 +66,6 @@ final class StringConstant {
   static const String username = 'Имя пользователя';
   static const String confirmPassword = 'Подтвердите пароль';
   static const String passwordsNotMatch = 'Пароли не совпадают';
+  static const String singInWithGoogle = 'войти через Google';
+  static const String getStarted = 'Начать';
 }

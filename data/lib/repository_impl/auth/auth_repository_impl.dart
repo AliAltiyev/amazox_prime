@@ -66,4 +66,18 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
       ));
     }
   }
+
+  @override
+  ResultFuture<UserEntity> signInWithGoogle() async {
+    try {
+      final UserModel result = await _remoteDataSource.signInWithGoogle();
+
+      return Right(UserMapper.toEntity(result));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(
+        message: e.message,
+        statusCode: e.statusCode,
+      ));
+    }
+  }
 }

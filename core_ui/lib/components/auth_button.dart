@@ -31,11 +31,11 @@ class AppAuthButton extends StatelessWidget {
             ),
       child: ElevatedButton(
         style: ButtonStyle(
-          elevation: MaterialStateProperty.all(
+          elevation: MaterialStateProperty.all<double?>(
             Dimensions.SIZE_0,
           ),
           alignment: Alignment.center,
-          padding: MaterialStateProperty.all(
+          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
             const EdgeInsets.only(
               right: Dimensions.SIZE_75,
               left: Dimensions.SIZE_75,
@@ -43,18 +43,18 @@ class AppAuthButton extends StatelessWidget {
               bottom: Dimensions.SIZE_16,
             ),
           ),
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: MaterialStateProperty.all<Color>(
             Colors.transparent,
           ),
           shape: isSignUp
-              ? MaterialStateProperty.all(
+              ? MaterialStateProperty.all<OutlinedBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       Dimensions.SIZE_16,
                     ),
                   ),
                 )
-              : MaterialStateProperty.all(
+              : MaterialStateProperty.all<OutlinedBorder>(
                   RoundedRectangleBorder(
                     side: const BorderSide(
                       width: Dimensions.SIZE_2,

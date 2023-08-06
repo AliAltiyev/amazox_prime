@@ -3,6 +3,8 @@ import 'package:domain/domain.dart';
 abstract class AuthRepository {
   const AuthRepository();
 
+  ResultFuture<UserEntity> signInWithGoogle();
+
   ResultFuture<UserEntity> signIn({
     required String email,
     required String password,

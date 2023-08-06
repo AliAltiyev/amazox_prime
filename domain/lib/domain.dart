@@ -17,6 +17,7 @@ export 'package:domain/repository/settings/contacts/contacts_repository.dart';
 export 'package:domain/usecase/auth/forgot_password_usecase.dart';
 export 'package:domain/usecase/auth/log_out_use_case.dart';
 export 'package:domain/usecase/auth/sign_in_usecase.dart';
+export 'package:domain/usecase/auth/sign_in_with_google_usecase.dart';
 export 'package:domain/usecase/auth/sign_up_usecase.dart';
 export 'package:domain/usecase/cart/add_cart_item.dart';
 export 'package:domain/usecase/cart/get_all_cart_items.dart';

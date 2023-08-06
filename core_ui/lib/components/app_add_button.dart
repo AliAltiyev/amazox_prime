@@ -21,7 +21,9 @@ class AppAddButton extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(Dimensions.SIZE_20),
+              Radius.circular(
+                Dimensions.SIZE_20,
+              ),
             ),
             color: ApplicationColors.primaryButtonColor,
           ),

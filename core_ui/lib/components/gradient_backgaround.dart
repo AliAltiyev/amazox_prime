@@ -1,14 +1,14 @@
 import 'package:core_ui/core_ui.dart';
 
 class GradientBackground extends StatelessWidget {
+  final Widget child;
+  final String image;
+
   const GradientBackground({
     required this.child,
     required this.image,
     super.key,
   });
-
-  final Widget child;
-  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,9 @@ class GradientBackground extends StatelessWidget {
       constraints: const BoxConstraints.expand(),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(image),
+          image: AssetImage(
+            image,
+          ),
           fit: BoxFit.cover,
         ),
       ),

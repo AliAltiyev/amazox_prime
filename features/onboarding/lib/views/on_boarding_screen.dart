@@ -20,8 +20,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const int indicatorCount = 3;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ApplicationColors.white,
       body: BlocListener<OnBoardingCubit, bool>(
         listener: (context, state) {
           if (!state) {
@@ -47,7 +49,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   alignment: const Alignment(0, .04),
                   child: SmoothPageIndicator(
                     controller: pageController,
-                    count: 3,
+                    count: indicatorCount,
                     onDotClicked: (index) {
                       pageController.animateToPage(
                         index,
@@ -56,9 +58,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       );
                     },
                     effect: const WormEffect(
-                      dotHeight: 10,
-                      dotWidth: 10,
-                      spacing: 40,
+                      dotHeight: Dimensions.SIZE_10,
+                      dotWidth: Dimensions.SIZE_10,
+                      spacing: Dimensions.SIZE_40,
                       activeDotColor: ApplicationColors.primaryButtonColor,
                       dotColor: ApplicationColors.primaryButtonColor,
                     ),

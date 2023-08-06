@@ -113,8 +113,11 @@ Future<void> initDataLayer() async {
     () => FirebaseStorage.instance,
   );
 
+  getIt.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn());
+
   getIt.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(
+            googleSignIn: getIt<GoogleSignIn>(),
             authClient: getIt<FirebaseAuth>(),
             cloudStoreClient: getIt<FirebaseFirestore>(),
             dbClient: getIt<FirebaseStorage>(),
@@ -126,6 +129,10 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<SignInUseCase>(
     () => SignInUseCase(getIt<AuthRepository>()),
+  );
+
+  getIt.registerLazySingleton<SigninWithGoogleUseCase>(
+    () => SigninWithGoogleUseCase(getIt<AuthRepository>()),
   );
 
   getIt.registerLazySingleton<LogOutUseCase>(

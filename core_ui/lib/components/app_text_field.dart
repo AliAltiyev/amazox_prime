@@ -1,6 +1,18 @@
 import 'package:core_ui/core_ui.dart';
 
 class AppTextField extends StatelessWidget {
+  final String? Function(String?)? validator;
+  final TextEditingController controller;
+  final bool filled;
+  final Color? fillColour;
+  final bool obscureText;
+  final bool readOnly;
+  final Widget? suffixIcon;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final bool overrideValidator;
+  final TextStyle? hintStyle;
+
   const AppTextField({
     required this.controller,
     this.filled = false,
@@ -16,18 +28,6 @@ class AppTextField extends StatelessWidget {
     this.overrideValidator = false,
   });
 
-  final String? Function(String?)? validator;
-  final TextEditingController controller;
-  final bool filled;
-  final Color? fillColour;
-  final bool obscureText;
-  final bool readOnly;
-  final Widget? suffixIcon;
-  final String? hintText;
-  final TextInputType? keyboardType;
-  final bool overrideValidator;
-  final TextStyle? hintStyle;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -35,11 +35,11 @@ class AppTextField extends StatelessWidget {
       validator: overrideValidator
           ? validator
           : (value) {
-              if (value == null || value.isEmpty) {
-                return StringConstant.requiredField;
-              }
-              return validator?.call(value);
-            },
+        if (value == null || value.isEmpty) {
+          return StringConstant.requiredField;
+        }
+        return validator?.call(value);
+      },
       keyboardType: keyboardType,
       obscureText: obscureText,
       readOnly: readOnly,

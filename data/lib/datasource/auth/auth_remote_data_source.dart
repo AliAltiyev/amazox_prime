@@ -3,6 +3,8 @@ import 'package:data/data.dart';
 abstract class AuthRemoteDataSource {
   const AuthRemoteDataSource();
 
+  Future<UserModel> signInWithGoogle();
+
   Future<void> logOut();
 
   Future<void> forgotPassword(String email);

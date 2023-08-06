@@ -81,7 +81,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 obscureConfirmPassword
                     ? Icons.remove_red_eye
                     : Icons.hide_source,
-                color: Colors.grey,
+                color: ApplicationColors.disabledColor,
               ),
             ),
             validator: (value) {

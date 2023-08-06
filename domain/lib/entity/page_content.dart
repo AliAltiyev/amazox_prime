@@ -14,28 +14,24 @@ class PageContent extends Equatable {
   const PageContent.first()
       : this(
           image: ImagePaths.onBoardingFirst,
-          title: 'Brand new curriculum',
-          description:
-              'This is the first online education platform designed by the '
-              "world's top professors.",
+          title: 'Еда, полезная для вас и планеты',
+          description: 'Amazox Prime: Еда, которая объединяет людей.',
         );
 
   const PageContent.second()
       : this(
-          image: ImagePaths.onBoardingSecond,
-          title: 'Brand a fun atmosphere',
-          description:
-              'This is the first online education platform designed by the '
-              "world's top professors.",
+    image: ImagePaths.onBoardingSecond,
+          title: 'Еда, которая делает вас счастливым',
+          description: 'Еда, которую вы любите, доставлена ​​к вашей двери',
         );
 
   const PageContent.third()
       : this(
-          image: ImagePaths.onBoardingThird,
-          title: 'Easy to join the lesson',
-          description:
-              'This is the first online education platform designed by the '
-              "world's top professors.",
+    image: ImagePaths.onBoardingThird,
+          title: """
+Доставка еды: быстрая, свежая и доступная""",
+          description: """
+Еда, которая стоит ожидания""",
         );
 
   @override
