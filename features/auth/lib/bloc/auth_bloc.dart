@@ -11,16 +11,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AppRouter _autoRouter;
 
   AuthBloc({
-    required SigninWithGoogleUseCase signinWithGoogleUseCase,
+    required SigninWithGoogleUseCase signInWithGoogleUseCase,
     required SignInUseCase signInUseCase,
     required SignUpUseCase signUpUseCase,
     required ForgotPasswordUseCase forgotPasswordUseCase,
     required AppRouter autoRouter,
-  })
-      : _signInUseCase = signInUseCase,
+  })  : _signInUseCase = signInUseCase,
         _signUpUseCase = signUpUseCase,
         _forgotPasswordUseCase = forgotPasswordUseCase,
-        _signInWithGoogleUseCase = signinWithGoogleUseCase,
+        _signInWithGoogleUseCase = signInWithGoogleUseCase,
         _autoRouter = autoRouter,
         super(const AuthInitial()) {
     on<AuthEvent>((event, emit) {
@@ -35,8 +34,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInWithGoogleEvent>(_handleSignInWithGoogle);
   }
 
-  Future<void> _signInHandler(SignInEvent event,
-      Emitter<AuthState> emit,) async {
+  Future<void> _signInHandler(
+    SignInEvent event,
+    Emitter<AuthState> emit,
+  ) async {
     final Either<Failure, UserEntity> result = await _signInUseCase(
       SignInParams(
         email: event.email,
@@ -44,14 +45,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
     result.fold(
-          (failure) =>
-          emit(AuthError(message: '${failure.statusCode}: ${failure.message}')),
-          (user) => emit(SignedIn(user: user)),
+      (failure) => emit(
+        AuthError(
+          message: '${failure.statusCode}: ${failure.message}',
+        ),
+      ),
+      (user) => emit(SignedIn(user: user)),
     );
   }
 
-  Future<void> _signUpHandler(SignUpEvent event,
-      Emitter<AuthState> emit,) async {
+  Future<void> _signUpHandler(
+    SignUpEvent event,
+    Emitter<AuthState> emit,
+  ) async {
     final Either<Failure, void> result = await _signUpUseCase(
       SignUpParams(
         email: event.email,
@@ -60,15 +66,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
     result.fold(
-          (failure) => emit(AuthError(
-        message: '${failure.statusCode}: ${failure.message}',
-      )),
-          (_) => emit(const SignedUp()),
+      (failure) => emit(
+        AuthError(
+          message: '${failure.statusCode}: ${failure.message}',
+        ),
+      ),
+      (_) => emit(const SignedUp()),
     );
   }
 
-  Future<void> _forgotPasswordHandler(ForgotPasswordEvent event,
-      Emitter<AuthState> emit,) async {
+  Future<void> _forgotPasswordHandler(
+    ForgotPasswordEvent event,
+    Emitter<AuthState> emit,
+  ) async {
     final Either<Failure, void> result =
         await _forgotPasswordUseCase(event.email);
     result.fold<void>(
@@ -78,12 +88,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _navigateToRegistration(NavigateToRegistrationPageEvent event,
-      Emitter<AuthState> emit,) async {
+  Future<void> _navigateToRegistration(
+    NavigateToRegistrationPageEvent event,
+    Emitter<AuthState> emit,
+  ) async {
     await _autoRouter.push<Object?>(const SignUpPage());
   }
 
-  Future<void> _navigateToSignIn(NavigateTosSignInPageEvent event,
+  Future<void> _navigateToSignIn(
+    NavigateTosSignInPageEvent event,
     Emitter<AuthState> emit,
   ) async {
     emit(const AuthInitial());
@@ -104,8 +117,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final Either<Failure, UserEntity> result =
         await _signInWithGoogleUseCase(const SignInWithGoogleParams());
     result.fold<void>(
-      (failure) =>
-          emit(AuthError(message: '${failure.statusCode}: ${failure.message}')),
+      (failure) => emit(
+        AuthError(message: '${failure.statusCode}: ${failure.message}'),
+      ),
       (user) => emit(SignedIn(user: user)),
     );
   }

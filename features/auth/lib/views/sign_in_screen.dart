@@ -12,13 +12,14 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final UserProvider userProvider = UserProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ApplicationColors.white,
       extendBodyBehindAppBar: true,
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
+        listener: (BuildContext context, AuthState state) {
           if (state is AuthError) {
             Utils.showSnackBar(
               context,
@@ -31,7 +32,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 );
           }
         },
-        builder: (context, state) {
+        builder: (BuildContext context, AuthState state) {
           return GradientBackground(
             image: ImagePaths.authGradientBackground,
             child: SafeArea(

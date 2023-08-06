@@ -3,7 +3,7 @@ import 'package:data/data.dart';
 final class RemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<List<ProductModel>> getProducts() async {
-    List<ProductModel> list = <ProductModel>[];
+    final List<ProductModel> list = <ProductModel>[];
     try {
       final QuerySnapshot<Map<String, dynamic>> firebaseFireStore =
           await FirebaseFirestore.instance

@@ -19,7 +19,7 @@ abstract class LocaleDataSource {
 
   Future<void> addProducts(List<ProductModel> products);
 
-  List<ProductModel> getAllProdducts();
+  List<ProductModel> getAllProducts();
 
   Future<ProductModel> getProductById(int productId);
 
@@ -28,8 +28,4 @@ abstract class LocaleDataSource {
 
   FontSizeModel getFontSize();
 
-  //OnBoarding
-  Future<void> cacheFirstTimer();
-
-  Future<bool> checkIfUserIsFirstTimer();
 }

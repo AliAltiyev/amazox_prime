@@ -57,8 +57,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         padding: const EdgeInsets.only(
                           right: Dimensions.SIZE_80,
                         ),
-                        child: Text(StringConstant.signUpSlogan,
-                            style: AppFonts.normal32),
+                        child: Text(
+                          StringConstant.signUpSlogan,
+                          style: AppFonts.normal32,
+                        ),
                       ),
                     ),
                     const SizedBox(

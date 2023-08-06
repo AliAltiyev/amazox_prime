@@ -1,24 +1,20 @@
-import 'package:core/exceptions/cache.dart';
 import 'package:data/data.dart';
 
-final class LocaleDataSourseImpl extends LocaleDataSource {
+final class LocaleDataSourceImpl extends LocaleDataSource {
   final Box<ProductModel> _cartBox;
   final Box<ProductModel> _products;
   final Box<FontSizeModel> _font;
   final Box<bool> _theme;
-  final Box<bool> _userStateBox;
 
-  LocaleDataSourseImpl({
+  LocaleDataSourceImpl({
     required Box<ProductModel> cartBox,
     required Box<ProductModel> products,
     required Box<FontSizeModel> font,
     required Box<bool> theme,
-    required Box<bool> userStateBox,
   })  : _cartBox = cartBox,
         _products = products,
         _font = font,
-        _theme = theme,
-        _userStateBox = userStateBox;
+        _theme = theme;
 
   @override
   Future<void> saveAppTheme(bool isDark) async {
@@ -60,7 +56,7 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   }
 
   @override
-  List<ProductModel> getAllProdducts() {
+  List<ProductModel> getAllProducts() {
     return _products.values.toList();
   }
 
@@ -78,23 +74,5 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   @override
   Future<void> saveFontSize(FontSizeModel model) async {
     await _font.add(model);
-  }
-
-  @override
-  Future<void> cacheFirstTimer() async {
-    try {
-      await _userStateBox.put(LocaleStorage.userAuth.name, false);
-    } catch (e) {
-      throw CacheException(message: e.toString());
-    }
-  }
-
-  @override
-  Future<bool> checkIfUserIsFirstTimer() async {
-    try {
-      return _userStateBox.get(LocaleStorage.userAuth.name) ?? true;
-    } catch (e) {
-      throw CacheException(message: e.toString());
-    }
   }
 }

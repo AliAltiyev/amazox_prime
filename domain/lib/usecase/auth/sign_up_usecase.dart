@@ -1,7 +1,5 @@
 import 'package:domain/domain.dart';
 
-import '../../repository/auth/auth_repository.dart';
-
 class SignUpUseCase extends FutureUsecaseWithParams<void, SignUpParams> {
   final AuthRepository _repository;
 

@@ -9,7 +9,7 @@ class OnBoardingBody extends StatelessWidget {
   final PageContent pageContent;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     final Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

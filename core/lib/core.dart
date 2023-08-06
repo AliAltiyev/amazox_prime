@@ -10,7 +10,6 @@ export 'package:core/di/firebase_options.dart';
 export 'package:core/enums/hero_tags.dart';
 export 'package:core/enums/locale.dart';
 export 'package:core/enums/user_update_action.dart';
-export 'package:core/enums/user_update_action.dart';
 export 'package:core/exceptions/failure.dart';
 export 'package:core/exceptions/url_launcher.dart';
 export 'package:core/extensions/context.dart';

@@ -6,6 +6,7 @@ part 'home_state.dart';
 final class HomeBloc extends Bloc<ProductsEvent, HomeState> {
   final FetchProductsUseCase _getProductsUseCase;
   final Connection _connection;
+
   HomeBloc({
     required FetchProductsUseCase getProductsUseCase,
     required Connection connectionUseCase,
@@ -16,7 +17,7 @@ final class HomeBloc extends Bloc<ProductsEvent, HomeState> {
     add(FetchProductsEvent());
   }
 
-  Future<FutureOr<void>> _fetchProductsEvent(
+  Future<void> _fetchProductsEvent(
     FetchProductsEvent event,
     Emitter<HomeState> emit,
   ) async {

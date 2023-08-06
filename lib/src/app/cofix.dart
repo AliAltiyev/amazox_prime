@@ -44,7 +44,7 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<AuthBloc>(
           create: (context) => AuthBloc(
-            signinWithGoogleUseCase: getIt<SigninWithGoogleUseCase>(),
+            signInWithGoogleUseCase: getIt<SigninWithGoogleUseCase>(),
             autoRouter: getIt<AppRouter>(),
             signInUseCase: getIt<SignInUseCase>(),
             signUpUseCase: getIt<SignUpUseCase>(),

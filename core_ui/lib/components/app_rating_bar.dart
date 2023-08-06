@@ -18,7 +18,6 @@ class AppRatingBar extends StatelessWidget {
       onRatingUpdate: (value) {},
       initialRating: rate,
       maxRating: Dimensions.SIZE_5,
-      direction: Axis.horizontal,
       itemCount: Dimensions.SIZE_5.toInt(),
       itemPadding: const EdgeInsets.symmetric(
         horizontal: ApplicationPadding.PADDING_4,

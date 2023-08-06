@@ -16,7 +16,7 @@ class HomeMenuTitle extends StatelessWidget {
               ApplicationPadding.PADDING_20,
             ),
             child: Text(
-              StringConstant.restoarants,
+              StringConstant.restarants,
               style: AppFonts.normal18,
             ),
           ),

@@ -1,10 +1,10 @@
 final class StringConstant {
-  static const String addToCard = "+ Добавить";
-  static const String overTwoHundredStarts = "200+ оценок";
-  static const String appName = "Cofix";
+  static const String addToCard = '+ Добавить';
+  static const String overTwoHundredStarts = '200+ оценок';
+  static const String appName = 'Cofix';
   static const String good = 'Отлично';
   static const String search = 'Поиск';
-  static const String restoarants = 'Рестораны';
+  static const String restarants = 'Рестораны';
   static const String all = 'все';
   static const String buy = 'Купить';
   static const String price = 'Сумма';
@@ -68,4 +68,17 @@ final class StringConstant {
   static const String passwordsNotMatch = 'Пароли не совпадают';
   static const String singInWithGoogle = 'войти через Google';
   static const String getStarted = 'Начать';
+
+  //OnBoarding
+  static const String onBoardingFirstTitle = 'Еда, полезная для вас и планеты';
+  static const String onBoardingFirstSubtitle =
+      'Amazox Prime: Еда, которая объединяет людей.';
+  static const String onBoardingSecondTitle =
+      'Еда, которая делает вас счастливым';
+  static const String onBoardingSecondSubtitle =
+      'Еда, которую вы любите, доставлена к вашей двери.';
+  static const String onBoardingThirdTitle =
+      'Еда, которую вы любите, доставлена к вашей двери.';
+  static const String onBoardingThirdSubtitle = '''
+  Доставка еды: быстрая, свежая и доступная''';
 }

@@ -18,7 +18,7 @@ class AppAddButton extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: _onPress,
-        child: Container(
+        child: DecoratedBox(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(
               Radius.circular(

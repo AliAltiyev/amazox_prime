@@ -1,6 +1,11 @@
 import 'package:auth/auth.dart';
 
 class SignInButton extends StatelessWidget {
+  final GlobalKey<FormState> formKey;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final bool isGoogleButton;
+
   const SignInButton({
     super.key,
     required this.formKey,
@@ -9,16 +14,11 @@ class SignInButton extends StatelessWidget {
     this.isGoogleButton = false,
   });
 
-  final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-  final bool isGoogleButton;
-
   @override
   Widget build(BuildContext context) {
     return RoundedButton(
       labelColour:
-          isGoogleButton ? ApplicationColors.black : ApplicationColors.white,
+      isGoogleButton ? ApplicationColors.black : ApplicationColors.white,
       label: isGoogleButton
           ? StringConstant.singInWithGoogle
           : StringConstant.signIn,
@@ -32,18 +32,18 @@ class SignInButton extends StatelessWidget {
         if (context.mounted) {
           if (isGoogleButton) {
             context.read<AuthBloc>().add(
-                  SignInWithGoogleEvent(),
-                );
+              SignInWithGoogleEvent(),
+            );
           }
         }
         if (formKey.currentState!.validate()) {
           if (context.mounted) {
             context.read<AuthBloc>().add(
-                  SignInEvent(
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim(),
-                  ),
-                );
+              SignInEvent(
+                email: emailController.text.trim(),
+                password: passwordController.text.trim(),
+              ),
+            );
           }
         }
       },

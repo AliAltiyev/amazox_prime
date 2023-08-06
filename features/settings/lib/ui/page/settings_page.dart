@@ -13,7 +13,9 @@ class _SettingsPageState extends State<SettingsPage> {
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        actions: _appBarActions(size),
+        actions: _appBarActions(
+          size,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -255,7 +257,7 @@ class _SettingsPageState extends State<SettingsPage> {
         itemBuilder: (context) => <PopupMenuItem>[
           PopupMenuItem<void>(
             child: const PopupItem(
-              title: 'Edit Profile',
+              title: StringConstant.aboutUs,
               icon: Icon(
                 Icons.edit_outlined,
                 color: ApplicationColors.black,

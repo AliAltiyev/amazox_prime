@@ -7,10 +7,9 @@ final class UrlLauncher {
 
       if (!await launchUrl(
         uri,
-        mode: LaunchMode.platformDefault,
       )) {
         throw UrlLauncherException(
-          "${StringConstants.urlLauncherException} $url",
+          '${StringConstants.urlLauncherException} $url',
         );
       }
     } catch (_) {}

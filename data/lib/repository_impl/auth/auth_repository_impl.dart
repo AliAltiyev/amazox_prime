@@ -12,7 +12,12 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
       await _remoteDataSource.forgotPassword(email);
       return const Right(null);
     } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+      return Left(
+        ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ),
+      );
     }
   }
 
@@ -47,10 +52,12 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
       );
       return const Right(null);
     } on ServerException catch (e) {
-      return Left(ServerFailure(
-        message: e.message,
-        statusCode: e.statusCode,
-      ));
+      return Left(
+        ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ),
+      );
     }
   }
 
@@ -60,10 +67,12 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
       await _remoteDataSource.logOut();
       return const Right(null);
     } on ServerException catch (e) {
-      return Left(ServerFailure(
-        message: e.message,
-        statusCode: e.statusCode,
-      ));
+      return Left(
+        ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ),
+      );
     }
   }
 
@@ -74,10 +83,12 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
 
       return Right(UserMapper.toEntity(result));
     } on ServerException catch (e) {
-      return Left(ServerFailure(
-        message: e.message,
-        statusCode: e.statusCode,
-      ));
+      return Left(
+        ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ),
+      );
     }
   }
 }

@@ -1,12 +1,11 @@
 import 'package:data/data.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  const AuthRemoteDataSourceImpl(
-      {required FirebaseAuth authClient,
-      required FirebaseFirestore cloudStoreClient,
-      required FirebaseStorage dbClient,
-      required GoogleSignIn googleSignIn})
-      : _authClient = authClient,
+  const AuthRemoteDataSourceImpl({
+    required FirebaseAuth authClient,
+    required FirebaseFirestore cloudStoreClient,
+    required GoogleSignIn googleSignIn,
+  })  : _authClient = authClient,
         _cloudStoreClient = cloudStoreClient,
         _googleSignIn = googleSignIn;
   final FirebaseAuth _authClient;
