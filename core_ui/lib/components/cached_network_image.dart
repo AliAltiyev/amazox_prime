@@ -11,7 +11,6 @@ class AppCachedNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      fadeInCurve: Curves.easeIn,
       imageUrl: _url,
       imageBuilder: (
         context,

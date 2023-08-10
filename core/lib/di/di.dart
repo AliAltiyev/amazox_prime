@@ -1,4 +1,4 @@
-import '../core.dart';
+import 'package:core/core.dart';
 
 final getIt = GetIt.instance;
 
@@ -12,5 +12,6 @@ Future<void> initAppModule() async {
       () => InternetConnectionChecker());
 
   getIt.registerLazySingleton<Connection>(
-      () => Connection(connection: getIt<InternetConnectionChecker>()));
+    () => Connection(connection: getIt<InternetConnectionChecker>()),
+  );
 }

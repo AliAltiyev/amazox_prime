@@ -2,6 +2,7 @@ import 'package:core_ui/core_ui.dart';
 
 class LightTheme extends AppTheme {
   static LightTheme? _instance;
+
   static LightTheme get instance {
     _instance ??= LightTheme._init();
     return _instance!;
@@ -90,17 +91,7 @@ class LightTheme extends AppTheme {
       ),
     ),
     dialogTheme: const DialogTheme(
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          width: Dimensions.SIZE_0,
-          style: BorderStyle.none,
-        ),
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            Dimensions.SIZE_0,
-          ),
-        ),
-      ),
+      shape: RoundedRectangleBorder(),
     ),
     textTheme: TextTheme(
       bodySmall: AppFonts.normal12,

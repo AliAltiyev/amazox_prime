@@ -8,7 +8,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider>[
         BlocProvider<ThemeCubit>(
           create: (context) => getIt<ThemeCubit>(),
         ),
@@ -22,12 +22,34 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<SettingsBloc>(
           create: (context) => SettingsBloc(
+            appRouter: getIt<AppRouter>(),
+            logOutUseCase: getIt<LogOutUseCase>(),
             urlLauncher: getIt<UrlLauncher>(),
             getFontSizeUsecase: getIt<GetFontSizeUsecase>(),
             saveFontSizeUsecase: getIt<SaveFontSizeUsecase>(),
           )..add(
               GetFontSizeEvent(),
             ),
+        ),
+        BlocProvider<OnBoardingCubit>(
+          create: (context) => OnBoardingCubit(
+            cacheFirstTimer: getIt<CacheFirstTimerUseCase>(),
+            checkIfUserIsFirstTimer: getIt<CheckIfUserIsFirstTimerUseCase>(),
+          ),
+          child: Provider(
+            create: (context) => ChangeNotifierProvider(
+              create: (context) => UserProvider(),
+            ),
+          ),
+        ),
+        BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(
+            signInWithGoogleUseCase: getIt<SigninWithGoogleUseCase>(),
+            autoRouter: getIt<AppRouter>(),
+            signInUseCase: getIt<SignInUseCase>(),
+            signUpUseCase: getIt<SignUpUseCase>(),
+            forgotPasswordUseCase: getIt<ForgotPasswordUseCase>(),
+          ),
         )
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(

@@ -69,7 +69,7 @@ class CustomCard extends StatelessWidget {
             height: size.height / Dimensions.SIZE_120,
           ),
           Text(
-            '${_product.ml.toString()} ${Weight.ml.value}',
+            '${_product.ml} ${Weight.ml.value}',
             style: AppFonts.bold14,
           ),
           SizedBox(

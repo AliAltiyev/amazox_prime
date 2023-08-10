@@ -59,8 +59,13 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                       if (state is LoadedProductsState) {
                         return SliverGridList(state: state);
                       } else if (state is LoadingProductsState) {
-                        return SliverToBoxAdapter(
-                          child: _loadingStateBody(),
+                        return const SliverToBoxAdapter(
+                          child: Center(
+                            child: CircularProgressIndicator.adaptive(
+                              backgroundColor:
+                                  ApplicationColors.primaryButtonColor,
+                            ),
+                          ),
                         );
                       } else {
                         return const SliverToBoxAdapter(
@@ -73,20 +78,6 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Center _loadingStateBody() {
-    return Center(
-      child: SpinKitDancingSquare(
-        color: ApplicationColors.green,
-        size: Dimensions.SIZE_50,
-        controller: AnimationController(
-          vsync: this,
-          animationBehavior: AnimationBehavior.preserve,
-          duration: DurationEnum.low.duration,
         ),
       ),
     );

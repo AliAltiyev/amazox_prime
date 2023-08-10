@@ -1,12 +1,12 @@
 import 'package:data/data.dart';
 
-final class LocaleDataSourseImpl extends LocaleDataSource {
+final class LocaleDataSourceImpl extends LocaleDataSource {
   final Box<ProductModel> _cartBox;
   final Box<ProductModel> _products;
   final Box<FontSizeModel> _font;
   final Box<bool> _theme;
 
-  LocaleDataSourseImpl({
+  LocaleDataSourceImpl({
     required Box<ProductModel> cartBox,
     required Box<ProductModel> products,
     required Box<FontSizeModel> font,
@@ -56,7 +56,7 @@ final class LocaleDataSourseImpl extends LocaleDataSource {
   }
 
   @override
-  List<ProductModel> getAllProdducts() {
+  List<ProductModel> getAllProducts() {
     return _products.values.toList();
   }
 

@@ -14,21 +14,21 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   core:
-    path: ./core
+    path: ./core/
   data:
-    path: ./data
+    path: ./data/
   core_ui:
-    path: ./core_ui
+    path: ./core_ui/
   navigation:
-    path: ./navigation
+    path: ./navigation/
   home:
-    path: ./features./home
-  product_details:
-    path: ./features./product_details
+    path: ./features/home/
   settings:
-    path: ./features./settings
-  card:  
-    path: ./features./card
+    path: ./features/settings/
+  card:
+    path: ./features/card
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

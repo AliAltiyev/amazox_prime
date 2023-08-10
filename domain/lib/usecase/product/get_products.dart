@@ -7,5 +7,5 @@ class FetchProductsUseCase {
     required ProductRepository repository,
   }) : _repository = repository;
 
-  Future<List<Product>> call() async => await _repository.fetchProducts();
+  Future<List<Product>> call() => _repository.fetchProducts();
 }

@@ -6,7 +6,21 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
+      name: 'OnBoardingPage',
+      page: OnBoardingScreen,
       path: '/',
+    ),
+    AutoRoute(
+      path: 'signIn',
+      name: 'SignInPage',
+      page: SignInScreen,
+    ),
+    AutoRoute(
+      path: 'signUp',
+      name: 'SignUpPage',
+      page: SignUpScreen,
+    ),
+    AutoRoute(
       name: 'dashBoardPage',
       page: DashboardView,
       children: [
@@ -41,9 +55,9 @@ part 'app_router.gr.dart';
           path: 'settingsPage',
           name: 'SettingsRouter',
           page: SettingsPage,
-        )
+        ),
       ],
-    )
+    ),
   ],
 )
 class AppRouter extends _$AppRouter {}

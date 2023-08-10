@@ -1,7 +1,6 @@
 import 'package:card/shopping_card.dart';
 
 part 'cart_event.dart';
-
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
@@ -98,18 +97,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
   }
 
-  FutureOr<void> _removeAllProducts(
+  Future<void> _removeAllProducts(
     RemoveAllProducts event,
     Emitter<CartState> emit,
-  ) {
+  ) async {
     if (state is CartLoaded) {
       try {
         _removeAllCartItemsUseCase();
         emit(
           CartLoaded(
             cart: Cart(
-              cartItems: List.from((state as CartLoaded).cart.cartItems,)
-                ..clear(),
+              cartItems: List.from(
+                (state as CartLoaded).cart.cartItems,
+              )..clear(),
             ),
           ),
         );

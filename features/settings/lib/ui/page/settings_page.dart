@@ -1,4 +1,4 @@
-import 'package:settings/settings.dart';
+import 'package:navigation/navigation.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -13,7 +13,9 @@ class _SettingsPageState extends State<SettingsPage> {
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        actions: _appBarActions(size),
+        actions: _appBarActions(
+          size,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -23,24 +25,16 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: size.height / Dimensions.SIZE_20,
             ),
-            //!Later will fetch from firebase
-            Text(
-              StringConstant.userName,
-              style: AppFonts.bold22,
-              textAlign: TextAlign.center,
-            ),
-            //Later will fetch from firebase
-            Text(
-              StringConstant.gmail,
-              style: AppFonts.normal18,
-              textAlign: TextAlign.center,
-            ),
+            _userName(getIt<FirebaseAuth>().currentUser?.displayName ?? ''),
+            _userEmail(getIt<FirebaseAuth>().currentUser?.email ?? ''),
             SizedBox(
               height: size.height / Dimensions.SIZE_14,
             ),
             SettingsListTile(
               title: StringConstant.profile,
-              trailing: const Icon(Icons.chevron_right_rounded),
+              trailing: const Icon(
+                Icons.chevron_right_rounded,
+              ),
               onTap: () {
                 //Todo add action
               },
@@ -48,7 +42,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             SettingsListTile(
               title: StringConstant.orders,
-              trailing: const Icon(Icons.chevron_right_rounded),
+              trailing: const Icon(
+                Icons.chevron_right_rounded,
+              ),
               onTap: () {
                 //Todo add action
               },
@@ -56,7 +52,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             SettingsListTile(
               title: StringConstant.notification,
-              trailing: const Icon(Icons.chevron_right_rounded),
+              trailing: const Icon(
+                Icons.chevron_right_rounded,
+              ),
               onTap: () {
                 //Todo add action
               },
@@ -64,7 +62,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             SettingsListTile(
               title: StringConstant.adresses,
-              trailing: const Icon(Icons.chevron_right_rounded),
+              trailing: const Icon(
+                Icons.chevron_right_rounded,
+              ),
               onTap: () {
                 //Todo add action
               },
@@ -72,7 +72,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             SettingsListTile(
               title: StringConstant.promoCode,
-              trailing: const Icon(Icons.chevron_right_rounded),
+              trailing: const Icon(
+                Icons.chevron_right_rounded,
+              ),
               onTap: () {
                 //Todo add action
               },
@@ -80,7 +82,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             SettingsListTile(
               title: StringConstant.changeTextStyle,
-              trailing: const Icon(Icons.chevron_right_rounded),
+              trailing: const Icon(
+                Icons.chevron_right_rounded,
+              ),
               onTap: () {
                 _showChangeTextSize(
                   context,
@@ -104,6 +108,22 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Text _userEmail(String email) {
+    return Text(
+      email,
+      style: AppFonts.normal18,
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Text _userName(String name) {
+    return Text(
+      name,
+      style: AppFonts.bold22,
+      textAlign: TextAlign.center,
     );
   }
 
@@ -182,6 +202,19 @@ class _SettingsPageState extends State<SettingsPage> {
     return <Widget>[
       InkWell(
         onTap: () {
+          context.read<SettingsBloc>().add(
+                SignOutFromAppEvent(),
+              );
+        },
+        child: const Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: ApplicationPadding.PADDING_14,
+          ),
+          child: Icon(Icons.logout),
+        ),
+      ),
+      InkWell(
+        onTap: () {
           context.read<ThemeCubit>().isDark;
           context.read<ThemeCubit>().changeIcon();
         },
@@ -209,6 +242,32 @@ class _SettingsPageState extends State<SettingsPage> {
                   ImagePaths.dayIcon,
                 ),
               ),
+      ),
+      PopupMenuButton(
+        offset: const Offset(
+          Dimensions.SIZE_0,
+          Dimensions.SIZE_50,
+        ),
+        surfaceTintColor: ApplicationColors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            Dimensions.SIZE_20,
+          ),
+        ),
+        itemBuilder: (context) => <PopupMenuItem>[
+          PopupMenuItem<void>(
+            child: const PopupItem(
+              title: StringConstant.aboutUs,
+              icon: Icon(
+                Icons.edit_outlined,
+                color: ApplicationColors.black,
+              ),
+            ),
+            onTap: () {
+              //TODO Add edit profile page
+            },
+          )
+        ],
       )
     ];
   }

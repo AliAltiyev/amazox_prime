@@ -1,9 +1,9 @@
 import 'package:data/data.dart';
 
-final class CartRepossitoryImpl extends CartRepository {
+final class CartRepositoryImpl extends CartRepository {
   final LocaleDataSource _localeStorage;
 
-  CartRepossitoryImpl({
+  CartRepositoryImpl({
     required LocaleDataSource localeStorage,
   }) : _localeStorage = localeStorage;
 

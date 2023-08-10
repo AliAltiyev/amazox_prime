@@ -27,7 +27,7 @@ final class ProductRepositoryImpl implements ProductRepository {
           .toList()
           .cast<Product>();
     } else {
-      final List<ProductModel> data = _localeDataSource.getAllProdducts();
+      final List<ProductModel> data = _localeDataSource.getAllProducts();
       return data
           .map((model) => ProductMapper.toEntity(model))
           .toList()

@@ -10,20 +10,24 @@ dependencies:
   flutter:
     sdk: flutter
   auto_route: 5.0.4
+
+
   home:
-    path: ../features./home/
+    path: ../features/home/
   card:
-    path: ../features./card/
+    path: ../features/card/
   settings:
-    path: ../features./settings/
+    path: ../features/settings/
   order:
-    path: ../features./order/
-  product_details:
-    path: ../features./product_details/
+    path: ../features/order/
   core:
     path: ../core/
   dashboard:
-    path: ../features./dashboard/
+    path: ../features/dashboard/
+  onboarding:
+    path: ../features/onboarding/
+  auth:
+    path: ../features/auth/
 
 dev_dependencies:
   flutter_test:

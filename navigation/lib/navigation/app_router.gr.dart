@@ -17,6 +17,24 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    OnBoardingPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const OnBoardingScreen(),
+      );
+    },
+    SignInPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignInScreen(),
+      );
+    },
+    SignUpPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignUpScreen(),
+      );
+    },
     DashBoardPage.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -71,8 +89,20 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          DashBoardPage.name,
+          OnBoardingPage.name,
           path: '/',
+        ),
+        RouteConfig(
+          SignInPage.name,
+          path: 'signIn',
+        ),
+        RouteConfig(
+          SignUpPage.name,
+          path: 'signUp',
+        ),
+        RouteConfig(
+          DashBoardPage.name,
+          path: '/dashboard-view',
           children: [
             RouteConfig(
               HomeRouter.name,
@@ -107,8 +137,48 @@ class _$AppRouter extends RootStackRouter {
               parent: DashBoardPage.name,
             ),
           ],
-        )
+        ),
+        RouteConfig(
+          EditProfilePage.name,
+          path: 'editProfileRouter',
+        ),
       ];
+}
+
+/// generated route for
+/// [OnBoardingScreen]
+class OnBoardingPage extends PageRouteInfo<void> {
+  const OnBoardingPage()
+      : super(
+          OnBoardingPage.name,
+          path: '/',
+        );
+
+  static const String name = 'OnBoardingPage';
+}
+
+/// generated route for
+/// [SignInScreen]
+class SignInPage extends PageRouteInfo<void> {
+  const SignInPage()
+      : super(
+          SignInPage.name,
+          path: 'signIn',
+        );
+
+  static const String name = 'SignInPage';
+}
+
+/// generated route for
+/// [SignUpScreen]
+class SignUpPage extends PageRouteInfo<void> {
+  const SignUpPage()
+      : super(
+          SignUpPage.name,
+          path: 'signUp',
+        );
+
+  static const String name = 'SignUpPage';
 }
 
 /// generated route for
@@ -117,11 +187,23 @@ class DashBoardPage extends PageRouteInfo<void> {
   const DashBoardPage({List<PageRouteInfo>? children})
       : super(
           DashBoardPage.name,
-          path: '/',
+          path: '/dashboard-view',
           initialChildren: children,
         );
 
   static const String name = 'DashBoardPage';
+}
+
+/// generated route for
+/// [EditProfileView]
+class EditProfilePage extends PageRouteInfo<void> {
+  const EditProfilePage()
+      : super(
+          EditProfilePage.name,
+          path: 'editProfileRouter',
+        );
+
+  static const String name = 'EditProfilePage';
 }
 
 /// generated route for

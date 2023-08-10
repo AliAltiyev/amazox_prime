@@ -7,5 +7,5 @@ final class Connection {
     required InternetConnectionChecker connection,
   }) : _connection = connection;
 
-  Future<bool> isConnected() async => await _connection.hasConnection;
+  Future<bool> isConnected() async => _connection.hasConnection;
 }

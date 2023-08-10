@@ -3,4 +3,5 @@ enum FirebaseEnum {
   menu,
   id,
   name,
+  users,
 }

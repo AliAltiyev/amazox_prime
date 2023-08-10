@@ -7,6 +7,6 @@ class FetchProductByIdUseCase {
     required ProductRepository repository,
   }) : _repository = repository;
 
-  Future<Product> call(int prodcuId) async =>
-      await _repository.fetchProductById(prodcuId);
+  Future<Product> call(int productId) =>
+      _repository.fetchProductById(productId);
 }

@@ -17,7 +17,7 @@ class AppBarChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Stack(
       clipBehavior: Clip.none,
@@ -42,9 +42,11 @@ class AppBarChip extends StatelessWidget {
               child: AnimatedTextKit(
                 repeatForever: true,
                 animatedTexts: <AnimatedText>[
-                  FadeAnimatedText(_label ?? _label.orNull,
-                      textStyle: AppFonts.normal14,
-                      textAlign: TextAlign.center),
+                  FadeAnimatedText(
+                    _label ?? _label.orNull,
+                    textStyle: AppFonts.normal14,
+                    textAlign: TextAlign.center,
+                  ),
                   ScaleAnimatedText(
                     _priority,
                     textStyle: AppFonts.normal14,

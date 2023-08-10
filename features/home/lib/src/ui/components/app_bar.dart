@@ -2,6 +2,7 @@ import 'package:home/src/home.dart';
 
 class AppSliverAppBar extends StatelessWidget {
   final Widget _child;
+
   const AppSliverAppBar({super.key, required Widget child}) : _child = child;
 
   @override
@@ -13,7 +14,6 @@ class AppSliverAppBar extends StatelessWidget {
       shape: const RoundedRectangleBorder(),
       expandedHeight: size.height / ApplicationPadding.PADDING_4,
       flexibleSpace: FlexibleSpaceBar(
-        collapseMode: CollapseMode.parallax,
         centerTitle: false,
         background: Stack(
           children: <Widget>[
