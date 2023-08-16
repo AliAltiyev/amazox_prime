@@ -1,6 +1,8 @@
 import 'package:data/data.dart';
 
 abstract class LocaleDataSource {
+  //init
+  Future<void> initBox();
   //!Theme
   Future<void> saveAppTheme(bool isDark);
 
@@ -27,5 +29,4 @@ abstract class LocaleDataSource {
   Future<void> saveFontSize(FontSizeModel model);
 
   FontSizeModel getFontSize();
-
 }
