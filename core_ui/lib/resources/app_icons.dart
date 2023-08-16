@@ -16,7 +16,7 @@ final class AppIcons {
     size: Dimensions.SIZE_30,
   );
   static const order = Icon(
-    Icons.delivery_dining_outlined,
+    Icons.history,
     size: Dimensions.SIZE_30,
   );
   static const cart = Icon(

@@ -5,4 +5,5 @@ enum LocaleStorage {
   products,
   font,
   userAuth,
+  order,
 }

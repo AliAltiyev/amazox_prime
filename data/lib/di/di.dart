@@ -2,6 +2,7 @@ import 'package:data/datasource/auth/auth_remote_data_source_impl.dart';
 import 'package:data/repository_impl/auth/auth_repository_impl.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 import 'package:data/repository_impl/onboarding/on_boarding_repository_impl.dart';
+import 'package:data/repository_impl/order/order_repository_impl.dart';
 import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
 
 Future<void> initDataLayer() async {
@@ -145,5 +146,18 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<ForgotPasswordUseCase>(
     () => ForgotPasswordUseCase(getIt<AuthRepository>()),
+  );
+
+  //Order
+  getIt.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(getIt<LocaleDataSource>()),
+  );
+
+  getIt.registerLazySingleton<GetAllUserOrdersUseCase>(
+    () => GetAllUserOrdersUseCase(orderRepository: getIt<OrderRepository>()),
+  );
+
+  getIt.registerLazySingleton<SaveUserOrderUseCase>(
+    () => SaveUserOrderUseCase(orderRepository: getIt<OrderRepository>()),
   );
 }

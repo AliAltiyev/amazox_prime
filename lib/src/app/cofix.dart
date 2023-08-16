@@ -14,6 +14,7 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<CartBloc>(
           create: (context) => CartBloc(
+            saveUserOrderUseCase: getIt<SaveUserOrderUseCase>(),
             addCartItemUseCase: getIt<AddCartItemUseCase>(),
             getAllCartItemsUseCase: getIt<GetAllCartItemsUseCase>(),
             removeCartItemUseCase: getIt<RemoveCartItemUseCase>(),

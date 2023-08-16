@@ -30,3 +30,4 @@ export 'package:image_picker/image_picker.dart';
 export 'package:internet_connection_checker/internet_connection_checker.dart';
 export 'package:provider/provider.dart';
 export 'package:url_launcher/url_launcher.dart';
+export 'package:uuid/uuid.dart';

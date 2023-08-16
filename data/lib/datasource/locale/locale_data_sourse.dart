@@ -1,8 +1,14 @@
 import 'package:data/data.dart';
+import 'package:data/model/order.dart';
 
 abstract class LocaleDataSource {
   //init
   Future<void> initBox();
+  //!Order
+  Future<void> addOrder(UserOrderModel orderModel);
+
+  List<UserOrderModel> getAllOrders();
+
   //!Theme
   Future<void> saveAppTheme(bool isDark);
 

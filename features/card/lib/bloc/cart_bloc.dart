@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:card/shopping_card.dart';
 
 part 'cart_event.dart';
@@ -8,14 +10,17 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final AddCartItemUseCase _addCartItemUseCase;
   final RemoveCartItemUseCase _removeCartItemUseCase;
   final RemoveAllCartItemsUseCase _removeAllCartItemsUseCase;
+  final SaveUserOrderUseCase _saveUserOrderUseCase;
 
   CartBloc({
     required GetAllCartItemsUseCase getAllCartItemsUseCase,
     required AddCartItemUseCase addCartItemUseCase,
+    required SaveUserOrderUseCase saveUserOrderUseCase,
     required RemoveCartItemUseCase removeCartItemUseCase,
     required RemoveAllCartItemsUseCase removeAllCartItemsUseCase,
   })  : _getAllCartItemsUseCase = getAllCartItemsUseCase,
         _addCartItemUseCase = addCartItemUseCase,
+        _saveUserOrderUseCase = saveUserOrderUseCase,
         _removeCartItemUseCase = removeCartItemUseCase,
         _removeAllCartItemsUseCase = removeAllCartItemsUseCase,
         super(CartLoading()) {
@@ -113,12 +118,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             ),
           ),
         );
-      } catch (message) {
-        emit(
-          CartFailure(
-            message: message.toString(),
-          ),
-        );
+        await _saveUserOrderUseCase(
+            order: UserOrder(
+          id: const Uuid().v4(),
+          dateTime: DateTime.now(),
+          products: (state as CartLoaded).cart.cartItems,
+          price: int.parse(totalString).toDouble(),
+        ));
+      } catch (e) {
+        emit(const CartFailure(message: 'Something went wrong'));
       }
     }
   }
