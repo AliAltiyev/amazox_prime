@@ -1,6 +1,4 @@
-import 'package:core/enums/currency.dart';
-
-import '../order.dart';
+import '../../order.dart';
 
 class OrderHistoryPage extends StatefulWidget {
   const OrderHistoryPage({super.key});
@@ -23,13 +21,14 @@ class _SettingsPageState extends State<OrderHistoryPage> {
         if (state is OrdersLoaded) {
           return Scaffold(
             appBar: AppBar(
-              elevation: 0,
-              title: Text('Мои покупки'),
+              title: Text(
+                StringConstant.myOrders,
+              ),
             ),
             body: GradientBackground(
               image: ImagePaths.authGradientBackground,
               child: ListView.separated(
-                separatorBuilder: (context, index) {
+                separatorBuilder: (BuildContext context, int index) {
                   return Divider();
                 },
                 itemCount: state.orders.length,
@@ -43,19 +42,23 @@ class _SettingsPageState extends State<OrderHistoryPage> {
                           Dimensions.SIZE_10,
                         ),
                         child: Column(
-                          children: [
+                          children: <Widget>[
                             Text(
-                              'Количествo товаров: ${order.products.length}',
+                              '${StringConstant.productCount} ${order.products.length}',
                               style: AppFonts.bold16,
                             ),
                             SizedBox(
-                              height: 20,
+                              height: Dimensions.SIZE_20,
                             ),
                             CarouselSlider.builder(
-                              itemBuilder: (context, index, realIndex) {
+                              itemBuilder: (
+                                BuildContext context,
+                                int index,
+                                int realIndex,
+                              ) {
                                 return Expanded(
                                   child: Column(
-                                    children: [
+                                    children: <Widget>[
                                       Text(
                                         order.products[index].name,
                                         style: AppFonts.normal18,
@@ -71,19 +74,22 @@ class _SettingsPageState extends State<OrderHistoryPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: <Widget>[
-                                          Text('Артикул: '),
+                                          Text(
+                                            StringConstant.orderId,
+                                          ),
                                           TextButton(
                                               onPressed: () {
                                                 //TODO ADD copy articul
                                               },
                                               child: Row(
-                                                children: [
+                                                children: <Widget>[
                                                   Text(
-                                                    (order.products[index].id *
-                                                            99)
-                                                        .toString(),
+                                                    (
+                                                      order.products[index].id *
+                                                          Dimensions.SIZE_99,
+                                                    ).toString(),
                                                   ),
-                                                  Icon(Icons.copy),
+                                                  AppIcons.copy,
                                                 ],
                                               )),
                                         ],
@@ -94,13 +100,13 @@ class _SettingsPageState extends State<OrderHistoryPage> {
                               },
                               itemCount: order.products.length,
                               options: CarouselOptions(
-                                height: 300,
+                                height: Dimensions.SIZE_300,
                                 clipBehavior: Clip.antiAlias,
                                 disableCenter: true,
-                                initialPage: 2,
+                                initialPage: Dimensions.SIZE_2.toInt(),
                                 autoPlayCurve: Curves.decelerate,
                                 pageSnapping: true,
-                                viewportFraction: 0.6,
+                                viewportFraction: Dimensions.SIZE_0_6,
                                 autoPlay: true,
                                 animateToClosest: true,
                               ),
@@ -125,54 +131,12 @@ class _SettingsPageState extends State<OrderHistoryPage> {
           return Center(child: CircularProgressIndicator());
         } else {
           return Center(
-            child: Text('error'),
+            child: Text(
+              StringConstants.error,
+            ),
           );
         }
       },
-    );
-  }
-}
-
-class OrderDate extends StatelessWidget {
-  const OrderDate({
-    super.key,
-    required this.order,
-  });
-
-  final UserOrder order;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Дата',
-          style: AppFonts.bold14,
-        ),
-        Text(order.dateTime),
-      ],
-    );
-  }
-}
-
-class OrderPrice extends StatelessWidget {
-  const OrderPrice({
-    super.key,
-    required this.order,
-  });
-
-  final UserOrder order;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Сумма',
-          style: AppFonts.bold14,
-        ),
-        Text('${order.price.toString()} ${Currency.rubl.name}')
-      ],
     );
   }
 }

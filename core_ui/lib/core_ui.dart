@@ -30,6 +30,7 @@ export 'package:core_ui/theme/theme_light.dart';
 export 'package:core_ui/utils/auth_heroes.dart';
 export 'package:core_ui/utils/auth_utils.dart';
 export 'package:core_ui/utils/utils.dart';
+export 'package:fl_chart/fl_chart.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 export 'package:flutter_slidable/flutter_slidable.dart'

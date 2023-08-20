@@ -19,6 +19,11 @@ final class StringConstant {
   static const String promoCode = 'Промокоды';
   static const String changeTextStyle = 'Изменить размер текста';
   static const String aboutUs = 'О сервисе';
+  static const String total = 'Сумма';
+  static const myOrders = 'Мои покупки';
+
+  static const String date = 'Дата';
+
   static const String userName = 'Алексей Мордовкин';
   static const String gmail = 'alidroid696@gmail.com';
   static const String cart = 'Корзина';
@@ -32,15 +37,15 @@ final class StringConstant {
   static const String delivery = 'Доставка';
   static const String deliverySubtitle = '''
 Ваш заказ будет доставлен до вашей двери в течение  45 - 60 минут. Если у
- вас есть какие-либо вопросы или опасения по поводу доставки, пожалуйста, 
+ вас есть какие-либо вопросы или опасения по поводу доставки, пожалуйста,
  свяжитесь с нашей службой поддержки клиентов.''';
 
   static const String makeOrder = 'Да,верно';
   static const String serviceFee = 'Работа сервиса';
   static const String key = 'key';
   static const String notingIntoCartTitle = 'Ничего нет';
-  static const String nothingIntoCartSubtitle =
-      '''Перейдите в список ресторанов,чтобы выбрать
+  static const String nothingIntoCartSubtitle = '''
+Перейдите в список ресторанов,чтобы выбрать
        понравившийсы и оформить из него заказ''';
 
   static const String changeTextScale = 'Изменить размер шрифта';
@@ -81,4 +86,7 @@ final class StringConstant {
       'Еда, которую вы любите, доставлена к вашей двери.';
   static const String onBoardingThirdSubtitle = '''
   Доставка еды: быстрая, свежая и доступная''';
+
+  //order
+  static const String orderId = 'Артикул: ';
 }

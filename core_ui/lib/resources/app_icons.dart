@@ -31,6 +31,9 @@ final class AppIcons {
   static const aboutUs = Icon(
     Icons.chevron_right_rounded,
   );
+  static const copy = Icon(
+    Icons.copy_all,
+  );
 
   static const support = Icon(
     Icons.chat_bubble_outline,
