@@ -21,6 +21,7 @@ final class StringConstant {
   static const String aboutUs = 'О сервисе';
   static const String total = 'Сумма';
   static const myOrders = 'Мои покупки';
+  static const productCount = 'Количеств товаров: ';
 
   static const String date = 'Дата';
 
