@@ -191,6 +191,14 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  carousel_slider:
+    dependency: transitive
+    description:
+      name: carousel_slider
+      sha256: "9c695cc963bf1d04a47bd6021f68befce8970bcd61d24938e1fb0918cf5d9c42"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   characters:
     dependency: transitive
     description:
@@ -972,7 +980,7 @@ packages:
     source: path
     version: "0.0.1"
   order:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "features/order"
       relative: true

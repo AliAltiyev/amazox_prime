@@ -5,7 +5,7 @@ class OrderMapper {
   static UserOrder toDomain(UserOrderModel userOrderModel) {
     return UserOrder(
       id: userOrderModel.id,
-      dateTime: userOrderModel.dateTime,
+      dateTime: userOrderModel.date,
       products: userOrderModel.products
           .map((e) => ProductMapper.toEntity(e))
           .toList(),
@@ -16,7 +16,7 @@ class OrderMapper {
   static UserOrderModel toModel(UserOrder userOrder) {
     return UserOrderModel(
       id: userOrder.id,
-      dateTime: userOrder.dateTime,
+      date: userOrder.dateTime,
       products:
           userOrder.products.map((e) => ProductMapper.toModel(e)).toList(),
       price: userOrder.price,

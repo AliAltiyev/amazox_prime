@@ -21,7 +21,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   ) async {
     try {
       final List<UserOrder> orders = _getAllUserOrders();
-      emit(OrdersLoaded(orders: orders));
+      emit(
+        OrdersLoaded(orders: orders),
+      );
     } catch (e) {
       OrdersFailure();
     }

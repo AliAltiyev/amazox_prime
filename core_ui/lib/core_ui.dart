@@ -3,6 +3,7 @@ library core_ui;
 export 'package:animated_text_kit/animated_text_kit.dart';
 export 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:carousel_slider/carousel_slider.dart';
 export 'package:core/core.dart';
 export 'package:core/enums/duration.dart';
 export 'package:core_ui/components/app_add_button.dart';

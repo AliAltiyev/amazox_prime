@@ -4,7 +4,7 @@ import 'package:domain/domain.dart';
 final class UserOrder extends Equatable {
   final String id;
   final List<Product> products;
-  final DateTime dateTime;
+  final String dateTime;
   final double price;
 
   const UserOrder({

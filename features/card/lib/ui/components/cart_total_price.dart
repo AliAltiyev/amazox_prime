@@ -26,6 +26,10 @@ class CartTotalPrice extends StatelessWidget {
               AddToCardButton(
                 text: StringConstant.makeOrder,
                 onPressed: () {
+                  context.read<CartBloc>().add(
+                        const RemoveAllProducts(),
+                      );
+
                   final SnackBar snackBar = SnackBar(
                     elevation: Dimensions.SIZE_10,
                     behavior: SnackBarBehavior.fixed,
@@ -42,9 +46,6 @@ class CartTotalPrice extends StatelessWidget {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(snackBar);
-                  context.read<CartBloc>().add(
-                        const RemoveAllProducts(),
-                      );
                 },
               ),
             ],

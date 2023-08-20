@@ -9,22 +9,22 @@ final class UserOrderModel extends Equatable {
   @HiveField(1)
   final List<ProductModel> products;
   @HiveField(2)
-  final DateTime dateTime;
+  final String date;
   @HiveField(3)
   final double price;
 
   const UserOrderModel({
     required this.id,
     required this.products,
-    required this.dateTime,
+    required this.date,
     required this.price,
   });
 
   @override
-  List<Object?> get props => [
+  List<Object?> get props => <Object?>[
         id,
         products,
-        dateTime,
+        date,
         price,
       ];
 }

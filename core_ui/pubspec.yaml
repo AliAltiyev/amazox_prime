@@ -37,6 +37,8 @@ dependencies:
   fluttertoast: ^8.2.2
   #Smooth page indicator:
   smooth_page_indicator: ^1.1.0
+  #corusel slider
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

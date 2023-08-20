@@ -9,6 +9,10 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: <BlocProvider>[
+        BlocProvider<OrderBloc>(
+          create: (context) =>
+              OrderBloc(getAllUserOrders: getIt<GetAllUserOrdersUseCase>()),
+        ),
         BlocProvider<ThemeCubit>(
           create: (context) => getIt<ThemeCubit>(),
         ),
@@ -51,7 +55,7 @@ class Application extends StatelessWidget {
             signUpUseCase: getIt<SignUpUseCase>(),
             forgotPasswordUseCase: getIt<ForgotPasswordUseCase>(),
           ),
-        )
+        ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: _buildWithTheme,

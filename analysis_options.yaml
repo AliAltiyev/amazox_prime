@@ -3,12 +3,10 @@ include: package:flutter_lints/flutter.yaml
 #dev_dependencies:
 # lint: ^1.0.0
 
-
 analyzer:
   strong-mode:
     # Will become the default once non-nullable types land
     # https://github.com/dart-lang/sdk/issues/31410#issuecomment-510683629
-    implicit-casts: false
 
   errors:
     # treat missing required parameters as an error (not a hint)

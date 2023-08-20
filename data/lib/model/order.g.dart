@@ -19,7 +19,7 @@ class UserOrderModelAdapter extends TypeAdapter<UserOrderModel> {
     return UserOrderModel(
       id: fields[0] as String,
       products: (fields[1] as List).cast<ProductModel>(),
-      dateTime: fields[2] as DateTime,
+      date: fields[2] as String,
       price: fields[3] as double,
     );
   }
@@ -33,7 +33,7 @@ class UserOrderModelAdapter extends TypeAdapter<UserOrderModel> {
       ..writeByte(1)
       ..write(obj.products)
       ..writeByte(2)
-      ..write(obj.dateTime)
+      ..write(obj.date)
       ..writeByte(3)
       ..write(obj.price);
   }

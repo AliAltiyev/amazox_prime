@@ -107,27 +107,28 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     Emitter<CartState> emit,
   ) async {
     if (state is CartLoaded) {
-      try {
-        _removeAllCartItemsUseCase();
-        emit(
-          CartLoaded(
-            cart: Cart(
-              cartItems: List.from(
-                (state as CartLoaded).cart.cartItems,
-              )..clear(),
-            ),
-          ),
-        );
-        await _saveUserOrderUseCase(
-            order: UserOrder(
-          id: const Uuid().v4(),
-          dateTime: DateTime.now(),
+      await _saveUserOrderUseCase(
+        order: UserOrder(
+          id: const Uuid().v1(),
+          dateTime: DateTime.now().toString().substring(
+                0,
+                10,
+              ),
           products: (state as CartLoaded).cart.cartItems,
-          price: int.parse(totalString).toDouble(),
-        ));
-      } catch (e) {
-        emit(const CartFailure(message: 'Something went wrong'));
-      }
+          price: totalPrice,
+        ),
+      );
+
+      _removeAllCartItemsUseCase();
+      emit(
+        CartLoaded(
+          cart: Cart(
+            cartItems: List.from(
+              (state as CartLoaded).cart.cartItems,
+            )..clear(),
+          ),
+        ),
+      );
     }
   }
 
@@ -149,6 +150,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   double total(subtotal, deliveryFee, serviceFee) {
     return subtotal + deliveryFee(subtotal) + serviceFee;
   }
+
+  double get totalPrice =>
+      total(subtotal, deliveryFee, (state as CartLoaded).serviceFee);
 
   String get totalString =>
       total(subtotal, deliveryFee, (state as CartLoaded).serviceFee)
