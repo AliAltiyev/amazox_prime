@@ -1,4 +1,4 @@
-import '../../order.dart';
+import 'package:order/order.dart';
 
 class OrderHistoryPage extends StatefulWidget {
   const OrderHistoryPage({super.key});
@@ -21,15 +21,13 @@ class _SettingsPageState extends State<OrderHistoryPage> {
         if (state is OrdersLoaded) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(
-                StringConstant.myOrders,
-              ),
+              title: const Text(StringConstant.myOrders),
             ),
             body: GradientBackground(
               image: ImagePaths.authGradientBackground,
               child: ListView.separated(
                 separatorBuilder: (BuildContext context, int index) {
-                  return Divider();
+                  return const Divider();
                 },
                 itemCount: state.orders.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -44,73 +42,12 @@ class _SettingsPageState extends State<OrderHistoryPage> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              '${StringConstant.productCount} ${order.products.length}',
+                              '${StringConstant.productCount} ${order.products
+                                  .length}',
                               style: AppFonts.bold16,
                             ),
-                            SizedBox(
-                              height: Dimensions.SIZE_20,
-                            ),
-                            CarouselSlider.builder(
-                              itemBuilder: (
-                                BuildContext context,
-                                int index,
-                                int realIndex,
-                              ) {
-                                return Expanded(
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(
-                                        order.products[index].name,
-                                        style: AppFonts.normal18,
-                                      ),
-                                      Card(
-                                        clipBehavior: Clip.antiAlias,
-                                        child: Image.network(
-                                          order.products[index].image,
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Text(
-                                            StringConstant.orderId,
-                                          ),
-                                          TextButton(
-                                              onPressed: () {
-                                                //TODO ADD copy articul
-                                              },
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Text(
-                                                    (
-                                                      order.products[index].id *
-                                                          Dimensions.SIZE_99,
-                                                    ).toString(),
-                                                  ),
-                                                  AppIcons.copy,
-                                                ],
-                                              )),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                              itemCount: order.products.length,
-                              options: CarouselOptions(
-                                height: Dimensions.SIZE_300,
-                                clipBehavior: Clip.antiAlias,
-                                disableCenter: true,
-                                initialPage: Dimensions.SIZE_2.toInt(),
-                                autoPlayCurve: Curves.decelerate,
-                                pageSnapping: true,
-                                viewportFraction: Dimensions.SIZE_0_6,
-                                autoPlay: true,
-                                animateToClosest: true,
-                              ),
-                            ),
+                            const SizedBox(height: Dimensions.SIZE_20),
+                            _productImageCarousel(order),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -128,15 +65,74 @@ class _SettingsPageState extends State<OrderHistoryPage> {
             ),
           );
         } else if (state is OrdersLoading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else {
-          return Center(
+          return const Center(
             child: Text(
               StringConstants.error,
             ),
           );
         }
       },
+    );
+  }
+
+  CarouselSlider _productImageCarousel(UserOrder order) {
+    return CarouselSlider.builder(
+      itemBuilder: (BuildContext context,
+          int index,
+          int realIndex,) {
+        return Expanded(
+          child: Column(
+            children: <Widget>[
+              Text(
+                order.products[index].name,
+                style: AppFonts.normal18,
+              ),
+              Card(
+                clipBehavior: Clip.antiAlias,
+                child: Image.network(
+                  order.products[index].image,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    StringConstant.orderId,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        //TODO ADD copy product ID
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            (order.products[index].id * Dimensions.SIZE_99, )
+                                .toString(),
+                          ),
+                          AppIcons.copy,
+                        ],
+                      )),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+      itemCount: order.products.length,
+      options: CarouselOptions(
+        height: Dimensions.SIZE_300,
+        clipBehavior: Clip.antiAlias,
+        disableCenter: true,
+        initialPage: Dimensions.SIZE_2.toInt(),
+        autoPlayCurve: Curves.decelerate,
+        pageSnapping: true,
+        viewportFraction: Dimensions.SIZE_0_6,
+        autoPlay: true,
+        animateToClosest: true,
+      ),
     );
   }
 }

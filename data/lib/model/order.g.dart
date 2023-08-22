@@ -6,17 +6,17 @@ part of 'order.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserOrderModelAdapter extends TypeAdapter<UserOrderModel> {
+class UserOrderModelAdapter extends TypeAdapter<UserOrderEntity> {
   @override
   final int typeId = 3;
 
   @override
-  UserOrderModel read(BinaryReader reader) {
+  UserOrderEntity read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return UserOrderModel(
+    return UserOrderEntity(
       id: fields[0] as String,
       products: (fields[1] as List).cast<ProductModel>(),
       date: fields[2] as String,
@@ -25,7 +25,7 @@ class UserOrderModelAdapter extends TypeAdapter<UserOrderModel> {
   }
 
   @override
-  void write(BinaryWriter writer, UserOrderModel obj) {
+  void write(BinaryWriter writer, UserOrderEntity obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)

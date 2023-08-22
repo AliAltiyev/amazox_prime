@@ -12,11 +12,12 @@ class OrderRepositoryImpl extends OrderRepository {
   List<UserOrder> getAllOrders() {
     return _localeDataSource
         .getAllOrders()
-        .map<UserOrder>((UserOrderModel e) => OrderMapper.toDomain(e))
+        .map<UserOrder>((UserOrderEntity e) => OrderMapper.toDomain(e))
         .toList();
   }
 
   @override
-  Future<void> saveOrder(UserOrder userOrder) async =>
-      _localeDataSource.addOrder(OrderMapper.toModel(userOrder));
+  Future<void> saveOrder(UserOrder userOrder) async {
+    return _localeDataSource.addOrder(OrderMapper.toModel(userOrder));
+  }
 }

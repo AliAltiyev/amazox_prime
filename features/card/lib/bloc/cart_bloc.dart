@@ -45,9 +45,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       );
     } catch (message) {
       emit(
-        CartFailure(
-          message: message.toString(),
-        ),
+        CartFailure(message: message.toString()),
       );
     }
   }
@@ -62,16 +60,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(
           CartLoaded(
             cart: Cart(
-              cartItems: List.from((state as CartLoaded).cart.cartItems)
-                ..add(event.product),
+              cartItems:
+                  List<Product>.from((state as CartLoaded).cart.cartItems)
+                    ..add(event.product),
             ),
           ),
         );
       } catch (message) {
         emit(
-          CartFailure(
-            message: message.toString(),
-          ),
+          CartFailure(message: message.toString()),
         );
       }
     }
@@ -87,8 +84,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(
           CartLoaded(
             cart: Cart(
-              cartItems: List.from((state as CartLoaded).cart.cartItems)
-                ..remove(event.product),
+              cartItems:
+                  List<Product>.from((state as CartLoaded).cart.cartItems)
+                    ..remove(event.product),
             ),
           ),
         );
@@ -110,10 +108,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       await _saveUserOrderUseCase(
         order: UserOrder(
           id: const Uuid().v1(),
-          dateTime: DateTime.now().toString().substring(
-                0,
-                10,
-              ),
+          dateTime: date,
           products: (state as CartLoaded).cart.cartItems,
           price: totalPrice,
         ),
@@ -123,7 +118,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       emit(
         CartLoaded(
           cart: Cart(
-            cartItems: List.from(
+            cartItems: List<Product>.from(
               (state as CartLoaded).cart.cartItems,
             )..clear(),
           ),
@@ -134,7 +129,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   double get subtotal => (state as CartLoaded).cart.cartItems.fold(
         0,
-        (previousValue, element) => previousValue + element.price,
+        (double previousValue, Product element) =>
+            previousValue + element.price,
       );
 
   String get getSubtotalString => subtotal.toStringAsFixed(2);
@@ -159,4 +155,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           .toStringAsFixed(2);
 
   String get deliveryFeeString => deliveryFee(subtotal).toStringAsFixed(2);
+
+  String get date => DateTime.now().toString().substring(0, 10);
 }

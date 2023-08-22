@@ -26,6 +26,7 @@ class EmptyCartBody extends StatelessWidget {
               animate: true,
               ImagePaths.emptyCart,
               repeat: true,
+
             ),
           ),
           Column(

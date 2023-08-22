@@ -25,7 +25,7 @@ class CartSublist extends StatelessWidget {
                 backgroundColor: ApplicationColors.white,
                 clipBehavior: Clip.antiAlias,
                 context: context,
-                builder: (context) {
+                builder: (BuildContext context) {
                   return SizedBox(
                     height: size.height / Dimensions.SIZE_4,
                     width: size.width,

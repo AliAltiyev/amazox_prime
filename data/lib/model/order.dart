@@ -3,7 +3,7 @@ import 'package:data/data.dart';
 part 'order.g.dart';
 
 @HiveType(typeId: 3)
-final class UserOrderModel extends Equatable {
+final class UserOrderEntity extends Equatable {
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -13,7 +13,7 @@ final class UserOrderModel extends Equatable {
   @HiveField(3)
   final double price;
 
-  const UserOrderModel({
+  const UserOrderEntity({
     required this.id,
     required this.products,
     required this.date,

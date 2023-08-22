@@ -5,9 +5,9 @@ abstract class LocaleDataSource {
   //init
   Future<void> initBox();
   //!Order
-  Future<void> addOrder(UserOrderModel orderModel);
+  Future<void> addOrder(UserOrderEntity orderModel);
 
-  List<UserOrderModel> getAllOrders();
+  List<UserOrderEntity> getAllOrders();
 
   //!Theme
   Future<void> saveAppTheme(bool isDark);

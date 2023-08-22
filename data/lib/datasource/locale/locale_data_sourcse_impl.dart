@@ -6,7 +6,7 @@ final class LocaleDataSourceImpl extends LocaleDataSource {
   late Box<ProductModel> _products;
   late Box<FontSizeModel> _font;
   late Box<bool> _theme;
-  late Box<UserOrderModel> _order;
+  late Box<UserOrderEntity> _order;
 
   @override
   Future<void> initBox() async {
@@ -14,7 +14,7 @@ final class LocaleDataSourceImpl extends LocaleDataSource {
     _products = await Hive.openBox<ProductModel>(LocaleStorage.products.name);
     _font = await Hive.openBox<FontSizeModel>(LocaleStorage.font.name);
     _theme = await Hive.openBox<bool>(LocaleStorage.theme.name);
-    _order = await Hive.openBox<UserOrderModel>(LocaleStorage.order.name);
+    _order = await Hive.openBox<UserOrderEntity>(LocaleStorage.order.name);
   }
 
   @override
@@ -78,12 +78,12 @@ final class LocaleDataSourceImpl extends LocaleDataSource {
   }
 
   @override
-  Future<void> addOrder(UserOrderModel orderModel) async {
+  Future<void> addOrder(UserOrderEntity orderModel) async {
     await _order.add(orderModel);
   }
 
   @override
-  List<UserOrderModel> getAllOrders() {
+  List<UserOrderEntity> getAllOrders() {
     return _order.values.toList();
   }
 }

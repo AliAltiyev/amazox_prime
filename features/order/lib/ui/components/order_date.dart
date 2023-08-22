@@ -11,7 +11,7 @@ class OrderDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         Text(
           StringConstant.date,
           style: AppFonts.bold14,

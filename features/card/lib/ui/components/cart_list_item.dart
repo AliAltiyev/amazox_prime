@@ -38,7 +38,7 @@ class CartLisItem extends StatelessWidget {
           style: AppFonts.normal16.copyWith(
             color: ApplicationColors.black,
           ),
-          children: [
+          children: <InlineSpan>[
             TextSpan(
               text: '  ${product.ml}',
               style: AppFonts.normal10.copyWith(

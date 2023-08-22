@@ -1,11 +1,10 @@
 import 'package:core/enums/currency.dart';
-
-import '../../order.dart';
+import 'package:order/order.dart';
 
 class OrderPrice extends StatelessWidget {
   const OrderPrice({
-    super.key,
     required this.order,
+    super.key,
   });
 
   final UserOrder order;

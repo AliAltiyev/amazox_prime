@@ -12,7 +12,7 @@ class _SettingsPageState extends State<ShappingCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<CartBloc, CartState>(
-        builder: (context, state) {
+        builder: (BuildContext context, CartState state) {
           if (state is CartLoaded) {
             if (state.cart.cartItems.isNotEmpty) {
               return CartBody(
