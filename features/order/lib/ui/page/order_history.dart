@@ -36,14 +36,11 @@ class _SettingsPageState extends State<OrderHistoryPage> {
                     width: double.infinity,
                     child: Column(children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(
-                          Dimensions.SIZE_10,
-                        ),
+                        padding: const EdgeInsets.all(Dimensions.SIZE_10),
                         child: Column(
                           children: <Widget>[
                             Text(
-                              '${StringConstant.productCount} ${order.products
-                                  .length}',
+                              '${StringConstant.productCount} ${order.products.length}',
                               style: AppFonts.bold16,
                             ),
                             const SizedBox(height: Dimensions.SIZE_20),
@@ -79,15 +76,19 @@ class _SettingsPageState extends State<OrderHistoryPage> {
 
   CarouselSlider _productImageCarousel(UserOrder order) {
     return CarouselSlider.builder(
-      itemBuilder: (BuildContext context,
-          int index,
-          int realIndex,) {
+      itemBuilder: (
+        BuildContext context,
+        int index,
+        int realIndex,
+      ) {
         return Expanded(
           child: Column(
             children: <Widget>[
               Text(
                 order.products[index].name,
                 style: AppFonts.normal18,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
               ),
               Card(
                 clipBehavior: Clip.antiAlias,
@@ -99,8 +100,11 @@ class _SettingsPageState extends State<OrderHistoryPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
-                    StringConstant.orderId,
+                  const Expanded(
+                    child: Text(
+                      StringConstant.orderId,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   TextButton(
                       onPressed: () {
@@ -109,7 +113,7 @@ class _SettingsPageState extends State<OrderHistoryPage> {
                       child: Row(
                         children: <Widget>[
                           Text(
-                            (order.products[index].id * Dimensions.SIZE_99, )
+                            (order.products[index].id * Dimensions.SIZE_99,)
                                 .toString(),
                           ),
                           AppIcons.copy,
