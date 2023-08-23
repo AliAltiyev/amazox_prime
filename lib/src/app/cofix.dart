@@ -10,14 +10,14 @@ class Application extends StatelessWidget {
     return MultiBlocProvider(
       providers: <BlocProvider>[
         BlocProvider<OrderBloc>(
-          create: (context) =>
+          create: (BuildContext context) =>
               OrderBloc(getAllUserOrders: getIt<GetAllUserOrdersUseCase>()),
         ),
         BlocProvider<ThemeCubit>(
-          create: (context) => getIt<ThemeCubit>(),
+          create: (BuildContext context) => getIt<ThemeCubit>(),
         ),
         BlocProvider<CartBloc>(
-          create: (context) => CartBloc(
+          create: (BuildContext context) => CartBloc(
             saveUserOrderUseCase: getIt<SaveUserOrderUseCase>(),
             addCartItemUseCase: getIt<AddCartItemUseCase>(),
             getAllCartItemsUseCase: getIt<GetAllCartItemsUseCase>(),
@@ -26,7 +26,7 @@ class Application extends StatelessWidget {
           )..add(LoadCart()),
         ),
         BlocProvider<SettingsBloc>(
-          create: (context) => SettingsBloc(
+          create: (BuildContext context) => SettingsBloc(
             appRouter: getIt<AppRouter>(),
             logOutUseCase: getIt<LogOutUseCase>(),
             urlLauncher: getIt<UrlLauncher>(),
@@ -37,18 +37,18 @@ class Application extends StatelessWidget {
             ),
         ),
         BlocProvider<OnBoardingCubit>(
-          create: (context) => OnBoardingCubit(
+          create: (BuildContext context) => OnBoardingCubit(
             cacheFirstTimer: getIt<CacheFirstTimerUseCase>(),
             checkIfUserIsFirstTimer: getIt<CheckIfUserIsFirstTimerUseCase>(),
           ),
           child: Provider(
-            create: (context) => ChangeNotifierProvider(
-              create: (context) => UserProvider(),
+            create: (BuildContext context) => ChangeNotifierProvider(
+              create: (BuildContext context) => UserProvider(),
             ),
           ),
         ),
         BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(
+          create: (BuildContext context) => AuthBloc(
             signInWithGoogleUseCase: getIt<SigninWithGoogleUseCase>(),
             autoRouter: getIt<AppRouter>(),
             signInUseCase: getIt<SignInUseCase>(),
@@ -68,7 +68,7 @@ class Application extends StatelessWidget {
     ThemeState state,
   ) {
     return MaterialApp.router(
-      builder: (context, child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
           data: context.mediaQuery.copyWith(
             textScaleFactor:

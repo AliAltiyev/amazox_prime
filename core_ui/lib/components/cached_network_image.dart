@@ -13,8 +13,8 @@ class AppCachedNetworkImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: _url,
       imageBuilder: (
-        context,
-        imageProvider,
+        BuildContext context,
+        ImageProvider<Object> imageProvider,
       ) =>
           Container(
         decoration: BoxDecoration(
@@ -29,8 +29,8 @@ class AppCachedNetworkImage extends StatelessWidget {
         ),
       ),
       placeholder: (
-        context,
-        url,
+        BuildContext context,
+        String url,
       ) =>
           SpinKitFadingCircle(
         itemBuilder: (
@@ -47,8 +47,8 @@ class AppCachedNetworkImage extends StatelessWidget {
         },
       ),
       errorWidget: (
-        context,
-        url,
+        BuildContext context,
+        String url,
         error,
       ) =>
           AppIcons.error,

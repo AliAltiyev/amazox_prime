@@ -6,9 +6,7 @@ class OrderMapper {
     return UserOrder(
       id: userOrderModel.id,
       dateTime: userOrderModel.date,
-      products: userOrderModel.products
-          .map((e) => ProductMapper.toEntity(e))
-          .toList(),
+      products: userOrderModel.products.map(ProductMapper.toEntity).toList(),
       price: userOrderModel.price,
     );
   }
@@ -17,8 +15,7 @@ class OrderMapper {
     return UserOrderEntity(
       id: userOrder.id,
       date: userOrder.dateTime,
-      products:
-          userOrder.products.map((e) => ProductMapper.toModel(e)).toList(),
+      products: userOrder.products.map(ProductMapper.toModel).toList(),
       price: userOrder.price,
     );
   }

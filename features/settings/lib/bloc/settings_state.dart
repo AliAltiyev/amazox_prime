@@ -8,7 +8,7 @@ final class FontSizeState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
+  List<Object?> get props => <Object?>[
         fontSize,
       ];
 
