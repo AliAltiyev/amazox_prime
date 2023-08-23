@@ -36,7 +36,9 @@ dependencies:
   provider: ^6.0.5
   #image picker
   image_picker: ^1.0.1
-
+  #uuid
+  uuid: ^3.0.7
+  
 
 dev_dependencies:
   flutter_test:

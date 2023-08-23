@@ -1,3 +1,78 @@
 {
-  "commentTranslate.hover.enabled": false
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Community Material Theme Darker High Contrast",
+  "explorer.experimental.fileNesting.enabled": true,
+  "explorer.experimental.fileNesting.expand": false,
+  "explorer.experimental.fileNesting.patterns": {
+    "pubspec.yaml": ".flutter-plugins, .packages, .dart_tool, .flutter-plugins-dependencies, .metadata, .packages, pubspec.lock, build.yaml, analysis_options.yaml, all_lint_rules.yaml",
+    ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+    "readme.*": "authors, backers.md, changelog*, citation*, code_of_conduct.md, codeowners, contributing.md, contributors, copying, credits, governance.md, history.md, license*, maintainers, readme*, security.md, sponsors.md",
+    "*.dart": "$(capture).g.dart, $(capture).freezed.dart"
+  },
+  "[dart]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
+    },
+    "editor.fontLigatures": true,
+    "outline.showModules": true,
+    "editor.links": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": true
+  },
+  "editor.formatOnSave": true,
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "enabled",
+  "editor.fontSize": 15,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "dart.debugExternalLibraries": true,
+  "dart.debugSdkLibraries": false,
+  "dart.lineLength": 80,
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": {
+    "*.json ": "jsonc"
+  },
+  "dartImport.fixOnSave": true,
+  "ruby.format": "prettier",
+  "dart.debugExternalPackageLibraries": true,
+  "explorer.confirmDragAndDrop": false,
+  "enableTelemetry": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "redhat.telemetry.enabled": true,
+  "workbench.colorCustomizations": {
+    "tab.activeBorderTop": "#FFE81F"
+  },
+  "ShortcutMenuBar.indentLines": true,
+  "ShortcutMenuBar.userButton01Command": "",
+  "ShortcutMenuBar.startDebugging": true,
+  "ShortcutMenuBar.redo": true,
+  "bracketPairColorizer.depreciation-notice": false,
+  "tabnine.experimentalAutoImports": true
 }

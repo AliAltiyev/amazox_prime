@@ -1,11 +1,13 @@
 import 'package:data/datasource/auth/auth_remote_data_source_impl.dart';
+import 'package:data/model/order.dart';
 import 'package:data/repository_impl/auth/auth_repository_impl.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 import 'package:data/repository_impl/onboarding/on_boarding_repository_impl.dart';
+import 'package:data/repository_impl/order/order_repository_impl.dart';
 import 'package:data/repository_impl/settings/font/font_repository_impl.dart';
 
 Future<void> initDataLayer() async {
-  initHiveBox();
+  _initHiveAdapters();
 
   getIt.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(),
@@ -21,50 +23,44 @@ Future<void> initDataLayer() async {
 
   ///Products
   getIt.registerLazySingleton<FetchProductsUseCase>(
-        () => FetchProductsUseCase(repository: getIt()),
+    () => FetchProductsUseCase(repository: getIt()),
   );
 
   getIt.registerLazySingleton<FetchProductByIdUseCase>(
-        () => FetchProductByIdUseCase(repository: getIt()),
+    () => FetchProductByIdUseCase(repository: getIt()),
   );
 
   getIt.registerLazySingleton<FetchMenuItemsUseCase>(
-        () => FetchMenuItemsUseCase(productRepository: getIt()),
+    () => FetchMenuItemsUseCase(productRepository: getIt()),
   );
 
   //!Theme
   getIt.registerLazySingleton<ThemeRepository>(
-        () => ThemeRepositoryImpl(localeDataSource: getIt()),
+    () => ThemeRepositoryImpl(localeDataSource: getIt()),
   );
 
   getIt.registerLazySingleton<SaveAppThemeUseCase>(
-        () => SaveAppThemeUseCase(themeRepository: getIt<ThemeRepository>()),
+    () => SaveAppThemeUseCase(themeRepository: getIt<ThemeRepository>()),
   );
 
   getIt.registerLazySingleton<GetAppThemeUseCase>(
-        () => GetAppThemeUseCase(themeRepository: getIt<ThemeRepository>()),
+    () => GetAppThemeUseCase(themeRepository: getIt<ThemeRepository>()),
   );
 
-  ///Cart
   getIt.registerLazySingleton<LocaleDataSource>(
-        () => LocaleDataSourceImpl(
-      cartBox: Hive.box<ProductModel>(LocaleStorage.cart.name),
-      products: Hive.box<ProductModel>(LocaleStorage.products.name),
-      theme: Hive.box<bool>(LocaleStorage.theme.name),
-      font: Hive.box<FontSizeModel>(LocaleStorage.font.name),
-    ),
+    () => LocaleDataSourceImpl(),
   );
 
   getIt.registerLazySingleton<CartRepository>(
-        () => CartRepositoryImpl(localeStorage: getIt<LocaleDataSource>()),
+    () => CartRepositoryImpl(localeStorage: getIt<LocaleDataSource>()),
   );
 
   getIt.registerLazySingleton<GetAllCartItemsUseCase>(
-        () => GetAllCartItemsUseCase(cartRepository: getIt<CartRepository>()),
+    () => GetAllCartItemsUseCase(cartRepository: getIt<CartRepository>()),
   );
 
   getIt.registerLazySingleton<RemoveAllCartItemsUseCase>(
-        () => RemoveAllCartItemsUseCase(cartRepository: getIt<CartRepository>()),
+    () => RemoveAllCartItemsUseCase(cartRepository: getIt<CartRepository>()),
   );
 
   getIt.registerLazySingleton<AddCartItemUseCase>(
@@ -92,9 +88,7 @@ Future<void> initDataLayer() async {
     ),
   );
   getIt.registerLazySingleton<UserLocale>(
-    () => UserLocaleImpl(
-      userStateBox: Hive.box<bool>(LocaleStorage.userAuth.name),
-    ),
+    () => UserLocaleImpl(),
   );
 
   getIt.registerLazySingleton<OnBoardingRepository>(
@@ -110,7 +104,7 @@ Future<void> initDataLayer() async {
   );
 
   getIt.registerLazySingleton(
-        () => CacheFirstTimerUseCase(repository: getIt<OnBoardingRepository>()),
+    () => CacheFirstTimerUseCase(repository: getIt<OnBoardingRepository>()),
   );
 
   ///Auth
@@ -146,7 +140,7 @@ Future<void> initDataLayer() async {
   );
 
   getIt.registerLazySingleton<LogOutUseCase>(
-        () => LogOutUseCase(getIt<AuthRepository>()),
+    () => LogOutUseCase(getIt<AuthRepository>()),
   );
 
   getIt.registerSingleton<SignUpUseCase>(
@@ -156,26 +150,23 @@ Future<void> initDataLayer() async {
   getIt.registerLazySingleton<ForgotPasswordUseCase>(
     () => ForgotPasswordUseCase(getIt<AuthRepository>()),
   );
+
+  //Order
+  getIt.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(getIt<LocaleDataSource>()),
+  );
+
+  getIt.registerLazySingleton<GetAllUserOrdersUseCase>(
+    () => GetAllUserOrdersUseCase(orderRepository: getIt<OrderRepository>()),
+  );
+
+  getIt.registerLazySingleton<SaveUserOrderUseCase>(
+    () => SaveUserOrderUseCase(orderRepository: getIt<OrderRepository>()),
+  );
 }
 
-Future<void> initHiveBox() async {
-  getIt.registerLazySingletonAsync<Box<bool>>(() async {
-    return Hive.openBox<bool>(LocaleStorage.userAuth.name);
-  });
-
-  getIt.registerLazySingletonAsync<Box<FontSizeModel>>(() async {
-    return Hive.openBox<FontSizeModel>(LocaleStorage.font.name);
-  });
-
-  getIt.registerLazySingletonAsync<Box<ProductModel>>(() async {
-    return Hive.openBox<ProductModel>(LocaleStorage.products.name);
-  });
-
-  getIt.registerLazySingletonAsync<Box<ProductModel>>(() async {
-    return Hive.openBox<ProductModel>(LocaleStorage.cart.name);
-  });
-
-  getIt.registerLazySingletonAsync<Box<bool>>(() async {
-    return Hive.openBox<bool>(LocaleStorage.theme.name);
-  });
+void _initHiveAdapters() {
+  Hive.registerAdapter<ProductModel>(ProductModelAdapter());
+  Hive.registerAdapter<FontSizeModel>(FontSizeModelAdapter());
+  Hive.registerAdapter<UserOrderEntity>(UserOrderModelAdapter());
 }

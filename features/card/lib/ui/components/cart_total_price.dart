@@ -20,12 +20,16 @@ class CartTotalPrice extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                '${context.read<CartBloc>().totalString} ${Currency.rubl.value}',
+                '${context.read<CartBloc>().totalPrice} ${Currency.rubl.value}',
                 style: AppFonts.normal24,
               ),
               AddToCardButton(
                 text: StringConstant.makeOrder,
                 onPressed: () {
+                  context.read<CartBloc>().add(
+                        const RemoveAllProducts(),
+                      );
+
                   final SnackBar snackBar = SnackBar(
                     elevation: Dimensions.SIZE_10,
                     behavior: SnackBarBehavior.fixed,
@@ -42,9 +46,6 @@ class CartTotalPrice extends StatelessWidget {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(snackBar);
-                  context.read<CartBloc>().add(
-                        const RemoveAllProducts(),
-                      );
                 },
               ),
             ],

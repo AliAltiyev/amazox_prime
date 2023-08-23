@@ -29,3 +29,4 @@ export 'package:json_annotation/json_annotation.dart';
 
 export '../datasource/remote/remote_data_sourse.dart';
 export 'repository_impl/product/product_repository_impl.dart';
+export 'package:data/mapper/order.dart';

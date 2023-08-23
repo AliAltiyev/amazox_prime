@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:card/shopping_card.dart';
 
 part 'cart_event.dart';
@@ -8,14 +10,17 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final AddCartItemUseCase _addCartItemUseCase;
   final RemoveCartItemUseCase _removeCartItemUseCase;
   final RemoveAllCartItemsUseCase _removeAllCartItemsUseCase;
+  final SaveUserOrderUseCase _saveUserOrderUseCase;
 
   CartBloc({
     required GetAllCartItemsUseCase getAllCartItemsUseCase,
     required AddCartItemUseCase addCartItemUseCase,
+    required SaveUserOrderUseCase saveUserOrderUseCase,
     required RemoveCartItemUseCase removeCartItemUseCase,
     required RemoveAllCartItemsUseCase removeAllCartItemsUseCase,
   })  : _getAllCartItemsUseCase = getAllCartItemsUseCase,
         _addCartItemUseCase = addCartItemUseCase,
+        _saveUserOrderUseCase = saveUserOrderUseCase,
         _removeCartItemUseCase = removeCartItemUseCase,
         _removeAllCartItemsUseCase = removeAllCartItemsUseCase,
         super(CartLoading()) {
@@ -40,9 +45,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       );
     } catch (message) {
       emit(
-        CartFailure(
-          message: message.toString(),
-        ),
+        CartFailure(message: message.toString()),
       );
     }
   }
@@ -57,16 +60,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(
           CartLoaded(
             cart: Cart(
-              cartItems: List.from((state as CartLoaded).cart.cartItems)
-                ..add(event.product),
+              cartItems:
+                  List<Product>.from((state as CartLoaded).cart.cartItems)
+                    ..add(event.product),
             ),
           ),
         );
       } catch (message) {
         emit(
-          CartFailure(
-            message: message.toString(),
-          ),
+          CartFailure(message: message.toString()),
         );
       }
     }
@@ -82,8 +84,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(
           CartLoaded(
             cart: Cart(
-              cartItems: List.from((state as CartLoaded).cart.cartItems)
-                ..remove(event.product),
+              cartItems:
+                  List<Product>.from((state as CartLoaded).cart.cartItems)
+                    ..remove(event.product),
             ),
           ),
         );
@@ -102,30 +105,32 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     Emitter<CartState> emit,
   ) async {
     if (state is CartLoaded) {
-      try {
-        _removeAllCartItemsUseCase();
-        emit(
-          CartLoaded(
-            cart: Cart(
-              cartItems: List.from(
-                (state as CartLoaded).cart.cartItems,
-              )..clear(),
-            ),
+      await _saveUserOrderUseCase(
+        order: UserOrder(
+          id: const Uuid().v1(),
+          dateTime: date,
+          products: (state as CartLoaded).cart.cartItems,
+          price: totalPrice,
+        ),
+      );
+
+      _removeAllCartItemsUseCase();
+      emit(
+        CartLoaded(
+          cart: Cart(
+            cartItems: List<Product>.from(
+              (state as CartLoaded).cart.cartItems,
+            )..clear(),
           ),
-        );
-      } catch (message) {
-        emit(
-          CartFailure(
-            message: message.toString(),
-          ),
-        );
-      }
+        ),
+      );
     }
   }
 
   double get subtotal => (state as CartLoaded).cart.cartItems.fold(
         0,
-        (previousValue, element) => previousValue + element.price,
+        (double previousValue, Product element) =>
+            previousValue + element.price,
       );
 
   String get getSubtotalString => subtotal.toStringAsFixed(2);
@@ -142,9 +147,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     return subtotal + deliveryFee(subtotal) + serviceFee;
   }
 
+  double get totalPrice =>
+      total(subtotal, deliveryFee, (state as CartLoaded).serviceFee);
+
   String get totalString =>
       total(subtotal, deliveryFee, (state as CartLoaded).serviceFee)
           .toStringAsFixed(2);
 
   String get deliveryFeeString => deliveryFee(subtotal).toStringAsFixed(2);
+
+  String get date => DateTime.now().toString().substring(0, 10);
 }

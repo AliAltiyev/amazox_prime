@@ -1,6 +1,14 @@
 import 'package:data/data.dart';
+import 'package:data/model/order.dart';
 
 abstract class LocaleDataSource {
+  //init
+  Future<void> initBox();
+  //!Order
+  Future<void> addOrder(UserOrderEntity orderModel);
+
+  List<UserOrderEntity> getAllOrders();
+
   //!Theme
   Future<void> saveAppTheme(bool isDark);
 
@@ -27,5 +35,4 @@ abstract class LocaleDataSource {
   Future<void> saveFontSize(FontSizeModel model);
 
   FontSizeModel getFontSize();
-
 }

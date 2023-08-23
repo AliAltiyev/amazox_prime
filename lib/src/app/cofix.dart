@@ -9,11 +9,16 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: <BlocProvider>[
+        BlocProvider<OrderBloc>(
+          create: (context) =>
+              OrderBloc(getAllUserOrders: getIt<GetAllUserOrdersUseCase>()),
+        ),
         BlocProvider<ThemeCubit>(
           create: (context) => getIt<ThemeCubit>(),
         ),
         BlocProvider<CartBloc>(
           create: (context) => CartBloc(
+            saveUserOrderUseCase: getIt<SaveUserOrderUseCase>(),
             addCartItemUseCase: getIt<AddCartItemUseCase>(),
             getAllCartItemsUseCase: getIt<GetAllCartItemsUseCase>(),
             removeCartItemUseCase: getIt<RemoveCartItemUseCase>(),
@@ -50,7 +55,7 @@ class Application extends StatelessWidget {
             signUpUseCase: getIt<SignUpUseCase>(),
             forgotPasswordUseCase: getIt<ForgotPasswordUseCase>(),
           ),
-        )
+        ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: _buildWithTheme,

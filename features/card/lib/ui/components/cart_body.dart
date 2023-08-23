@@ -31,7 +31,7 @@ class CartBody extends StatelessWidget {
                 endActionPane:
                     ActionPane(motion: const ScrollMotion(), children: <Widget>[
                   SlidableAction(
-                    onPressed: (context) {
+                    onPressed: (BuildContext context) {
                       context.read<CartBloc>().add(
                             RemoveProduct(product),
                           );
@@ -47,7 +47,7 @@ class CartBody extends StatelessWidget {
                     label: StringConstant.delete,
                   ),
                   SlidableAction(
-                    onPressed: (context) {
+                    onPressed: (BuildContext context) {
                       //TODO: Add share feature
                     },
                     borderRadius: const BorderRadius.all(

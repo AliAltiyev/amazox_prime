@@ -1,20 +1,21 @@
 import 'package:data/data.dart';
+import 'package:data/model/order.dart';
 
 final class LocaleDataSourceImpl extends LocaleDataSource {
-  final Box<ProductModel> _cartBox;
-  final Box<ProductModel> _products;
-  final Box<FontSizeModel> _font;
-  final Box<bool> _theme;
+  late Box<ProductModel> _cartBox;
+  late Box<ProductModel> _products;
+  late Box<FontSizeModel> _font;
+  late Box<bool> _theme;
+  late Box<UserOrderEntity> _order;
 
-  LocaleDataSourceImpl({
-    required Box<ProductModel> cartBox,
-    required Box<ProductModel> products,
-    required Box<FontSizeModel> font,
-    required Box<bool> theme,
-  })  : _cartBox = cartBox,
-        _products = products,
-        _font = font,
-        _theme = theme;
+  @override
+  Future<void> initBox() async {
+    _cartBox = await Hive.openBox<ProductModel>(LocaleStorage.cart.name);
+    _products = await Hive.openBox<ProductModel>(LocaleStorage.products.name);
+    _font = await Hive.openBox<FontSizeModel>(LocaleStorage.font.name);
+    _theme = await Hive.openBox<bool>(LocaleStorage.theme.name);
+    _order = await Hive.openBox<UserOrderEntity>(LocaleStorage.order.name);
+  }
 
   @override
   Future<void> saveAppTheme(bool isDark) async {
@@ -74,5 +75,15 @@ final class LocaleDataSourceImpl extends LocaleDataSource {
   @override
   Future<void> saveFontSize(FontSizeModel model) async {
     await _font.add(model);
+  }
+
+  @override
+  Future<void> addOrder(UserOrderEntity orderModel) async {
+    await _order.add(orderModel);
+  }
+
+  @override
+  List<UserOrderEntity> getAllOrders() {
+    return _order.values.toList();
   }
 }
