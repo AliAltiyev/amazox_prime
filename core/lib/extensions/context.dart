@@ -5,4 +5,5 @@ extension Context on BuildContext {
   TextTheme get primaryTextTheme => Theme.of(this).primaryTextTheme;
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   double get textScaleFactor => MediaQuery.of(this).textScaleFactor;
+  ThemeData get theme => Theme.of(this);
 }

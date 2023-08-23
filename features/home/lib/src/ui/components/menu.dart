@@ -10,7 +10,7 @@ class HomeMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return BlocBuilder<MenuBloc, MenuState>(
-      builder: (context, state) {
+      builder: (BuildContext context, MenuState state) {
         if (state is LoadedMenuState) {
           return SizedBox(
             height: Dimensions.SIZE_120,
@@ -19,8 +19,8 @@ class HomeMenu extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemExtent: Dimensions.SIZE_120,
-              itemBuilder: (context, index) {
-                final data = state.menu[index];
+              itemBuilder: (BuildContext context, int index) {
+                final Menu data = state.menu[index];
                 return Column(
                   children: <Widget>[
                     SizedBox(
@@ -35,9 +35,11 @@ class HomeMenu extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      data.name,
-                      style: AppFonts.bold14,
+                    Expanded(
+                      child: Text(
+                        data.name,
+                        style: AppFonts.bold14,
+                      ),
                     ),
                   ],
                 );

@@ -18,13 +18,13 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(
-          create: (context) => HomeBloc(
+          create: (BuildContext context) => HomeBloc(
             connectionUseCase: getIt<Connection>(),
             getProductsUseCase: getIt<FetchProductsUseCase>(),
           ),
         ),
         BlocProvider<MenuBloc>(
-          create: (context) => MenuBloc(
+          create: (BuildContext context) => MenuBloc(
             fetchMenuItemsUseCase: getIt<FetchMenuItemsUseCase>(),
           ),
         ),
@@ -48,14 +48,14 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
               const HomeMenuTitle(),
               const SliverToBoxAdapter(child: HomeMenu()),
               BlocConsumer<HomeBloc, HomeState>(
-                listener: (context, state) {
+                listener: (BuildContext context, HomeState state) {
                   if (state is NoInternetConnectionState) {
                     AppToast.showToast();
                   }
                 },
-                builder: (context, state) {
+                builder: (BuildContext context, HomeState state) {
                   return BlocBuilder<HomeBloc, HomeState>(
-                    builder: (builderContext, state) {
+                    builder: (BuildContext builderContext, HomeState state) {
                       if (state is LoadedProductsState) {
                         return SliverGridList(state: state);
                       } else if (state is LoadingProductsState) {

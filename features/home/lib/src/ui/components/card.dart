@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:home/src/home.dart';
 
 class CustomCard extends StatelessWidget {
@@ -28,7 +26,7 @@ class CustomCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(
-                height: size.height / Dimensions.SIZE_4,
+                height: size.height / Dimensions.SIZE_6,
                 width: size.width / Dimensions.SIZE_9,
                 child: AppCachedNetworkImage(
                   url: _product.image,
@@ -56,31 +54,26 @@ class CustomCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          const SizedBox(height: Dimensions.SIZE_10),
           Text(
             '${_product.price}${Currency.rubl.value}',
-            style: AppFonts.normal24,
+            style: AppFonts.bold16,
           ),
           Text(
             _product.name,
             style: AppFonts.normal18,
             overflow: TextOverflow.ellipsis,
           ),
-          SizedBox(
-            height: size.height / Dimensions.SIZE_120,
-          ),
           Text(
             '${_product.ml} ${Weight.ml.value}',
-            style: AppFonts.bold14,
+            style: AppFonts.bold12,
           ),
-          SizedBox(
-            height: size.height / Dimensions.SIZE_120,
-          ),
+          const SizedBox(height: Dimensions.SIZE_30),
           BlocBuilder<CartBloc, CartState>(
-            builder: (context, state) {
+            builder: (BuildContext context, CartState state) {
               return AddToCardButton(
                 text: StringConstant.addToCard,
                 onPressed: () {
-                  log('Clicked');
                   context.read<CartBloc>().add(
                         AddProduct(_product),
                       );

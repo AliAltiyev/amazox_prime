@@ -13,8 +13,8 @@ class SliverGridList extends StatelessWidget {
     return SliverGrid.builder(
       gridDelegate: WidgetConstants.sliverGridDelegateWithFixedCrossAxisCount,
       itemCount: state.products.length,
-      itemBuilder: (context, index) {
-        final data = state.products[index];
+      itemBuilder: (BuildContext context, int index) {
+        final Product data = state.products[index];
         return InkWell(
           onTap: () {
             context.router.push(

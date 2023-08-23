@@ -3,11 +3,11 @@ import 'package:core_ui/core_ui.dart';
 class AddToCardButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
-
+  final double textScaleFactory = 1;
   const AddToCardButton({
-    super.key,
     required this.onPressed,
     required this.text,
+    super.key,
   });
 
   @override
@@ -29,6 +29,7 @@ class AddToCardButton extends StatelessWidget {
         style: AppFonts.normal18.copyWith(
           color: ApplicationColors.black,
         ),
+        textScaleFactor: textScaleFactory,
       ),
     );
   }
