@@ -35,11 +35,9 @@ class HomeMenu extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Text(
-                        data.name,
-                        style: AppFonts.bold14,
-                      ),
+                    Text(
+                      data.name,
+                      style: AppFonts.bold14,
                     ),
                   ],
                 );
