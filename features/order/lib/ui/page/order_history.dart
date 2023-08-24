@@ -42,8 +42,7 @@ class _SettingsPageState extends State<OrderHistoryPage> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              '${StringConstant.productCount} ${order.products
-                                  .length}',
+                              '${StringConstant.productCount} ${order.products.length}',
                               style: AppFonts.bold16,
                             ),
                             const SizedBox(height: Dimensions.SIZE_20),
@@ -79,46 +78,50 @@ class _SettingsPageState extends State<OrderHistoryPage> {
 
   CarouselSlider _productImageCarousel(UserOrder order) {
     return CarouselSlider.builder(
-      itemBuilder: (BuildContext context,
-          int index,
-          int realIndex,) {
-        return Expanded(
-          child: Column(
-            children: <Widget>[
-              Text(
-                order.products[index].name,
-                style: AppFonts.normal18,
+      itemBuilder: (
+        BuildContext context,
+        int index,
+        int realIndex,
+      ) {
+        return Column(
+          children: <Widget>[
+            Text(
+              order.products[index].name,
+              style: AppFonts.normal18,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: Image.network(
+                order.products[index].image,
+                fit: BoxFit.fill,
               ),
-              Card(
-                clipBehavior: Clip.antiAlias,
-                child: Image.network(
-                  order.products[index].image,
-                  fit: BoxFit.fill,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  StringConstant.orderId,
+                  style: AppFonts.bold12,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    StringConstant.orderId,
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        //TODO ADD copy product ID
-                      },
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            (order.products[index].id * Dimensions.SIZE_99, )
-                                .toString(),
-                          ),
-                          AppIcons.copy,
-                        ],
-                      )),
-                ],
-              ),
-            ],
-          ),
+                TextButton(
+                    onPressed: () {
+                      //TODO ADD copy product ID
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          (order.products[index].id * Dimensions.SIZE_99,)
+                              .toString()
+                              .substring(1, 4),
+                          style: AppFonts.bold12,
+                        ),
+                        AppIcons.copy,
+                      ],
+                    )),
+              ],
+            ),
+          ],
         );
       },
       itemCount: order.products.length,
