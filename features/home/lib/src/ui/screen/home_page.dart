@@ -203,7 +203,7 @@ class HomeTitle extends StatelessWidget {
       right: Dimensions.SIZE_0,
       left: Dimensions.SIZE_0,
       top: Dimensions.SIZE_40,
-      height: Dimensions.SIZE_50,
+      height: Dimensions.SIZE_75,
       child: Column(children: <Widget>[
         Text(
           _state.products[_currentPage.toInt()].name,
