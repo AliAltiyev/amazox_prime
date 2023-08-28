@@ -1,6 +1,6 @@
 import 'package:home/src/home.dart';
 
-class SliverGridList extends StatelessWidget {
+class SliverGridList extends StatefulWidget {
   const SliverGridList({
     super.key,
     required this.state,
@@ -9,12 +9,17 @@ class SliverGridList extends StatelessWidget {
   final LoadedProductsState state;
 
   @override
+  State<SliverGridList> createState() => _SliverGridListState();
+}
+
+class _SliverGridListState extends State<SliverGridList> {
+  @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
       gridDelegate: WidgetConstants.sliverGridDelegateWithFixedCrossAxisCount,
-      itemCount: state.products.length,
+      itemCount: widget.state.products.length,
       itemBuilder: (BuildContext context, int index) {
-        final Product data = state.products[index];
+        final Product data = widget.state.products[index];
         return InkWell(
           onTap: () {
             context.router.push(
@@ -23,11 +28,8 @@ class SliverGridList extends StatelessWidget {
               ),
             );
           },
-          child: Hero(
-            tag: '123',
-            child: CustomCard(
-              product: data,
-            ),
+          child: CustomCard(
+            product: data,
           ),
         );
       },

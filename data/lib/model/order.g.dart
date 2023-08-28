@@ -6,7 +6,7 @@ part of 'order.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserOrderModelAdapter extends TypeAdapter<UserOrderEntity> {
+class UserOrderEntityAdapter extends TypeAdapter<UserOrderEntity> {
   @override
   final int typeId = 3;
 
@@ -44,7 +44,7 @@ class UserOrderModelAdapter extends TypeAdapter<UserOrderEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserOrderModelAdapter &&
+      other is UserOrderEntityAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

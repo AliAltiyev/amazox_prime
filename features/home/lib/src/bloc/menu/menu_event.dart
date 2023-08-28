@@ -4,3 +4,5 @@ part of 'menu_bloc.dart';
 abstract class MenuEvent {}
 
 final class FetchMenuEvent extends MenuEvent {}
+
+final class ChangeMenuItemSizeEvent extends MenuEvent {}

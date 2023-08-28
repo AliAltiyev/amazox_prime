@@ -2,6 +2,8 @@ import 'package:navigation/navigation.dart';
 
 part 'app_router.gr.dart';
 
+const _duration = 1000;
+
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
@@ -29,15 +31,18 @@ part 'app_router.gr.dart';
           name: 'homeRouter',
           page: EmptyPageRouter,
           children: [
-            AutoRoute(
+            CustomRoute(
               path: '',
               page: HomeView,
               name: 'homePage',
+              transitionsBuilder: TransitionsBuilders.fadeIn,
             ),
-            AutoRoute(
+            CustomRoute(
               path: ':productId',
               page: ProductDetailPage,
               name: 'detailsPage',
+              durationInMilliseconds: _duration,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
             ),
           ],
         ),
@@ -47,6 +52,7 @@ part 'app_router.gr.dart';
           page: ShappingCard,
         ),
         AutoRoute(
+          maintainState: false,
           path: 'orderPage',
           name: 'OrderHistoryRouter',
           page: OrderHistoryPage,

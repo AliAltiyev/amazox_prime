@@ -14,31 +14,38 @@ class CustomCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(ApplicationPadding.PADDING_4),
-      child: Card(
-        color: ApplicationColors.white,
-        elevation: Dimensions.SIZE_10,
-        clipBehavior: Clip.antiAlias,
-        child: Padding(
-          padding: const EdgeInsets.all(
-            ApplicationPadding.PADDING_4,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              SizedBox(
-                height: size.height / Dimensions.SIZE_6,
-                width: size.width / Dimensions.SIZE_9,
-                child: AppCachedNetworkImage(
-                  url: _product.image,
-                ),
+      child: Stack(
+        children: <Widget>[
+          Card(
+            color: ApplicationColors.white,
+            elevation: Dimensions.SIZE_10,
+            clipBehavior: Clip.antiAlias,
+            child: Padding(
+              padding: const EdgeInsets.all(
+                ApplicationPadding.PADDING_4,
               ),
-              _detailsText(
-                size: size,
-                context: context,
-              )
-            ],
-          ),
-        ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  SizedBox(
+                    height: size.height / Dimensions.SIZE_6,
+                    width: size.width / Dimensions.SIZE_9,
+                    child: Hero(
+                      tag: HeroTags.homeToDetails,
+                      child: AppCachedNetworkImage(
+                        url: _product.image,
+                      ),
+                    ),
+                  ),
+                  _detailsText(
+                    size: size,
+                    context: context,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

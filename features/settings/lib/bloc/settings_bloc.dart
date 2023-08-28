@@ -4,40 +4,40 @@ import 'package:navigation/navigation/app_router.dart';
 import 'package:settings/settings.dart';
 
 part 'settings_event.dart';
+
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
-  final SaveFontSizeUsecase _saveFontSizeUsecase;
-  final GetFontSizeUsecase _getFontSizeUsecase;
+  final SaveFontSizeUsecase _saveFontSizeUseCase;
+  final GetFontSizeUsecase _getFontSizeUseCase;
   final UrlLauncher _urlLauncher;
   final LogOutUseCase _logOutUseCase;
   final AppRouter _appRouter;
 
-  SettingsBloc(
-      {required SaveFontSizeUsecase saveFontSizeUsecase,
-      required GetFontSizeUsecase getFontSizeUsecase,
-      required UrlLauncher urlLauncher,
-      required AppRouter appRouter,
-      required logOutUseCase})
-      : _saveFontSizeUsecase = saveFontSizeUsecase,
-        _getFontSizeUsecase = getFontSizeUsecase,
+  SettingsBloc({
+    required SaveFontSizeUsecase saveFontSizeUseCase,
+    required GetFontSizeUsecase getFontSizeUseCase,
+    required UrlLauncher urlLauncher,
+    required AppRouter appRouter,
+    required logOutUseCase,
+  })  : _saveFontSizeUseCase = saveFontSizeUseCase,
+        _getFontSizeUseCase = getFontSizeUseCase,
         _urlLauncher = urlLauncher,
         _logOutUseCase = logOutUseCase,
         _appRouter = appRouter,
         super(FontSizeState(fontSize: FontSizeEntity())) {
-    on<SaveFontSizeEvent>(_changeFontSize);
-    on<GetFontSizeEvent>(_getFontSize);
-    on<LaunchContactsEvent>(_launchContacts);
-    on<SignOutFromAppEvent>(_singOutHandler);
-    on<PopEvent>(_popHandler);
-    on<NavigateToEditProfileEvent>(_navigateToEditProfileHandler);
+    on<SaveFontSizeEvent>(_onChangeFontSize);
+    on<GetFontSizeEvent>(_onGetFontSize);
+    on<LaunchContactsEvent>(_onLaunchContacts);
+    on<SignOutFromAppEvent>(_onSignOut);
+    on<PopEvent>(_onPop);
   }
 
-  Future<void> _changeFontSize(
+  Future<void> _onChangeFontSize(
     SaveFontSizeEvent event,
     Emitter<FontSizeState> emit,
   ) async {
-    await _saveFontSizeUsecase.call(
+    await _saveFontSizeUseCase.call(
       fontsize: event.fontSizeEntity,
     );
     emit(
@@ -45,25 +45,25 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
     );
   }
 
-  Future<void> _getFontSize(
+  Future<void> _onGetFontSize(
     GetFontSizeEvent event,
     Emitter<FontSizeState> emit,
   ) async {
-    final FontSizeEntity fontSize = _getFontSizeUsecase();
+    final FontSizeEntity fontSize = _getFontSizeUseCase();
 
     emit(
       state.copyWith(fontSize: fontSize),
     );
   }
 
-  Future<void> _launchContacts(
+  Future<void> _onLaunchContacts(
     LaunchContactsEvent event,
     Emitter<FontSizeState> emit,
   ) async {
     await _urlLauncher.launch(ApiConstants.contactsUrl);
   }
 
-  Future<void> _singOutHandler(
+  Future<void> _onSignOut(
     SignOutFromAppEvent event,
     Emitter<FontSizeState> emit,
   ) async {
@@ -71,19 +71,10 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
     await _appRouter.replace(const SignInPage());
   }
 
-  Future<void> _popHandler(
+  Future<void> _onPop(
     PopEvent event,
     Emitter<FontSizeState> emit,
   ) async {
     await _appRouter.pop();
-  }
-
-  Future<void> _navigateToEditProfileHandler(
-    NavigateToEditProfileEvent event,
-    Emitter<FontSizeState> emit,
-  ) async {
-    await _appRouter.replace(
-      const EditProfilePage(),
-    );
   }
 }

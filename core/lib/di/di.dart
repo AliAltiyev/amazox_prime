@@ -1,15 +1,15 @@
 import 'package:core/core.dart';
 
-final getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 
 Future<void> initAppModule() async {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
   getIt.registerLazySingleton<FirebaseFirestore>(() => fireStore);
   getIt.registerLazySingleton<UrlLauncher>(
-    () => UrlLauncher(),
+    UrlLauncher.new,
   );
   getIt.registerLazySingleton<InternetConnectionChecker>(
-      () => InternetConnectionChecker());
+      InternetConnectionChecker.new);
 
   getIt.registerLazySingleton<Connection>(
     () => Connection(connection: getIt<InternetConnectionChecker>()),

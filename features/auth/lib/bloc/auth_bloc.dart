@@ -1,6 +1,7 @@
 import 'package:auth/auth.dart';
 
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -25,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) {
       emit(const AuthLoading());
     });
-    on<SignInEvent>(_signInHandler);
+    on<SignInEvent>(_onSignIn);
     on<SignUpEvent>(_signUpHandler);
     on<ForgotPasswordEvent>(_forgotPasswordHandler);
     on<NavigateToRegistrationPageEvent>(_navigateToRegistration);
@@ -34,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInWithGoogleEvent>(_handleSignInWithGoogle);
   }
 
-  Future<void> _signInHandler(
+  Future<void> _onSignIn(
     SignInEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -107,7 +108,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     NavigateTosHomePageEvent event,
     Emitter<AuthState> emit,
   ) async {
-    await _autoRouter.replace<Object?>(const DashBoardPage());
+    await _autoRouter.pushAndPopUntil(
+      const DashBoardPage(),
+      predicate: (route) => true,
+    );
   }
 
   Future<void> _handleSignInWithGoogle(

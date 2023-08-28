@@ -6,6 +6,7 @@ part 'menu_state.dart';
 
 final class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final FetchMenuItemsUseCase _fetchMenuItemsUseCase;
+  bool menuAnimatedContainer = false;
 
   MenuBloc({
     required FetchMenuItemsUseCase fetchMenuItemsUseCase,
@@ -14,6 +15,8 @@ final class MenuBloc extends Bloc<MenuEvent, MenuState> {
           InitialMenuState(),
         ) {
     on<FetchMenuEvent>(_fetchMenuEvent);
+    on<ChangeMenuItemSizeEvent>(_onChangeMenuItemSize);
+
     add(FetchMenuEvent());
   }
 
@@ -34,5 +37,12 @@ final class MenuBloc extends Bloc<MenuEvent, MenuState> {
         error: StringConstants.stateError,
       ));
     }
+  }
+
+  Future<void> _onChangeMenuItemSize(
+    ChangeMenuItemSizeEvent event,
+    Emitter<MenuState> emit,
+  ) async {
+    menuAnimatedContainer = !menuAnimatedContainer;
   }
 }

@@ -30,8 +30,8 @@ class Application extends StatelessWidget {
             appRouter: getIt<AppRouter>(),
             logOutUseCase: getIt<LogOutUseCase>(),
             urlLauncher: getIt<UrlLauncher>(),
-            getFontSizeUsecase: getIt<GetFontSizeUsecase>(),
-            saveFontSizeUsecase: getIt<SaveFontSizeUsecase>(),
+            getFontSizeUseCase: getIt<GetFontSizeUsecase>(),
+            saveFontSizeUseCase: getIt<SaveFontSizeUsecase>(),
           )..add(
               GetFontSizeEvent(),
             ),

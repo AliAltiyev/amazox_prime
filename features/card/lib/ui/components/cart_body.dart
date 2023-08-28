@@ -1,6 +1,6 @@
 import 'package:card/shopping_card.dart';
 
-class CartBody extends StatelessWidget {
+class CartBody extends StatefulWidget {
   final CartLoaded _state;
 
   const CartBody({
@@ -8,6 +8,11 @@ class CartBody extends StatelessWidget {
     super.key,
   }) : _state = state;
 
+  @override
+  State<CartBody> createState() => _CartBodyState();
+}
+
+class _CartBodyState extends State<CartBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +28,9 @@ class CartBody extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverList.builder(
-            itemCount: _state.cart.cartItems.length,
+            itemCount: widget._state.cart.cartItems.length,
             itemBuilder: (BuildContext context, int index) {
-              final Product product = _state.cart.cartItems[index];
+              final Product product = widget._state.cart.cartItems[index];
               return Slidable(
                 direction: Axis.horizontal,
                 endActionPane:
@@ -65,12 +70,14 @@ class CartBody extends StatelessWidget {
                   padding: const EdgeInsets.all(
                     ApplicationPadding.PADDING_10,
                   ),
-                  child: CartLisItem(product: product),
+                  child: CartLisItem(
+                    product: product,
+                  ),
                 ),
               );
             },
           ),
-          CartSublist(state: _state),
+          CartSublist(state: widget._state),
         ],
       ),
     );
@@ -78,7 +85,7 @@ class CartBody extends StatelessWidget {
 
   BlocBuilder _deleteAllCartItems() {
     return BlocBuilder<CartBloc, CartState>(
-      builder: (context, state) {
+      builder: (BuildContext context, CartState state) {
         return GestureDetector(
           onTap: () {
             context.read<CartBloc>().add(

@@ -8,7 +8,7 @@ class AuthUtils {
     BuildContext fromHeroContext,
     BuildContext toHeroContext,
   ) {
-    final toText = DefaultTextStyle.of(toHeroContext).style;
+    final TextStyle toText = DefaultTextStyle.of(toHeroContext).style;
     return DefaultTextStyle(
       style: toText,
       child: toHeroContext.widget,

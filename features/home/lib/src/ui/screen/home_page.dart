@@ -16,7 +16,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider>[
         BlocProvider<HomeBloc>(
           create: (BuildContext context) => HomeBloc(
             connectionUseCase: getIt<Connection>(),
@@ -57,7 +57,9 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                   return BlocBuilder<HomeBloc, HomeState>(
                     builder: (BuildContext builderContext, HomeState state) {
                       if (state is LoadedProductsState) {
-                        return SliverGridList(state: state);
+                        return SliverGridList(
+                          state: state,
+                        );
                       } else if (state is LoadingProductsState) {
                         return const SliverToBoxAdapter(
                           child: Center(
