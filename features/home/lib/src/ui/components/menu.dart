@@ -13,8 +13,6 @@ class HomeMenu extends StatefulWidget {
 class _HomeMenuState extends State<HomeMenu> {
   @override
   Widget build(BuildContext context) {
-    bool containerState = false;
-
     final Size size = MediaQuery.sizeOf(context);
     return BlocBuilder<MenuBloc, MenuState>(
       builder: (BuildContext context, MenuState state) {

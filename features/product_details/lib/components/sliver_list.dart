@@ -1,4 +1,3 @@
-import 'package:product_details/bloc/produc_count/product_count_cubit.dart';
 import 'package:product_details/product_details.dart';
 
 class DetailsSliverList extends StatelessWidget {
@@ -51,30 +50,10 @@ class DetailsSliverList extends StatelessWidget {
                         SizedBox(
                           width: size.width / Dimensions.SIZE_6,
                         ),
-                        AppAddButton(
-                          icon: AppIcons.increament,
-                          onPress: () {
-                            context
-                                .read<ProductCounterCubit>()
-                                .incrementProductCount();
-                          },
-                        ),
-                        BlocBuilder<ProductCounterCubit, int>(
-                          builder: (context, state) {
-                            return Text(
-                              state.toString(),
-                              style: AppFonts.normal18,
-                            );
-                          },
-                        ),
-                        AppAddButton(
-                          onPress: () {
-                            context
-                                .read<ProductCounterCubit>()
-                                .decrementProductCount();
-                          },
-                          icon: AppIcons.decremeent,
-                        ),
+                        Text(
+                          '${data.price.toString()} ${Currency.rubl.value}',
+                          style: AppFonts.bold24,
+                        )
                       ],
                     ),
                   ),
@@ -86,9 +65,11 @@ class DetailsSliverList extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       top: ApplicationPadding.PADDING_20,
                     ),
-                    child: Text(
-                      data.bigDescription,
-                      style: AppFonts.normal16,
+                    child: Expanded(
+                      child: Text(
+                        data.bigDescription,
+                        style: AppFonts.normal16,
+                      ),
                     ),
                   ),
                   Padding(
@@ -96,25 +77,27 @@ class DetailsSliverList extends StatelessWidget {
                       top: ApplicationPadding.PADDING_20,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            Text(
-                              StringConstant.price,
-                              style: AppFonts.normal18,
-                            ),
-                            Text(
-                              '${data.price.toString()} ${Currency.rubl.value}',
-                              style: AppFonts.bold24,
-                            )
-                          ],
-                        ),
-                        AddToCardButton(
-                          onPressed: () {
-                            //TODO: Add to card
+                        BlocBuilder<CartBloc, CartState>(
+                          builder: (BuildContext context, CartState state) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: 80,
+                                width: size.width / 1.2,
+                                child: AddToCardButton(
+                                  onPressed: () {
+                                    context
+                                        .read<CartBloc>()
+                                        .add(AddProduct(data));
+                                  },
+                                  text: StringConstant.buy,
+                                ),
+                              ),
+                            );
                           },
-                          text: StringConstant.buy,
                         )
                       ],
                     ),

@@ -15,24 +15,32 @@ class SliverGridList extends StatefulWidget {
 class _SliverGridListState extends State<SliverGridList> {
   @override
   Widget build(BuildContext context) {
-    return SliverGrid.builder(
-      gridDelegate: WidgetConstants.sliverGridDelegateWithFixedCrossAxisCount,
-      itemCount: widget.state.products.length,
-      itemBuilder: (BuildContext context, int index) {
-        final Product data = widget.state.products[index];
-        return InkWell(
-          onTap: () {
-            context.router.push(
-              DetailsPage(
-                productId: data.id,
-              ),
-            );
-          },
-          child: CustomCard(
-            product: data,
-          ),
-        );
-      },
+    // return SliverGrid.builder(
+    //   gridDelegate: WidgetConstants.sliverGridDelegateWithFixedCrossAxisCount,
+    //   itemCount: widget.state.products.length,
+    //   itemBuilder: (BuildContext context, int index) {
+    //     final Product data = widget.state.products[index];
+    //     return InkWell(
+    //       onTap: () {
+    //         context.router.push(
+    //           DetailsPage(
+    //             productId: data.id,
+    //           ),
+    //         );
+    //       },
+    //       child: CustomCard(
+    //         product: data,
+    //       ),
+    //     );
+    //   },
+    // );
+    return Stack(
+      children: [
+        Positioned(
+            child: Container(
+          color: ApplicationColors.red,
+        ))
+      ],
     );
   }
 }
