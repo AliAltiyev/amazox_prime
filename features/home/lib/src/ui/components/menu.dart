@@ -32,8 +32,8 @@ class _HomeMenuState extends State<HomeMenu> {
                     AnimatedContainer(
                       duration: DurationEnum.high.duration,
                       height: bloc.menuAnimatedContainer
-                          ? Dimensions.SIZE_75
-                          : Dimensions.SIZE_99,
+                          ? Dimensions.SIZE_50
+                          : Dimensions.SIZE_75,
                       child: SizedBox(
                         height: size.height / Dimensions.SIZE_12,
                         child: GestureDetector(

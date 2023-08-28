@@ -83,7 +83,7 @@ class _CartBodyState extends State<CartBody> {
     );
   }
 
-  BlocBuilder _deleteAllCartItems() {
+  BlocBuilder<CartBloc, CartState> _deleteAllCartItems() {
     return BlocBuilder<CartBloc, CartState>(
       builder: (BuildContext context, CartState state) {
         return GestureDetector(

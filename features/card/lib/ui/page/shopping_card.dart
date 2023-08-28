@@ -23,7 +23,9 @@ class _SettingsPageState extends State<ShappingCard> {
             }
           } else if (state is CartLoading) {
             return const Center(
-              child: CircularProgressIndicator.adaptive(),
+              child: CircularProgressIndicator.adaptive(
+                backgroundColor: ApplicationColors.primaryButtonColor,
+              ),
             );
           } else {
             return const Center(

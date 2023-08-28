@@ -7,40 +7,38 @@ class HomeMenuTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(
-              ApplicationPadding.PADDING_20,
-            ),
-            child: Text(
-              StringConstant.restarants,
-              style: AppFonts.normal18,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(
+            ApplicationPadding.PADDING_10,
           ),
-          TextButton(
-            onPressed: () {
-              //TODO: Add navigation
-            },
-            child: Row(
-              children: <Widget>[
-                Text(
-                  StringConstant.all,
-                  style: AppFonts.bold16.copyWith(
-                    color: ApplicationColors.primaryButtonColor,
-                  ),
-                ),
-                const Icon(
-                  Icons.chevron_right_rounded,
+          child: Text(
+            StringConstant.restarants,
+            style: AppFonts.normal18,
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            //TODO: Add navigation
+          },
+          child: Row(
+            children: <Widget>[
+              Text(
+                StringConstant.all,
+                style: AppFonts.bold16.copyWith(
                   color: ApplicationColors.primaryButtonColor,
                 ),
-              ],
-            ),
-          )
-        ],
-      ),
+              ),
+              const Icon(
+                Icons.chevron_right_rounded,
+                color: ApplicationColors.primaryButtonColor,
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

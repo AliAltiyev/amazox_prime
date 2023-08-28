@@ -52,7 +52,7 @@ class CartSublist extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  '${context.read<CartBloc>().getSubtotalString} ${Currency.rubl.value}',
+                  '${context.read<CartBloc>().deliveryFeeString} ${Currency.rubl.value}',
                   style: AppFonts.normal14,
                 ),
                 AppIcons.chevronRightOutlined
