@@ -4,19 +4,18 @@ import 'package:navigation/navigation/app_router.dart';
 import 'package:settings/settings.dart';
 
 part 'settings_event.dart';
-
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
-  final SaveFontSizeUsecase _saveFontSizeUseCase;
-  final GetFontSizeUsecase _getFontSizeUseCase;
+  final SaveFontSizeUseCase _saveFontSizeUseCase;
+  final GetFontSizeUseCase _getFontSizeUseCase;
   final UrlLauncher _urlLauncher;
   final LogOutUseCase _logOutUseCase;
   final AppRouter _appRouter;
 
   SettingsBloc({
-    required SaveFontSizeUsecase saveFontSizeUseCase,
-    required GetFontSizeUsecase getFontSizeUseCase,
+    required SaveFontSizeUseCase saveFontSizeUseCase,
+    required GetFontSizeUseCase getFontSizeUseCase,
     required UrlLauncher urlLauncher,
     required AppRouter appRouter,
     required logOutUseCase,
@@ -38,7 +37,7 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
     Emitter<FontSizeState> emit,
   ) async {
     await _saveFontSizeUseCase.call(
-      fontsize: event.fontSizeEntity,
+      fontSize: event.fontSizeEntity,
     );
     emit(
       state.copyWith(fontSize: event.fontSizeEntity),
@@ -67,7 +66,7 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
     SignOutFromAppEvent event,
     Emitter<FontSizeState> emit,
   ) async {
-    await _logOutUseCase.call(LogOutUseCaseParams());
+    await _logOutUseCase(LogOutUseCaseParams());
     await _appRouter.replace(const SignInPage());
   }
 
@@ -75,6 +74,6 @@ class SettingsBloc extends Bloc<SettingsEvent, FontSizeState> {
     PopEvent event,
     Emitter<FontSizeState> emit,
   ) async {
-    await _appRouter.pop();
+    await _appRouter.pop<Object>();
   }
 }

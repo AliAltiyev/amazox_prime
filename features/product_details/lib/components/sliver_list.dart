@@ -31,9 +31,7 @@ class DetailsSliverList extends StatelessWidget {
                       AppRatingBar(
                         rate: data.rate.toDouble(),
                       ),
-                      const SizedBox(
-                        width: Dimensions.SIZE_20,
-                      ),
+                      const SizedBox(width: Dimensions.SIZE_20),
                       Text(
                         data.rate.toString(),
                       ),
@@ -75,8 +73,8 @@ class DetailsSliverList extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
-                              height: 80,
-                              width: size.width / 1.2,
+                              height: Dimensions.SIZE_80,
+                              width: size.width / Dimensions.SIZE_1,
                               child: AddToCardButton(
                                 onPressed: () {
                                   context

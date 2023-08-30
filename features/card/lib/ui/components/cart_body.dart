@@ -70,7 +70,7 @@ class _CartBodyState extends State<CartBody> {
                   padding: const EdgeInsets.all(
                     ApplicationPadding.PADDING_10,
                   ),
-                  child: CartLisItem(
+                  child: CartListItem(
                     product: product,
                   ),
                 ),

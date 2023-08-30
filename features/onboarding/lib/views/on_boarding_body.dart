@@ -9,7 +9,7 @@ class OnBoardingBody extends StatelessWidget {
   final PageContent pageContent;
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -34,9 +34,7 @@ class OnBoardingBody extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: AppFonts.normal24,
               ),
-              const SizedBox(
-                height: Dimensions.SIZE_20,
-              ),
+              const SizedBox(height: Dimensions.SIZE_20),
               Text(
                 pageContent.description,
                 textAlign: TextAlign.center,

@@ -36,6 +36,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
       providers: <BlocProvider<dynamic>>[
         BlocProvider<HomeBloc>(
           create: (BuildContext context) => HomeBloc(
+            router: getIt<AppRouter>(),
             connectionUseCase: getIt<Connection>(),
             getProductsUseCase: getIt<FetchProductsUseCase>(),
           ),
@@ -59,11 +60,13 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                 preferredSize: Size.fromHeight(Dimensions.SIZE_200),
                 child: Padding(
                   padding: EdgeInsets.only(top: Dimensions.SIZE_50),
-                  child: Column(children: <Widget>[
-                    HomeMenuTitle(),
-                    SizedBox(height: Dimensions.SIZE_10),
-                    HomeMenu()
-                  ]),
+                  child: Column(
+                    children: <Widget>[
+                      HomeMenuTitle(),
+                      SizedBox(height: Dimensions.SIZE_10),
+                      HomeMenu()
+                    ],
+                  ),
                 ),
               ),
               body: AppRefreshView(
@@ -73,18 +76,20 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                     () => context.read<HomeBloc>().add(FetchProductsEvent()),
                   );
                 },
-                child: Stack(children: <Widget>[
-                  HomeProductShadow(size: size),
-                  HomeTitle(
-                    currentPage: _currentPage,
-                    state: homeState,
-                  ),
-                  HomeContent(
-                    state: homeState,
-                    pageController: _pageController,
-                    currentPage: _currentPage,
-                  )
-                ]),
+                child: Stack(
+                  children: <Widget>[
+                    HomeProductShadow(size: size),
+                    HomeTitle(
+                      currentPage: _currentPage,
+                      state: homeState,
+                    ),
+                    HomeContent(
+                      state: homeState,
+                      pageController: _pageController,
+                      currentPage: _currentPage,
+                    )
+                  ],
+                ),
               ),
             );
           } else {
@@ -139,10 +144,8 @@ class HomeContent extends StatelessWidget {
           }
           final Product product =
               _state.products[index - Dimensions.SIZE_1.toInt()];
-          final double result = _currentPage - index + Dimensions.SIZE_1;
-          final double value =
-              Dimensions.SIZE_MINUS_0_4 * result + Dimensions.SIZE_1;
-          final double opasity = value.clamp(
+          double value = _getTransformValue(index);
+          final double opacity = value.clamp(
             Dimensions.SIZE_0_1,
             Dimensions.SIZE_1,
           );
@@ -160,18 +163,17 @@ class HomeContent extends StatelessWidget {
                   )
                   ..translate(
                       Dimensions.SIZE_0,
-                      (MediaQuery.of(context).size.height / Dimensions.SIZE_3) *
+                      (MediaQuery.sizeOf(context).height / Dimensions.SIZE_3) *
                           (Dimensions.SIZE_1 - value).abs())
                   ..scale(value),
                 child: Opacity(
-                  opacity: opasity,
-                  child: InkWell(
+                  opacity: opacity,
+                  child: GestureDetector(
                     onTap: () {
-                      context.router.push<Object?>(
-                        DetailsPage(
-                          productId: _state.products[index].id,
-                        ),
-                      );
+                      context.read<HomeBloc>().add(
+                            NavigateToProductDetailsScreenEvent(
+                                _state.products[index].id),
+                          );
                     },
                     child: AppCachedNetworkImage(
                       url: product.image,
@@ -184,6 +186,12 @@ class HomeContent extends StatelessWidget {
         },
       ),
     );
+  }
+
+  double _getTransformValue(int index) {
+    final double result = _currentPage - index + Dimensions.SIZE_1;
+    final double value = Dimensions.SIZE_MINUS_0_4 * result + Dimensions.SIZE_1;
+    return value;
   }
 }
 
@@ -204,17 +212,19 @@ class HomeTitle extends StatelessWidget {
       left: Dimensions.SIZE_0,
       top: Dimensions.SIZE_40,
       height: Dimensions.SIZE_75,
-      child: Column(children: <Widget>[
-        Text(
-          _state.products[_currentPage.toInt()].name,
-          style: AppFonts.bold24,
-          overflow: TextOverflow.ellipsis,
-        ),
-        Text(
-          '${_state.products[_currentPage.toInt()].price.toString()} ${Currency.rubl.value}',
-          style: AppFonts.bold18,
-        ),
-      ]),
+      child: Column(
+        children: <Widget>[
+          Text(
+            _state.products[_currentPage.toInt()].name,
+            style: AppFonts.bold24,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            '${_state.products[_currentPage.toInt()].price.toString()} ${Currency.rubl.value}',
+            style: AppFonts.bold18,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:auth/auth.dart';
 
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -27,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(const AuthLoading());
     });
     on<SignInEvent>(_onSignIn);
-    on<SignUpEvent>(_signUpHandler);
+    on<SignUpEvent>(_onSignUp);
     on<ForgotPasswordEvent>(_forgotPasswordHandler);
     on<NavigateToRegistrationPageEvent>(_navigateToRegistration);
     on<NavigateTosSignInPageEvent>(_navigateToSignIn);
@@ -55,7 +54,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _signUpHandler(
+  Future<void> _onSignUp(
     SignUpEvent event,
     Emitter<AuthState> emit,
   ) async {

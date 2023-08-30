@@ -1,8 +1,8 @@
 import 'package:card/shopping_card.dart';
 import 'package:core/enums/currency.dart';
 
-class CartLisItem extends StatelessWidget {
-  const CartLisItem({
+class CartListItem extends StatelessWidget {
+  const CartListItem({
     required this.product,
     super.key,
   });

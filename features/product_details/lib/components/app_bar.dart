@@ -61,8 +61,7 @@ class DetailsAppBar extends StatelessWidget {
         background: Hero(
           tag: AppHeroTags.homeToDetails,
           child: AppCachedNetworkImage(
-            url:data.image ,
-
+            url: data.image,
           ),
         ),
       ),

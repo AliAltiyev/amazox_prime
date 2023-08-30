@@ -4,3 +4,9 @@ part of 'home_bloc.dart';
 class ProductsEvent {}
 
 final class FetchProductsEvent extends ProductsEvent {}
+
+final class NavigateToProductDetailsScreenEvent extends ProductsEvent {
+  final int productId;
+
+  NavigateToProductDetailsScreenEvent(this.productId);
+}

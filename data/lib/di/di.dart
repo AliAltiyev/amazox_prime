@@ -78,12 +78,12 @@ Future<void> initDataLayer() async {
     ),
   );
 
-  getIt.registerLazySingleton<SaveFontSizeUsecase>(
-    () => SaveFontSizeUsecase(fontSizeRepository: getIt<FontSizeRepository>()),
+  getIt.registerLazySingleton<SaveFontSizeUseCase>(
+    () => SaveFontSizeUseCase(fontSizeRepository: getIt<FontSizeRepository>()),
   );
 
-  getIt.registerLazySingleton<GetFontSizeUsecase>(
-    () => GetFontSizeUsecase(
+  getIt.registerLazySingleton<GetFontSizeUseCase>(
+    () => GetFontSizeUseCase(
       fontSizeRepository: getIt<FontSizeRepository>(),
     ),
   );
