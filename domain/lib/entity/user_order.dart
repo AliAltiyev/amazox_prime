@@ -15,7 +15,7 @@ final class UserOrder extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
+  List<Object?> get props => <Object?>[
         id,
         products,
         dateTime,

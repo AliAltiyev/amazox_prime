@@ -27,11 +27,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<SignInEvent>(_onSignIn);
     on<SignUpEvent>(_onSignUp);
-    on<ForgotPasswordEvent>(_forgotPasswordHandler);
+    on<ForgotPasswordEvent>(_onForgotPassword);
     on<NavigateToRegistrationPageEvent>(_navigateToRegistration);
-    on<NavigateTosSignInPageEvent>(_navigateToSignIn);
-    on<NavigateTosHomePageEvent>(_navigateToHome);
-    on<SignInWithGoogleEvent>(_handleSignInWithGoogle);
+    on<NavigateTosSignInPageEvent>(_onNavigateToSignIn);
+    on<NavigateTosHomePageEvent>(_onNavigateToHome);
+    on<SignInWithGoogleEvent>(_onSignInWithGoogle);
   }
 
   Future<void> _onSignIn(
@@ -75,7 +75,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _forgotPasswordHandler(
+  Future<void> _onForgotPassword(
     ForgotPasswordEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -95,7 +95,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await _autoRouter.push<Object?>(const SignUpPage());
   }
 
-  Future<void> _navigateToSignIn(
+  Future<void> _onNavigateToSignIn(
     NavigateTosSignInPageEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -103,7 +103,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _autoRouter.replace<Object?>(const SignInPage());
   }
 
-  Future<void> _navigateToHome(
+  Future<void> _onNavigateToHome(
     NavigateTosHomePageEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -113,7 +113,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _handleSignInWithGoogle(
+  Future<void> _onSignInWithGoogle(
     SignInWithGoogleEvent event,
     Emitter<AuthState> emit,
   ) async {

@@ -8,7 +8,7 @@ export 'package:domain/entity/font_size.dart';
 export 'package:domain/entity/menu.dart';
 export 'package:domain/entity/page_content.dart';
 export 'package:domain/entity/product.dart';
-export 'package:domain/entity/user..dart';
+export 'package:domain/entity/user.dart';
 export 'package:domain/entity/user_order.dart';
 export 'package:domain/repository/auth/auth_repository.dart';
 export 'package:domain/repository/cart/cart_repository.dart';

@@ -19,6 +19,8 @@ final class Dimensions {
   static const double SIZE_MINUS_20 = -20.0;
   static const double SIZE_0 = 0.0;
   static const double SIZE_1 = 1.0;
+  static const double SIZE_1_2 = 1.2;
+
   static const double SIZE_1_6 = 1.6;
   static const double SIZE_MINUS_0_4 = -0.4;
 
