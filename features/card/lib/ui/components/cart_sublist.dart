@@ -1,10 +1,10 @@
 import 'package:card/shopping_card.dart';
 import 'package:core/enums/currency.dart';
 
-class CartSublist extends StatelessWidget {
+class CartSubList extends StatelessWidget {
   final CartLoaded _state;
 
-  const CartSublist({
+  const CartSubList({
     required CartLoaded state,
     super.key,
   }) : _state = state;
@@ -52,7 +52,7 @@ class CartSublist extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  '${context.read<CartBloc>().getSubtotalString} ${Currency.rubl.value}',
+                  '${context.read<CartBloc>().deliveryFeeString} ${Currency.rubl.value}',
                   style: AppFonts.normal14,
                 ),
                 AppIcons.chevronRightOutlined

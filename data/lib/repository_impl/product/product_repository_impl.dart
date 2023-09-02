@@ -22,16 +22,10 @@ final class ProductRepositoryImpl implements ProductRepository {
       }
       await _localeDataSource.addProducts(data);
 
-      return data
-          .map((model) => ProductMapper.toEntity(model))
-          .toList()
-          .cast<Product>();
+      return data.map(ProductMapper.toEntity).toList().cast<Product>();
     } else {
       final List<ProductModel> data = _localeDataSource.getAllProducts();
-      return data
-          .map((model) => ProductMapper.toEntity(model))
-          .toList()
-          .cast<Product>();
+      return data.map(ProductMapper.toEntity).toList().cast<Product>();
     }
   }
 
@@ -51,9 +45,6 @@ final class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<List<Menu>> fetchMenu() async {
     final List<MenuModel> data = await _remoteDataSource.getMenu();
-    return data
-        .map((model) => MenuMapper.toEntity(model))
-        .toList()
-        .cast<Menu>();
+    return data.map(MenuMapper.toEntity).toList().cast<Menu>();
   }
 }

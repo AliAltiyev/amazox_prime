@@ -1,8 +1,8 @@
 import 'package:card/shopping_card.dart';
 import 'package:core/enums/currency.dart';
 
-class CartLisItem extends StatelessWidget {
-  const CartLisItem({
+class CartListItem extends StatelessWidget {
+  const CartListItem({
     required this.product,
     super.key,
   });
@@ -17,7 +17,7 @@ class CartLisItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             AppAddButton(
-              icon: AppIcons.increament,
+              icon: AppIcons.increment,
               onPress: () {
                 //TODO: Add increment
               },
@@ -26,7 +26,7 @@ class CartLisItem extends StatelessWidget {
               Dimensions.SIZE_1.toInt().toString(),
             ),
             AppAddButton(
-              icon: AppIcons.increament,
+              icon: AppIcons.increment,
               onPress: () {
                 //TODO: Adddecrement
               },

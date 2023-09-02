@@ -22,7 +22,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         providers: [
           BlocProvider(
             lazy: true,
-            create: (context) => DetailsBloc(
+            create: (BuildContext context) => DetailsBloc(
               getIt.get<FetchProductByIdUseCase>(),
             )..add(
                 FetchProductEvent(
@@ -38,7 +38,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         child: BlocBuilder<DetailsBloc, DetailsState>(
           builder: (context, state) {
             if (state is LoadedDetailsState) {
-              final data = state.product;
+              final Product data = state.product;
               return Scaffold(
                 body: DetailsSliverList(
                   size: size,
@@ -47,7 +47,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               );
             } else if (state is LoadingDetailsState) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(
+                  backgroundColor: ApplicationColors.primaryButtonColor,
+                ),
               );
             } else {
               return const Center(

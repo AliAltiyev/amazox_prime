@@ -11,7 +11,11 @@ class AppCachedNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
+      useOldImageOnUrlChange: true,
+      fit: BoxFit.fill,
+      fadeInCurve: Curves.bounceIn,
       imageUrl: _url,
+      filterQuality: FilterQuality.high,
       imageBuilder: (
         BuildContext context,
         ImageProvider<Object> imageProvider,
@@ -20,7 +24,7 @@ class AppCachedNetworkImage extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
             isAntiAlias: true,
           ),
           borderRadius: BorderRadius.circular(

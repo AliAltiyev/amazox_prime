@@ -10,9 +10,9 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
   ResultFuture<void> forgotPassword(String email) async {
     try {
       await _remoteDataSource.forgotPassword(email);
-      return const Right(null);
+      return const Right<Failure, void>(null);
     } on ServerException catch (e) {
-      return Left(
+      return Left<Failure, void>(
         ServerFailure(
           message: e.message,
           statusCode: e.statusCode,
@@ -32,9 +32,10 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
         password: password,
       );
 
-      return Right(UserMapper.toEntity(result));
+      return Right<Failure, UserEntity>(UserMapper.toEntity(result));
     } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+      return Left<Failure, UserEntity>(
+          ServerFailure(message: e.message, statusCode: e.statusCode));
     }
   }
 
@@ -50,9 +51,9 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
         fullName: fullName,
         password: password,
       );
-      return const Right(null);
+      return const Right<Failure, void>(null);
     } on ServerException catch (e) {
-      return Left(
+      return Left<Failure, void>(
         ServerFailure(
           message: e.message,
           statusCode: e.statusCode,
@@ -65,9 +66,9 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
   ResultFuture<void> logOut() async {
     try {
       await _remoteDataSource.logOut();
-      return const Right(null);
+      return const Right<Failure, void>(null);
     } on ServerException catch (e) {
-      return Left(
+      return Left<Failure, void>(
         ServerFailure(
           message: e.message,
           statusCode: e.statusCode,
@@ -81,9 +82,9 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
     try {
       final UserModel result = await _remoteDataSource.signInWithGoogle();
 
-      return Right(UserMapper.toEntity(result));
+      return Right<Failure, UserEntity>(UserMapper.toEntity(result));
     } on ServerException catch (e) {
-      return Left(
+      return Left<Failure, UserEntity>(
         ServerFailure(
           message: e.message,
           statusCode: e.statusCode,

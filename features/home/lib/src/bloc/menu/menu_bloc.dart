@@ -10,29 +10,36 @@ final class MenuBloc extends Bloc<MenuEvent, MenuState> {
   MenuBloc({
     required FetchMenuItemsUseCase fetchMenuItemsUseCase,
   })  : _fetchMenuItemsUseCase = fetchMenuItemsUseCase,
-        super(
-          InitialMenuState(),
-        ) {
-    on<FetchMenuEvent>(_fetchMenuEvent);
+        super(MenuState(menu: <Menu>[])) {
+    on<FetchMenuEvent>(_onFetchMenuEvent);
+    on<ChangeMenuItemSizeEvent>(onChangeMenuItemSize);
+
     add(FetchMenuEvent());
   }
 
-  Future<void> _fetchMenuEvent(
+  Future<void> _onFetchMenuEvent(
     FetchMenuEvent event,
     Emitter<MenuState> emit,
   ) async {
-    emit(
-      LoadingMenuUState(),
-    );
     try {
       final List<Menu> data = await _fetchMenuItemsUseCase();
-      emit(LoadedMenuState(
+      emit(MenuState(
         menu: data,
       ));
     } catch (e) {
-      emit(FailedFetchMenuState(
-        error: StringConstants.stateError,
-      ));
+      throw (Exception());
     }
   }
+
+  Future<void> onChangeMenuItemSize(
+    ChangeMenuItemSizeEvent event,
+    Emitter<MenuState> emit,
+  ) async {
+    emit(MenuState(
+      menu: await _fetchMenuItemsUseCase(),
+      isMenuAnimated: changeIsAnimatedState(),
+    ));
+  }
+
+  bool changeIsAnimatedState() => state.isMenuAnimated = !state.isMenuAnimated;
 }

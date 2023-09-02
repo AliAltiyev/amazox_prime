@@ -1,5 +1,4 @@
 import 'package:data/data.dart';
-import 'package:data/model/order.dart';
 
 class OrderRepositoryImpl extends OrderRepository {
   final LocaleDataSource _localeDataSource;
@@ -12,7 +11,7 @@ class OrderRepositoryImpl extends OrderRepository {
   List<UserOrder> getAllOrders() {
     return _localeDataSource
         .getAllOrders()
-        .map<UserOrder>((UserOrderEntity e) => OrderMapper.toDomain(e))
+        .map<UserOrder>(OrderMapper.toDomain)
         .toList();
   }
 

@@ -30,8 +30,8 @@ class Application extends StatelessWidget {
             appRouter: getIt<AppRouter>(),
             logOutUseCase: getIt<LogOutUseCase>(),
             urlLauncher: getIt<UrlLauncher>(),
-            getFontSizeUsecase: getIt<GetFontSizeUsecase>(),
-            saveFontSizeUsecase: getIt<SaveFontSizeUsecase>(),
+            getFontSizeUseCase: getIt<GetFontSizeUseCase>(),
+            saveFontSizeUseCase: getIt<SaveFontSizeUseCase>(),
           )..add(
               GetFontSizeEvent(),
             ),
@@ -49,7 +49,7 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<AuthBloc>(
           create: (BuildContext context) => AuthBloc(
-            signInWithGoogleUseCase: getIt<SigninWithGoogleUseCase>(),
+            signInWithGoogleUseCase: getIt<SignInWithGoogleUseCase>(),
             autoRouter: getIt<AppRouter>(),
             signInUseCase: getIt<SignInUseCase>(),
             signUpUseCase: getIt<SignUpUseCase>(),

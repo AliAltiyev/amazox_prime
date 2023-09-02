@@ -20,8 +20,8 @@ final class StringConstant {
   static const String changeTextStyle = 'Изменить размер текста';
   static const String aboutUs = 'О сервисе';
   static const String total = 'Сумма';
-  static const myOrders = 'Мои покупки';
-  static const productCount = 'Количеств товаров: ';
+  static const String myOrders = 'Мои покупки';
+  static const String productCount = 'Количеств товаров: ';
 
   static const String date = 'Дата';
 
@@ -30,7 +30,7 @@ final class StringConstant {
   static const String cart = 'Корзина';
   static const String delete = 'Удалить';
   static const String share = 'Поделиться';
-  static const String emptyCartSnacBarSubtitle =
+  static const String emptyCartSnackBarSubtitle =
       'Переходите на свипок товаров чтобы добавить';
   static const String orderSnackBarTitle = 'Заказ Прият';
 

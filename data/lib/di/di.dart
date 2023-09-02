@@ -10,7 +10,7 @@ Future<void> initDataLayer() async {
   _initHiveAdapters();
 
   getIt.registerLazySingleton<RemoteDataSource>(
-    () => RemoteDataSourceImpl(),
+    RemoteDataSourceImpl.new,
   );
 
   getIt.registerLazySingleton<ProductRepository>(
@@ -48,7 +48,7 @@ Future<void> initDataLayer() async {
   );
 
   getIt.registerLazySingleton<LocaleDataSource>(
-    () => LocaleDataSourceImpl(),
+    LocaleDataSourceImpl.new,
   );
 
   getIt.registerLazySingleton<CartRepository>(
@@ -78,17 +78,17 @@ Future<void> initDataLayer() async {
     ),
   );
 
-  getIt.registerLazySingleton<SaveFontSizeUsecase>(
-    () => SaveFontSizeUsecase(fontSizeRepository: getIt<FontSizeRepository>()),
+  getIt.registerLazySingleton<SaveFontSizeUseCase>(
+    () => SaveFontSizeUseCase(fontSizeRepository: getIt<FontSizeRepository>()),
   );
 
-  getIt.registerLazySingleton<GetFontSizeUsecase>(
-    () => GetFontSizeUsecase(
+  getIt.registerLazySingleton<GetFontSizeUseCase>(
+    () => GetFontSizeUseCase(
       fontSizeRepository: getIt<FontSizeRepository>(),
     ),
   );
   getIt.registerLazySingleton<UserLocale>(
-    () => UserLocaleImpl(),
+    UserLocaleImpl.new,
   );
 
   getIt.registerLazySingleton<OnBoardingRepository>(
@@ -117,7 +117,7 @@ Future<void> initDataLayer() async {
     () => FirebaseStorage.instance,
   );
 
-  getIt.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn());
+  getIt.registerLazySingleton<GoogleSignIn>(GoogleSignIn.new);
 
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(
@@ -135,8 +135,8 @@ Future<void> initDataLayer() async {
     () => SignInUseCase(getIt<AuthRepository>()),
   );
 
-  getIt.registerLazySingleton<SigninWithGoogleUseCase>(
-    () => SigninWithGoogleUseCase(getIt<AuthRepository>()),
+  getIt.registerLazySingleton<SignInWithGoogleUseCase>(
+    () => SignInWithGoogleUseCase(getIt<AuthRepository>()),
   );
 
   getIt.registerLazySingleton<LogOutUseCase>(
@@ -168,5 +168,5 @@ Future<void> initDataLayer() async {
 void _initHiveAdapters() {
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
   Hive.registerAdapter<FontSizeModel>(FontSizeModelAdapter());
-  Hive.registerAdapter<UserOrderEntity>(UserOrderModelAdapter());
+  Hive.registerAdapter<UserOrderEntity>(UserOrderEntityAdapter());
 }

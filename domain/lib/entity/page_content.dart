@@ -20,18 +20,18 @@ class PageContent extends Equatable {
 
   const PageContent.second()
       : this(
-    image: ImagePaths.onBoardingSecond,
+          image: ImagePaths.onBoardingSecond,
           title: 'Еда, которая делает вас счастливым',
           description: 'Еда, которую вы любите, доставлена ​​к вашей двери',
         );
 
   const PageContent.third()
       : this(
-    image: ImagePaths.onBoardingThird,
-          title: """
-Доставка еды: быстрая, свежая и доступная""",
-          description: """
-Еда, которая стоит ожидания""",
+          image: ImagePaths.onBoardingThird,
+          title: '''
+Доставка еды: быстрая, свежая и доступная''',
+          description: '''
+Еда, которая стоит ожидания''',
         );
 
   @override

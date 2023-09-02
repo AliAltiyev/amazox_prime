@@ -1,10 +1,10 @@
 import 'package:domain/domain.dart';
 
-class SigninWithGoogleUseCase
-    extends FutureUsecaseWithParams<UserEntity, SignInWithGoogleParams> {
+class SignInWithGoogleUseCase
+    extends FutureUseCaseWithParams<UserEntity, SignInWithGoogleParams> {
   final AuthRepository _repository;
 
-  const SigninWithGoogleUseCase(
+  const SignInWithGoogleUseCase(
     AuthRepository repository,
   ) : _repository = repository;
 
@@ -17,5 +17,5 @@ class SignInWithGoogleParams extends Equatable {
   const SignInWithGoogleParams();
 
   @override
-  List<String> get props => [];
+  List<String> get props => <String>[];
 }

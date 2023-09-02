@@ -1,23 +1,21 @@
 part of 'menu_bloc.dart';
 
-abstract class MenuState {}
-
-final class InitialMenuState extends MenuState {}
-
-final class LoadingMenuUState extends MenuState {}
-
-final class LoadedMenuState extends MenuState {
+final class MenuState {
   List<Menu> menu;
+  bool isMenuAnimated;
 
-  LoadedMenuState({
+  MenuState({
     required this.menu,
+    this.isMenuAnimated = false,
   });
-}
 
-final class FailedFetchMenuState extends MenuState {
-  final String error;
-
-  FailedFetchMenuState({
-    required this.error,
-  });
+  MenuState copyWith({
+    List<Menu>? menu,
+    bool? isMenuAnimated,
+  }) {
+    return MenuState(
+      menu: menu ?? this.menu,
+      isMenuAnimated: isMenuAnimated ?? this.isMenuAnimated,
+    );
+  }
 }

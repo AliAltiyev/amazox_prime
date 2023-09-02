@@ -3,15 +3,15 @@ import 'dart:core';
 enum DurationEnum {
   low(
     Duration(
-      milliseconds: 1,
+      milliseconds: 100,
     ),
   ),
   normal(Duration(
-    milliseconds: 3,
+    milliseconds: 300,
   )),
   high(
     Duration(
-      milliseconds: 5,
+      milliseconds: 500,
     ),
   );
 

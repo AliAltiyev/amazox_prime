@@ -12,13 +12,31 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
+  final PageController _pageController = PageController(
+    viewportFraction: Dimensions.SIZE_0_4,
+  );
+  double _currentPage = 0.0;
+
+  void listenScroll() {
+    setState(() {
+      _currentPage = _pageController.page!;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(listenScroll);
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider<dynamic>>[
         BlocProvider<HomeBloc>(
           create: (BuildContext context) => HomeBloc(
+            router: getIt<AppRouter>(),
             connectionUseCase: getIt<Connection>(),
             getProductsUseCase: getIt<FetchProductsUseCase>(),
           ),
@@ -29,57 +47,69 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
           ),
         ),
       ],
-      child: Scaffold(
-        body: AppRefreshView(
-          size: size,
-          onRefresh: () {
-            return Future<void>(
-              () => context.read<HomeBloc>().add(FetchProductsEvent()),
-            );
-          },
-          child: CustomScrollView(
-            slivers: <Widget>[
-              AppSliverAppBar(
-                child: Image.asset(
-                  ImagePaths.sliverAppBarBackground,
-                  fit: BoxFit.fill,
+      child: BlocConsumer<HomeBloc, HomeState>(
+        listener: (BuildContext context, HomeState state) {
+          if (state is NoInternetConnectionState) {
+            AppToast.showToast();
+          }
+        },
+        builder: (BuildContext context, HomeState homeState) {
+          if (homeState is LoadedProductsState) {
+            return Scaffold(
+              appBar: const PreferredSize(
+                preferredSize: Size.fromHeight(Dimensions.SIZE_200),
+                child: Padding(
+                  padding: EdgeInsets.only(top: Dimensions.SIZE_50),
+                  child: Column(
+                    children: <Widget>[
+                      HomeMenuTitle(),
+                      SizedBox(height: Dimensions.SIZE_10),
+                      HomeMenu()
+                    ],
+                  ),
                 ),
               ),
-              const HomeMenuTitle(),
-              const SliverToBoxAdapter(child: HomeMenu()),
-              BlocConsumer<HomeBloc, HomeState>(
-                listener: (BuildContext context, HomeState state) {
-                  if (state is NoInternetConnectionState) {
-                    AppToast.showToast();
-                  }
-                },
-                builder: (BuildContext context, HomeState state) {
-                  return BlocBuilder<HomeBloc, HomeState>(
-                    builder: (BuildContext builderContext, HomeState state) {
-                      if (state is LoadedProductsState) {
-                        return SliverGridList(state: state);
-                      } else if (state is LoadingProductsState) {
-                        return const SliverToBoxAdapter(
-                          child: Center(
-                            child: CircularProgressIndicator.adaptive(
-                              backgroundColor:
-                                  ApplicationColors.primaryButtonColor,
-                            ),
-                          ),
-                        );
-                      } else {
-                        return const SliverToBoxAdapter(
-                          child: SizedBox.shrink(),
-                        );
-                      }
-                    },
+              body: AppRefreshView(
+                size: size,
+                onRefresh: () {
+                  return Future<void>(
+                    () => context.read<HomeBloc>().add(FetchProductsEvent()),
                   );
                 },
+                child: Stack(
+                  children: <Widget>[
+                    HomeProductShadow(size: size),
+                    HomeTitle(
+                      currentPage: _currentPage,
+                      state: homeState,
+                    ),
+                    HomeContent(
+                      state: homeState,
+                      pageController: _pageController,
+                      currentPage: _currentPage,
+                    )
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
+            );
+          } else {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator.adaptive(
+                  backgroundColor: ApplicationColors.primaryButtonColor,
+                ),
+              ),
+            );
+          }
+        },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _pageController.removeListener(listenScroll);
+    _pageController.dispose();
+    super.dispose();
   }
 }

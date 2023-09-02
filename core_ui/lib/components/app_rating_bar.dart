@@ -15,14 +15,14 @@ class AppRatingBar extends StatelessWidget {
       itemSize: Dimensions.SIZE_20,
       ignoreGestures: true,
       tapOnlyMode: false,
-      onRatingUpdate: (value) {},
+      onRatingUpdate: (double value) {},
       initialRating: rate,
       maxRating: Dimensions.SIZE_5,
       itemCount: Dimensions.SIZE_5.toInt(),
       itemPadding: const EdgeInsets.symmetric(
         horizontal: ApplicationPadding.PADDING_4,
       ),
-      itemBuilder: (context, _) => const Icon(
+      itemBuilder: (BuildContext context, _) => const Icon(
         Icons.star,
         color: ApplicationColors.primaryButtonColor,
       ),

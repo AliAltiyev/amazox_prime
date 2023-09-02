@@ -1,14 +1,14 @@
 import 'package:domain/entity/font_size.dart';
 import 'package:domain/repository/settings/font/font_size_repository.dart';
 
-final class SaveFontSizeUsecase {
+final class SaveFontSizeUseCase {
   final FontSizeRepository _fontSizeRepository;
 
-  const SaveFontSizeUsecase({
+  const SaveFontSizeUseCase({
     required FontSizeRepository fontSizeRepository,
   }) : _fontSizeRepository = fontSizeRepository;
 
-  Future<void> call({required FontSizeEntity fontsize}) {
-    return _fontSizeRepository.saveFontSize(fontsize);
+  Future<void> call({required FontSizeEntity fontSize}) {
+    return _fontSizeRepository.saveFontSize(fontSize);
   }
 }

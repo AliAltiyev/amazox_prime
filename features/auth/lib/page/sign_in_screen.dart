@@ -43,17 +43,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     horizontal: Dimensions.SIZE_20,
                   ),
                   children: <Widget>[
-                    Hero(
-                      tag: AppHereos.pageTitle,
-                      flightShuttleBuilder: AuthUtils.buildShuttle,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: Dimensions.SIZE_80,
-                        ),
-                        child: Text(
-                          StringConstant.signInSlogan,
-                          style: AppFonts.normal32,
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        right: Dimensions.SIZE_80,
+                      ),
+                      child: Text(
+                        StringConstant.signInSlogan,
+                        style: AppFonts.normal32,
                       ),
                     ),
                     const SizedBox(
@@ -63,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Hero(
-                          tag: AppHereos.helperText,
+                          tag: AppHeroTags.helperText,
                           flightShuttleBuilder: AuthUtils.buildShuttle,
                           child: Text(
                             StringConstant.signInToYourAccount,
@@ -74,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           baseline: Dimensions.SIZE_75,
                           baselineType: TextBaseline.alphabetic,
                           child: Hero(
-                            tag: AppHereos.redirectText,
+                            tag: AppHeroTags.redirectText,
                             child: TextButton(
                               onPressed: () {
                                 context.read<AuthBloc>().add(
@@ -115,7 +111,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: Dimensions.SIZE_20,
                     ),
                     Hero(
-                      tag: AppHereos.authButton,
+                      tag: AppHeroTags.authButton,
                       child: state is AuthLoading
                           ? const Center(
                               child: CircularProgressIndicator(),
@@ -134,7 +130,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: Dimensions.SIZE_10,
                     ),
                     Hero(
-                      tag: AppHereos.authButton,
+                      tag: AppHeroTags.authButton,
                       child: state is AuthLoading
                           ? const Center(
                               child: CircularProgressIndicator(),

@@ -10,7 +10,8 @@ final class RemoteDataSourceImpl extends RemoteDataSource {
               .collection(FirebaseEnum.coffee.name)
               .get();
 
-      for (final element in firebaseFireStore.docs) {
+      for (final QueryDocumentSnapshot<Map<String, dynamic>> element
+          in firebaseFireStore.docs) {
         list.add(ProductModel.fromJson(element.data()));
       }
     } on FirebaseException catch (e) {
@@ -29,7 +30,8 @@ final class RemoteDataSourceImpl extends RemoteDataSource {
               .orderBy(FirebaseEnum.name.name)
               .get();
 
-      for (final element in firebaseFireStore.docs) {
+      for (final QueryDocumentSnapshot<Map<String, dynamic>> element
+          in firebaseFireStore.docs) {
         list.add(MenuModel.fromJson(element.data()));
       }
     } on FirebaseException catch (e) {
@@ -53,7 +55,7 @@ final class RemoteDataSourceImpl extends RemoteDataSource {
       if (firebaseFireStore.docs.isEmpty) {
         throw AppFireBaseException(StringConstants.fireBaseDocsError);
       } else {
-        final data = firebaseFireStore.docs.first.data();
+        final Map<String, dynamic> data = firebaseFireStore.docs.first.data();
         return ProductModel.fromJson(data);
       }
     } on FirebaseException catch (e) {

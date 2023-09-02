@@ -15,7 +15,7 @@ final class CartRepositoryImpl extends CartRepository {
   @override
   List<Product> getCartAllCartItems() {
     final List<ProductModel> cartItems = _localeStorage.getAllCartItems();
-    return cartItems.map((product) => ProductMapper.toEntity(product)).toList();
+    return cartItems.map(ProductMapper.toEntity).toList();
   }
 
   @override

@@ -1,63 +1,63 @@
 import 'package:core_ui/core_ui.dart';
 
 final class AppIcons {
-  static const error = Icon(Icons.abc_outlined);
-  static const increament = Icons.add;
-  static const decremeent = Icons.remove;
-  static const share = Icons.share_outlined;
+  static const Icon error = Icon(Icons.abc_outlined);
+  static const IconData increment = Icons.add;
+  static const IconData decremeent = Icons.remove;
+  static const IconData share = Icons.share_outlined;
 
-  static const chevronRightOutlined = Icon(
+  static const Icon chevronRightOutlined = Icon(
     Icons.chevron_right_outlined,
     size: Dimensions.SIZE_30,
   );
 
-  static const home = Icon(
+  static const Icon home = Icon(
     Icons.home,
     size: Dimensions.SIZE_30,
   );
-  static const order = Icon(
+  static const Icon order = Icon(
     Icons.history,
     size: Dimensions.SIZE_30,
   );
-  static const cart = Icon(
+  static const Icon cart = Icon(
     Icons.card_travel_outlined,
     size: Dimensions.SIZE_30,
   );
-  static const settings = Icon(
+  static const Icon settings = Icon(
     Icons.settings,
     size: Dimensions.SIZE_30,
   );
 
-  static const aboutUs = Icon(
+  static const Icon aboutUs = Icon(
     Icons.chevron_right_rounded,
   );
-  static const copy = Icon(
+  static const Icon copy = Icon(
     Icons.copy_all,
   );
 
-  static const support = Icon(
+  static const Icon support = Icon(
     Icons.chat_bubble_outline,
   );
 
-  static const promoCode = Icon(
+  static const Icon promoCode = Icon(
     Icons.airplane_ticket_outlined,
   );
 
-  static const address = Icon(
+  static const Icon address = Icon(
     Icons.gps_fixed,
   );
 
-  static const orders = Icon(
+  static const Icon orders = Icon(
     Icons.list_alt_outlined,
   );
 
-  static const notifications = Icon(
+  static const Icon notifications = Icon(
     Icons.notification_important_outlined,
   );
 
-  static const profile = Icon(
+  static const Icon profile = Icon(
     Icons.person_outlined,
   );
 
-  static const delete = Icons.delete_outline_outlined;
+  static const IconData delete = Icons.delete_outline_outlined;
 }

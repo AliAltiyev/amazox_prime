@@ -4,14 +4,14 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final SigninWithGoogleUseCase _signInWithGoogleUseCase;
+  final SignInWithGoogleUseCase _signInWithGoogleUseCase;
   final SignInUseCase _signInUseCase;
   final SignUpUseCase _signUpUseCase;
   final ForgotPasswordUseCase _forgotPasswordUseCase;
   final AppRouter _autoRouter;
 
   AuthBloc({
-    required SigninWithGoogleUseCase signInWithGoogleUseCase,
+    required SignInWithGoogleUseCase signInWithGoogleUseCase,
     required SignInUseCase signInUseCase,
     required SignUpUseCase signUpUseCase,
     required ForgotPasswordUseCase forgotPasswordUseCase,
@@ -25,16 +25,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) {
       emit(const AuthLoading());
     });
-    on<SignInEvent>(_signInHandler);
-    on<SignUpEvent>(_signUpHandler);
-    on<ForgotPasswordEvent>(_forgotPasswordHandler);
+    on<SignInEvent>(_onSignIn);
+    on<SignUpEvent>(_onSignUp);
+    on<ForgotPasswordEvent>(_onForgotPassword);
     on<NavigateToRegistrationPageEvent>(_navigateToRegistration);
-    on<NavigateTosSignInPageEvent>(_navigateToSignIn);
-    on<NavigateTosHomePageEvent>(_navigateToHome);
-    on<SignInWithGoogleEvent>(_handleSignInWithGoogle);
+    on<NavigateTosSignInPageEvent>(_onNavigateToSignIn);
+    on<NavigateTosHomePageEvent>(_onNavigateToHome);
+    on<SignInWithGoogleEvent>(_onSignInWithGoogle);
   }
 
-  Future<void> _signInHandler(
+  Future<void> _onSignIn(
     SignInEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -54,7 +54,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _signUpHandler(
+  Future<void> _onSignUp(
     SignUpEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -75,7 +75,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _forgotPasswordHandler(
+  Future<void> _onForgotPassword(
     ForgotPasswordEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -95,7 +95,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await _autoRouter.push<Object?>(const SignUpPage());
   }
 
-  Future<void> _navigateToSignIn(
+  Future<void> _onNavigateToSignIn(
     NavigateTosSignInPageEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -103,14 +103,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _autoRouter.replace<Object?>(const SignInPage());
   }
 
-  Future<void> _navigateToHome(
+  Future<void> _onNavigateToHome(
     NavigateTosHomePageEvent event,
     Emitter<AuthState> emit,
   ) async {
-    await _autoRouter.replace<Object?>(const DashBoardPage());
+    await _autoRouter.pushAndPopUntil(
+      const DashBoardPage(),
+      predicate: (route) => true,
+    );
   }
 
-  Future<void> _handleSignInWithGoogle(
+  Future<void> _onSignInWithGoogle(
     SignInWithGoogleEvent event,
     Emitter<AuthState> emit,
   ) async {

@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class SignUpUseCase extends FutureUsecaseWithParams<void, SignUpParams> {
+class SignUpUseCase extends FutureUseCaseWithParams<void, SignUpParams> {
   final AuthRepository _repository;
 
   const SignUpUseCase(
@@ -34,7 +34,7 @@ class SignUpParams extends Equatable {
         );
 
   @override
-  List<String> get props => [
+  List<String> get props => <String>[
         email,
         password,
         fullName,

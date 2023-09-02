@@ -20,7 +20,7 @@ class CartTotalPrice extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                '${context.read<CartBloc>().totalPrice} ${Currency.rubl.value}',
+                '${context.read<CartBloc>().totalString} ${Currency.rubl.value}',
                 style: AppFonts.normal24,
               ),
               AddToCardButton(

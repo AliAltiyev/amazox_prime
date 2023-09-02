@@ -51,23 +51,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     horizontal: Dimensions.SIZE_20,
                   ),
                   children: <Widget>[
-                    Hero(
-                      tag: AppHereos.pageTitle,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: Dimensions.SIZE_80,
-                        ),
-                        child: Text(
-                          StringConstant.signUpSlogan,
-                          style: AppFonts.normal32,
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        right: Dimensions.SIZE_80,
+                      ),
+                      child: Text(
+                        StringConstant.signUpSlogan,
+                        style: AppFonts.normal32,
                       ),
                     ),
                     const SizedBox(
                       height: Dimensions.SIZE_10,
                     ),
                     Hero(
-                      tag: AppHereos.helperText,
+                      tag: AppHeroTags.helperText,
                       child: Text(
                         StringConstant.signUpToYourAccount,
                         style: AppFonts.normal14,
@@ -77,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: Dimensions.SIZE_10,
                     ),
                     Hero(
-                      tag: AppHereos.redirectText,
+                      tag: AppHeroTags.redirectText,
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -106,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: Dimensions.SIZE_30,
                     ),
                     Hero(
-                      tag: AppHereos.authButton,
+                      tag: AppHeroTags.authButton,
                       child: RoundedButton(
                         label: StringConstant.signUp,
                         onPressed: () {

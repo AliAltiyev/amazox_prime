@@ -1,7 +1,7 @@
 import 'package:product_details/product_details.dart';
 
-class DetilsAppBar extends StatelessWidget {
-  const DetilsAppBar({
+class DetailsAppBar extends StatelessWidget {
+  const DetailsAppBar({
     super.key,
     required this.size,
     required this.data,
@@ -58,10 +58,11 @@ class DetilsAppBar extends StatelessWidget {
       ),
       expandedHeight: size.height / Dimensions.SIZE_4,
       flexibleSpace: FlexibleSpaceBar(
-        background: CachedNetworkImage(
-          imageUrl: data.image,
-          width: size.width,
-          fit: BoxFit.fill,
+        background: Hero(
+          tag: AppHeroTags.homeToDetails,
+          child: AppCachedNetworkImage(
+            url: data.image,
+          ),
         ),
       ),
     );

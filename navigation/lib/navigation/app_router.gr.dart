@@ -57,6 +57,7 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const OrderHistoryPage(),
+        maintainState: false,
       );
     },
     SettingsRouter.name: (routeData) {
@@ -66,9 +67,12 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     HomePage.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return CustomPage<dynamic>(
         routeData: routeData,
         child: const HomeView(),
+        transitionsBuilder: TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     DetailsPage.name: (routeData) {
@@ -76,12 +80,16 @@ class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<DetailsPageArgs>(
           orElse: () =>
               DetailsPageArgs(productId: pathParams.getInt('productId')));
-      return MaterialPageX<dynamic>(
+      return CustomPage<dynamic>(
         routeData: routeData,
         child: ProductDetailPage(
           key: args.key,
           productId: args.productId,
         ),
+        transitionsBuilder: TransitionsBuilders.fadeIn,
+        durationInMilliseconds: 1000,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
   };
@@ -138,10 +146,6 @@ class _$AppRouter extends RootStackRouter {
             ),
           ],
         ),
-        RouteConfig(
-          EditProfilePage.name,
-          path: 'editProfileRouter',
-        ),
       ];
 }
 
@@ -192,18 +196,6 @@ class DashBoardPage extends PageRouteInfo<void> {
         );
 
   static const String name = 'DashBoardPage';
-}
-
-/// generated route for
-/// [EditProfileView]
-class EditProfilePage extends PageRouteInfo<void> {
-  const EditProfilePage()
-      : super(
-          EditProfilePage.name,
-          path: 'editProfileRouter',
-        );
-
-  static const String name = 'EditProfilePage';
 }
 
 /// generated route for
