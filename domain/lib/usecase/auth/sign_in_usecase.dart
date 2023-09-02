@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class SignInUseCase extends FutureUsecaseWithParams<UserEntity, SignInParams> {
+class SignInUseCase extends FutureUseCaseWithParams<UserEntity, SignInParams> {
   final AuthRepository _repository;
 
   const SignInUseCase(
@@ -28,7 +28,7 @@ class SignInParams extends Equatable {
         password = '';
 
   @override
-  List<String> get props => [
+  List<String> get props => <String>[
         email,
         password,
       ];

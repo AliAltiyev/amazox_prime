@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class ForgotPasswordUseCase extends FutureUsecaseWithParams<void, String> {
+class ForgotPasswordUseCase extends FutureUseCaseWithParams<void, String> {
   final AuthRepository _repository;
 
   const ForgotPasswordUseCase(

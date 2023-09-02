@@ -1,10 +1,10 @@
 import 'package:card/shopping_card.dart';
 import 'package:core/enums/currency.dart';
 
-class CartSublist extends StatelessWidget {
+class CartSubList extends StatelessWidget {
   final CartLoaded _state;
 
-  const CartSublist({
+  const CartSubList({
     required CartLoaded state,
     super.key,
   }) : _state = state;

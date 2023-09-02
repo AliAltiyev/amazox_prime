@@ -25,12 +25,11 @@ class DetailsSliverList extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: ApplicationPadding.PADDING_10),
+                    vertical: ApplicationPadding.PADDING_10,
+                  ),
                   child: Row(
                     children: <Widget>[
-                      AppRatingBar(
-                        rate: data.rate.toDouble(),
-                      ),
+                      AppRatingBar(rate: data.rate.toDouble()),
                       const SizedBox(width: Dimensions.SIZE_20),
                       Text(
                         data.rate.toString(),
@@ -71,10 +70,10 @@ class DetailsSliverList extends StatelessWidget {
                       BlocBuilder<CartBloc, CartState>(
                         builder: (BuildContext context, CartState state) {
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(Dimensions.SIZE_10),
                             child: SizedBox(
                               height: Dimensions.SIZE_80,
-                              width: size.width / Dimensions.SIZE_1,
+                              width: size.width / Dimensions.SIZE_1_2,
                               child: AddToCardButton(
                                 onPressed: () {
                                   context

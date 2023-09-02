@@ -49,7 +49,7 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<AuthBloc>(
           create: (BuildContext context) => AuthBloc(
-            signInWithGoogleUseCase: getIt<SigninWithGoogleUseCase>(),
+            signInWithGoogleUseCase: getIt<SignInWithGoogleUseCase>(),
             autoRouter: getIt<AppRouter>(),
             signInUseCase: getIt<SignInUseCase>(),
             signUpUseCase: getIt<SignUpUseCase>(),

@@ -1,6 +1,10 @@
 import 'package:home/src/home.dart';
 
 class HomeContent extends StatelessWidget {
+  final PageController _pageController;
+  final double _currentPage;
+  final LoadedProductsState _state;
+
   const HomeContent({
     required PageController pageController,
     required double currentPage,
@@ -9,10 +13,6 @@ class HomeContent extends StatelessWidget {
   })  : _pageController = pageController,
         _currentPage = currentPage,
         _state = state;
-
-  final PageController _pageController;
-  final double _currentPage;
-  final LoadedProductsState _state;
 
   @override
   Widget build(BuildContext context) {

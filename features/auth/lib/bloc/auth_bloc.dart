@@ -4,14 +4,14 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final SigninWithGoogleUseCase _signInWithGoogleUseCase;
+  final SignInWithGoogleUseCase _signInWithGoogleUseCase;
   final SignInUseCase _signInUseCase;
   final SignUpUseCase _signUpUseCase;
   final ForgotPasswordUseCase _forgotPasswordUseCase;
   final AppRouter _autoRouter;
 
   AuthBloc({
-    required SigninWithGoogleUseCase signInWithGoogleUseCase,
+    required SignInWithGoogleUseCase signInWithGoogleUseCase,
     required SignInUseCase signInUseCase,
     required SignUpUseCase signUpUseCase,
     required ForgotPasswordUseCase forgotPasswordUseCase,

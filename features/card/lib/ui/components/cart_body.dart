@@ -77,7 +77,7 @@ class _CartBodyState extends State<CartBody> {
               );
             },
           ),
-          CartSublist(state: widget._state),
+          CartSubList(state: widget._state),
         ],
       ),
     );
@@ -97,7 +97,7 @@ class _CartBodyState extends State<CartBody> {
               backgroundColor: Colors.transparent,
               content: AwesomeSnackbarContent(
                 inMaterialBanner: true,
-                message: StringConstant.emptyCartSnacBarSubtitle,
+                message: StringConstant.emptyCartSnackBarSubtitle,
                 title: StringConstant.emptyCartSnackBarTitle,
                 color: ApplicationColors.primaryButtonColor,
                 contentType: ContentType.success,

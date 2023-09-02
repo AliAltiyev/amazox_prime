@@ -135,8 +135,8 @@ Future<void> initDataLayer() async {
     () => SignInUseCase(getIt<AuthRepository>()),
   );
 
-  getIt.registerLazySingleton<SigninWithGoogleUseCase>(
-    () => SigninWithGoogleUseCase(getIt<AuthRepository>()),
+  getIt.registerLazySingleton<SignInWithGoogleUseCase>(
+    () => SignInWithGoogleUseCase(getIt<AuthRepository>()),
   );
 
   getIt.registerLazySingleton<LogOutUseCase>(

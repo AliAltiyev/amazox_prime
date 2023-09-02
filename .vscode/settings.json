@@ -1,6 +1,6 @@
 {
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Mayukai Dark",
+  "workbench.colorTheme": "Mayukai Midnight",
   "explorer.experimental.fileNesting.enabled": true,
   "explorer.experimental.fileNesting.expand": false,
   "explorer.experimental.fileNesting.patterns": {

@@ -6,8 +6,8 @@ abstract class FutureUsecaseWithoutParams<T> {
   ResultFuture<T> call();
 }
 
-abstract class FutureUsecaseWithParams<T, Params> {
-  const FutureUsecaseWithParams();
+abstract class FutureUseCaseWithParams<T, Params> {
+  const FutureUseCaseWithParams();
 
   ResultFuture<T> call(Params params);
 }

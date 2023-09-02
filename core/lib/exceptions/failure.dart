@@ -13,7 +13,10 @@ abstract class Failure extends Equatable {
   String get errorMessage => '$statusCode Error: $message';
 
   @override
-  List<dynamic> get props => [message, statusCode];
+  List<dynamic> get props => <dynamic>[
+        message,
+        statusCode,
+      ];
 }
 
 class CacheFailure extends Failure {
