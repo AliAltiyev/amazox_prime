@@ -36,3 +36,4 @@ export 'package:domain/usecase/settings/font/get_font_usecase.dart';
 export 'package:domain/usecase/settings/font/save_font_usecae.dart';
 export 'package:domain/usecase/settings/theme/get_app_theme_usecase.dart';
 export 'package:domain/usecase/settings/theme/save_app_theme_usecase.dart';
+export 'package:mocktail/mocktail.dart';
