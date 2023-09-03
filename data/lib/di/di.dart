@@ -1,4 +1,4 @@
-import 'package:data/datasource/auth/auth_remote_data_source_impl.dart';
+import 'package:data/data_provider/auth/auth_remote_data_source_impl.dart';
 import 'package:data/model/order.dart';
 import 'package:data/repository_impl/auth/auth_repository_impl.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
