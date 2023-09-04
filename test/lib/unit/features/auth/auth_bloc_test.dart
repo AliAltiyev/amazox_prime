@@ -19,9 +19,10 @@ void main() {
   late ForgotPasswordUseCase forgotPasswordUseCase;
   late AppRouter appRouter;
   late AuthBloc authBloc;
+  const UserEntity user = UserEntity.empty();
   const String testPassword = 'password';
   const String testEmail = 'email';
-  const String testFullName = 'fullname';
+  const String testFullName = 'fullName';
 
   const SignInParams signInParams = SignInParams(
     email: testEmail,
@@ -33,6 +34,9 @@ void main() {
     password: testPassword,
     fullName: testFullName,
   );
+
+  registerFallbackValue(signInParams);
+  registerFallbackValue(signUpParams);
 
   setUp(
     () {
@@ -64,6 +68,59 @@ void main() {
         },
       );
     },
+  );
+
+  blocTest<AuthBloc, AuthState>(
+    'should emit [AuthLoadingState] when  SignInEvent is added.',
+    build: () {
+      when<Future<Either<Failure, UserEntity>>>(
+        () => signInUseCase(any<SignInParams>()),
+      ).thenAnswer(
+        (Invocation invocation) async {
+          return const Right<Failure, UserEntity>(
+            UserEntity.empty(),
+          );
+        },
+      );
+
+      return authBloc;
+    },
+    act: (AuthBloc bloc) => bloc.add(
+      SignInEvent(
+        email: signInParams.email,
+        password: signInParams.password,
+      ),
+    ),
+    expect: () => const <AuthState>[
+      AuthLoadingState(),
+      SignedInState(user: user),
+    ],
+  );
+
+  blocTest<AuthBloc, AuthState>(
+    'should emit [AuthLoadingState] when  SingUpEvent is added.',
+    build: () {
+      when<Future<Either<Failure, void>>>(
+        () => signUpUseCase(any<SignUpParams>()),
+      ).thenAnswer(
+        (Invocation invocation) async {
+          return const Right<Failure, void>(null);
+        },
+      );
+
+      return authBloc;
+    },
+    act: (AuthBloc bloc) => bloc.add(
+      SignUpEvent(
+        name: testFullName,
+        email: signInParams.email,
+        password: signInParams.password,
+      ),
+    ),
+    expect: () => const <AuthState>[
+      AuthLoadingState(),
+      SignedUpState(),
+    ],
   );
 
   tearDown(() => authBloc.close());

@@ -1,6 +1,7 @@
 library test;
 
 export 'package:auth/auth.dart';
+export 'package:bloc_test/bloc_test.dart';
 export 'package:card/shopping_card.dart';
 export 'package:core/core.dart';
 export 'package:core_ui/core_ui.dart';
