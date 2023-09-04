@@ -29,7 +29,7 @@ void main() {
     password: testPassword,
   );
 
-  SignUpParams signUpParams = const SignUpParams(
+  const SignUpParams signUpParams = SignUpParams(
     email: testEmail,
     password: testPassword,
     fullName: testFullName,
@@ -77,9 +77,7 @@ void main() {
         () => signInUseCase(any<SignInParams>()),
       ).thenAnswer(
         (Invocation invocation) async {
-          return const Right<Failure, UserEntity>(
-            UserEntity.empty(),
-          );
+          return const Right<Failure, UserEntity>(user);
         },
       );
 
