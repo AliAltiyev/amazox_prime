@@ -1,0 +1,45 @@
+name: testing
+description: Application test layer.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=1.17.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../core
+  core_ui:
+    path: ../core_ui
+  domain:
+    path: ../domain
+  data:
+    path: ../data
+  home:
+    path: ../features/home/
+  card:
+    path: ../features/card/
+  settings:
+    path: ../features/settings/
+  order:
+    path: ../features/order/
+  dashboard:
+    path: ../features/dashboard/
+  onboarding:
+    path: ../features/onboarding/
+  auth:
+    path: ../features/auth/
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  mocktail: ^1.0.0
+  fake_cloud_firestore: ^2.4.1+1
+  firebase_auth_mocks: ^0.12.0
+  firebase_storage_mocks: ^0.6.1
+  google_sign_in_mocks: ^0.2.2
