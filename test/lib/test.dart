@@ -14,3 +14,4 @@ export 'package:json_annotation/json_annotation.dart';
 export 'package:mocktail/mocktail.dart';
 export 'package:onboarding/onboarding.dart';
 export 'package:settings/settings.dart';
+export 'package:testing/widget/core_ui/test_wrapper_widget.dart';

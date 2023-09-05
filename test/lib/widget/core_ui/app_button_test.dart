@@ -3,10 +3,10 @@ import 'package:testing/test.dart';
 
 void main() {
   testWidgets(
-    'Should change app theme when on clicks',
+    'test app button',
     (WidgetTester widgetTester) async {
-      await widgetTester.pumpWidget(_wrapper(
-        AppAddButton(
+      await widgetTester.pumpWidget(TestWrapper(
+        widget: AppAddButton(
           icon: Icons.add,
           onPress: () {},
         ),
@@ -28,13 +28,5 @@ void main() {
         findsOneWidget,
       );
     },
-  );
-}
-
-MaterialApp _wrapper(Widget widget) {
-  return MaterialApp(
-    home: Scaffold(
-      body: widget,
-    ),
   );
 }
