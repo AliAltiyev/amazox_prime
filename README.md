@@ -1,5 +1,8 @@
 <h1 align="center" id="title">Amazox Prime</h1>
 
+<h2 align="center" id="title">Video Demonstration</h2>
+<p align="center"><img src="https://github.com/AliAltiyev/amazox_prime/assets/100046123/e03c66e4-adf7-4dc6-95ee-057104d2711a" >
+
 <h2 align="center" id="title">OnBoarding</h2>
 <p align="left"><img src="https://github.com/AliAltiyev/cofix/assets/100046123/8febc7f3-1635-4bf7-837a-f0558ddd5e50" | width=200>
 <img src="https://github.com/AliAltiyev/cofix/assets/100046123/e6fc26ad-2fd3-4dc9-8933-9133c8bbbdbe" | width=200 >
