@@ -200,7 +200,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   List<Widget> _appBarActions(Size size) {
     return <Widget>[
-      InkWell(
+      GestureDetector(
         onTap: () {
           context.read<SettingsBloc>().add(
                 SignOutFromAppEvent(),
@@ -213,35 +213,12 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Icon(Icons.logout),
         ),
       ),
-      InkWell(
+      AppThemeIcon(
         onTap: () {
           context.read<ThemeCubit>().isDark;
           context.read<ThemeCubit>().changeIcon();
         },
-        child: context.watch<ThemeCubit>().iconState
-            ? Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: ApplicationPadding.PADDING_14,
-                ),
-                child: SizedBox(
-                  height: size.height / Dimensions.SIZE_20,
-                  width: size.width / Dimensions.SIZE_14,
-                  child: Image.asset(
-                    color: ApplicationColors.black,
-                    ImagePaths.nightIcon,
-                  ),
-                ),
-              )
-            : Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: ApplicationPadding.PADDING_14,
-                ),
-                child: Image.asset(
-                  height: size.height / Dimensions.SIZE_20,
-                  width: size.width / Dimensions.SIZE_14,
-                  ImagePaths.dayIcon,
-                ),
-              ),
+        themeState: context.watch<ThemeCubit>().iconState,
       ),
       PopupMenuButton(
         offset: const Offset(

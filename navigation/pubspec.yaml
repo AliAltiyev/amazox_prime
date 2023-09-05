@@ -10,8 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   auto_route: 5.0.4
-
-
   home:
     path: ../features/home/
   card:

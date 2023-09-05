@@ -7,12 +7,12 @@ abstract class AuthState extends Equatable {
   List<Object> get props => <Object>[];
 }
 
-class AuthInitial extends AuthState {
-  const AuthInitial();
+class AuthInitialState extends AuthState {
+  const AuthInitialState();
 }
 
-class AuthLoading extends AuthState {
-  const AuthLoading();
+class AuthLoadingState extends AuthState {
+  const AuthLoadingState();
 
   @override
   List<Object> get props => <Object>[];
@@ -29,8 +29,8 @@ class AuthError extends AuthState {
       ];
 }
 
-class SignedIn extends AuthState {
-  const SignedIn({required this.user});
+class SignedInState extends AuthState {
+  const SignedInState({required this.user});
 
   final UserEntity user;
 
@@ -40,8 +40,8 @@ class SignedIn extends AuthState {
       ];
 }
 
-class SignedUp extends AuthState {
-  const SignedUp();
+class SignedUpState extends AuthState {
+  const SignedUpState();
 }
 
 class ForgotPasswordSent extends AuthState {

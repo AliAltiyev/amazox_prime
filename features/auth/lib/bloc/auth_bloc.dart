@@ -21,14 +21,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _forgotPasswordUseCase = forgotPasswordUseCase,
         _signInWithGoogleUseCase = signInWithGoogleUseCase,
         _autoRouter = autoRouter,
-        super(const AuthInitial()) {
+        super(const AuthInitialState()) {
     on<AuthEvent>((event, emit) {
-      emit(const AuthLoading());
+      emit(const AuthLoadingState());
     });
     on<SignInEvent>(_onSignIn);
     on<SignUpEvent>(_onSignUp);
     on<ForgotPasswordEvent>(_onForgotPassword);
-    on<NavigateToRegistrationPageEvent>(_navigateToRegistration);
+    on<NavigateToRegistrationPageEvent>(_onNavigateToRegistration);
     on<NavigateTosSignInPageEvent>(_onNavigateToSignIn);
     on<NavigateTosHomePageEvent>(_onNavigateToHome);
     on<SignInWithGoogleEvent>(_onSignInWithGoogle);
@@ -50,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           message: '${failure.statusCode}: ${failure.message}',
         ),
       ),
-      (user) => emit(SignedIn(user: user)),
+      (user) => emit(SignedInState(user: user)),
     );
   }
 
@@ -71,7 +71,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           message: '${failure.statusCode}: ${failure.message}',
         ),
       ),
-      (_) => emit(const SignedUp()),
+      (_) => emit(const SignedUpState()),
     );
   }
 
@@ -88,7 +88,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _navigateToRegistration(
+  Future<void> _onNavigateToRegistration(
     NavigateToRegistrationPageEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -99,7 +99,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     NavigateTosSignInPageEvent event,
     Emitter<AuthState> emit,
   ) async {
-    emit(const AuthInitial());
+    emit(const AuthInitialState());
     _autoRouter.replace<Object?>(const SignInPage());
   }
 
@@ -123,7 +123,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (failure) => emit(
         AuthError(message: '${failure.statusCode}: ${failure.message}'),
       ),
-      (user) => emit(SignedIn(user: user)),
+      (user) => emit(SignedInState(user: user)),
     );
   }
 }

@@ -41,6 +41,9 @@ class DashboardView extends StatelessWidget {
                   builder: (context, state) {
                     if (state is CartLoaded) {
                       return Badge(
+                          textColor: context.theme == ThemeData.dark()
+                              ? ApplicationColors.white
+                              : ApplicationColors.black,
                           label: Text(
                             state.cart.cartItems.length.toString(),
                           ),

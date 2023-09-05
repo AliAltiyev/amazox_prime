@@ -33,8 +33,6 @@ final class UserModel extends Equatable {
           bio: '',
         );
 
-
-
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return _$UserModelFromJson(json);
   }

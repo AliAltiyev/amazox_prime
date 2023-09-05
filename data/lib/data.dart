@@ -27,10 +27,7 @@ export 'package:domain/usecase/get_menu.dart';
 export 'package:domain/usecase/product/get_product_by_id.dart';
 export 'package:domain/usecase/product/get_products.dart';
 export 'package:domain/usecase/settings/theme/save_app_theme_usecase.dart';
-export 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
-export 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 export 'package:json_annotation/json_annotation.dart';
-export 'package:mocktail/mocktail.dart';
 
 export 'data_provider/remote/remote_data_sourse.dart';
 export 'repository_impl/product/product_repository_impl.dart';

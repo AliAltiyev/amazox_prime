@@ -12,6 +12,12 @@ flutter clean && flutter clean cache && flutter pub get
 cd ..
 printf '\n\n'
 
+printf "test pub get\n"
+cd test || exit
+flutter clean && flutter clean cache && flutter pub get
+cd ..
+printf '\n\n'
+
 printf "data pub get\n"
 cd data || exit
 flutter clean && flutter clean cache && flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
