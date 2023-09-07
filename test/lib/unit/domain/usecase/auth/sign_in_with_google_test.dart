@@ -17,13 +17,14 @@ void main() {
   SignInWithGoogleParams params = const SignInWithGoogleParams();
 
   const UserEntity user = UserEntity(
-      fullName: '',
-      bio: '',
-      uid: '1',
-      emailIsVerified: false,
-      image: 'sss',
-      email: 'alidroid696@gmail.com',
-      username: 'ali');
+    fullName: '',
+    bio: '',
+    uid: '1',
+    emailIsVerified: false,
+    image: 'sss',
+    email: 'alidroid696@gmail.com',
+    username: 'ali',
+  );
 
   test('should call the [AuthRepository.singIn()]', () async {
     //arrange
