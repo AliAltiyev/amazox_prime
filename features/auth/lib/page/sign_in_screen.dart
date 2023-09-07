@@ -25,7 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
               context,
               state.message,
             );
-          } else if (state is SignedIn) {
+          } else if (state is SignedInState) {
             userProvider.initUser(state.user);
             context.read<AuthBloc>().add(
                   NavigateTosHomePageEvent(),
@@ -112,7 +112,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     Hero(
                       tag: AppHeroTags.authButton,
-                      child: state is AuthLoading
+                      child: state is AuthLoadingState
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
@@ -131,7 +131,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     Hero(
                       tag: AppHeroTags.authButton,
-                      child: state is AuthLoading
+                      child: state is AuthLoadingState
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )

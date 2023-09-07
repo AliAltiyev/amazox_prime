@@ -1,6 +1,10 @@
 import 'package:data/data.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+  final FirebaseAuth _authClient;
+  final FirebaseFirestore _cloudStoreClient;
+  final GoogleSignIn _googleSignIn;
+
   const AuthRemoteDataSourceImpl({
     required FirebaseAuth authClient,
     required FirebaseFirestore cloudStoreClient,
@@ -8,9 +12,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   })  : _authClient = authClient,
         _cloudStoreClient = cloudStoreClient,
         _googleSignIn = googleSignIn;
-  final FirebaseAuth _authClient;
-  final FirebaseFirestore _cloudStoreClient;
-  final GoogleSignIn _googleSignIn;
 
   @override
   Future<void> forgotPassword(String email) async {

@@ -26,14 +26,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         listener: (context, state) {
           if (state is AuthError) {
             Utils.showSnackBar(context, state.message);
-          } else if (state is SignedUp) {
+          } else if (state is SignedUpState) {
             context.read<AuthBloc>().add(
                   SignInEvent(
                     email: emailController.text.trim(),
                     password: passwordController.text.trim(),
                   ),
                 );
-          } else if (state is SignedIn) {
+          } else if (state is SignedInState) {
             _userProvider.initUser(state.user);
             context.read<AuthBloc>().add(
                   NavigateTosHomePageEvent(),

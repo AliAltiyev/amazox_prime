@@ -1,15 +1,24 @@
-name: navigation
-description: Application navigation layer
+name: testing
+description: Application test layer.
 version: 0.0.1
 publish_to: none
+
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
   flutter: '>=1.17.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  auto_route: 5.0.4
+  bloc_test: ^9.1.4
+  core:
+    path: ../core
+  core_ui:
+    path: ../core_ui
+  domain:
+    path: ../domain
+  data:
+    path: ../data
   home:
     path: ../features/home/
   card:
@@ -18,8 +27,6 @@ dependencies:
     path: ../features/settings/
   order:
     path: ../features/order/
-  core:
-    path: ../core/
   dashboard:
     path: ../features/dashboard/
   onboarding:
@@ -30,8 +37,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  auto_route_generator: 5.0.2
-  build_runner: ^2.3.3
 
-flutter:
+  flutter_lints: ^2.0.0
+  mocktail: ^1.0.0
+  fake_cloud_firestore: ^2.4.1+1
+  firebase_auth_mocks: ^0.12.0
+  firebase_storage_mocks: ^0.6.1
+  google_sign_in_mocks: ^0.2.2

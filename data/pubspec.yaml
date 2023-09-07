@@ -25,4 +25,5 @@ dev_dependencies:
   json_serializable: ^6.7.0
   build_runner: ^2.4.5
   hive_generator: ^2.0.0
+
 flutter:

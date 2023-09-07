@@ -14,7 +14,7 @@ dependencies:
   cloud_firestore: ^4.8.1
   firebase_core: ^2.14.0
   firebase_auth: ^4.7.2
-  google_sign_in: ^6.1.4
+  google_sign_in: ^5.0.2
   firebase_storage: ^11.2.0
   #dependency injection
   get_it: ^7.6.0
@@ -38,7 +38,6 @@ dependencies:
   image_picker: ^1.0.1
   #uuid
   uuid: ^3.0.7
-  
 
 dev_dependencies:
   flutter_test:
