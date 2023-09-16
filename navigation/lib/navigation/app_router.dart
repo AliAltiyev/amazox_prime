@@ -64,12 +64,40 @@ const _duration = 1000;
         ),
       ],
     ),
-    CustomRoute(
-      transitionsBuilder: TransitionsBuilders.fadeIn,
-      path: 'admin',
-      name: 'AdminRouter',
-      page: AdminPage,
-    ),
+    //!Admin flow
+    AutoRoute(
+      name: 'AdminDashboard',
+      page: AdminDashBoardPage,
+      path: 'adminDashboard',
+      children: <AutoRoute<dynamic>>[
+        AutoRoute(
+          name: 'UsersPage',
+          path: 'usersPage',
+          page: UsersPage,
+        ),
+        AutoRoute(
+          name: 'SalesPage',
+          path: 'salesPage',
+          page: SalesPage,
+        ),
+        AutoRoute(
+          name: 'ProductCountPage',
+          path: 'productCountPage',
+          page: ProductCountPage,
+        ),
+        AutoRoute(
+          name: 'AdminPage',
+          path: 'adminPage',
+          page: AdminPage,
+        ),
+        CustomRoute(
+          path: '',
+          page: HomeView,
+          name: 'homePage',
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+        ),
+      ],
+    )
   ],
 )
 class AppRouter extends _$AppRouter {}

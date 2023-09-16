@@ -46,13 +46,10 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    AdminRouter.name: (routeData) {
-      return CustomPage<dynamic>(
+    AdminDashboard.name: (routeData) {
+      return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const AdminPage(),
-        transitionsBuilder: TransitionsBuilders.fadeIn,
-        opaque: true,
-        barrierDismissible: false,
+        child: const AdminDashBoardPage(),
       );
     },
     HomeRouter.name: (routeData) {
@@ -104,6 +101,30 @@ class _$AppRouter extends RootStackRouter {
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false,
+      );
+    },
+    UsersPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const UsersPage(),
+      );
+    },
+    SalesPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SalesPage(),
+      );
+    },
+    ProductCountPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ProductCountPage(),
+      );
+    },
+    AdminPage.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AdminPage(),
       );
     },
   };
@@ -161,8 +182,35 @@ class _$AppRouter extends RootStackRouter {
           ],
         ),
         RouteConfig(
-          AdminRouter.name,
-          path: 'admin',
+          AdminDashboard.name,
+          path: 'adminDashboard',
+          children: [
+            RouteConfig(
+              UsersPage.name,
+              path: 'usersPage',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              SalesPage.name,
+              path: 'salesPage',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              ProductCountPage.name,
+              path: 'productCountPage',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              AdminPage.name,
+              path: 'adminPage',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              HomePage.name,
+              path: '',
+              parent: AdminDashboard.name,
+            ),
+          ],
         ),
       ];
 }
@@ -240,15 +288,16 @@ class DashBoardPageArgs {
 }
 
 /// generated route for
-/// [AdminPage]
-class AdminRouter extends PageRouteInfo<void> {
-  const AdminRouter()
+/// [AdminDashBoardPage]
+class AdminDashboard extends PageRouteInfo<void> {
+  const AdminDashboard({List<PageRouteInfo>? children})
       : super(
-          AdminRouter.name,
-          path: 'admin',
+          AdminDashboard.name,
+          path: 'adminDashboard',
+          initialChildren: children,
         );
 
-  static const String name = 'AdminRouter';
+  static const String name = 'AdminDashboard';
 }
 
 /// generated route for
@@ -345,4 +394,52 @@ class DetailsPageArgs {
   String toString() {
     return 'DetailsPageArgs{key: $key, productId: $productId}';
   }
+}
+
+/// generated route for
+/// [UsersPage]
+class UsersPage extends PageRouteInfo<void> {
+  const UsersPage()
+      : super(
+          UsersPage.name,
+          path: 'usersPage',
+        );
+
+  static const String name = 'UsersPage';
+}
+
+/// generated route for
+/// [SalesPage]
+class SalesPage extends PageRouteInfo<void> {
+  const SalesPage()
+      : super(
+          SalesPage.name,
+          path: 'salesPage',
+        );
+
+  static const String name = 'SalesPage';
+}
+
+/// generated route for
+/// [ProductCountPage]
+class ProductCountPage extends PageRouteInfo<void> {
+  const ProductCountPage()
+      : super(
+          ProductCountPage.name,
+          path: 'productCountPage',
+        );
+
+  static const String name = 'ProductCountPage';
+}
+
+/// generated route for
+/// [AdminPage]
+class AdminPage extends PageRouteInfo<void> {
+  const AdminPage()
+      : super(
+          AdminPage.name,
+          path: 'adminPage',
+        );
+
+  static const String name = 'AdminPage';
 }
