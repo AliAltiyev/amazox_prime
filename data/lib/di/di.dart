@@ -1,5 +1,5 @@
-import 'package:data/data_provider/auth/auth_remote_data_source_impl.dart';
 import 'package:data/model/order.dart';
+import 'package:data/repository_impl/admin/admin_repository_impl.dart';
 import 'package:data/repository_impl/auth/auth_repository_impl.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 import 'package:data/repository_impl/onboarding/on_boarding_repository_impl.dart';
@@ -162,6 +162,32 @@ Future<void> initDataLayer() async {
 
   getIt.registerLazySingleton<SaveUserOrderUseCase>(
     () => SaveUserOrderUseCase(orderRepository: getIt<OrderRepository>()),
+  );
+
+  //!Admin
+
+  getIt.registerLazySingleton<RemoteAdminDataSourceImpl>(
+    () {
+      return RemoteAdminDataSourceImpl(
+        firebaseFirestore: getIt<FirebaseFirestore>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<AdminRepositoryImpl>(
+    () {
+      return AdminRepositoryImpl(
+        remoteAdminDataSource: getIt<RemoteAdminDataSourceImpl>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<FetchAllUserUseCase>(
+    () {
+      return FetchAllUserUseCase(
+        adminRepository: getIt<AdminRepositoryImpl>(),
+      );
+    },
   );
 }
 

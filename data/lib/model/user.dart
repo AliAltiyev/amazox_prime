@@ -11,8 +11,10 @@ final class UserModel extends Equatable {
   final bool? emailIsVerified;
   final String? image;
   final String username;
+  final DateTime registrationDate;
 
   const UserModel({
+    required this.registrationDate,
     required this.fullName,
     required this.bio,
     required this.uid,
@@ -22,8 +24,9 @@ final class UserModel extends Equatable {
     required this.username,
   });
 
-  const UserModel.empty()
+  UserModel.empty()
       : this(
+          registrationDate: DateTime.now(),
           emailIsVerified: true,
           image: '',
           username: '',
@@ -45,10 +48,11 @@ final class UserModel extends Equatable {
         'bio': bio,
         'username': username,
         'emailIsVerified': emailIsVerified,
+        'registrationDate': registrationDate
       };
 
   @override
-  List<Object?> get props => [
+  List<Object?> get props => <Object?>[
         username,
         image,
         email,

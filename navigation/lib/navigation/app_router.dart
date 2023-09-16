@@ -68,32 +68,27 @@ const _duration = 1000;
     AutoRoute(
       name: 'AdminDashboard',
       page: AdminDashBoardPage,
-      path: 'adminDashboard',
       children: <AutoRoute<dynamic>>[
         AutoRoute(
-          name: 'UsersPage',
-          path: 'usersPage',
-          page: UsersPage,
+          name: 'UsersPageRouter',
+          page: AppUsersPage,
         ),
         AutoRoute(
-          name: 'SalesPage',
-          path: 'salesPage',
+          name: 'SalesPageRouter',
           page: SalesPage,
         ),
         AutoRoute(
-          name: 'ProductCountPage',
-          path: 'productCountPage',
+          name: 'ProductCountPageRouter',
           page: ProductCountPage,
         ),
         AutoRoute(
-          name: 'AdminPage',
-          path: 'adminPage',
+          name: 'AdminPageRouter',
           page: AdminPage,
         ),
         CustomRoute(
           path: '',
           page: HomeView,
-          name: 'homePage',
+          name: 'AdminHome',
           transitionsBuilder: TransitionsBuilders.fadeIn,
         ),
       ],
@@ -103,5 +98,7 @@ const _duration = 1000;
 class AppRouter extends _$AppRouter {}
 
 class EmptyPageRouter extends AutoRouter {
-  const EmptyPageRouter({super.key});
+  const EmptyPageRouter({
+    super.key,
+  });
 }

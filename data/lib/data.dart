@@ -8,6 +8,8 @@ export 'package:data/data_provider/locale/locale_data_source.dart';
 export 'package:data/data_provider/locale/locale_data_source_impl.dart';
 export 'package:data/data_provider/locale/user/locale_user.dart';
 export 'package:data/data_provider/locale/user/user_locale_impl.dart';
+export 'package:data/data_provider/remote/admin/remote_admin_data_source.dart';
+export 'package:data/data_provider/remote/admin/remote_admin_data_source_impl.dart';
 export 'package:data/data_provider/remote/remote_data_source_impl.dart';
 export 'package:data/di/di.dart';
 export 'package:data/mapper/menu.dart';

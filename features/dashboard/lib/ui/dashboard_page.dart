@@ -1,30 +1,19 @@
 import 'package:dashboard/dashboard.dart';
 
 class DashboardView extends StatelessWidget {
-  final bool _isAdminPanel;
-
   const DashboardView({
-    bool isAdminPanel = false,
     super.key,
-  }) : _isAdminPanel = isAdminPanel;
+  });
 
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: _isAdminPanel
-          ? const <PageRouteInfo>[
-              HomeRouter(),
-              ShappngCardRouter(),
-              AdminRouter(),
-              OrderHistoryRouter(),
-              SettingsRouter(),
-            ]
-          : const <PageRouteInfo>[
-              HomeRouter(),
-              ShappngCardRouter(),
-              OrderHistoryRouter(),
-              SettingsRouter(),
-            ],
+      routes: const <PageRouteInfo>[
+        HomeRouter(),
+        ShappngCardRouter(),
+        OrderHistoryRouter(),
+        SettingsRouter(),
+      ],
       animationCurve: Curves.linearToEaseOut,
       bottomNavigationBuilder: (_, tabsRouter) {
         return Padding(

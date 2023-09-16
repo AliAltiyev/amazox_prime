@@ -5,9 +5,6 @@ class AdminPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: DashboardView(
-      isAdminPanel: true,
-    ));
+    return const SizedBox();
   }
 }

@@ -132,6 +132,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInAsAdminEvent event,
     Emitter<AuthState> emit,
   ) async {
-    await _autoRouter.push(const AdminRouter());
+    await _autoRouter.push(const AdminDashboard());
   }
 }
