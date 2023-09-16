@@ -1,5 +1,5 @@
-name: dashboard
-description: Application dashbord layer.
+name: admin
+description: feature admin panel
 version: 0.0.1
 publish_to: none
 
@@ -10,10 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  navigation:
-    path: ../../navigation/
   core_ui:
-    path: ../../core_ui/
+    path: ../../core_ui
+  core:
+    path: ../../core
+  domain:
+    path: ../../domain
+  navigation:
+    path: ../../navigation
 
 dev_dependencies:
   flutter_test:

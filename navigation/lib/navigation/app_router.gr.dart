@@ -36,9 +36,23 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     DashBoardPage.name: (routeData) {
+      final args = routeData.argsAs<DashBoardPageArgs>(
+          orElse: () => const DashBoardPageArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const DashboardView(),
+        child: DashboardView(
+          isAdminPanel: args.isAdminPanel,
+          key: args.key,
+        ),
+      );
+    },
+    AdminRouter.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const AdminPage(),
+        transitionsBuilder: TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     HomeRouter.name: (routeData) {
@@ -146,6 +160,10 @@ class _$AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        RouteConfig(
+          AdminRouter.name,
+          path: 'admin',
+        ),
       ];
 }
 
@@ -187,15 +205,50 @@ class SignUpPage extends PageRouteInfo<void> {
 
 /// generated route for
 /// [DashboardView]
-class DashBoardPage extends PageRouteInfo<void> {
-  const DashBoardPage({List<PageRouteInfo>? children})
-      : super(
+class DashBoardPage extends PageRouteInfo<DashBoardPageArgs> {
+  DashBoardPage({
+    bool isAdminPanel = false,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           DashBoardPage.name,
           path: '/dashboard-view',
+          args: DashBoardPageArgs(
+            isAdminPanel: isAdminPanel,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'DashBoardPage';
+}
+
+class DashBoardPageArgs {
+  const DashBoardPageArgs({
+    this.isAdminPanel = false,
+    this.key,
+  });
+
+  final bool isAdminPanel;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'DashBoardPageArgs{isAdminPanel: $isAdminPanel, key: $key}';
+  }
+}
+
+/// generated route for
+/// [AdminPage]
+class AdminRouter extends PageRouteInfo<void> {
+  const AdminRouter()
+      : super(
+          AdminRouter.name,
+          path: 'admin',
+        );
+
+  static const String name = 'AdminRouter';
 }
 
 /// generated route for

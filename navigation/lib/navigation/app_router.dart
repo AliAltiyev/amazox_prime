@@ -64,6 +64,12 @@ const _duration = 1000;
         ),
       ],
     ),
+    CustomRoute(
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      path: 'admin',
+      name: 'AdminRouter',
+      page: AdminPage,
+    ),
   ],
 )
 class AppRouter extends _$AppRouter {}

@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _signInWithGoogleUseCase = signInWithGoogleUseCase,
         _autoRouter = autoRouter,
         super(const AuthInitialState()) {
-    on<AuthEvent>((event, emit) {
+    on<AuthEvent>((AuthEvent event, Emitter<AuthState> emit) {
       emit(const AuthLoadingState());
     });
     on<SignInEvent>(_onSignIn);
@@ -32,6 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<NavigateTosSignInPageEvent>(_onNavigateToSignIn);
     on<NavigateTosHomePageEvent>(_onNavigateToHome);
     on<SignInWithGoogleEvent>(_onSignInWithGoogle);
+    on<SignInAsAdminEvent>(_onSignInAsAdmin);
   }
 
   Future<void> _onSignIn(
@@ -45,12 +46,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
     result.fold(
-      (failure) => emit(
+      (Failure failure) => emit(
         AuthError(
           message: '${failure.statusCode}: ${failure.message}',
         ),
       ),
-      (user) => emit(SignedInState(user: user)),
+      (UserEntity user) => emit(SignedInState(user: user)),
     );
   }
 
@@ -66,7 +67,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
     result.fold(
-      (failure) => emit(
+      (Failure failure) => emit(
         AuthError(
           message: '${failure.statusCode}: ${failure.message}',
         ),
@@ -82,7 +83,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final Either<Failure, void> result =
         await _forgotPasswordUseCase(event.email);
     result.fold<void>(
-      (failure) =>
+      (Failure failure) =>
           emit(AuthError(message: '${failure.statusCode}: ${failure.message}')),
       (_) => emit(const ForgotPasswordSent()),
     );
@@ -108,8 +109,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     await _autoRouter.pushAndPopUntil(
-      const DashBoardPage(),
-      predicate: (route) => true,
+      DashBoardPage(isAdminPanel: false),
+      predicate: (Route route) => true,
     );
   }
 
@@ -120,10 +121,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final Either<Failure, UserEntity> result =
         await _signInWithGoogleUseCase(const SignInWithGoogleParams());
     result.fold<void>(
-      (failure) => emit(
+      (Failure failure) => emit(
         AuthError(message: '${failure.statusCode}: ${failure.message}'),
       ),
-      (user) => emit(SignedInState(user: user)),
+      (UserEntity user) => emit(SignedInState(user: user)),
     );
+  }
+
+  Future<void> _onSignInAsAdmin(
+    SignInAsAdminEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    await _autoRouter.push(const AdminRouter());
   }
 }

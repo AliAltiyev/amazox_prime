@@ -26,6 +26,8 @@ dependencies:
     path: ../features/onboarding/
   auth:
     path: ../features/auth/
+  admin:
+    path: ../features/admin/
 
 dev_dependencies:
   flutter_test:
