@@ -11,7 +11,7 @@ final class UserModel extends Equatable {
   final bool? emailIsVerified;
   final String? image;
   final String username;
-  final DateTime registrationDate;
+  final Timestamp registrationDate;
 
   const UserModel({
     required this.registrationDate,
@@ -26,7 +26,7 @@ final class UserModel extends Equatable {
 
   UserModel.empty()
       : this(
-          registrationDate: DateTime.now(),
+          registrationDate: Timestamp.now(),
           emailIsVerified: true,
           image: '',
           username: '',
@@ -40,7 +40,7 @@ final class UserModel extends Equatable {
     return _$UserModelFromJson(json);
   }
 
-  DataMap toMap() => {
+  DataMap toMap() => <String, dynamic>{
         'uid': uid,
         'email': email,
         'fullName': fullName,
@@ -60,5 +60,6 @@ final class UserModel extends Equatable {
         uid,
         fullName,
         bio,
+        registrationDate,
       ];
 }

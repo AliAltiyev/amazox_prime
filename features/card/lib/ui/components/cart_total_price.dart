@@ -27,6 +27,9 @@ class CartTotalPrice extends StatelessWidget {
                 text: StringConstant.makeOrder,
                 onPressed: () {
                   context.read<CartBloc>().add(
+                        ConfirmOrder(),
+                      );
+                  context.read<CartBloc>().add(
                         const RemoveAllProducts(),
                       );
 

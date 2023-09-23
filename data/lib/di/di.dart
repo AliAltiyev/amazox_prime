@@ -1,4 +1,3 @@
-import 'package:data/model/order.dart';
 import 'package:data/repository_impl/admin/admin_repository_impl.dart';
 import 'package:data/repository_impl/auth/auth_repository_impl.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
@@ -151,11 +150,6 @@ Future<void> initDataLayer() async {
     () => ForgotPasswordUseCase(getIt<AuthRepository>()),
   );
 
-  //Order
-  getIt.registerLazySingleton<OrderRepository>(
-    () => OrderRepositoryImpl(getIt<LocaleDataSource>()),
-  );
-
   getIt.registerLazySingleton<GetAllUserOrdersUseCase>(
     () => GetAllUserOrdersUseCase(orderRepository: getIt<OrderRepository>()),
   );
@@ -165,6 +159,29 @@ Future<void> initDataLayer() async {
   );
 
   //!Admin
+
+  getIt.registerLazySingleton<RemoteOrderDataSource>(
+    () {
+      return RemoteOrderDataSourceImpl(
+          firebaseFirestore: getIt<FirebaseFirestore>());
+    },
+  );
+
+  //Order
+  getIt.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(
+      getIt<LocaleDataSource>(),
+      getIt<RemoteOrderDataSource>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<SaveOrderRemoteUseCase>(
+    () {
+      return SaveOrderRemoteUseCase(
+        orderRepository: getIt<OrderRepository>(),
+      );
+    },
+  );
 
   getIt.registerLazySingleton<RemoteAdminDataSourceImpl>(
     () {
@@ -182,9 +199,17 @@ Future<void> initDataLayer() async {
     },
   );
 
-  getIt.registerLazySingleton<FetchAllUserUseCase>(
+  getIt.registerLazySingleton<FetchAllUsersPerDayUseCase>(
     () {
-      return FetchAllUserUseCase(
+      return FetchAllUsersPerDayUseCase(
+        adminRepository: getIt<AdminRepositoryImpl>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<FetchAllUserByRegistrationDateUseCase>(
+    () {
+      return FetchAllUserByRegistrationDateUseCase(
         adminRepository: getIt<AdminRepositoryImpl>(),
       );
     },

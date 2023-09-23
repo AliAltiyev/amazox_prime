@@ -109,7 +109,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     await _autoRouter.pushAndPopUntil(
-      DashBoardPage(isAdminPanel: false),
+      const DashBoardPage(),
       predicate: (Route route) => true,
     );
   }
@@ -132,6 +132,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInAsAdminEvent event,
     Emitter<AuthState> emit,
   ) async {
-    await _autoRouter.push(const AdminDashboard());
+    await _autoRouter.push(
+      const AdminDashboard(),
+    );
   }
 }

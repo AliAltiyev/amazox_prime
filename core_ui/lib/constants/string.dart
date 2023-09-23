@@ -90,4 +90,16 @@ final class StringConstant {
 
   //order
   static const String orderId = 'Артикул: ';
+
+  //Admin
+  static const String admin = 'Admin';
+  static const String sales = 'Sales';
+  static const String users = 'Users';
+
+  static const String productsCount = 'Products';
+  static const String one = '1';
+  static const String two = '2';
+  static const String three = '3';
+  static const String four = '4';
+  static const String five = '5';
 }

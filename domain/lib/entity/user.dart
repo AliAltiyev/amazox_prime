@@ -9,19 +9,21 @@ final class UserEntity extends Equatable {
   final bool? emailIsVerified;
   final String? image;
   final String username;
+  final Timestamp registrationDate;
 
-  const UserEntity({
-    required this.fullName,
-    required this.bio,
-    required this.uid,
-    required this.emailIsVerified,
-    required this.image,
-    required this.email,
-    required this.username,
-  });
+  const UserEntity(
+      {required this.fullName,
+      required this.bio,
+      required this.uid,
+      required this.emailIsVerified,
+      required this.image,
+      required this.email,
+      required this.username,
+      required this.registrationDate});
 
-  const UserEntity.empty()
+  UserEntity.empty()
       : this(
+          registrationDate: Timestamp.now(),
           emailIsVerified: true,
           image: '',
           username: '',

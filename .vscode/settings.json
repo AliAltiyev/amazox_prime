@@ -74,5 +74,8 @@
   "ShortcutMenuBar.startDebugging": true,
   "ShortcutMenuBar.redo": true,
   "bracketPairColorizer.depreciation-notice": false,
-  "tabnine.experimentalAutoImports": true
+  "tabnine.experimentalAutoImports": true,
+  "cSpell.words": [
+    "Firestore"
+  ]
 }

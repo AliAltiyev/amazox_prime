@@ -1,13 +1,13 @@
 import 'package:domain/domain.dart';
 
-final class SaveUserOrderUseCase {
+final class SaveOrderRemoteUseCase {
   final OrderRepository _orderRepository;
 
-  SaveUserOrderUseCase({
+  SaveOrderRemoteUseCase({
     required OrderRepository orderRepository,
   }) : _orderRepository = orderRepository;
 
   Future<void> call({required UserOrder order}) async {
-    return _orderRepository.saveOrderLocale(order);
+    return _orderRepository.saveOrderToFirebase(order);
   }
 }

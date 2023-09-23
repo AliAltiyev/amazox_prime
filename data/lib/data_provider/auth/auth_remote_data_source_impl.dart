@@ -83,7 +83,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .doc(user.uid)
         .set(
           UserModel(
-            registrationDate: DateTime.now(),
+            registrationDate: Timestamp.now(),
             emailIsVerified: user.emailVerified,
             username: user.displayName ?? '',
             bio: '',

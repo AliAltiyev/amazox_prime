@@ -39,7 +39,7 @@ dependencies:
   #uuid
   uuid: ^3.0.7
   #intl
-  intl: ^0.18.1
+  intl: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

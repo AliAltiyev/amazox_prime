@@ -1,5 +1,6 @@
 library order;
 
+export 'package:card/shopping_card.dart';
 export 'package:core/constants/string_constants.dart';
 export 'package:core/core.dart';
 export 'package:core_ui/core_ui.dart';

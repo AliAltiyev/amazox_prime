@@ -11,6 +11,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final RemoveCartItemUseCase _removeCartItemUseCase;
   final RemoveAllCartItemsUseCase _removeAllCartItemsUseCase;
   final SaveUserOrderUseCase _saveUserOrderUseCase;
+  final SaveOrderRemoteUseCase _saveOrderRemoteUseCase;
 
   CartBloc({
     required GetAllCartItemsUseCase getAllCartItemsUseCase,
@@ -18,7 +19,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     required SaveUserOrderUseCase saveUserOrderUseCase,
     required RemoveCartItemUseCase removeCartItemUseCase,
     required RemoveAllCartItemsUseCase removeAllCartItemsUseCase,
+    required SaveOrderRemoteUseCase saveOrderRemoteUseCase,
   })  : _getAllCartItemsUseCase = getAllCartItemsUseCase,
+        _saveOrderRemoteUseCase = saveOrderRemoteUseCase,
         _addCartItemUseCase = addCartItemUseCase,
         _saveUserOrderUseCase = saveUserOrderUseCase,
         _removeCartItemUseCase = removeCartItemUseCase,
@@ -27,7 +30,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<LoadCart>(_onLoadCart);
     on<AddProduct>(_onAddProduct);
     on<RemoveProduct>(_onRemoveProduct);
-    on<RemoveAllProducts>(_removeAllProducts);
+    on<RemoveAllProducts>(_onRemoveAllProducts);
+    on<ConfirmOrder>(_onConfirmOrder);
   }
 
   void _onLoadCart(
@@ -100,7 +104,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
   }
 
-  Future<void> _removeAllProducts(
+  Future<void> _onRemoveAllProducts(
     RemoveAllProducts event,
     Emitter<CartState> emit,
   ) async {
@@ -157,4 +161,33 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   String get deliveryFeeString => deliveryFee(subtotal).toStringAsFixed(2);
 
   String get date => DateTime.now().toString().substring(0, 10);
+
+  Future<void> _onConfirmOrder(
+    ConfirmOrder event,
+    Emitter<CartState> emit,
+  ) async {
+    try {
+      final List<Product> cart = (state as CartLoaded).cart.cartItems;
+      _saveOrderRemoteUseCase(
+        order: UserOrder(
+          id: const Uuid().v4(),
+          dateTime: DateTime.now().toString().substring(0, 10),
+          products: cart
+              .map((Product e) => Product(
+                  name: e.name,
+                  description: e.description,
+                  image: e.image,
+                  price: e.price,
+                  ml: e.ml,
+                  id: e.id,
+                  bigDescription: e.bigDescription,
+                  rate: e.rate))
+              .toList(),
+          price: totalPrice,
+        ),
+      );
+    } catch (message) {
+      emit(CartFailure(message: message.toString()));
+    }
+  }
 }

@@ -38,4 +38,24 @@ final class RemoteAdminDataSourceImpl implements RemoteAdminDataSource {
       throw AppFireBaseException(e.toString());
     }
   }
+
+  @override
+  Future<List<UserModel>> getUsersByRegistrationDate() async {
+    final List<UserModel> userList = <UserModel>[];
+
+    try {
+      final QuerySnapshot<Map<String, dynamic>> firebaseFireStore =
+          await FirebaseFirestore.instance
+              .collection(FirebaseEnum.users.name)
+              .get();
+
+      for (final QueryDocumentSnapshot<Map<String, dynamic>> element
+          in firebaseFireStore.docs) {
+        userList.add(UserModel.fromJson(element.data()));
+      }
+    } on FirebaseException catch (e) {
+      throw AppFireBaseException(e.toString());
+    }
+    return userList;
+  }
 }
