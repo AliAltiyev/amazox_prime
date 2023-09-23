@@ -30,4 +30,9 @@ class OrderRepositoryImpl extends OrderRepository {
       OrderMapper.toModel(userOrder),
     );
   }
+
+  @override
+  Future<List<int>> getOrdersPerDay() async {
+    return await _remoteOrderDataSource.getOrdersPerDay();
+  }
 }

@@ -31,6 +31,7 @@ export 'package:domain/usecase/cart/remove_cart_item.dart';
 export 'package:domain/usecase/onboarding/cache_first_timer_usecase.dart';
 export 'package:domain/usecase/onboarding/check_if_user_is_first_timer_usecase.dart';
 export 'package:domain/usecase/order/get_all_orders_usecase.dart';
+export 'package:domain/usecase/order/get_orders_per_day.dart';
 export 'package:domain/usecase/order/save_order_remote_usecase.dart';
 export 'package:domain/usecase/order/save_order_usecase.dart';
 export 'package:domain/usecase/product/get_product_by_id.dart';

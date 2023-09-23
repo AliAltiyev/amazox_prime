@@ -183,6 +183,14 @@ Future<void> initDataLayer() async {
     },
   );
 
+  getIt.registerLazySingleton<GetOrdersPerDayUseCase>(
+    () {
+      return GetOrdersPerDayUseCase(
+        orderRepository: getIt<OrderRepository>(),
+      );
+    },
+  );
+
   getIt.registerLazySingleton<RemoteAdminDataSourceImpl>(
     () {
       return RemoteAdminDataSourceImpl(

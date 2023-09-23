@@ -6,3 +6,5 @@ sealed class UsersEvent {}
 final class FetchAllUsersPerDayEvent extends UsersEvent {}
 
 final class CloseBottomSheetEvent extends UsersEvent {}
+
+final class ShowDailyUserStaticsPressed extends UsersEvent {}

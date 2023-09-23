@@ -1,4 +1,4 @@
-import '../../order.dart';
+import 'package:order/order.dart';
 
 class OrderDate extends StatelessWidget {
   const OrderDate({

@@ -11,20 +11,23 @@ final class RemoteAdminDataSourceImpl implements RemoteAdminDataSource {
   Future<List<int>> getUsersPerDay() async {
     try {
       List<int> userCounts = <int>[];
-      QuerySnapshot snapshot = await firebaseFirestore
-          .collection('users')
-          .orderBy('registrationDate', descending: true)
+      QuerySnapshot<Map<String, dynamic>> snapshot = await firebaseFirestore
+          .collection(FirebaseEnum.users.name)
+          .orderBy(FirebaseEnum.registrationDate.name, descending: true)
           .get();
 
-      List<QueryDocumentSnapshot> documents = snapshot.docs;
+      List<QueryDocumentSnapshot<Map<String, dynamic>>> documents =
+          snapshot.docs;
       DateTime currentDate = DateTime.now();
 
       for (int i = 0; i < 7; i++) {
         DateTime date = currentDate.subtract(Duration(days: i));
         int count = 0;
 
-        for (QueryDocumentSnapshot document in documents) {
-          DateTime registrationDate = document['registrationDate'].toDate();
+        for (QueryDocumentSnapshot<Map<String, dynamic>> document
+            in documents) {
+          DateTime registrationDate =
+              document[FirebaseEnum.registrationDate.name].toDate();
           if (registrationDate.year == date.year &&
               registrationDate.month == date.month &&
               registrationDate.day == date.day) {

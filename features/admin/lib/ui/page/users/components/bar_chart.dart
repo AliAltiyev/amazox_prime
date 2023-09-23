@@ -1,36 +1,47 @@
 import 'package:admin/admin.dart';
 
-class DailyUserBarChart extends StatelessWidget {
-  const DailyUserBarChart({
+class AppBarChart extends StatelessWidget {
+  const AppBarChart({
     super.key,
     required this.isShowingMainData,
-    required this.items,
+    required this.orders,
   });
-  final List<int> items;
-  final bool isShowingMainData;
 
+  final bool isShowingMainData;
+  final List<int> orders;
   @override
   Widget build(BuildContext context) {
     return LineChart(
-      sampleData,
+      isShowingMainData ? sampleData1 : sampleData2,
       duration: const Duration(milliseconds: 250),
     );
   }
 
-  LineChartData get sampleData => LineChartData(
-        lineTouchData: lineTouchData,
+  LineChartData get sampleData1 => LineChartData(
+        lineTouchData: lineTouchData1,
         gridData: gridData,
         titlesData: titlesData1,
         borderData: borderData,
-        lineBarsData: lineBarsData,
+        lineBarsData: lineBarsData1,
         minX: 0,
         maxX: 14,
         maxY: 4,
-        minY: -0.5,
-        backgroundColor: ApplicationColors.pageBackground,
+        minY: 0,
       );
 
-  LineTouchData get lineTouchData => LineTouchData(
+  LineChartData get sampleData2 => LineChartData(
+        lineTouchData: lineTouchData2,
+        gridData: gridData,
+        titlesData: titlesData2,
+        borderData: borderData,
+        lineBarsData: lineBarsData2,
+        minX: 0,
+        maxX: 14,
+        maxY: 6,
+        minY: 0,
+      );
+
+  LineTouchData get lineTouchData1 => LineTouchData(
         handleBuiltInTouches: true,
         touchTooltipData: LineTouchTooltipData(
           tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
@@ -52,13 +63,15 @@ class DailyUserBarChart extends StatelessWidget {
         ),
       );
 
-  List<LineChartBarData> get lineBarsData {
-    return <LineChartBarData>[
-      lineChartBarData,
-    ];
-  }
+  List<LineChartBarData> get lineBarsData1 => [
+        orderChartBarData,
+      ];
 
-  FlTitlesData get titlesData => FlTitlesData(
+  LineTouchData get lineTouchData2 => const LineTouchData(
+        enabled: false,
+      );
+
+  FlTitlesData get titlesData2 => FlTitlesData(
         bottomTitles: AxisTitles(
           sideTitles: bottomTitles,
         ),
@@ -73,7 +86,17 @@ class DailyUserBarChart extends StatelessWidget {
         ),
       );
 
+  List<LineChartBarData> get lineBarsData2 => [
+        lineChartBarData2_1,
+        lineChartBarData2_2,
+        lineChartBarData2_3,
+      ];
+
   Widget leftTitleWidgets(double value, TitleMeta meta) {
+    const TextStyle style = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
+    );
     String text;
     switch (value.toInt()) {
       case 1:
@@ -95,11 +118,7 @@ class DailyUserBarChart extends StatelessWidget {
         return Container();
     }
 
-    return Text(text,
-        style: AppFonts.bold14.apply(
-          color: ApplicationColors.white,
-        ),
-        textAlign: TextAlign.center);
+    return Text(text, style: style, textAlign: TextAlign.center);
   }
 
   SideTitles leftTitles() => SideTitles(
@@ -110,19 +129,20 @@ class DailyUserBarChart extends StatelessWidget {
       );
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    TextStyle style = AppFonts.bold14.apply(
-      color: ApplicationColors.white,
+    const TextStyle style = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
     );
     Widget text;
     switch (value.toInt()) {
       case 2:
-        text = Text('Сен', style: style);
+        text = const Text('SEPT', style: style);
         break;
       case 7:
-        text = Text('Окт', style: style);
+        text = const Text('OCT', style: style);
         break;
       case 12:
-        text = Text('Дек', style: style);
+        text = const Text('DEC', style: style);
         break;
       default:
         text = const Text('');
@@ -143,42 +163,86 @@ class DailyUserBarChart extends StatelessWidget {
         getTitlesWidget: bottomTitleWidgets,
       );
 
-  FlGridData get gridData => const FlGridData(
-        show: false,
-      );
+  FlGridData get gridData => const FlGridData(show: false);
 
   FlBorderData get borderData => FlBorderData(
         show: true,
         border: Border(
           bottom: BorderSide(
-            color: ApplicationColors.primary.withOpacity(0.2),
-            width: 4,
-          ),
-          left: const BorderSide(
-            width: Dimensions.SIZE_0,
-            color: ApplicationColors.borderColor,
-          ),
-          right: const BorderSide(
-            color: ApplicationColors.transparient,
-          ),
-          top: const BorderSide(
-            color: ApplicationColors.transparient,
-          ),
+              color: ApplicationColors.primary.withOpacity(0.2), width: 4),
+          left: const BorderSide(color: Colors.transparent),
+          right: const BorderSide(color: Colors.transparent),
+          top: const BorderSide(color: Colors.transparent),
         ),
       );
 
-  LineChartBarData get lineChartBarData => LineChartBarData(
+  LineChartBarData get orderChartBarData => LineChartBarData(
+      isCurved: true,
+      color: ApplicationColors.contentColorGreen,
+      barWidth: 8,
+      isStrokeCapRound: true,
+      dotData: const FlDotData(show: false),
+      belowBarData: BarAreaData(show: false),
+      spots: orders
+          .asMap()
+          .entries
+          .map((MapEntry<int, int> e) =>
+              FlSpot(e.key.toDouble(), e.value.toDouble()))
+          .toList());
+
+  LineChartBarData get lineChartBarData2_1 => LineChartBarData(
         isCurved: true,
-        color: ApplicationColors.contentColorYellow,
-        barWidth: 10,
-        isStrokeCapRound: false,
+        curveSmoothness: 0,
+        color: ApplicationColors.contentColorGreen.withOpacity(0.5),
+        barWidth: 4,
+        isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: items.asMap().entries.map((MapEntry<int, int> index) {
-          return FlSpot(
-            index.key.toDouble(),
-            index.value.toDouble(),
-          );
-        }).toList(),
+        spots: const [
+          FlSpot(1, 1),
+          FlSpot(3, 4),
+          FlSpot(5, 1.8),
+          FlSpot(7, 5),
+          FlSpot(10, 2),
+          FlSpot(12, 2.2),
+          FlSpot(13, 1.8),
+        ],
+      );
+
+  LineChartBarData get lineChartBarData2_2 => LineChartBarData(
+        isCurved: true,
+        color: ApplicationColors.contentColorPink.withOpacity(0.5),
+        barWidth: 4,
+        isStrokeCapRound: true,
+        dotData: const FlDotData(show: false),
+        belowBarData: BarAreaData(
+          show: true,
+          color: ApplicationColors.contentColorPink.withOpacity(0.2),
+        ),
+        spots: const [
+          FlSpot(1, 1),
+          FlSpot(3, 2.8),
+          FlSpot(7, 1.2),
+          FlSpot(10, 2.8),
+          FlSpot(12, 2.6),
+          FlSpot(13, 3.9),
+        ],
+      );
+
+  LineChartBarData get lineChartBarData2_3 => LineChartBarData(
+        isCurved: true,
+        curveSmoothness: 0,
+        color: ApplicationColors.contentColorCyan.withOpacity(0.5),
+        barWidth: 2,
+        isStrokeCapRound: true,
+        dotData: const FlDotData(show: true),
+        belowBarData: BarAreaData(show: false),
+        spots: const [
+          FlSpot(1, 3.8),
+          FlSpot(3, 1.9),
+          FlSpot(6, 5),
+          FlSpot(10, 3.3),
+          FlSpot(13, 4.5),
+        ],
       );
 }

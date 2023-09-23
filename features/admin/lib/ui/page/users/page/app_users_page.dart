@@ -1,10 +1,15 @@
 import 'package:admin/admin.dart';
 
-class AppUsersPage extends StatelessWidget {
+class AppUsersPage extends StatefulWidget {
   const AppUsersPage({
     super.key,
   });
 
+  @override
+  State<AppUsersPage> createState() => _AppUsersPageState();
+}
+
+class _AppUsersPageState extends State<AppUsersPage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -13,6 +18,7 @@ class AppUsersPage extends StatelessWidget {
       backgroundColor: ApplicationColors.pageBackground,
       body: BlocProvider<UsersBloc>(
         create: (BuildContext context) => UsersBloc(
+          getOrdersPerDayUseCase: getIt<GetOrdersPerDayUseCase>(),
           appRouter: getIt<AppRouter>(),
           fetchAllUsersByRegistrationDateUseCase:
               getIt<FetchAllUserByRegistrationDateUseCase>(),
@@ -44,14 +50,22 @@ class AppUsersPage extends StatelessWidget {
                         height: size.height / Dimensions.SIZE_2,
                         width: double.infinity,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: Dimensions.SIZE_20,
-                          ),
-                          child: DailyUserBarChart(
-                            isShowingMainData: true,
-                            items: state.usersByDate,
-                          ),
-                        ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: Dimensions.SIZE_20,
+                            ),
+                            child: context.watch<UsersBloc>().isShowingDailyUser
+                                ? AppBarChart(
+                                    orders: state.ordersByDate,
+                                    isShowingMainData: context
+                                        .watch<UsersBloc>()
+                                        .isShowingDailyUser,
+                                  )
+                                : AppBarChart(
+                                    orders: state.ordersByDate,
+                                    isShowingMainData: context
+                                        .watch<UsersBloc>()
+                                        .isShowingDailyUser,
+                                  )),
                       ),
                     ),
                     Row(
@@ -74,7 +88,10 @@ class AppUsersPage extends StatelessWidget {
                         Expanded(
                           child: AdminCart(
                             onTap: () {
-                              //TODO add logic
+                              setState(() {});
+                              context
+                                  .read<UsersBloc>()
+                                  .add(ShowDailyUserStaticsPressed());
                             },
                             icon: Icons.key_outlined,
                             text: 'Управление',
@@ -90,7 +107,10 @@ class AppUsersPage extends StatelessWidget {
                         Expanded(
                           child: AdminCart(
                             onTap: () {
-                              //TODO add logic
+                              setState(() {});
+                              context
+                                  .watch<UsersBloc>()
+                                  .add(ShowDailyUserStaticsPressed());
                             },
                             icon: Icons.insert_chart_outlined_outlined,
                             text: 'Продукты',
@@ -100,9 +120,7 @@ class AppUsersPage extends StatelessWidget {
                         ),
                         Expanded(
                           child: AdminCart(
-                            onTap: () {
-                              //TODO add logic
-                            },
+                            onTap: () {},
                             icon: Icons.monetization_on,
                             text: 'Продажа',
                             height: size.height / Dimensions.SIZE_6,
@@ -135,6 +153,7 @@ class AppUsersPage extends StatelessWidget {
           padding: const EdgeInsets.only(top: Dimensions.SIZE_50),
           child: BlocProvider(
             create: (BuildContext context) => UsersBloc(
+              getOrdersPerDayUseCase: getIt<GetOrdersPerDayUseCase>(),
               appRouter: getIt<AppRouter>(),
               fetchAllUsersByRegistrationDateUseCase:
                   getIt<FetchAllUserByRegistrationDateUseCase>(),

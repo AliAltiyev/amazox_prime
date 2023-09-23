@@ -137,7 +137,7 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(
           OnBoardingPage.name,
-          path: '/',
+          path: 'sss',
         ),
         RouteConfig(
           SignInPage.name,
@@ -187,7 +187,7 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           AdminDashboard.name,
-          path: '/admin-dash-board-page',
+          path: '/',
           children: [
             RouteConfig(
               UsersPageRouter.name,
@@ -225,7 +225,7 @@ class OnBoardingPage extends PageRouteInfo<void> {
   const OnBoardingPage()
       : super(
           OnBoardingPage.name,
-          path: '/',
+          path: 'sss',
         );
 
   static const String name = 'OnBoardingPage';
@@ -274,7 +274,7 @@ class AdminDashboard extends PageRouteInfo<void> {
   const AdminDashboard({List<PageRouteInfo>? children})
       : super(
           AdminDashboard.name,
-          path: '/admin-dash-board-page',
+          path: '/',
           initialChildren: children,
         );
 
