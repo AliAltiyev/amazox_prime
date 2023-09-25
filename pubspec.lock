@@ -10,7 +10,7 @@ packages:
     source: hosted
     version: "1.3.4"
   admin:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "features/admin"
       relative: true

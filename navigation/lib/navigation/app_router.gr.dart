@@ -117,9 +117,11 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     AdminPageRouter.name: (routeData) {
+      final args = routeData.argsAs<AdminPageRouterArgs>(
+          orElse: () => const AdminPageRouterArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const AdminPage(),
+        child: AdminPage(key: args.key),
       );
     },
     AdminHome.name: (routeData) {
@@ -415,14 +417,26 @@ class ProductCountPageRouter extends PageRouteInfo<void> {
 
 /// generated route for
 /// [AdminPage]
-class AdminPageRouter extends PageRouteInfo<void> {
-  const AdminPageRouter()
+class AdminPageRouter extends PageRouteInfo<AdminPageRouterArgs> {
+  AdminPageRouter({Key? key})
       : super(
           AdminPageRouter.name,
           path: 'admin-page',
+          args: AdminPageRouterArgs(key: key),
         );
 
   static const String name = 'AdminPageRouter';
+}
+
+class AdminPageRouterArgs {
+  const AdminPageRouterArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AdminPageRouterArgs{key: $key}';
+  }
 }
 
 /// generated route for

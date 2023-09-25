@@ -109,4 +109,9 @@ final class StringConstant {
   static const String usersLabel = 'Пользователи';
   static const String salesStatics = 'Cтатистика продаж';
   static const String userStatics = 'Cтатистика пользователей';
+  static const String add = 'Добавить';
+  static const String productName = 'Наиминование';
+  static const String productPrice = 'Цена';
+  static const String productDescription = 'Описание товара';
+
 }

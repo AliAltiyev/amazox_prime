@@ -6,7 +6,7 @@ void main() {
     'test app button',
     (WidgetTester widgetTester) async {
       await widgetTester.pumpWidget(TestWrapper(
-        widget: AppAddButton(
+        widget: PrimaryAppButton(
           icon: Icons.add,
           onPress: () {},
         ),

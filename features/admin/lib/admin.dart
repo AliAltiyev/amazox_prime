@@ -1,7 +1,8 @@
 library admin;
 
+export 'package:admin/bloc/admin/admin_bloc.dart';
 export 'package:admin/bloc/users/bloc/users_bloc.dart';
-export 'package:admin/ui/page/admin/admin_page.dart';
+export 'package:admin/ui/page/admin/page/admin_page.dart';
 export 'package:admin/ui/page/dashboard/admin_dashboard_page.dart';
 export 'package:admin/ui/page/product_count/product_counts_page.dart';
 export 'package:admin/ui/page/sales/sales_page.dart';

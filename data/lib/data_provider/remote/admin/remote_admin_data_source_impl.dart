@@ -61,4 +61,11 @@ final class RemoteAdminDataSourceImpl implements RemoteAdminDataSource {
     }
     return userList;
   }
+
+  @override
+  Future<void> addProduct(ProductModel productModel) async {
+    await firebaseFirestore
+        .collection(FirebaseEnum.coffee.name)
+        .add(productModel.toJson());
+  }
 }

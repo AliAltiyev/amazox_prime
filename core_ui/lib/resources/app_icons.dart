@@ -74,4 +74,8 @@ final class AppIcons {
   static const Icon users = Icon(
     Icons.supervised_user_circle,
   );
+
+  static const Icon add = Icon(
+    Icons.add,
+  );
 }

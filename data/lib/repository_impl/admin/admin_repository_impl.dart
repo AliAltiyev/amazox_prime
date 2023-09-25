@@ -7,7 +7,7 @@ final class AdminRepositoryImpl implements AdminRepository {
   AdminRepositoryImpl({
     required RemoteAdminDataSource remoteAdminDataSource,
   }) : _remoteAdminDataSource = remoteAdminDataSource;
-
+  //TODO remove or do somehing
   @override
   Future<void> deleteMultipleUsers() {
     // TODO: implement deleteMultipleUsers
@@ -30,5 +30,11 @@ final class AdminRepositoryImpl implements AdminRepository {
     final List<UserModel> data =
         await _remoteAdminDataSource.getUsersByRegistrationDate();
     return data.map(UserMapper.toEntity).toList();
+  }
+
+  @override
+  Future<void> saveProductToFirebase(Product product) async {
+    final ProductModel mappedProduct = ProductMapper.toModel(product);
+    _remoteAdminDataSource.addProduct(mappedProduct);
   }
 }

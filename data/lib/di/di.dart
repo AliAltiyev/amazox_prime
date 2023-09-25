@@ -222,6 +222,18 @@ Future<void> initDataLayer() async {
       );
     },
   );
+
+  getIt.registerLazySingleton<SaveProductUseCase>(
+    () {
+      return SaveProductUseCase(
+        adminRepository: getIt<AdminRepositoryImpl>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<ImagePicker>(() {
+    return ImagePicker();
+  });
 }
 
 void _initHiveAdapters() {

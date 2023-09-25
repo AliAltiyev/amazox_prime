@@ -19,6 +19,7 @@ export 'package:domain/repository/product/product_repository.dart';
 export 'package:domain/repository/settings/contacts/contacts_repository.dart';
 export 'package:domain/usecase/admin/fetch_all_users_by_registration_date_usecase.dart';
 export 'package:domain/usecase/admin/fetch_all_users_per_day_usecase.dart';
+export 'package:domain/usecase/admin/save_product_usecase.dart';
 export 'package:domain/usecase/auth/forgot_password_usecase.dart';
 export 'package:domain/usecase/auth/log_out_use_case.dart';
 export 'package:domain/usecase/auth/sign_in_usecase.dart';

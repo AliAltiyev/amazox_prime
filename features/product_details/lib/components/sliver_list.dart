@@ -74,7 +74,7 @@ class DetailsSliverList extends StatelessWidget {
                             child: SizedBox(
                               height: Dimensions.SIZE_80,
                               width: size.width / Dimensions.SIZE_1_2,
-                              child: AddToCardButton(
+                              child: CartButton(
                                 onPressed: () {
                                   context
                                       .read<CartBloc>()

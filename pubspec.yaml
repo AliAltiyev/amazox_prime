@@ -23,6 +23,9 @@ dependencies:
     path: ./navigation/
   home:
     path: ./features/home/
+  admin:
+    path: ./features/admin/
+
   settings:
     path: ./features/settings/
   card:

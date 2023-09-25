@@ -6,12 +6,11 @@ class AdminDashBoardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const <PageRouteInfo>[
-        AdminHome(),
-        UsersPageRouter(),
+      routes: <PageRouteInfo>[
+        const AdminHome(),
+        const UsersPageRouter(),
         AdminPageRouter(),
-        SalesPageRouter(),
-        ProductCountPageRouter(),
+        const SalesPageRouter(),
       ],
       animationCurve: Curves.easeIn,
       backgroundColor: ApplicationColors.pageBackground,
@@ -20,44 +19,39 @@ class AdminDashBoardPage extends StatelessWidget {
           padding: const EdgeInsets.all(
             ApplicationPadding.PADDING_10,
           ),
-          child: ApplicationBottomAppBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
-            items: <AppBarItem>[
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.home,
-                title: const Text(StringConstant.admin),
-              ),
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.users,
-                title: const Text(
-                  StringConstant.users,
+          child: Expanded(
+            child: ApplicationBottomAppBar(
+              currentIndex: tabsRouter.activeIndex,
+              onTap: tabsRouter.setActiveIndex,
+              items: <AppBarItem>[
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: AppIcons.home,
+                  title: const Text(StringConstant.productsCount),
                 ),
-              ),
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.admin,
-                title: const Text(
-                  StringConstant.productsCount,
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: AppIcons.users,
+                  title: const Text(
+                    StringConstant.users,
+                  ),
                 ),
-              ),
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.sales,
-                title: const Text(
-                  StringConstant.sales,
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: AppIcons.add,
+                  title: const Text(
+                    StringConstant.add,
+                  ),
                 ),
-              ),
-              AppBarItem(
-                selectedColor: ApplicationColors.white,
-                icon: AppIcons.products,
-                title: const Text(
-                  StringConstant.productsCount,
+                AppBarItem(
+                  selectedColor: ApplicationColors.white,
+                  icon: AppIcons.products,
+                  title: const Text(
+                    StringConstant.productsCount,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

@@ -16,7 +16,7 @@ class CartListItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            AppAddButton(
+            PrimaryAppButton(
               icon: AppIcons.increment,
               onPress: () {
                 //TODO: Add increment
@@ -25,7 +25,7 @@ class CartListItem extends StatelessWidget {
             Text(
               Dimensions.SIZE_1.toInt().toString(),
             ),
-            AppAddButton(
+            PrimaryAppButton(
               icon: AppIcons.increment,
               onPress: () {
                 //TODO: Adddecrement

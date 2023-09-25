@@ -1,10 +1,10 @@
 import 'package:core_ui/core_ui.dart';
 
-class AddToCardButton extends StatelessWidget {
+class CartButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final double textScaleFactory = 1;
-  const AddToCardButton({
+  const CartButton({
     required this.onPressed,
     required this.text,
     super.key,
