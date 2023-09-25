@@ -36,7 +36,9 @@ class _AppUsersPageState extends State<AppUsersPage> {
                 child: ListView(
                   children: <Widget>[
                     Text(
-                      'Cтатистика пользователей',
+                      context.watch<UsersBloc>().isShowingDailyUser
+                          ? StringConstant.salesStatics
+                          : StringConstant.userStatics,
                       style: AppFonts.bold18.apply(
                         color: ApplicationColors.white,
                       ),
@@ -50,22 +52,25 @@ class _AppUsersPageState extends State<AppUsersPage> {
                         height: size.height / Dimensions.SIZE_2,
                         width: double.infinity,
                         child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: Dimensions.SIZE_20,
-                            ),
-                            child: context.watch<UsersBloc>().isShowingDailyUser
-                                ? AppBarChart(
-                                    orders: state.ordersByDate,
-                                    isShowingMainData: context
-                                        .watch<UsersBloc>()
-                                        .isShowingDailyUser,
-                                  )
-                                : AppBarChart(
-                                    orders: state.ordersByDate,
-                                    isShowingMainData: context
-                                        .watch<UsersBloc>()
-                                        .isShowingDailyUser,
-                                  )),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: Dimensions.SIZE_20,
+                          ),
+                          child: context.watch<UsersBloc>().isShowingDailyUser
+                              ? AppBarChart(
+                                  users: state.usersByDate,
+                                  orders: state.ordersByDate,
+                                  isShowSales: context
+                                      .watch<UsersBloc>()
+                                      .isShowingDailyUser,
+                                )
+                              : AppBarChart(
+                                  users: state.usersByDate,
+                                  orders: state.ordersByDate,
+                                  isShowSales: context
+                                      .watch<UsersBloc>()
+                                      .isShowingDailyUser,
+                                ),
+                        ),
                       ),
                     ),
                     Row(
@@ -80,7 +85,7 @@ class _AppUsersPageState extends State<AppUsersPage> {
                               );
                             },
                             icon: Icons.supervised_user_circle_rounded,
-                            text: 'Пользователи',
+                            text: StringConstant.usersLabel,
                             height: size.height / Dimensions.SIZE_6,
                             width: size.width / Dimensions.SIZE_5,
                           ),
@@ -93,36 +98,8 @@ class _AppUsersPageState extends State<AppUsersPage> {
                                   .read<UsersBloc>()
                                   .add(ShowDailyUserStaticsPressed());
                             },
-                            icon: Icons.key_outlined,
-                            text: 'Управление',
-                            height: size.height / Dimensions.SIZE_6,
-                            width: size.width / Dimensions.SIZE_5,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Expanded(
-                          child: AdminCart(
-                            onTap: () {
-                              setState(() {});
-                              context
-                                  .watch<UsersBloc>()
-                                  .add(ShowDailyUserStaticsPressed());
-                            },
-                            icon: Icons.insert_chart_outlined_outlined,
-                            text: 'Продукты',
-                            height: size.height / Dimensions.SIZE_6,
-                            width: size.width / Dimensions.SIZE_5,
-                          ),
-                        ),
-                        Expanded(
-                          child: AdminCart(
-                            onTap: () {},
                             icon: Icons.monetization_on,
-                            text: 'Продажа',
+                            text: StringConstant.sales,
                             height: size.height / Dimensions.SIZE_6,
                             width: size.width / Dimensions.SIZE_5,
                           ),
@@ -134,7 +111,7 @@ class _AppUsersPageState extends State<AppUsersPage> {
               );
             } else {
               return const Center(
-                child: Text('Error'),
+                child: Text(StringConstants.error),
               );
             }
           },
@@ -151,7 +128,7 @@ class _AppUsersPageState extends State<AppUsersPage> {
       builder: (BuildContext context) {
         return Padding(
           padding: const EdgeInsets.only(top: Dimensions.SIZE_50),
-          child: BlocProvider(
+          child: BlocProvider<UsersBloc>(
             create: (BuildContext context) => UsersBloc(
               getOrdersPerDayUseCase: getIt<GetOrdersPerDayUseCase>(),
               appRouter: getIt<AppRouter>(),
@@ -163,23 +140,23 @@ class _AppUsersPageState extends State<AppUsersPage> {
               builder: (BuildContext context, UsersState state) {
                 if (state is UsersFailed) {
                   return const Center(
-                    child: Text('Errro'),
+                    child: Text(StringConstants.error),
                   );
                 }
                 if (state is UsersLoaded) {
                   return Stack(
-                    children: [
+                    children: <Widget>[
                       Align(
                         alignment: Alignment.topCenter,
                         child: Text(
-                          'Пользователи',
+                          StringConstant.users,
                           style: AppFonts.bold18.apply(
                             color: ApplicationColors.white,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 50.0),
+                        padding: const EdgeInsets.only(top: Dimensions.SIZE_50),
                         child: SizedBox(
                           height: size.height,
                           width: size.width,
@@ -197,7 +174,7 @@ class _AppUsersPageState extends State<AppUsersPage> {
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
                                 title: Row(
-                                  children: [
+                                  children: <Widget>[
                                     CircleAvatar(
                                       child: Image.asset(ImagePaths.user),
                                     ),
@@ -207,15 +184,15 @@ class _AppUsersPageState extends State<AppUsersPage> {
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [
+                                      children: <Widget>[
                                         Text(
-                                          'Почта: ${state.users[index].email}',
+                                          '${StringConstant.postAddress}: ${state.users[index].email}',
                                           style: AppFonts.bold14.apply(
                                             color: ApplicationColors.white,
                                           ),
                                         ),
                                         Text(
-                                          'Дата регистрации: ${DateFormat('dd.MM.yyyy').format(
+                                          '${StringConstant.registrationDate}: ${DateFormat('dd.MM.yyyy').format(
                                             state.users[index].registrationDate
                                                 .toDate(),
                                           )}',

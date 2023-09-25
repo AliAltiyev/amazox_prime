@@ -31,7 +31,7 @@ class AdminCart extends StatelessWidget {
             height: height,
             decoration: BoxDecoration(
               color: ApplicationColors.primaryButtonColor,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(Dimensions.SIZE_16),
             ),
             child: Stack(
               children: <Widget>[
