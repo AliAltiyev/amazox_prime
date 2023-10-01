@@ -33,8 +33,11 @@ final class AdminRepositoryImpl implements AdminRepository {
   }
 
   @override
-  Future<void> saveProductToFirebase(Product product) async {
+  Future<void> saveProductToFirebase(Product product, File imageFile) async {
     final ProductModel mappedProduct = ProductMapper.toModel(product);
-    _remoteAdminDataSource.addProduct(mappedProduct);
+    _remoteAdminDataSource.addProduct(
+      mappedProduct,
+      imageFile,
+    );
   }
 }

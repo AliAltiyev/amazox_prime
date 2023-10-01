@@ -14,7 +14,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, state) {
         return StreamBuilder(
-          initialData: state.currentUser,
           stream: state.currentUser,
           builder: (context, snapshot) {
             return Scaffold(

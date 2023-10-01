@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:admin/admin.dart';
 
@@ -8,7 +8,7 @@ part 'admin_state.dart';
 class AdminBloc extends Bloc<AdminEvent, AdminState> {
   final ImagePicker _imagePicker;
   final SaveProductUseCase _saveProductUseCase;
-  String pickedImage = '';
+  File? pickedImage;
   AdminBloc({
     required ImagePicker imagePicker,
     required SaveProductUseCase saveProductUseCase,
@@ -27,12 +27,8 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
       final XFile? xFile = await _imagePicker.pickImage(
         source: ImageSource.gallery,
       );
-      if (xFile != null) {
-        final Uint8List imageBytes = await xFile.readAsBytes();
-        final String imageString = base64Encode(imageBytes);
-
-        pickedImage = imageString;
-      }
+      if (xFile == null) return;
+      pickedImage = File(xFile.path);
     } catch (e) {
       emit(AdminFailedState(errorMessage: e.toString()));
     }
@@ -42,6 +38,11 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
     SaveProductEvent event,
     Emitter<AdminState> emit,
   ) async {
-    await _saveProductUseCase(event.product);
+    await _saveProductUseCase(
+        event.product,
+        pickedImage ??
+            File(
+              StringConstant.emptyString,
+            ));
   }
 }

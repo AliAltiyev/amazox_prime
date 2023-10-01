@@ -198,6 +198,7 @@ Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteAdminDataSourceImpl>(
     () {
       return RemoteAdminDataSourceImpl(
+        firebaseStorage: getIt<FirebaseStorage>(),
         firebaseFirestore: getIt<FirebaseFirestore>(),
       );
     },
