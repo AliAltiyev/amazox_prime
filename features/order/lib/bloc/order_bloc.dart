@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import '../order.dart';
+import 'package:order/order.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';
 
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   final GetAllUserOrdersUseCase _getAllUserOrders;
-
   OrderBloc({
     required GetAllUserOrdersUseCase getAllUserOrders,
   })  : _getAllUserOrders = getAllUserOrders,
@@ -25,7 +24,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         OrdersLoaded(orders: orders),
       );
     } catch (e) {
-      OrdersFailure();
+      emit(OrdersFailure());
     }
   }
 }

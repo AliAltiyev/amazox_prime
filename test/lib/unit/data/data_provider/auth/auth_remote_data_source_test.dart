@@ -36,7 +36,7 @@ void main() {
   late DocumentReference<Map<String, dynamic>> docReference;
   late MockUserCredential userCredential;
   late MockGoogleSignIn googleSignIn;
-  const UserModel tUser = UserModel.empty();
+  UserModel tUser = UserModel.empty();
 
   setUpAll(
     () async {

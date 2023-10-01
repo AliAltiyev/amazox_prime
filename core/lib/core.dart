@@ -28,6 +28,7 @@ export 'package:google_sign_in/google_sign_in.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:internet_connection_checker/internet_connection_checker.dart';
+export 'package:intl/intl.dart' hide TextDirection;
 export 'package:provider/provider.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:uuid/uuid.dart';

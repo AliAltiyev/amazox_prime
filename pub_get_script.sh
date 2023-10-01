@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 
 printf "core pub get\n"
 cd core || exit

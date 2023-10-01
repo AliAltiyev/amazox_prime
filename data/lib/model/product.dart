@@ -37,7 +37,7 @@ class ProductModel {
     return _$ProductModelFromJson(json);
   }
 
-  Map<String, dynamic> toJson(ProductModel productModel) {
-    return _$ProductModelToJson(productModel);
+  Map<String, dynamic> toJson() {
+    return _$ProductModelToJson(this);
   }
 }

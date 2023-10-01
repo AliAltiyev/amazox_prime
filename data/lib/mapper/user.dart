@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 abstract class UserMapper {
   static UserEntity toEntity(UserModel user) {
     return UserEntity(
+      registrationDate: user.registrationDate,
       bio: user.bio,
       fullName: user.fullName,
       uid: user.uid,
@@ -16,6 +17,7 @@ abstract class UserMapper {
 
   static UserModel toModel(UserEntity user) {
     return UserModel(
+        registrationDate: user.registrationDate,
         email: user.email,
         image: user.image,
         username: user.username,

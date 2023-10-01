@@ -5,4 +5,6 @@ final class StringConstants {
   static const String error = 'Error Occurred';
   static const String code_500 = '500';
   static const String tryLater = 'Please try again later';
+  static const String admin = 'admin@gmail.com';
+  static const String adminPassword = '123456';
 }

@@ -41,6 +41,12 @@ class _$AppRouter extends RootStackRouter {
         child: const DashboardView(),
       );
     },
+    AdminDashboard.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AdminDashBoardPage(),
+      );
+    },
     HomeRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -92,13 +98,48 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    UsersPageRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AppUsersPage(),
+      );
+    },
+    SalesPageRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SalesPage(),
+      );
+    },
+    ProductCountPageRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ProductCountPage(),
+      );
+    },
+    AdminPageRouter.name: (routeData) {
+      final args = routeData.argsAs<AdminPageRouterArgs>(
+          orElse: () => const AdminPageRouterArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: AdminPage(key: args.key),
+      );
+    },
+    AdminHome.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const HomeView(),
+        transitionsBuilder: TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
           OnBoardingPage.name,
-          path: '/',
+          path: 'sss',
         ),
         RouteConfig(
           SignInPage.name,
@@ -146,6 +187,37 @@ class _$AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        RouteConfig(
+          AdminDashboard.name,
+          path: '/',
+          children: [
+            RouteConfig(
+              UsersPageRouter.name,
+              path: 'app-users-page',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              SalesPageRouter.name,
+              path: 'sales-page',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              ProductCountPageRouter.name,
+              path: 'product-count-page',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              AdminPageRouter.name,
+              path: 'admin-page',
+              parent: AdminDashboard.name,
+            ),
+            RouteConfig(
+              AdminHome.name,
+              path: '',
+              parent: AdminDashboard.name,
+            ),
+          ],
+        ),
       ];
 }
 
@@ -155,7 +227,7 @@ class OnBoardingPage extends PageRouteInfo<void> {
   const OnBoardingPage()
       : super(
           OnBoardingPage.name,
-          path: '/',
+          path: 'sss',
         );
 
   static const String name = 'OnBoardingPage';
@@ -196,6 +268,19 @@ class DashBoardPage extends PageRouteInfo<void> {
         );
 
   static const String name = 'DashBoardPage';
+}
+
+/// generated route for
+/// [AdminDashBoardPage]
+class AdminDashboard extends PageRouteInfo<void> {
+  const AdminDashboard({List<PageRouteInfo>? children})
+      : super(
+          AdminDashboard.name,
+          path: '/',
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminDashboard';
 }
 
 /// generated route for
@@ -292,4 +377,76 @@ class DetailsPageArgs {
   String toString() {
     return 'DetailsPageArgs{key: $key, productId: $productId}';
   }
+}
+
+/// generated route for
+/// [AppUsersPage]
+class UsersPageRouter extends PageRouteInfo<void> {
+  const UsersPageRouter()
+      : super(
+          UsersPageRouter.name,
+          path: 'app-users-page',
+        );
+
+  static const String name = 'UsersPageRouter';
+}
+
+/// generated route for
+/// [SalesPage]
+class SalesPageRouter extends PageRouteInfo<void> {
+  const SalesPageRouter()
+      : super(
+          SalesPageRouter.name,
+          path: 'sales-page',
+        );
+
+  static const String name = 'SalesPageRouter';
+}
+
+/// generated route for
+/// [ProductCountPage]
+class ProductCountPageRouter extends PageRouteInfo<void> {
+  const ProductCountPageRouter()
+      : super(
+          ProductCountPageRouter.name,
+          path: 'product-count-page',
+        );
+
+  static const String name = 'ProductCountPageRouter';
+}
+
+/// generated route for
+/// [AdminPage]
+class AdminPageRouter extends PageRouteInfo<AdminPageRouterArgs> {
+  AdminPageRouter({Key? key})
+      : super(
+          AdminPageRouter.name,
+          path: 'admin-page',
+          args: AdminPageRouterArgs(key: key),
+        );
+
+  static const String name = 'AdminPageRouter';
+}
+
+class AdminPageRouterArgs {
+  const AdminPageRouterArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AdminPageRouterArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [HomeView]
+class AdminHome extends PageRouteInfo<void> {
+  const AdminHome()
+      : super(
+          AdminHome.name,
+          path: '',
+        );
+
+  static const String name = 'AdminHome';
 }

@@ -10,7 +10,7 @@ const _duration = 1000;
     AutoRoute(
       name: 'OnBoardingPage',
       page: OnBoardingScreen,
-      path: '/',
+      path: 'sss',
     ),
     AutoRoute(
       path: 'signIn',
@@ -64,10 +64,42 @@ const _duration = 1000;
         ),
       ],
     ),
+    //!Admin flow
+    AutoRoute(
+      name: 'AdminDashboard',
+      page: AdminDashBoardPage,
+      path: '/',
+      children: <AutoRoute<dynamic>>[
+        AutoRoute(
+          name: 'UsersPageRouter',
+          page: AppUsersPage,
+        ),
+        AutoRoute(
+          name: 'SalesPageRouter',
+          page: SalesPage,
+        ),
+        AutoRoute(
+          name: 'ProductCountPageRouter',
+          page: ProductCountPage,
+        ),
+        AutoRoute(
+          name: 'AdminPageRouter',
+          page: AdminPage,
+        ),
+        CustomRoute(
+          path: '',
+          page: HomeView,
+          name: 'AdminHome',
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+        ),
+      ],
+    )
   ],
 )
 class AppRouter extends _$AppRouter {}
 
 class EmptyPageRouter extends AutoRouter {
-  const EmptyPageRouter({super.key});
+  const EmptyPageRouter({
+    super.key,
+  });
 }

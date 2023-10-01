@@ -8,6 +8,6 @@ final class SaveUserOrderUseCase {
   }) : _orderRepository = orderRepository;
 
   Future<void> call({required UserOrder order}) async {
-    return _orderRepository.saveOrder(order);
+    return _orderRepository.saveOrderLocale(order);
   }
 }

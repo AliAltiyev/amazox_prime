@@ -25,7 +25,7 @@ class AppThemeIcon extends StatelessWidget {
                 height: size.height / Dimensions.SIZE_20,
                 width: size.width / Dimensions.SIZE_14,
                 child: Image.asset(
-                  color: ApplicationColors.black,
+                  color: ApplicationColors.white,
                   ImagePaths.nightIcon,
                 ),
               ),
@@ -35,7 +35,7 @@ class AppThemeIcon extends StatelessWidget {
                 horizontal: ApplicationPadding.PADDING_14,
               ),
               child: Image.asset(
-                color: ApplicationColors.white,
+                color: ApplicationColors.black,
                 height: size.height / Dimensions.SIZE_20,
                 width: size.width / Dimensions.SIZE_14,
                 ImagePaths.dayIcon,

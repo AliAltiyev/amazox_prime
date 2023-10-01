@@ -39,6 +39,11 @@ class SignUpEvent extends AuthEvent {
       ];
 }
 
+class SignInAsAdminEvent extends AuthEvent {
+  @override
+  List<Object?> get props => <Object?>[];
+}
+
 class ForgotPasswordEvent extends AuthEvent {
   const ForgotPasswordEvent({
     required this.email,

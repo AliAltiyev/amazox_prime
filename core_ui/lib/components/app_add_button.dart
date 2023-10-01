@@ -1,9 +1,9 @@
 import 'package:core_ui/core_ui.dart';
 
-class AppAddButton extends StatelessWidget {
+class PrimaryAppButton extends StatelessWidget {
   final IconData _icon;
   final VoidCallback _onPress;
-  const AppAddButton({
+  const PrimaryAppButton({
     required IconData icon,
     required VoidCallback onPress,
     super.key,

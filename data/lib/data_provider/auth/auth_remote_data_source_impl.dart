@@ -70,6 +70,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .get();
   }
 
+  String get date => DateTime.now().toString().substring(0, 10);
+
   Future<void> _setUserData({
     String? fallbackEmail,
     required User user,
@@ -81,6 +83,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .doc(user.uid)
         .set(
           UserModel(
+            registrationDate: Timestamp.now(),
             emailIsVerified: user.emailVerified,
             username: user.displayName ?? '',
             bio: '',

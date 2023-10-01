@@ -12,8 +12,8 @@ class UserOrderEntityAdapter extends TypeAdapter<UserOrderEntity> {
 
   @override
   UserOrderEntity read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
+    final int numOfFields = reader.readByte();
+    final Map<int, dynamic> fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserOrderEntity(
@@ -48,3 +48,25 @@ class UserOrderEntityAdapter extends TypeAdapter<UserOrderEntity> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserOrderEntity _$UserOrderEntityFromJson(Map<String, dynamic> json) =>
+    UserOrderEntity(
+      id: json['id'] as String,
+      products: (json['products'] as List<dynamic>)
+          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      date: json['date'] as String,
+      price: (json['price'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$UserOrderEntityToJson(UserOrderEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'products': instance.products,
+      'date': instance.date,
+      'price': instance.price,
+    };

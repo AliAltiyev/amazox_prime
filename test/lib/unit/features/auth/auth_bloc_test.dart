@@ -19,7 +19,7 @@ void main() {
   late ForgotPasswordUseCase forgotPasswordUseCase;
   late AppRouter appRouter;
   late AuthBloc authBloc;
-  const UserEntity user = UserEntity.empty();
+  UserEntity user = UserEntity.empty();
   const String testPassword = 'password';
   const String testEmail = 'email';
   const String testFullName = 'fullName';
@@ -77,7 +77,7 @@ void main() {
         () => signInUseCase(any<SignInParams>()),
       ).thenAnswer(
         (Invocation invocation) async {
-          return const Right<Failure, UserEntity>(user);
+          return Right<Failure, UserEntity>(user);
         },
       );
 
@@ -89,8 +89,8 @@ void main() {
         password: signInParams.password,
       ),
     ),
-    expect: () => const <AuthState>[
-      AuthLoadingState(),
+    expect: () => <AuthState>[
+      const AuthLoadingState(),
       SignedInState(user: user),
     ],
   );

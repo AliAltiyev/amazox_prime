@@ -4,4 +4,8 @@ enum FirebaseEnum {
   id,
   name,
   users,
+  registrationDate,
+  orders,
+  products,
+  date,
 }

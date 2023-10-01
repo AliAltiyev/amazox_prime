@@ -2,6 +2,7 @@ library navigation;
 
 export 'dart:convert';
 
+export 'package:admin/admin.dart';
 export 'package:auth/auth.dart';
 export 'package:auto_route/annotations.dart';
 export 'package:auto_route/auto_route.dart';

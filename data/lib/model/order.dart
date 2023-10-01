@@ -3,13 +3,17 @@ import 'package:data/data.dart';
 part 'order.g.dart';
 
 @HiveType(typeId: 3)
+@JsonSerializable()
 final class UserOrderEntity extends Equatable {
   @HiveField(0)
   final String id;
+
   @HiveField(1)
   final List<ProductModel> products;
+
   @HiveField(2)
   final String date;
+
   @HiveField(3)
   final double price;
 
@@ -27,4 +31,9 @@ final class UserOrderEntity extends Equatable {
         date,
         price,
       ];
+
+  factory UserOrderEntity.fromJson(Map<String, dynamic> json) =>
+      _$UserOrderEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserOrderEntityToJson(this);
 }

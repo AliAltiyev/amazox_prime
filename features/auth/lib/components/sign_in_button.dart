@@ -17,36 +17,50 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoundedButton(
-      labelColour:
-      isGoogleButton ? ApplicationColors.black : ApplicationColors.white,
+      labelColor:
+          isGoogleButton ? ApplicationColors.black : ApplicationColors.white,
       label: isGoogleButton
           ? StringConstant.singInWithGoogle
           : StringConstant.signIn,
-      buttonColour: isGoogleButton
+      buttonColor: isGoogleButton
           ? ApplicationColors.white
           : ApplicationColors.primaryButtonColor,
       onPressed: () async {
         await getIt<FirebaseAuth>().currentUser?.reload();
         FocusManager.instance.primaryFocus?.unfocus();
         FirebaseAuth.instance.currentUser?.reload();
+
         if (context.mounted) {
           if (isGoogleButton) {
             context.read<AuthBloc>().add(
-              SignInWithGoogleEvent(),
-            );
+                  SignInWithGoogleEvent(),
+                );
           }
         }
         if (formKey.currentState!.validate()) {
           if (context.mounted) {
-            context.read<AuthBloc>().add(
-              SignInEvent(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim(),
-              ),
-            );
+            if (_checkAdmin(context)) {
+              context.read<AuthBloc>().add(SignInAsAdminEvent());
+            } else {
+              context.read<AuthBloc>().add(
+                    SignInEvent(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    ),
+                  );
+            }
           }
         }
       },
     );
+  }
+
+  bool _checkAdmin(BuildContext context) {
+    if (emailController.text == StringConstants.admin &&
+        passwordController.text == StringConstants.adminPassword) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

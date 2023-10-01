@@ -18,7 +18,8 @@ void main() {
     password: '123455',
   );
 
-  const UserEntity user = UserEntity(
+  UserEntity user = UserEntity(
+    registrationDate: DateTime.now(),
     fullName: '',
     bio: '',
     uid: '1',
@@ -35,7 +36,7 @@ void main() {
         email: params.email,
         password: params.password,
       ),
-    ).thenAnswer((_) async => const Right<Failure, UserEntity>(user));
+    ).thenAnswer((_) async => Right<Failure, UserEntity>(user));
 
     //act
     final Either<Failure, void> result = await signInUseCase(params);
@@ -44,7 +45,7 @@ void main() {
     expect(
       result,
       equals(
-        const Right<Failure, UserEntity>(user),
+        Right<Failure, UserEntity>(user),
       ),
     );
 

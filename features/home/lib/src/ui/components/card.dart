@@ -78,7 +78,7 @@ class CustomCard extends StatelessWidget {
           const SizedBox(height: Dimensions.SIZE_30),
           BlocBuilder<CartBloc, CartState>(
             builder: (BuildContext context, CartState state) {
-              return AddToCardButton(
+              return CartButton(
                 text: StringConstant.addToCard,
                 onPressed: () {
                   context.read<CartBloc>().add(

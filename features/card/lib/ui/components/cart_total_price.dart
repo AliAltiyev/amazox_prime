@@ -23,9 +23,12 @@ class CartTotalPrice extends StatelessWidget {
                 '${context.read<CartBloc>().totalString} ${Currency.rubl.value}',
                 style: AppFonts.normal24,
               ),
-              AddToCardButton(
+              CartButton(
                 text: StringConstant.makeOrder,
                 onPressed: () {
+                  context.read<CartBloc>().add(
+                        ConfirmOrder(),
+                      );
                   context.read<CartBloc>().add(
                         const RemoveAllProducts(),
                       );

@@ -1,7 +1,8 @@
 import 'package:domain/entity/user_order.dart';
 
 abstract class OrderRepository {
-  Future<void> saveOrder(UserOrder userOrder);
-
+  Future<void> saveOrderLocale(UserOrder userOrder);
+  Future<void> saveOrderToFirebase(UserOrder userOrder);
   List<UserOrder> getAllOrders();
+  Future<List<int>> getOrdersPerDay();
 }

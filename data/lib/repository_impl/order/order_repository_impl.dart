@@ -2,9 +2,11 @@ import 'package:data/data.dart';
 
 class OrderRepositoryImpl extends OrderRepository {
   final LocaleDataSource _localeDataSource;
+  final RemoteOrderDataSource _remoteOrderDataSource;
 
   OrderRepositoryImpl(
     this._localeDataSource,
+    this._remoteOrderDataSource,
   );
 
   @override
@@ -16,7 +18,21 @@ class OrderRepositoryImpl extends OrderRepository {
   }
 
   @override
-  Future<void> saveOrder(UserOrder userOrder) async {
-    return _localeDataSource.addOrder(OrderMapper.toModel(userOrder));
+  Future<void> saveOrderLocale(UserOrder userOrder) async {
+    return _localeDataSource.addOrder(
+      OrderMapper.toModel(userOrder),
+    );
+  }
+
+  @override
+  Future<void> saveOrderToFirebase(UserOrder userOrder) {
+    return _remoteOrderDataSource.saveOrderToFirebase(
+      OrderMapper.toModel(userOrder),
+    );
+  }
+
+  @override
+  Future<List<int>> getOrdersPerDay() async {
+    return await _remoteOrderDataSource.getOrdersPerDay();
   }
 }

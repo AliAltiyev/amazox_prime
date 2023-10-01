@@ -30,14 +30,14 @@ class OnBoardingCubit extends Cubit<bool> {
   }
 
   Future<void> navigateToMain({required BuildContext context}) async {
-    await AutoRouter.of(context).replace(const DashBoardPage());
+    await AutoRouter.of(context).replace(DashBoardPage());
   }
 
   Future<void> navigateToAuthOrHome({required BuildContext context}) async {
-    await AutoRouter.of(context).push(
+    await AutoRouter.of(context).replace(
       FirebaseAuth.instance.currentUser == null
-          ? const SignInPage()
-          : const DashBoardPage(),
+          ? SignInPage()
+          : DashBoardPage(),
     );
   }
 }

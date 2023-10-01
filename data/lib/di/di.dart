@@ -1,5 +1,4 @@
-import 'package:data/data_provider/auth/auth_remote_data_source_impl.dart';
-import 'package:data/model/order.dart';
+import 'package:data/repository_impl/admin/admin_repository_impl.dart';
 import 'package:data/repository_impl/auth/auth_repository_impl.dart';
 import 'package:data/repository_impl/cart/cart_repository_impl.dart';
 import 'package:data/repository_impl/onboarding/on_boarding_repository_impl.dart';
@@ -151,11 +150,6 @@ Future<void> initDataLayer() async {
     () => ForgotPasswordUseCase(getIt<AuthRepository>()),
   );
 
-  //Order
-  getIt.registerLazySingleton<OrderRepository>(
-    () => OrderRepositoryImpl(getIt<LocaleDataSource>()),
-  );
-
   getIt.registerLazySingleton<GetAllUserOrdersUseCase>(
     () => GetAllUserOrdersUseCase(orderRepository: getIt<OrderRepository>()),
   );
@@ -163,6 +157,83 @@ Future<void> initDataLayer() async {
   getIt.registerLazySingleton<SaveUserOrderUseCase>(
     () => SaveUserOrderUseCase(orderRepository: getIt<OrderRepository>()),
   );
+
+  //!Admin
+
+  getIt.registerLazySingleton<RemoteOrderDataSource>(
+    () {
+      return RemoteOrderDataSourceImpl(
+          firebaseFirestore: getIt<FirebaseFirestore>());
+    },
+  );
+
+  //Order
+  getIt.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(
+      getIt<LocaleDataSource>(),
+      getIt<RemoteOrderDataSource>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<SaveOrderRemoteUseCase>(
+    () {
+      return SaveOrderRemoteUseCase(
+        orderRepository: getIt<OrderRepository>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<GetOrdersPerDayUseCase>(
+    () {
+      return GetOrdersPerDayUseCase(
+        orderRepository: getIt<OrderRepository>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<RemoteAdminDataSourceImpl>(
+    () {
+      return RemoteAdminDataSourceImpl(
+        firebaseFirestore: getIt<FirebaseFirestore>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<AdminRepositoryImpl>(
+    () {
+      return AdminRepositoryImpl(
+        remoteAdminDataSource: getIt<RemoteAdminDataSourceImpl>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<FetchAllUsersPerDayUseCase>(
+    () {
+      return FetchAllUsersPerDayUseCase(
+        adminRepository: getIt<AdminRepositoryImpl>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<FetchAllUserByRegistrationDateUseCase>(
+    () {
+      return FetchAllUserByRegistrationDateUseCase(
+        adminRepository: getIt<AdminRepositoryImpl>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<SaveProductUseCase>(
+    () {
+      return SaveProductUseCase(
+        adminRepository: getIt<AdminRepositoryImpl>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<ImagePicker>(() {
+    return ImagePicker();
+  });
 }
 
 void _initHiveAdapters() {

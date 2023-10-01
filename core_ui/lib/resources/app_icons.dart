@@ -60,4 +60,22 @@ final class AppIcons {
   );
 
   static const IconData delete = Icons.delete_outline_outlined;
+
+  //Admin
+  static const Icon products = Icon(
+    Icons.list_alt_rounded,
+  );
+  static const Icon sales = Icon(
+    Icons.monetization_on,
+  );
+  static const Icon admin = Icon(
+    Icons.admin_panel_settings,
+  );
+  static const Icon users = Icon(
+    Icons.supervised_user_circle,
+  );
+
+  static const Icon add = Icon(
+    Icons.add,
+  );
 }

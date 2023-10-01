@@ -14,6 +14,7 @@ dependencies:
     path: ../../navigation/
   core_ui:
     path: ../../core_ui/
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
