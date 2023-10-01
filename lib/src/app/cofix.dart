@@ -28,6 +28,9 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<SettingsBloc>(
           create: (BuildContext context) => SettingsBloc(
+            getCurrentUserUseCase: getIt<GetCurrentUserUseCase>(),
+            changeUserAvatarUserCase: getIt<ChangeUserAvatarUserCase>(),
+            imagePicker: getIt<ImagePicker>(),
             appRouter: getIt<AppRouter>(),
             logOutUseCase: getIt<LogOutUseCase>(),
             urlLauncher: getIt<UrlLauncher>(),
@@ -73,7 +76,7 @@ class Application extends StatelessWidget {
         return MediaQuery(
           data: context.mediaQuery.copyWith(
             textScaleFactor:
-                context.watch<SettingsBloc>().state.fontSize.fontSize,
+                context.watch<SettingsBloc>().state.fontSize?.fontSize,
           ),
           child: child ?? const SizedBox.shrink(),
         );

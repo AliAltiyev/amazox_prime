@@ -35,6 +35,11 @@ final class PopEvent extends SettingsEvent {
   List<Object?> get props => [];
 }
 
+final class ChangeAvatarImage extends SettingsEvent {
+  @override
+  List<Object?> get props => <Object?>[];
+}
+
 final class NavigateToEditProfileEvent extends SettingsEvent {
   @override
   List<Object?> get props => [];
