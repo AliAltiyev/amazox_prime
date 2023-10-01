@@ -92,4 +92,11 @@ class AuthRemoteRepositoryImpl implements AuthRepository {
       );
     }
   }
+
+  @override
+  Stream<UserEntity> getCurrentUser() {
+    return _remoteDataSource
+        .getCurrentUser()
+        .map<UserEntity>(UserMapper.toEntity);
+  }
 }

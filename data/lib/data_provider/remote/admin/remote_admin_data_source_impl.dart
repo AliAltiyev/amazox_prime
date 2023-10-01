@@ -2,9 +2,9 @@ import 'package:data/data.dart';
 
 final class RemoteAdminDataSourceImpl implements RemoteAdminDataSource {
   final FirebaseFirestore firebaseFirestore;
-  RemoteAdminDataSourceImpl({
-    required this.firebaseFirestore,
-  });
+  final FirebaseStorage firebaseStorage;
+  RemoteAdminDataSourceImpl(
+      {required this.firebaseFirestore, required this.firebaseStorage});
 
   @override
   Future<List<int>> getUsersPerDay() async {
@@ -62,9 +62,41 @@ final class RemoteAdminDataSourceImpl implements RemoteAdminDataSource {
   }
 
   @override
-  Future<void> addProduct(ProductModel productModel) async {
-    await firebaseFirestore
+  Future<void> addProduct(
+    ProductModel productModel,
+    File imageFile,
+  ) async {
+    final DocumentReference<Map<String, dynamic>> s = await firebaseFirestore
         .collection(FirebaseEnum.coffee.name)
         .add(productModel.toJson());
+
+    await saveProductImage(imageFile, s.id);
+  }
+
+  Future<String> saveProductImage(File imageFile, String productId) async {
+    final String id = const Uuid().v4();
+
+    final Reference storageReference =
+        firebaseStorage.ref().child('products/$id');
+
+    final UploadTask task = storageReference.putFile(imageFile);
+    await task.whenComplete(() => debugPrint('product image uploaded'));
+
+    final String getUploadedImage = await storageReference.getDownloadURL();
+
+    final DocumentReference<Map<String, dynamic>> docRef =
+        firebaseFirestore.collection(FirebaseEnum.coffee.name).doc(productId);
+
+    await docRef.update(<String, String>{'image': getUploadedImage});
+
+    if (getUploadedImage.startsWith('gs://') ||
+        getUploadedImage.startsWith('https://')) {
+      return getUploadedImage;
+    }
+
+    final Reference ref = storageReference.storage.refFromURL(getUploadedImage);
+    final String image = await ref.getDownloadURL();
+
+    return image;
   }
 }

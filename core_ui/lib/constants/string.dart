@@ -1,4 +1,5 @@
 final class StringConstant {
+  static const String emptyString = '';
   static const String addToCard = '+ Добавить';
   static const String overTwoHundredStarts = '200+ оценок';
   static const String appName = 'Cofix';
@@ -114,4 +115,6 @@ final class StringConstant {
   static const String productPrice = 'Цена';
   static const String productDescription = 'Описание товара';
 
+  //settings
+  static const String changeUserImage = 'Изменить фото';
 }

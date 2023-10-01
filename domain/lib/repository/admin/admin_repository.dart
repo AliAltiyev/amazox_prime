@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:domain/domain.dart';
 
 abstract class AdminRepository {
@@ -5,5 +7,8 @@ abstract class AdminRepository {
   Future<void> deleteUser();
   Future<void> deleteMultipleUsers();
   Future<List<UserEntity>> getUsersByRegistrationDate();
-  Future<void> saveProductToFirebase(Product product);
+  Future<void> saveProductToFirebase(
+    Product product,
+    File imageFile,
+  );
 }

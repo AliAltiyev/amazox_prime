@@ -11,103 +11,114 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    return Scaffold(
-      appBar: AppBar(
-        actions: _appBarActions(
-          size,
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const UserAvatar(),
-            SizedBox(
-              height: size.height / Dimensions.SIZE_20,
-            ),
-            _userName(getIt<FirebaseAuth>().currentUser?.displayName ?? ''),
-            _userEmail(getIt<FirebaseAuth>().currentUser?.email ?? ''),
-            SizedBox(
-              height: size.height / Dimensions.SIZE_14,
-            ),
-            SettingsListTile(
-              title: StringConstant.profile,
-              trailing: const Icon(
-                Icons.chevron_right_rounded,
-              ),
-              onTap: () {
-                //Todo add action
-              },
-              leading: AppIcons.profile,
-            ),
-            SettingsListTile(
-              title: StringConstant.orders,
-              trailing: const Icon(
-                Icons.chevron_right_rounded,
-              ),
-              onTap: () {
-                //Todo add action
-              },
-              leading: AppIcons.orders,
-            ),
-            SettingsListTile(
-              title: StringConstant.notification,
-              trailing: const Icon(
-                Icons.chevron_right_rounded,
-              ),
-              onTap: () {
-                //Todo add action
-              },
-              leading: AppIcons.notifications,
-            ),
-            SettingsListTile(
-              title: StringConstant.adresses,
-              trailing: const Icon(
-                Icons.chevron_right_rounded,
-              ),
-              onTap: () {
-                //Todo add action
-              },
-              leading: AppIcons.address,
-            ),
-            SettingsListTile(
-              title: StringConstant.promoCode,
-              trailing: const Icon(
-                Icons.chevron_right_rounded,
-              ),
-              onTap: () {
-                //Todo add action
-              },
-              leading: AppIcons.promoCode,
-            ),
-            SettingsListTile(
-              title: StringConstant.changeTextStyle,
-              trailing: const Icon(
-                Icons.chevron_right_rounded,
-              ),
-              onTap: () {
-                _showChangeTextSize(
-                  context,
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (context, state) {
+        return StreamBuilder(
+          stream: state.currentUser,
+          builder: (context, snapshot) {
+            return Scaffold(
+              appBar: AppBar(
+                actions: _appBarActions(
                   size,
-                );
-              },
-              leading: AppIcons.support,
-            ),
-            SettingsListTile(
-              title: StringConstant.aboutUs,
-              trailing: AppIcons.aboutUs,
-              onTap: () {
-                context.read<SettingsBloc>().add(
-                      LaunchContactsEvent(),
-                    );
-              },
-              leading: const Icon(
-                Icons.warning_amber_outlined,
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+              body: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    const UserAvatar(),
+                    SizedBox(
+                      height: size.height / Dimensions.SIZE_20,
+                    ),
+                    _userName(
+                        snapshot.data?.fullName ?? StringConstant.emptyString),
+                    _userEmail(
+                        snapshot.data?.email ?? StringConstant.emptyString),
+                    SizedBox(
+                      height: size.height / Dimensions.SIZE_14,
+                    ),
+                    SettingsListTile(
+                      title: StringConstant.profile,
+                      trailing: const Icon(
+                        Icons.chevron_right_rounded,
+                      ),
+                      onTap: () {
+                        //Todo add action
+                      },
+                      leading: AppIcons.profile,
+                    ),
+                    SettingsListTile(
+                      title: StringConstant.orders,
+                      trailing: const Icon(
+                        Icons.chevron_right_rounded,
+                      ),
+                      onTap: () {
+                        //Todo add action
+                      },
+                      leading: AppIcons.orders,
+                    ),
+                    SettingsListTile(
+                      title: StringConstant.notification,
+                      trailing: const Icon(
+                        Icons.chevron_right_rounded,
+                      ),
+                      onTap: () {
+                        //Todo add action
+                      },
+                      leading: AppIcons.notifications,
+                    ),
+                    SettingsListTile(
+                      title: StringConstant.adresses,
+                      trailing: const Icon(
+                        Icons.chevron_right_rounded,
+                      ),
+                      onTap: () {
+                        //Todo add action
+                      },
+                      leading: AppIcons.address,
+                    ),
+                    SettingsListTile(
+                      title: StringConstant.promoCode,
+                      trailing: const Icon(
+                        Icons.chevron_right_rounded,
+                      ),
+                      onTap: () {
+                        //Todo add action
+                      },
+                      leading: AppIcons.promoCode,
+                    ),
+                    SettingsListTile(
+                      title: StringConstant.changeTextStyle,
+                      trailing: const Icon(
+                        Icons.chevron_right_rounded,
+                      ),
+                      onTap: () {
+                        _showChangeTextSize(
+                          context,
+                          size,
+                        );
+                      },
+                      leading: AppIcons.support,
+                    ),
+                    SettingsListTile(
+                      title: StringConstant.aboutUs,
+                      trailing: AppIcons.aboutUs,
+                      onTap: () {
+                        context.read<SettingsBloc>().add(
+                              LaunchContactsEvent(),
+                            );
+                      },
+                      leading: const Icon(
+                        Icons.warning_amber_outlined,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -168,7 +179,7 @@ class _SettingsPageState extends State<SettingsPage> {
               const Divider(
                 color: ApplicationColors.black,
               ),
-              BlocBuilder<SettingsBloc, FontSizeState>(
+              BlocBuilder<SettingsBloc, SettingsState>(
                 builder: (context, state) {
                   return Center(
                     child: Slider.adaptive(
@@ -234,14 +245,14 @@ class _SettingsPageState extends State<SettingsPage> {
         itemBuilder: (context) => <PopupMenuItem>[
           PopupMenuItem<void>(
             child: const PopupItem(
-              title: StringConstant.aboutUs,
+              title: StringConstant.changeUserImage,
               icon: Icon(
                 Icons.edit_outlined,
                 color: ApplicationColors.black,
               ),
             ),
             onTap: () {
-              //TODO Add edit profile page
+              context.read<SettingsBloc>().add(ChangeAvatarImage());
             },
           )
         ],

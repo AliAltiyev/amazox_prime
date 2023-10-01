@@ -2,7 +2,7 @@ import 'package:data/data.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final FirebaseAuth _authClient;
-  final FirebaseFirestore _cloudStoreClient;
+  final FirebaseFirestore _firebaseFirestore;
   final GoogleSignIn _googleSignIn;
 
   const AuthRemoteDataSourceImpl({
@@ -10,7 +10,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required FirebaseFirestore cloudStoreClient,
     required GoogleSignIn googleSignIn,
   })  : _authClient = authClient,
-        _cloudStoreClient = cloudStoreClient,
+        _firebaseFirestore = cloudStoreClient,
         _googleSignIn = googleSignIn;
 
   @override
@@ -62,7 +62,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
-    return _cloudStoreClient
+    return _firebaseFirestore
         .collection(
           FirebaseEnum.users.name,
         )
@@ -76,7 +76,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String? fallbackEmail,
     required User user,
   }) async {
-    await _cloudStoreClient
+    await _firebaseFirestore
         .collection(
           FirebaseEnum.users.name,
         )
@@ -195,5 +195,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         statusCode: StringConstants.code_500,
       );
     }
+  }
+
+  @override
+  Stream<UserModel> getCurrentUser() {
+    return _firebaseFirestore
+        .collection(FirebaseEnum.users.name)
+        .doc(_authClient.currentUser?.uid)
+        .snapshots()
+        .map((DocumentSnapshot<Map<String, dynamic>> event) {
+      return UserModel.fromJson(event.data() ?? <String, dynamic>{});
+    });
   }
 }

@@ -1,22 +1,27 @@
 part of 'settings_bloc.dart';
 
-final class FontSizeState extends Equatable {
+final class SettingsState extends Equatable {
   final FontSizeEntity fontSize;
+  final Stream<UserEntity> currentUser;
 
-  const FontSizeState({
+  const SettingsState({
     required this.fontSize,
+    required this.currentUser,
   });
 
   @override
   List<Object?> get props => <Object?>[
         fontSize,
+        currentUser,
       ];
 
-  FontSizeState copyWith({
+  SettingsState copyWith({
     FontSizeEntity? fontSize,
+    Stream<UserEntity>? currentUser,
   }) {
-    return FontSizeState(
+    return SettingsState(
       fontSize: fontSize ?? this.fontSize,
+      currentUser: currentUser ?? this.currentUser,
     );
   }
 }

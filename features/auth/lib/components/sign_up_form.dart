@@ -49,6 +49,7 @@ class _SignUpFormState extends State<SignUpForm> {
           AppTextField(
             controller: widget.passwordController,
             hintText: StringConstant.password,
+            maxLines: Dimensions.SIZE_1.toInt(),
             obscureText: obscurePassword,
             keyboardType: TextInputType.visiblePassword,
             suffixIcon: IconButton(
@@ -67,6 +68,7 @@ class _SignUpFormState extends State<SignUpForm> {
             height: Dimensions.SIZE_20,
           ),
           AppTextField(
+            maxLines: Dimensions.SIZE_1.toInt(),
             controller: widget.confirmPasswordController,
             hintText: StringConstant.confirmPassword,
             obscureText: obscureConfirmPassword,
@@ -84,7 +86,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 color: ApplicationColors.disabledColor,
               ),
             ),
-            validator: (value) {
+            validator: (String? value) {
               if (value != widget.passwordController.text) {
                 return StringConstant.passwordsNotMatch;
               }

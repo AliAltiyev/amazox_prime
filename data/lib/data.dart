@@ -1,3 +1,5 @@
+export 'dart:io' show File;
+
 export 'package:core/core.dart';
 export 'package:core/enums/firebase.dart';
 export 'package:core/exceptions/firebase.dart';
@@ -13,6 +15,8 @@ export 'package:data/data_provider/remote/admin/remote_admin_data_source_impl.da
 export 'package:data/data_provider/remote/order/remote_order_data_source.dart';
 export 'package:data/data_provider/remote/order/remote_order_data_source_impl.dart';
 export 'package:data/data_provider/remote/remote_data_source_impl.dart';
+export 'package:data/data_provider/settings/settings_remote_data_source.dart';
+export 'package:data/data_provider/settings/settings_remote_data_source_impl.dart';
 export 'package:data/di/di.dart';
 export 'package:data/mapper/menu.dart';
 export 'package:data/mapper/order.dart';
@@ -22,6 +26,7 @@ export 'package:data/model/menu.dart';
 export 'package:data/model/order.dart';
 export 'package:data/model/product.dart';
 export 'package:data/model/user.dart';
+export 'package:data/repository_impl/settings/avatar/user_avatar_repository.dart';
 export 'package:data/repository_impl/settings/theme/theme_repository_impl.dart';
 export 'package:domain/domain.dart';
 export 'package:domain/entity/font_size.dart';

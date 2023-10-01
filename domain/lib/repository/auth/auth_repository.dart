@@ -3,6 +3,8 @@ import 'package:domain/domain.dart';
 abstract class AuthRepository {
   const AuthRepository();
 
+  Stream<UserEntity> getCurrentUser();
+
   ResultFuture<UserEntity> signInWithGoogle();
 
   ResultFuture<UserEntity> signIn({

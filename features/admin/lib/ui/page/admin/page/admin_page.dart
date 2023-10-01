@@ -86,9 +86,7 @@ class AdminPage extends StatelessWidget {
                                             description:
                                                 _productDescriptionTextEditingController
                                                     .text,
-                                            image: context
-                                                .read<AdminBloc>()
-                                                .pickedImage,
+                                            image: StringConstant.emptyString,
                                             price: int.parse(
                                                 _productPriceTextEditingController
                                                     .text),

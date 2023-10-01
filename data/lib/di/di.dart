@@ -130,6 +130,10 @@ Future<void> initDataLayer() async {
     () => AuthRemoteRepositoryImpl(getIt<AuthRemoteDataSource>()),
   );
 
+  getIt.registerLazySingleton<GetCurrentUserUseCase>(
+    () => GetCurrentUserUseCase(authRepository: getIt<AuthRepository>()),
+  );
+
   getIt.registerLazySingleton<SignInUseCase>(
     () => SignInUseCase(getIt<AuthRepository>()),
   );
@@ -194,6 +198,7 @@ Future<void> initDataLayer() async {
   getIt.registerLazySingleton<RemoteAdminDataSourceImpl>(
     () {
       return RemoteAdminDataSourceImpl(
+        firebaseStorage: getIt<FirebaseStorage>(),
         firebaseFirestore: getIt<FirebaseFirestore>(),
       );
     },
@@ -234,10 +239,53 @@ Future<void> initDataLayer() async {
   getIt.registerLazySingleton<ImagePicker>(() {
     return ImagePicker();
   });
+  _initSettings();
 }
 
 void _initHiveAdapters() {
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
   Hive.registerAdapter<FontSizeModel>(FontSizeModelAdapter());
   Hive.registerAdapter<UserOrderEntity>(UserOrderEntityAdapter());
+}
+
+void _initSettings() {
+  getIt.registerLazySingleton<SettingsRemoteDataSourceImpl>(
+    () {
+      return SettingsRemoteDataSourceImpl(
+        firebaseStorage: getIt<FirebaseStorage>(),
+        fireStore: getIt<FirebaseFirestore>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<SettingsRemoteDataSource>(
+    () {
+      return SettingsRemoteDataSourceImpl(
+        firebaseStorage: getIt<FirebaseStorage>(),
+        fireStore: getIt<FirebaseFirestore>(),
+      );
+    },
+  );
+
+  getIt.registerLazySingleton<UserAvatarRepositoryImpl>(
+    () {
+      return UserAvatarRepositoryImpl(
+          settingsRemoteDataSource: getIt<SettingsRemoteDataSource>());
+    },
+  );
+
+  getIt.registerLazySingleton<UserAvatarRepository>(
+    () {
+      return UserAvatarRepositoryImpl(
+          settingsRemoteDataSource: getIt<SettingsRemoteDataSource>());
+    },
+  );
+
+  getIt.registerLazySingleton<ChangeUserAvatarUserCase>(
+    () {
+      return ChangeUserAvatarUserCase(
+        userAvatarRepository: getIt<UserAvatarRepository>(),
+      );
+    },
+  );
 }

@@ -19,4 +19,6 @@ abstract class AuthRemoteDataSource {
     required String fullName,
     required String password,
   });
+
+  Stream<UserModel> getCurrentUser();
 }
