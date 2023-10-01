@@ -16,7 +16,7 @@ void main() {
 
   SignInWithGoogleParams params = const SignInWithGoogleParams();
   UserEntity user = UserEntity(
-    registrationDate: DateTime.now(),
+    registrationDate: Timestamp.now(),
     fullName: '',
     bio: '',
     uid: '1',

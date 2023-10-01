@@ -2,7 +2,6 @@ import 'package:data/data.dart';
 
 final class RemoteAdminDataSourceImpl implements RemoteAdminDataSource {
   final FirebaseFirestore firebaseFirestore;
-
   RemoteAdminDataSourceImpl({
     required this.firebaseFirestore,
   });

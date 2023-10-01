@@ -10,7 +10,7 @@ const _duration = 1000;
     AutoRoute(
       name: 'OnBoardingPage',
       page: OnBoardingScreen,
-      path: 'sss',
+      path: '/',
     ),
     AutoRoute(
       path: 'signIn',
@@ -68,7 +68,7 @@ const _duration = 1000;
     AutoRoute(
       name: 'AdminDashboard',
       page: AdminDashBoardPage,
-      path: '/',
+      path: 'admin',
       children: <AutoRoute<dynamic>>[
         AutoRoute(
           name: 'UsersPageRouter',

@@ -34,6 +34,7 @@ class _SignInFormState extends State<SignInForm> {
             height: Dimensions.SIZE_20,
           ),
           AppTextField(
+            maxLines: Dimensions.SIZE_1.toInt(),
             controller: widget.passwordController,
             hintText: StringConstant.password,
             obscureText: obscurePassword,
